@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Food &amp; Service</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tv_copyright"><![CDATA[Food & Service 2021]]></string>
+    <string name="btn_next">Siguiente</string>
+
+    <string name="fragment_onboarding_title1">Bienvenido</string>
+    <string name="fragment_onboarding_description1">Estamos muy contentos de tenerte aquí, antes de continuar y tras detectar que eres nuev@, nos gustaría contarte un poco qué es Food &amp; Service y ¡porqué te encantará!</string>
+
+    <string name="fragment_onboarding_title2">Comodidad</string>
+    <string name="fragment_onboarding_description2">Pide en cualquier restaurante del mundo, en tu propio idioma, consulta los alérgenos e intolerancias y paga directamente desde tu móvil con la forma de pago que más cómoda te sea.</string>
+
+    <string name="fragment_onboarding_title3">Rapidez</string>
+    <string name="fragment_onboarding_description3">Puedes realizar tu pedido en cualquier momento sin esperar a ser atendido, pedir lo que quieras y pagar, tan solo debes preocuparte de disfrutar de tu comida.</string>
+
+    <string name="fragment_onboarding_title4">Descuentos</string>
+    <string name="fragment_onboarding_description4">Nuestros restaurantes están siempre dando descuentos a sus clientes a través de Food &amp; Service, siempre que podamos te mostraremos ¡los mejores descuentos!</string>
+    <string name="btn_finish">Finalizar</string>
 </resources>
