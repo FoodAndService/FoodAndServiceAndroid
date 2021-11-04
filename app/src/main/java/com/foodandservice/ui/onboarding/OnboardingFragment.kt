@@ -15,6 +15,7 @@ import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
 import com.foodandservice.data.model.OnboardingItem
+import com.foodandservice.data.preferences.ClientPreferences
 import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.ui.adapter.OnboardingAdapter
 
@@ -60,7 +61,7 @@ class OnboardingFragment : Fragment() {
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if(position == 3)
+                if(position == onboardingItems.size - 1)
                     databinding.btnOnboarding.text = getString(R.string.btn_finish)
                 else
                     databinding.btnOnboarding.text = getString(R.string.btn_next)
@@ -68,8 +69,10 @@ class OnboardingFragment : Fragment() {
         })
 
         databinding.btnOnboarding.setOnClickListener {
-            if(databinding.btnOnboarding.text == getString(R.string.btn_finish))
-                //findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            if(databinding.btnOnboarding.text == getString(R.string.btn_finish)){
+                ClientPreferences.finishOnboarding()
+                findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
+            }
             else
                 databinding.vpOnboarding.currentItem += 1
         }
