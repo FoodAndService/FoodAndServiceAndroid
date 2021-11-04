@@ -1,0 +1,79 @@
+package com.foodandservice.ui.onboarding
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.navigation.NavOptions
+import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
+import androidx.viewpager2.widget.ViewPager2
+import com.foodandservice.R
+import com.foodandservice.data.model.OnboardingItem
+import com.foodandservice.databinding.FragmentViewPagerBinding
+import com.foodandservice.ui.adapter.OnboardingAdapter
+
+class OnboardingFragment : Fragment() {
+    private lateinit var databinding: FragmentViewPagerBinding
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        databinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_view_pager, container, false)
+
+        val onboardingItems = listOf(
+            OnboardingItem(
+                R.drawable.shape_onboarding,
+                getString(R.string.fragment_onboarding_title1),
+                getString(R.string.fragment_onboarding_description1)
+            ),
+            OnboardingItem(
+                R.drawable.shape_onboarding,
+                getString(R.string.fragment_onboarding_title2),
+                getString(R.string.fragment_onboarding_description2)
+            ),
+            OnboardingItem(
+                R.drawable.shape_onboarding,
+                getString(R.string.fragment_onboarding_title3),
+                getString(R.string.fragment_onboarding_description3)
+            ),
+            OnboardingItem(
+                R.drawable.shape_onboarding,
+                getString(R.string.fragment_onboarding_title4),
+                getString(R.string.fragment_onboarding_description4)
+            )
+        )
+
+        val adapter = OnboardingAdapter(onboardingItems)
+
+        databinding.vpOnboarding.adapter = adapter
+        databinding.dotsIndicator.setViewPager2(databinding.vpOnboarding)
+
+        databinding.vpOnboarding.registerOnPageChangeCallback(object :
+            ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                if(position == 3)
+                    databinding.btnOnboarding.text = getString(R.string.btn_finish)
+                else
+                    databinding.btnOnboarding.text = getString(R.string.btn_next)
+            }
+        })
+
+        databinding.btnOnboarding.setOnClickListener {
+            if(databinding.btnOnboarding.text == getString(R.string.btn_finish))
+                //findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            else
+                databinding.vpOnboarding.currentItem += 1
+        }
+
+        return databinding.root
+    }
+}

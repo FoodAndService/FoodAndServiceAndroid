@@ -11,12 +11,24 @@ object ClientPreferences {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context)
     }
 
-    fun getOnboardingStatus(): Boolean {
+    fun getSession(): String? {
+        return sharedPref!!.getString("authToken", null)
+    }
+
+    fun saveSession(authToken: String) {
+        sharedPref!!.edit().putString("authToken", authToken).apply()
+    }
+
+    fun deleteSession() {
+        sharedPref!!.edit().remove("authToken").apply()
+    }
+
+    fun isOnboardingFinished(): Boolean {
         return sharedPref!!.getBoolean("isOnboardingFinished", false)
     }
 
-    fun saveOnboardingStatus(finished: Boolean) {
-        sharedPref!!.edit().putBoolean("isOnboardingFinished", finished).apply()
+    fun finishOnboarding() {
+        sharedPref!!.edit().putBoolean("isOnboardingFinished", true).apply()
     }
 
     fun deleteOnboardingStatus() {

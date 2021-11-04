@@ -1,7 +1,7 @@
 package com.foodandservice
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 
 class FoodAndServiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
