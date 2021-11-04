@@ -20,14 +20,14 @@ class SplashViewModelImpl : SplashViewModel() {
 
         viewModelScope.launch {
             try {
-                if (authToken == null)
+                if (!ClientPreferences.isOnboardingFinished())
+                    state.value = State.OnboardingNotFinished
+                else if (authToken == null)
                     state.value = State.NotLoggedIn
-                else if (!ClientPreferences.isOnboardingFinished())
-                    state.value = State.OnboardingNotFinished
                 else
-                    state.value = State.OnboardingNotFinished
+                    state.value = State.LoggedIn
             } catch (e: Exception) {
-                state.value = State.NotLoggedIn
+                state.value = State.NetworkError
                 Log.e(TAG, e.message, e)
             }
         }

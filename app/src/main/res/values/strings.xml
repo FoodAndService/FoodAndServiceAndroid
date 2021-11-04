@@ -17,4 +17,5 @@
     <string name="fragment_onboarding_title4">Descuentos</string>
     <string name="fragment_onboarding_description4">Nuestros restaurantes están siempre dando descuentos a sus clientes a través de Food &amp; Service, siempre que podamos te mostraremos ¡los mejores descuentos!</string>
     <string name="btn_finish">Finalizar</string>
+    <string name="error_network">Ha ocurrido un error de red</string>
 </resources>

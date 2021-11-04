@@ -8,6 +8,7 @@ abstract class SplashViewModel : ViewModel() {
         object OnboardingNotFinished : State()
         object LoggedIn : State()
         object NotLoggedIn : State()
+        object NetworkError : State()
     }
 
     abstract fun getState(): LiveData<State>
