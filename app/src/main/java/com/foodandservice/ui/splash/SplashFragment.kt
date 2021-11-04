@@ -27,12 +27,19 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        databinding.viewModel = this.viewModel
+        databinding.lifecycleOwner = this
+
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
-//                SplashViewModel.State.LoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-//                SplashViewModel.State.NotLoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                //SplashViewModel.State.LoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                SplashViewModel.State.NotLoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 SplashViewModel.State.OnboardingNotFinished -> findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
-                SplashViewModel.State.NetworkError -> Toast.makeText(requireContext(), getString(R.string.error_network), Toast.LENGTH_SHORT).show()
+                SplashViewModel.State.NetworkError -> Toast.makeText(
+                    requireContext(),
+                    getString(R.string.error_network),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         })
     }

@@ -4,14 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
 import com.foodandservice.data.model.OnboardingItem
@@ -49,6 +44,11 @@ class OnboardingFragment : Fragment() {
                 R.drawable.shape_onboarding,
                 getString(R.string.fragment_onboarding_title4),
                 getString(R.string.fragment_onboarding_description4)
+            ),
+            OnboardingItem(
+                R.drawable.shape_onboarding,
+                getString(R.string.fragment_onboarding_title5),
+                getString(R.string.fragment_onboarding_description5)
             )
         )
 
@@ -61,7 +61,7 @@ class OnboardingFragment : Fragment() {
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                if(position == onboardingItems.size - 1)
+                if (position == onboardingItems.size - 1)
                     databinding.btnOnboarding.text = getString(R.string.btn_finish)
                 else
                     databinding.btnOnboarding.text = getString(R.string.btn_next)
@@ -69,14 +69,18 @@ class OnboardingFragment : Fragment() {
         })
 
         databinding.btnOnboarding.setOnClickListener {
-            if(databinding.btnOnboarding.text == getString(R.string.btn_finish)){
+            if (databinding.btnOnboarding.text == getString(R.string.btn_finish)) {
+                requestUserPermissions()
                 ClientPreferences.finishOnboarding()
                 findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
-            }
-            else
+            } else
                 databinding.vpOnboarding.currentItem += 1
         }
 
         return databinding.root
+    }
+
+    private fun requestUserPermissions() {
+
     }
 }
