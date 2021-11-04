@@ -27,9 +27,6 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databinding.viewModel = this.viewModel
-        databinding.lifecycleOwner = this
-
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 //SplashViewModel.State.LoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_homeFragment)

@@ -22,6 +22,7 @@
             android:id="@+id/dots_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             app:dotsColor="@color/dot_inactive"
             app:dotsCornerRadius="4dp"
             app:dotsSize="12dp"
@@ -50,7 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
+            app:layout_constraintGuide_percent="0.75" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnOnboarding"

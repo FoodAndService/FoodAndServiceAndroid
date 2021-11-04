@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.foodandservice.R
@@ -17,7 +19,8 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        databinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        return databinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -26,12 +29,25 @@ class LoginFragment : Fragment() {
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 LoginViewModel.State.Success -> {
-
+                    makeToast("Correct")
                 }
                 LoginViewModel.State.PhoneFormatError -> {
-
+                    databinding.tilPhone.error = getString(R.string.error_phone_format)
                 }
             }
         })
+
+        databinding.tvLostPhone.setOnClickListener {
+            makeToast("Lost phone")
+        }
+
+        databinding.btnAccess.setOnClickListener{
+            databinding.tilPhone.isErrorEnabled = false
+            viewModel.login(databinding.tiePhone.text.toString())
+        }
+    }
+
+    private fun makeToast(msg: String) {
+        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 }

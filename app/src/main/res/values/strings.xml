@@ -23,4 +23,5 @@
     <string name="tie_hint_phone_number">Número de teléfono</string>
     <string name="fragment_onboarding_title5">Permisos</string>
     <string name="fragment_onboarding_description5">Solicitamos los siguientes permisos: Contactos (Para obtener su número en el registro), Mensajería (Para validar automáticamente la clave SMS) y Notificaciones (para avisarte de los últimos descuentos y promociones)</string>
+    <string name="error_phone_format">Formato incorrecto</string>
 </resources>
