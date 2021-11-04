@@ -5,6 +5,7 @@
       <map>
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/elevation.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/gradient.xml" value="0.30185185185185187" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_background.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_bg_foodandservice.xml" value="0.3648148148148148" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_onboarding.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_onboarding_item.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_second_screen.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_sms_confirm.xml" value="0.30972222222222223" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_splash.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_third_screen.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_view_pager.xml" value="0.5" />

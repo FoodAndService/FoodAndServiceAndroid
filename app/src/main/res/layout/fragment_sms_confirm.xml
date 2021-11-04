@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.login.LoginViewModelImpl" />
+            type="com.foodandservice.ui.sms_confirm.SmsConfirmViewModelImpl" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background"
-        tools:context=".ui.login.LoginFragment">
+        tools:context=".ui.sms_confirm.SmsConfirmFragment">
 
         <ImageView
             android:id="@+id/imageView"
@@ -46,50 +45,8 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPhone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
-                    android:textColorHint="@color/text_dark"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:startIconDrawable="@drawable/ic_phone"
-                    app:startIconTint="@color/gradient_start">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/tiePhone"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
-                        android:hint="@string/tie_hint_phone_number"
-                        android:inputType="phone"
-                        android:longClickable="false"
-                        android:maxLines="1"
-                        android:minLines="1"
-                        android:singleLine="true"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/gradient_start" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAccess"
-                    style="@style/FYSButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
-                    android:text="@string/btn_access" />
-
                 <TextView
-                    android:id="@+id/tvLostPhone"
+                    android:id="@+id/tvSmsSent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/cardview"
@@ -98,9 +55,36 @@
                     android:layout_marginBottom="@dimen/cardview"
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
-                    android:text="@string/tv_lost_phone_number"
-                    android:textColor="@color/gradient_start"
+                    android:text="@string/tv_sms_sent"
+                    android:textColor="@color/text_dark"
                     android:textSize="16sp" />
+
+                <com.jkb.vcedittext.VerificationCodeEditText
+                    android:id="@+id/etSmsCode"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="16dp"
+                    android:inputType="number"
+                    android:textColor="@color/gradient_start"
+                    android:textSize="32sp"
+                    app:bottomLineHeight="2dp"
+                    app:figures="6"
+                    app:selectedBackgroundColor="@color/white"
+                    app:verCodeMargin="10dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirm"
+                    style="@style/FYSButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/cardview"
+                    android:layout_marginTop="@dimen/cardview"
+                    android:layout_marginEnd="@dimen/cardview"
+                    android:layout_marginBottom="@dimen/cardview"
+                    android:text="@string/btn_confirm" />
+
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

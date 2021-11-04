@@ -24,4 +24,6 @@
     <string name="fragment_onboarding_title5">Permisos</string>
     <string name="fragment_onboarding_description5">Solicitamos los siguientes permisos: Contactos (Para obtener su número en el registro), Mensajería (Para validar automáticamente la clave SMS) y Notificaciones (para avisarte de los últimos descuentos y promociones)</string>
     <string name="error_phone_format">Formato incorrecto</string>
+    <string name="tv_sms_sent">Le hemos enviado un SMS a su teléfono, por favor introduzca la clave a continuación</string>
+    <string name="btn_confirm">Confirmar</string>
 </resources>
