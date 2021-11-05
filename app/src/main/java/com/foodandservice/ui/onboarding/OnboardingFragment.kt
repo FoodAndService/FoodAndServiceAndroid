@@ -27,28 +27,28 @@ class OnboardingFragment : Fragment() {
         val onboardingItems = listOf(
             OnboardingItem(
                 R.drawable.shape_onboarding,
-                getString(R.string.fragment_onboarding_title1),
-                getString(R.string.fragment_onboarding_description1)
+                getString(R.string.onboarding_title1),
+                getString(R.string.onboarding_description1)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
-                getString(R.string.fragment_onboarding_title2),
-                getString(R.string.fragment_onboarding_description2)
+                getString(R.string.onboarding_title2),
+                getString(R.string.onboarding_description2)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
-                getString(R.string.fragment_onboarding_title3),
-                getString(R.string.fragment_onboarding_description3)
+                getString(R.string.onboarding_title3),
+                getString(R.string.onboarding_description3)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
-                getString(R.string.fragment_onboarding_title4),
-                getString(R.string.fragment_onboarding_description4)
+                getString(R.string.onboarding_title4),
+                getString(R.string.onboarding_description4)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
-                getString(R.string.fragment_onboarding_title5),
-                getString(R.string.fragment_onboarding_description5)
+                getString(R.string.onboarding_title5),
+                getString(R.string.onboarding_description5)
             )
         )
 

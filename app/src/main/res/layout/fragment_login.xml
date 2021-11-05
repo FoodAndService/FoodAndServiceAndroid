@@ -68,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:hint="@string/tie_hint_phone_number"
+                        android:hint="@string/hint_tie_phone_number"
                         android:inputType="phone"
                         android:longClickable="false"
                         android:maxLines="1"
@@ -80,7 +80,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAccess"
-                    style="@style/FYSButton"
+                    style="@style/MyButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"

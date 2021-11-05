@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -35,15 +35,28 @@
         android:id="@+id/loginFragment"
         android:name="com.foodandservice.ui.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login"/>
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_smsConfirmFragment"
+            app:destination="@id/smsConfirmFragment" />
+    </fragment>
     <fragment
         android:id="@+id/smsConfirmFragment"
         android:name="com.foodandservice.ui.sms_confirm.SmsConfirmFragment"
         android:label="SmsConfirmFragment"
-        tools:layout="@layout/fragment_sms_confirm"/>
+        tools:layout="@layout/fragment_sms_confirm">
+        <action
+            android:id="@+id/action_smsConfirmFragment_to_signupFinishFragment"
+            app:destination="@id/signupFinishFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signupFinishFragment"
         android:name="com.foodandservice.ui.signup_finish.SignupFinishFragment"
         android:label="SignupFinishFragment"
         tools:layout="@layout/fragment_signup_finish"/>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.foodandservice.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home"/>
 </navigation>

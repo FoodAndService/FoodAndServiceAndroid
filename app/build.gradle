@@ -72,14 +72,14 @@ dependencies {
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.2.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2'
 
     // Gson
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     // Stripe
-    implementation 'com.stripe:stripe-android:16.4.0'
+    implementation 'com.stripe:stripe-android:18.2.0'
 
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
@@ -90,5 +90,8 @@ dependencies {
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
 
     // Easy permissions
-    implementation 'pub.devrel:easypermissions:2.0.1'
+    implementation 'pub.devrel:easypermissions:3.0.0'
+
+    // Material
+    implementation 'com.google.android.material:material:1.4.0'
 }

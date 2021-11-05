@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/fragment_onboarding_title2"
+            android:text="@string/onboarding_title2"
             android:textColor="@color/text_dark"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -40,7 +40,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="42dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/fragment_onboarding_description2"
+            android:text="@string/onboarding_description2"
             android:textAlignment="center"
             android:textColor="@color/text_normal"
             android:textSize="16sp"
@@ -101,7 +101,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnOnboardingNext"
-            style="@style/FYSButton"
+            style="@style/MyButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"

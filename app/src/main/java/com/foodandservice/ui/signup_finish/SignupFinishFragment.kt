@@ -26,9 +26,6 @@ class SignupFinishFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databinding.viewModel = this.viewModel
-        databinding.lifecycleOwner = this
-
         databinding.btnFinishSignup.setOnClickListener {
             viewModel.finishSignup(databinding.tieFullname.text.toString())
         }

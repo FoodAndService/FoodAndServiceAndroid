@@ -26,9 +26,6 @@ class SmsConfirmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databinding.viewModel = this.viewModel
-        databinding.lifecycleOwner = this
-
         databinding.btnConfirm.setOnClickListener {
             viewModel.confirmSms(databinding.etSmsCode.text.toString())
         }
