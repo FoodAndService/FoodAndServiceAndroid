@@ -30,6 +30,9 @@
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_splashFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_loginFragment_to_smsConfirmFragment"
             app:destination="@id/smsConfirmFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/smsConfirmFragment"
@@ -53,7 +59,11 @@
         android:id="@+id/signupFinishFragment"
         android:name="com.foodandservice.ui.signup_finish.SignupFinishFragment"
         android:label="SignupFinishFragment"
-        tools:layout="@layout/fragment_signup_finish"/>
+        tools:layout="@layout/fragment_signup_finish">
+        <action
+            android:id="@+id/action_signupFinishFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.foodandservice.ui.home.HomeFragment"
