@@ -24,6 +24,4 @@
     <string name="tv_sms_sent">Le hemos enviado un SMS a su teléfono, por favor introduzca la clave a continuación</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos su nombre completo. Este será visible para el resto de usuarios cuando interactúe.</string>
     <string name="tv_lost_phone_number">¿Has perdido el número?</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
