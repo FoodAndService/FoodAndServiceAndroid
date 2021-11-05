@@ -26,4 +26,7 @@
     <string name="error_phone_format">Formato incorrecto</string>
     <string name="tv_sms_sent">Le hemos enviado un SMS a su teléfono, por favor introduzca la clave a continuación</string>
     <string name="btn_confirm">Confirmar</string>
+    <string name="tv_finish_signup"><![CDATA[Bienvenido a Food & Service, para finalizar necesitamos su nombre completo. Este será visible para el resto de usuarios cuando interactúe.]]></string>
+    <string name="tie_fullname">Nombre y apellidos</string>
+    <string name="btn_finish_signup">Finalizar registro</string>
 </resources>

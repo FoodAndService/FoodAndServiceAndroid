@@ -41,4 +41,9 @@
         android:name="com.foodandservice.ui.sms_confirm.SmsConfirmFragment"
         android:label="SmsConfirmFragment"
         tools:layout="@layout/fragment_sms_confirm"/>
+    <fragment
+        android:id="@+id/signupFinishFragment"
+        android:name="com.foodandservice.ui.signup_finish.SignupFinishFragment"
+        android:label="SignupFinishFragment"
+        tools:layout="@layout/fragment_signup_finish"/>
 </navigation>
