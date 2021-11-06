@@ -13,6 +13,7 @@ import com.foodandservice.databinding.FragmentSmsConfirmBinding
 class SmsConfirmFragment : Fragment() {
     private lateinit var databinding: FragmentSmsConfirmBinding
     private val viewModel: SmsConfirmViewModelImpl by viewModels()
+    private val TAG = "SmsConfirmFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,7 +28,7 @@ class SmsConfirmFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         databinding.btnConfirm.setOnClickListener {
-            viewModel.confirmSms(databinding.etSmsCode.text.toString())
+
         }
 
         viewModel.getState().observe(viewLifecycleOwner, {
@@ -41,12 +42,10 @@ class SmsConfirmFragment : Fragment() {
                 SmsConfirmViewModel.State.SmsIncorrectError -> {
 
                 }
-                SmsConfirmViewModel.State.Success -> TODO("Confirm")
+                SmsConfirmViewModel.State.Success -> {
+
+                }
             }
         })
-    }
-
-    private fun setError(msg: String) {
-
     }
 }

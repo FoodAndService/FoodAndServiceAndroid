@@ -5,10 +5,13 @@
       <map>
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/background.xml" value="0.37864583333333335" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/bg_sms_code.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/corners_rounded.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/elevation.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/gradient.xml" value="0.30185185185185187" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/gradient_corners.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_background.xml" value="0.3648148148148148" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_background_status.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_bg_foodandservice.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_star.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/onboarding_indicator_active.xml" value="0.3319634703196347" />
@@ -26,7 +29,7 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_onboarding_item.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_second_screen.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_signup_finish.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_sms_confirm.xml" value="0.30972222222222223" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_sms_confirm.xml" value="0.16" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_splash.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_third_screen.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_view_pager.xml" value="0.5" />
@@ -35,7 +38,7 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_category_product.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_category_tag.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_order.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_restaurant.xml" value="0.67" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_restaurant.xml" value="0.9" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3319634703196347" />
       </map>
     </option>
@@ -49,7 +52,7 @@
   <component name="VisualizationToolProject">
     <option name="state">
       <ProjectState>
-        <option name="scale" value="0.12" />
+        <option name="scale" value="0.16" />
       </ProjectState>
     </option>
   </component>
