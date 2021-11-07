@@ -1,6 +1,8 @@
 package com.foodandservice.ui.login
 
+import android.content.Context
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentLoginBinding
+
 
 class LoginFragment : Fragment() {
     private lateinit var databinding: FragmentLoginBinding
@@ -38,13 +41,34 @@ class LoginFragment : Fragment() {
         })
 
         databinding.tvLostPhone.setOnClickListener {
-            makeToast("Lost phone")
+
         }
 
-        databinding.btnAccess.setOnClickListener{
+        databinding.btnAccess.setOnClickListener {
             databinding.tilPhone.isErrorEnabled = false
             viewModel.login(databinding.tiePhone.text.toString())
         }
+
+        getPhonePrefix()
+    }
+
+    private fun getPhonePrefix() {
+        var countryCode = ""
+
+        val manager =
+            requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val countryId = manager.simCountryIso.toUpperCase()
+        val countryCodes = requireContext().resources.getStringArray(R.array.CountryCodes)
+
+        for (i in countryCodes.indices) {
+            val entry = countryCodes[i].split(",").toTypedArray()
+            if (entry[1].trim { it <= ' ' } == countryId.trim { it <= ' ' }) {
+                    countryCode = entry[0]
+                break
+            }
+        }
+
+        databinding.tiePrefix.setText(("+$countryCode"))
     }
 
     private fun makeToast(msg: String) {

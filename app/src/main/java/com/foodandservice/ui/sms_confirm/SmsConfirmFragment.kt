@@ -38,7 +38,7 @@ class SmsConfirmFragment : Fragment() {
             SmsConfirmationView.OnChangeListener { code, isComplete ->
 
             }
-        
+
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 SmsConfirmViewModel.State.SmsFormatError -> {

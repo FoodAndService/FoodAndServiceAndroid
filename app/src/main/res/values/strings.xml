@@ -19,9 +19,10 @@
     <string name="btn_finish_signup">Finalizar registro</string>
     <string name="error_network">Ha ocurrido un error de red</string>
     <string name="error_phone_format">Formato incorrecto</string>
-    <string name="hint_tie_phone_number">Número de teléfono</string>
+    <string name="hint_tie_phone_number">Nº de teléfono</string>
     <string name="tie_fullname">Nombre y apellidos</string>
     <string name="tv_sms_sent">Le hemos enviado un SMS a su teléfono, por favor introduzca la clave a continuación</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos su nombre completo. Este será visible para el resto de usuarios cuando interactúe.</string>
     <string name="tv_lost_phone_number">¿Has perdido el número?</string>
+    <string name="hint_tie_prefix">País</string>
 </resources>

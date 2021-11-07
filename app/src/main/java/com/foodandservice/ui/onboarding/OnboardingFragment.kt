@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -70,17 +71,22 @@ class OnboardingFragment : Fragment() {
 
         databinding.btnOnboarding.setOnClickListener {
             if (databinding.btnOnboarding.text == getString(R.string.btn_finish)) {
-                requestUserPermissions()
                 ClientPreferences.finishOnboarding()
                 findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
             } else
                 databinding.vpOnboarding.currentItem += 1
         }
 
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
         return databinding.root
     }
 
-    private fun requestUserPermissions() {
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        requireActivity().window.setFlags(
+            WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+            WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
+        );
     }
 }
