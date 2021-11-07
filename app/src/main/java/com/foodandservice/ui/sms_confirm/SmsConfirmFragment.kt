@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
+import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 
 class SmsConfirmFragment : Fragment() {
     private lateinit var databinding: FragmentSmsConfirmBinding
@@ -27,10 +28,17 @@ class SmsConfirmFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        databinding.etSms.startListeningForIncomingMessages()
+
         databinding.btnConfirm.setOnClickListener {
 
         }
 
+        databinding.etSms.onChangeListener =
+            SmsConfirmationView.OnChangeListener { code, isComplete ->
+
+            }
+        
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 SmsConfirmViewModel.State.SmsFormatError -> {
