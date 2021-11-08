@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 
 abstract class SmsConfirmViewModel : ViewModel() {
-    sealed class State{
+    sealed class State {
         object Success : State()
         object SmsFormatError : State()
         object SmsEmptyError : State()
@@ -12,5 +12,5 @@ abstract class SmsConfirmViewModel : ViewModel() {
     }
 
     abstract fun confirmSms(sms: String)
-    abstract fun getState() : LiveData<State>
+    abstract fun getState(): LiveData<State>
 }

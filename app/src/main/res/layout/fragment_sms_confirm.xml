@@ -65,28 +65,38 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginEnd="12dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
-                    app:scv_codeLength="5"
+                    app:scv_codeLength="6"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
                     app:scv_symbolBackgroundColor="@color/greyish_white"
                     app:scv_symbolBorderColor="@color/greyish_white"
                     app:scv_symbolBorderCornerRadius="10dp"
                     app:scv_symbolTextColor="@color/gradient_start"
-                    app:scv_symbolsSpacing="12dp" />
+                    app:scv_symbolsSpacing="6dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"
-                    style="@style/MyButton"
+                    style="@style/ButtonDefault"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"
                     android:layout_marginTop="@dimen/cardview"
                     android:layout_marginEnd="@dimen/cardview"
-                    android:layout_marginBottom="@dimen/cardview"
                     android:text="@string/btn_confirm" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnResendSms"
+                    style="@style/ButtonNoPadding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dp"
+                    android:enabled="false"
+                    android:minHeight="0dp"
+                    android:text="@string/btn_resend_sms" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

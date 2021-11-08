@@ -1,6 +1,8 @@
 package com.foodandservice.ui.sms_confirm
 
 import android.os.Bundle
+import android.os.CountDownTimer
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,6 +16,7 @@ import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 class SmsConfirmFragment : Fragment() {
     private lateinit var databinding: FragmentSmsConfirmBinding
     private val viewModel: SmsConfirmViewModelImpl by viewModels()
+    private lateinit var timer: CountDownTimer
     private val TAG = "SmsConfirmFragment"
 
     override fun onCreateView(
@@ -32,6 +35,10 @@ class SmsConfirmFragment : Fragment() {
 
         databinding.btnConfirm.setOnClickListener {
 
+        }
+
+        databinding.btnResendSms.setOnClickListener {
+            initCountDownTimer()
         }
 
         databinding.etSms.onChangeListener =
@@ -55,5 +62,34 @@ class SmsConfirmFragment : Fragment() {
                 }
             }
         })
+
+        initCountDownTimer()
+    }
+
+    private fun initCountDownTimer() {
+        databinding.btnResendSms.isEnabled = false
+
+        timer = object : CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                try {
+                    databinding.btnResendSms.text =
+                        getString(R.string.btn_resend_sms_wait, (millisUntilFinished / 1000))
+                } catch (e: Exception) {
+                    Log.e(TAG, e.message, e)
+                }
+            }
+
+            override fun onFinish() {
+                try {
+                    databinding.btnResendSms.text =
+                        getString(R.string.btn_resend_sms)
+                    databinding.btnResendSms.isEnabled = true
+                } catch (e: Exception) {
+                    Log.e(TAG, e.message, e)
+                }
+            }
+        }
+
+        timer.start()
     }
 }

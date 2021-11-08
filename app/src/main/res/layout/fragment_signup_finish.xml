@@ -92,7 +92,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnFinishSignup"
-                    style="@style/MyButton"
+                    style="@style/ButtonDefault"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"

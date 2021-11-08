@@ -13,7 +13,6 @@ import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentLoginBinding
 
-
 class LoginFragment : Fragment() {
     private lateinit var databinding: FragmentLoginBinding
     private val viewModel: LoginViewModelImpl by viewModels()
@@ -40,7 +39,7 @@ class LoginFragment : Fragment() {
             }
         })
 
-        databinding.tvLostPhone.setOnClickListener {
+        databinding.btnLostPhone.setOnClickListener {
 
         }
 
@@ -63,7 +62,7 @@ class LoginFragment : Fragment() {
         for (i in countryCodes.indices) {
             val entry = countryCodes[i].split(",").toTypedArray()
             if (entry[1].trim { it <= ' ' } == countryId.trim { it <= ' ' }) {
-                    countryCode = entry[0]
+                countryCode = entry[0]
                 break
             }
         }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSignupFinishBinding
-import com.foodandservice.ui.sms_confirm.SmsConfirmViewModel
 
 class SignupFinishFragment : Fragment() {
     private lateinit var databinding: FragmentSignupFinishBinding
@@ -19,7 +18,8 @@ class SignupFinishFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding = DataBindingUtil.inflate(inflater, R.layout.fragment_signup_finish, container, false)
+        databinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_signup_finish, container, false)
         return databinding.root
     }
 
