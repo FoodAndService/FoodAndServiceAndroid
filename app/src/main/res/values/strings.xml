@@ -33,4 +33,8 @@
     <string name="hint_tie_diners">Cantidad de comensales</string>
     <string name="hint_tie_reserve_date">Fecha de la reserva</string>
     <string name="hint_tie_reserve_hours">Horas disponibles</string>
+    <string name="menu_home">Inicio</string>
+    <string name="menu_favorites">Favoritos</string>
+    <string name="menu_billings">Facturas</string>
+    <string name="menu_profile">Perfil</string>
 </resources>
