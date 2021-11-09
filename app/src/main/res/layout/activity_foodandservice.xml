@@ -21,8 +21,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
+            android:backgroundTint="@android:color/transparent"
             app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp">
+            app:contentInsetStart="0dp"
+            app:elevation="0dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavView"
@@ -50,6 +52,5 @@
             app:iconPadding="0dp"
             app:iconSize="48dp"
             app:iconTint="@color/white" />
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
