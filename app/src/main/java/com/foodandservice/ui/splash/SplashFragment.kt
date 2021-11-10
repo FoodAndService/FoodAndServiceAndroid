@@ -13,15 +13,15 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSplashBinding
 
 class SplashFragment : Fragment() {
-    private lateinit var databinding: FragmentSplashBinding
+    private lateinit var binding: FragmentSplashBinding
     private val viewModel: SplashViewModelImpl by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
-        return databinding.root
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_splash, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

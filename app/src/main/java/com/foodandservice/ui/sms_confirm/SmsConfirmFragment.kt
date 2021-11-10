@@ -14,7 +14,7 @@ import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 
 class SmsConfirmFragment : Fragment() {
-    private lateinit var databinding: FragmentSmsConfirmBinding
+    private lateinit var binding: FragmentSmsConfirmBinding
     private val viewModel: SmsConfirmViewModelImpl by viewModels()
     private lateinit var timer: CountDownTimer
     private val TAG = "SmsConfirmFragment"
@@ -23,25 +23,25 @@ class SmsConfirmFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_sms_confirm, container, false)
-        return databinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databinding.etSms.startListeningForIncomingMessages()
+        binding.etSms.startListeningForIncomingMessages()
 
-        databinding.btnConfirm.setOnClickListener {
+        binding.btnConfirm.setOnClickListener {
 
         }
 
-        databinding.btnResendSms.setOnClickListener {
+        binding.btnResendSms.setOnClickListener {
             initCountDownTimer()
         }
 
-        databinding.etSms.onChangeListener =
+        binding.etSms.onChangeListener =
             SmsConfirmationView.OnChangeListener { code, isComplete ->
 
             }
@@ -67,12 +67,12 @@ class SmsConfirmFragment : Fragment() {
     }
 
     private fun initCountDownTimer() {
-        databinding.btnResendSms.isEnabled = false
+        binding.btnResendSms.isEnabled = false
 
         timer = object : CountDownTimer(60000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
-                    databinding.btnResendSms.text =
+                    binding.btnResendSms.text =
                         getString(R.string.btn_resend_sms_wait, (millisUntilFinished / 1000))
                 } catch (e: Exception) {
                     Log.e(TAG, e.message, e)
@@ -81,9 +81,9 @@ class SmsConfirmFragment : Fragment() {
 
             override fun onFinish() {
                 try {
-                    databinding.btnResendSms.text =
+                    binding.btnResendSms.text =
                         getString(R.string.btn_resend_sms)
-                    databinding.btnResendSms.isEnabled = true
+                    binding.btnResendSms.isEnabled = true
                 } catch (e: Exception) {
                     Log.e(TAG, e.message, e)
                 }

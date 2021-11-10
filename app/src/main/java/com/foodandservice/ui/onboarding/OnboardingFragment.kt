@@ -16,13 +16,13 @@ import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.ui.adapter.OnboardingAdapter
 
 class OnboardingFragment : Fragment() {
-    private lateinit var databinding: FragmentViewPagerBinding
+    private lateinit var binding: FragmentViewPagerBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_view_pager, container, false)
 
         val onboardingItems = listOf(
@@ -55,31 +55,31 @@ class OnboardingFragment : Fragment() {
 
         val adapter = OnboardingAdapter(onboardingItems)
 
-        databinding.vpOnboarding.adapter = adapter
-        databinding.dotsIndicator.setViewPager2(databinding.vpOnboarding)
+        binding.vpOnboarding.adapter = adapter
+        binding.dotsIndicator.setViewPager2(binding.vpOnboarding)
 
-        databinding.vpOnboarding.registerOnPageChangeCallback(object :
+        binding.vpOnboarding.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
                 if (position == onboardingItems.size - 1)
-                    databinding.btnOnboarding.text = getString(R.string.btn_finish)
+                    binding.btnOnboarding.text = getString(R.string.btn_finish)
                 else
-                    databinding.btnOnboarding.text = getString(R.string.btn_next)
+                    binding.btnOnboarding.text = getString(R.string.btn_next)
             }
         })
 
-        databinding.btnOnboarding.setOnClickListener {
-            if (databinding.btnOnboarding.text == getString(R.string.btn_finish)) {
+        binding.btnOnboarding.setOnClickListener {
+            if (binding.btnOnboarding.text == getString(R.string.btn_finish)) {
                 ClientPreferences.finishOnboarding()
                 findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
             } else
-                databinding.vpOnboarding.currentItem += 1
+                binding.vpOnboarding.currentItem += 1
         }
 
         requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 
-        return databinding.root
+        return binding.root
     }
 
     override fun onDestroyView() {

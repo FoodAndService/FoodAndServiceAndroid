@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:backgroundTint="@android:color/transparent"
+            android:visibility="gone"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:elevation="0dp">
@@ -31,26 +32,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bottom_nav"
-                app:itemIconSize="26dp"
+                app:itemIconSize="28dp"
                 app:labelVisibilityMode="unlabeled"
                 app:menu="@menu/bottom_nav_menu" />
         </com.google.android.material.bottomappbar.BottomAppBar>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/fabQrScan"
-            style="@style/ButtonQr"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:id="@+id/btnQrScan"
+            style="@style/ButtonQrScan"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="24dp"
-            android:insetLeft="0dp"
-            android:insetTop="0dp"
-            android:insetRight="0dp"
-            android:insetBottom="0dp"
-            app:icon="@drawable/qr"
-            app:iconGravity="textStart"
-            app:iconPadding="0dp"
-            app:iconSize="48dp"
-            app:iconTint="@color/white" />
+            android:visibility="gone" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

@@ -11,16 +11,16 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentTableReservationBinding
 
 class TableReservationFragment : Fragment() {
-    private lateinit var databinding: FragmentTableReservationBinding
+    private lateinit var binding: FragmentTableReservationBinding
     private val viewModel: TableReservationViewModelImpl by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_table_reservation, container, false)
-        return databinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

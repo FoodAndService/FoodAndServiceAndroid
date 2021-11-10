@@ -25,9 +25,8 @@
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>
     <string name="hint_tie_prefix">País</string>
-    <string name="btn_resend_sms">Resend SMS code</string>
-    <string name="btn_resend_sms_wait">Resend SMS code (%1$d)</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="btn_resend_sms">Reenviar código SMS</string>
+    <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_reserve">Reservar</string>
     <string name="hint_tie_diners">Cantidad de comensales</string>
@@ -37,4 +36,7 @@
     <string name="menu_favorites">Favoritos</string>
     <string name="menu_billings">Facturas</string>
     <string name="menu_profile">Perfil</string>
+    <string name="tv_review_title">¿Qué te pareció X?</string>
+    <string name="btn_send_review">Enviar reseña</string>
+    <string name="hint_tie_review">Deja tu reseña aquí</string>
 </resources>

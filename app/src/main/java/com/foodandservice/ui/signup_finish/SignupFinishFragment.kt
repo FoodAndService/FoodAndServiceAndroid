@@ -11,23 +11,23 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSignupFinishBinding
 
 class SignupFinishFragment : Fragment() {
-    private lateinit var databinding: FragmentSignupFinishBinding
+    private lateinit var binding: FragmentSignupFinishBinding
     private val viewModel: SignupFinishViewModelImpl by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding =
+        binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_signup_finish, container, false)
-        return databinding.root
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        databinding.btnFinishSignup.setOnClickListener {
-            viewModel.finishSignup(databinding.tieFullname.text.toString())
+        binding.btnFinishSignup.setOnClickListener {
+            viewModel.finishSignup(binding.tieFullname.text.toString())
         }
 
         viewModel.getState().observe(viewLifecycleOwner, {

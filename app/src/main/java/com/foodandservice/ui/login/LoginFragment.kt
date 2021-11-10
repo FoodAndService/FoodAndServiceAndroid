@@ -10,19 +10,20 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
-    private lateinit var databinding: FragmentLoginBinding
+    private lateinit var binding: FragmentLoginBinding
     private val viewModel: LoginViewModelImpl by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        databinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
-        return databinding.root
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -31,21 +32,21 @@ class LoginFragment : Fragment() {
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 LoginViewModel.State.Success -> {
-                    makeToast("Correct")
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                 }
                 LoginViewModel.State.PhoneFormatError -> {
-                    databinding.tilPhone.error = getString(R.string.error_phone_format)
+                    binding.tilPhone.error = getString(R.string.error_phone_format)
                 }
             }
         })
 
-        databinding.btnLostPhone.setOnClickListener {
+        binding.btnLostPhone.setOnClickListener {
 
         }
 
-        databinding.btnAccess.setOnClickListener {
-            databinding.tilPhone.isErrorEnabled = false
-            viewModel.login(databinding.tiePhone.text.toString())
+        binding.btnAccess.setOnClickListener {
+            binding.tilPhone.isErrorEnabled = false
+            viewModel.login(binding.tiePhone.text.toString())
         }
 
         getPhonePrefix()
@@ -67,7 +68,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        databinding.tiePrefix.setText(("+$countryCode"))
+        binding.tiePrefix.setText(("+$countryCode"))
     }
 
     private fun makeToast(msg: String) {
