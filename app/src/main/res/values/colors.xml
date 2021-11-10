@@ -18,4 +18,7 @@
 
     <color name="dot_active">#FFAE375D</color>
     <color name="dot_inactive">#70AE375D</color>
+
+    <color name="star_active">#FFAE375D</color>
+    <color name="star_inactive">#FFDCDCDC</color>
 </resources>

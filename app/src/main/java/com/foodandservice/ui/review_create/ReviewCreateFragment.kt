@@ -47,12 +47,12 @@ class ReviewCreateFragment : Fragment() {
 
         }
 
-        binding.ivArrowBack.setOnClickListener {
+        binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
         binding.ratingBarReview.onRatingBarChangeListener =
-            RatingBar.OnRatingBarChangeListener { ratingBar, rating, fromUser ->
+            RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
                 if (rating < 1.0f)
                     ratingBar.rating = 1.0f
             }

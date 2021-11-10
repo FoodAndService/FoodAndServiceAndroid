@@ -52,7 +52,7 @@
                     app:tint="@color/white" />
 
                 <ImageView
-                    android:id="@+id/ivArrowBack"
+                    android:id="@+id/btnBack"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="12dp"

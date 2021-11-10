@@ -13,7 +13,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.review_create.ReviewCreateFragment">
+        tools:context=".ui.review_create.ReviewCreateFragment"
+        android:background="@color/greyish_white">
 
         <RatingBar
             android:id="@+id/ratingBarReview"
@@ -21,10 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:backgroundTint="@color/gradient_start"
             android:isIndicator="false"
             android:numStars="5"
-            android:progressBackgroundTint="@color/greyish_white"
+            android:progressBackgroundTint="@color/star_inactive"
             android:progressTint="@color/gradient_start"
             android:rating="3"
             android:secondaryProgressTint="@android:color/transparent"
@@ -71,7 +71,7 @@
                     app:tint="@color/white" />
 
                 <ImageView
-                    android:id="@+id/ivArrowBack"
+                    android:id="@+id/btnBack"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
                     android:layout_marginStart="12dp"
