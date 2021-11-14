@@ -32,10 +32,12 @@ class HomeFragment : Fragment() {
 
         })
 
+        binding.btnCart.setOnClickListener {
 
+        }
     }
 
-    private fun showBottomBar(){
+    private fun showBottomBar() {
         val activity: FoodAndServiceActivity = activity as FoodAndServiceActivity
         activity.bottomBarVisibility(View.VISIBLE)
     }

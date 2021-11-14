@@ -68,14 +68,14 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
-                    app:scv_codeLength="6"
+                    app:scv_codeLength="5"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
                     app:scv_symbolBackgroundColor="@color/greyish_white"
                     app:scv_symbolBorderColor="@color/greyish_white"
                     app:scv_symbolBorderCornerRadius="10dp"
                     app:scv_symbolTextColor="@color/gradient_start"
-                    app:scv_symbolsSpacing="6dp" />
+                    app:scv_symbolsSpacing="14dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"
