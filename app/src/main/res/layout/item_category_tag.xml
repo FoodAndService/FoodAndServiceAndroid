@@ -27,7 +27,7 @@
             android:fontFamily="@font/poppins"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="14sp"
             tools:text="Category" />
 
     </androidx.cardview.widget.CardView>
