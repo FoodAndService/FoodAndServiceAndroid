@@ -31,7 +31,7 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
         fun bind(item: CategoryTag, listener: CategoryTagClickListener) {
             binding.chipCategoryTagText.text = item.name
 
-            binding.chipCategoryTagText.setOnClickListener {
+            binding.root.setOnClickListener {
                 listener.onClick(item)
             }
         }
