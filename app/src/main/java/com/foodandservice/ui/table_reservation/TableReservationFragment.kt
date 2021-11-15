@@ -27,7 +27,7 @@ class TableReservationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.getState().observe(viewLifecycleOwner, {
-            when(it){
+            when (it) {
                 TableReservationViewModel.State.DinersEmptyError -> {
 
                 }
@@ -42,7 +42,5 @@ class TableReservationFragment : Fragment() {
                 }
             }
         })
-
-
     }
 }

@@ -29,8 +29,6 @@ class ReviewCreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        hideBottomBar()
-
         viewModel.getState().observe(viewLifecycleOwner, {
             when (it) {
                 ReviewCreateViewModel.State.TooFewCharactersError -> {
@@ -56,10 +54,5 @@ class ReviewCreateFragment : Fragment() {
                 if (rating < 1.0f)
                     ratingBar.rating = 1.0f
             }
-    }
-
-    private fun hideBottomBar() {
-        val activity: FoodAndServiceActivity = activity as FoodAndServiceActivity
-        activity.bottomBarVisibility(View.GONE)
     }
 }

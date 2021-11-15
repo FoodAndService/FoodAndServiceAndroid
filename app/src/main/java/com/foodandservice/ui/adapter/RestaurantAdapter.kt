@@ -29,7 +29,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
         fun bind(item: Restaurant, listener: RestaurantClickListener) {
             binding.tvRestName.text = item.name
             binding.ratingRestaurant.rating = item.rating
-            binding.tvDistance.text = "A ${item.distance} metros"
+            binding.tvDistance.text = "A ${item.distance.toDouble() / 1000} km"
 
             binding.root.setOnClickListener {
                 listener.onClick(item)

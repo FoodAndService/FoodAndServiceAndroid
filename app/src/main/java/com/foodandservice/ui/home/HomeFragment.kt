@@ -4,11 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.foodandservice.FoodAndServiceActivity
 import com.foodandservice.R
 import com.foodandservice.data.model.CategoryTag
 import com.foodandservice.data.model.Restaurant
@@ -35,7 +33,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        showBottomBar()
         setAdapters()
 
         viewModel.getState().observe(viewLifecycleOwner, {
@@ -61,11 +58,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         binding.rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
         binding.rvCategoryTag.adapter = categoryTagAdapter
-    }
-
-    private fun showBottomBar() {
-        val activity: FoodAndServiceActivity = activity as FoodAndServiceActivity
-        activity.bottomBarVisibility(View.VISIBLE)
     }
 
     override fun onClick(categoryTag: CategoryTag) {

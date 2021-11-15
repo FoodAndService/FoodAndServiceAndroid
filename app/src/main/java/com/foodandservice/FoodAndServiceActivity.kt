@@ -1,7 +1,7 @@
 package com.foodandservice
 
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -15,10 +15,20 @@ class FoodAndServiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_foodandservice)
         binding.bottomNavView.setupWithNavController(findNavController(R.id.navHostFragment))
+        setDestinationsListener()
     }
 
-    fun bottomBarVisibility(visibility: Int) {
-        binding.bottomAppBar.visibility = visibility
-        binding.btnQrScan.visibility = visibility
+    private fun setDestinationsListener() {
+        findNavController(R.id.navHostFragment).addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.homeFragment)
+                bottomBarVisible(true)
+            if (destination.id == R.id.reviewCreateFragment)
+                bottomBarVisible(true)
+        }
+    }
+
+    private fun bottomBarVisible(isVisible: Boolean) {
+        binding.bottomAppBar.visibility = if (isVisible) View.VISIBLE else View.GONE
+        binding.btnQrScan.visibility = if (isVisible) View.VISIBLE else View.GONE
     }
 }
