@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.data.model.CategoryTag
 import com.foodandservice.data.model.Restaurant
@@ -61,7 +62,9 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     override fun onClick(categoryTag: CategoryTag) {
-
+        val action =
+            HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(categoryTag.name)
+        findNavController().navigate(action)
     }
 
     override fun onClick(item: Restaurant) {

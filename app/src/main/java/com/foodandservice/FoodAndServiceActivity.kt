@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
+import com.foodandservice.ui.Constants.Companion.BottomBarVisibleFragments
 
 class FoodAndServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodandserviceBinding
@@ -15,19 +16,13 @@ class FoodAndServiceActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_foodandservice)
         binding.bottomNavView.setupWithNavController(findNavController(R.id.navHostFragment))
-        setDestinationsListener()
-    }
 
-    private fun setDestinationsListener() {
         findNavController(R.id.navHostFragment).addOnDestinationChangedListener { _, destination, _ ->
-            if (destination.id == R.id.homeFragment)
-                bottomBarVisible(true)
-            if (destination.id == R.id.reviewCreateFragment)
-                bottomBarVisible(true)
+            setBottomBarVisibility(BottomBarVisibleFragments.contains(destination.id))
         }
     }
 
-    private fun bottomBarVisible(isVisible: Boolean) {
+    private fun setBottomBarVisibility(isVisible: Boolean) {
         binding.bottomAppBar.visibility = if (isVisible) View.VISIBLE else View.GONE
         binding.btnQrScan.visibility = if (isVisible) View.VISIBLE else View.GONE
     }

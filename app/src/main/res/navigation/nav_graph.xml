@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/viewPagerFragment"
@@ -71,7 +71,11 @@
         android:id="@+id/homeFragment"
         android:name="com.foodandservice.ui.home.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_homeCategoryFilterFragment"
+            app:destination="@id/homeCategoryFilterFragment" />
+    </fragment>
     <fragment
         android:id="@+id/tableReservationFragment"
         android:name="com.foodandservice.ui.table_reservation.TableReservationFragment"
@@ -82,4 +86,13 @@
         android:name="com.foodandservice.ui.review_create.ReviewCreateFragment"
         android:label="ReviewCreateFragment"
         tools:layout="@layout/fragment_review_create" />
+    <fragment
+        android:id="@+id/homeCategoryFilterFragment"
+        android:name="com.foodandservice.ui.home_category_filter.HomeCategoryFilterFragment"
+        android:label="HomeCategoryFilterFragment"
+        tools:layout="@layout/fragment_home_category_filter" >
+        <argument
+            android:name="category"
+            app:argType="string" />
+    </fragment>
 </navigation>
