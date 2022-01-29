@@ -11,10 +11,12 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSplashBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplashFragment : Fragment() {
     private lateinit var binding: FragmentSplashBinding
-    private val viewModel: SplashViewModelImpl by viewModels()
+    private val viewModel by viewModels<SplashViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,6 +39,7 @@ class SplashFragment : Fragment() {
                     getString(R.string.error_network),
                     Toast.LENGTH_SHORT
                 ).show()
+                else -> {}
             }
         })
     }

@@ -12,10 +12,12 @@ import androidx.navigation.fragment.findNavController
 import com.foodandservice.FoodAndServiceActivity
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentReviewCreateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReviewCreateFragment : Fragment() {
     private lateinit var binding: FragmentReviewCreateBinding
-    private val viewModel: ReviewCreateViewModelImpl by viewModels()
+    private val viewModel by viewModels<ReviewCreateViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

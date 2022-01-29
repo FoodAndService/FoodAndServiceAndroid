@@ -2,8 +2,11 @@ package com.foodandservice.ui.signup_finish
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SignupFinishViewModelImpl : SignupFinishViewModel() {
+@HiltViewModel
+class SignupFinishViewModelImpl @Inject constructor(): SignupFinishViewModel() {
     private val state = MutableLiveData<State>()
 
     override fun finishSignup(fullname: String) {

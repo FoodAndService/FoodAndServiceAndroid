@@ -13,10 +13,13 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentLoginBinding
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel: LoginViewModelImpl by viewModels()
+    private val viewModel by viewModels<LoginViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,7 +60,7 @@ class LoginFragment : Fragment() {
 
         val manager =
             requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        val countryId = manager.simCountryIso.toUpperCase()
+        val countryId = manager.simCountryIso.uppercase(Locale.getDefault())
         val countryCodes = requireContext().resources.getStringArray(R.array.CountryCodes)
 
         for (i in countryCodes.indices) {

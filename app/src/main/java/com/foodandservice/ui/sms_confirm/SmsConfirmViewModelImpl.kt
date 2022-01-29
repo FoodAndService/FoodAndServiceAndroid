@@ -2,8 +2,11 @@ package com.foodandservice.ui.sms_confirm
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class SmsConfirmViewModelImpl : SmsConfirmViewModel() {
+@HiltViewModel
+class SmsConfirmViewModelImpl @Inject constructor(): SmsConfirmViewModel() {
     private val state = MutableLiveData<State>()
 
     override fun confirmSms(sms: String) {

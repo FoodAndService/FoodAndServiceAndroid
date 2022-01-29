@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.foodandservice.data.model.CategoryRestaurants
 import com.foodandservice.data.model.CategoryTag
 import com.foodandservice.data.model.Restaurant
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeViewModelImpl : HomeViewModel() {
+@HiltViewModel
+class HomeViewModelImpl @Inject constructor(): HomeViewModel() {
     private val restaurantList = MutableLiveData<List<CategoryRestaurants>>()
     private val categoryTagList = MutableLiveData<List<CategoryTag>>()
     private val state = MutableLiveData<State>()

@@ -13,12 +13,14 @@ import com.foodandservice.R
 import com.foodandservice.data.model.Restaurant
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.ui.adapter.RestaurantAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClickListener {
     private lateinit var binding: FragmentHomeCategoryFilterBinding
-    private val args: HomeCategoryFilterFragmentArgs by navArgs()
-    private val viewModel: HomeCategoryFilterViewModelImpl by viewModels()
     private lateinit var restaurantAdapter: RestaurantAdapter
+    private val args: HomeCategoryFilterFragmentArgs by navArgs()
+    private val viewModel by viewModels<HomeCategoryFilterViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -5,9 +5,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.data.preferences.ClientPreferences
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SplashViewModelImpl : SplashViewModel() {
+@HiltViewModel
+class SplashViewModelImpl @Inject constructor(): SplashViewModel() {
     private val state = MutableLiveData<State>()
     private val TAG = "SplashVMImpl"
 

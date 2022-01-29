@@ -14,7 +14,9 @@ import com.foodandservice.data.model.OnboardingItem
 import com.foodandservice.data.preferences.ClientPreferences
 import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.ui.adapter.OnboardingAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentViewPagerBinding
 
@@ -77,7 +79,7 @@ class OnboardingFragment : Fragment() {
                 binding.vpOnboarding.currentItem += 1
         }
 
-        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
 
         return binding.root
     }
@@ -87,6 +89,6 @@ class OnboardingFragment : Fragment() {
         requireActivity().window.setFlags(
             WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
             WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
-        );
+        )
     }
 }

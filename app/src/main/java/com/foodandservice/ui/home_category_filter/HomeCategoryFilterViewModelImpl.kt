@@ -3,8 +3,11 @@ package com.foodandservice.ui.home_category_filter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.foodandservice.data.model.Restaurant
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class HomeCategoryFilterViewModelImpl : HomeCategoryFilterViewModel() {
+@HiltViewModel
+class HomeCategoryFilterViewModelImpl @Inject constructor(): HomeCategoryFilterViewModel() {
     private val restaurantList = MutableLiveData<List<Restaurant>>()
     private val state = MutableLiveData<State>()
 

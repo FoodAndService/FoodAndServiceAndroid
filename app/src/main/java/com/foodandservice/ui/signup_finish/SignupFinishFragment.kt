@@ -9,10 +9,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSignupFinishBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignupFinishFragment : Fragment() {
     private lateinit var binding: FragmentSignupFinishBinding
-    private val viewModel: SignupFinishViewModelImpl by viewModels()
+    private val viewModel by viewModels<SignupFinishViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

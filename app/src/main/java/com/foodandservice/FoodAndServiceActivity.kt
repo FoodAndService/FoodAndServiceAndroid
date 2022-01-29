@@ -7,8 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
-import com.foodandservice.ui.Constants.Companion.BottomBarVisibleFragments
+import com.foodandservice.data.Constants.Companion.BottomBarVisibleFragments
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class FoodAndServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodandserviceBinding
 

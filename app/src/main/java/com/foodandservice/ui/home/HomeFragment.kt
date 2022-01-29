@@ -15,13 +15,15 @@ import com.foodandservice.databinding.FragmentHomeBinding
 import com.foodandservice.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.ui.adapter.CategoryTagAdapter
 import com.foodandservice.ui.adapter.RestaurantAdapter
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     CategoryTagAdapter.CategoryTagClickListener {
     private lateinit var categoryRestaurantsAdapter: CategoryRestaurantsAdapter
     private lateinit var categoryTagAdapter: CategoryTagAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel: HomeViewModelImpl by viewModels()
+    private val viewModel by viewModels<HomeViewModelImpl>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

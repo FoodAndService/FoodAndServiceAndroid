@@ -12,11 +12,13 @@ import androidx.fragment.app.viewModels
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SmsConfirmFragment : Fragment() {
     private lateinit var binding: FragmentSmsConfirmBinding
-    private val viewModel: SmsConfirmViewModelImpl by viewModels()
     private lateinit var timer: CountDownTimer
+    private val viewModel by viewModels<SmsConfirmViewModelImpl>()
     private val TAG = "SmsConfirmFragment"
 
     override fun onCreateView(
