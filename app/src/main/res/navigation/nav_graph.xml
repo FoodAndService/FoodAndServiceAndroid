@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.foodandservice.ui.onboarding.OnboardingFragment"
+        android:name="com.foodandservice.presentation.ui.onboarding.OnboardingFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
         <action
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.foodandservice.ui.splash.SplashFragment"
+        android:name="com.foodandservice.presentation.ui.splash.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.foodandservice.ui.login.LoginFragment"
+        android:name="com.foodandservice.presentation.ui.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -50,7 +50,7 @@
     </fragment>
     <fragment
         android:id="@+id/smsConfirmFragment"
-        android:name="com.foodandservice.ui.sms_confirm.SmsConfirmFragment"
+        android:name="com.foodandservice.presentation.ui.sms_confirm.SmsConfirmFragment"
         android:label="SmsConfirmFragment"
         tools:layout="@layout/fragment_sms_confirm">
         <action
@@ -59,7 +59,7 @@
     </fragment>
     <fragment
         android:id="@+id/signupFinishFragment"
-        android:name="com.foodandservice.ui.signup_finish.SignupFinishFragment"
+        android:name="com.foodandservice.presentation.ui.signup_finish.SignupFinishFragment"
         android:label="SignupFinishFragment"
         tools:layout="@layout/fragment_signup_finish">
         <action
@@ -69,7 +69,7 @@
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.foodandservice.ui.home.HomeFragment"
+        android:name="com.foodandservice.presentation.ui.home.HomeFragment"
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home" >
         <action
@@ -78,17 +78,17 @@
     </fragment>
     <fragment
         android:id="@+id/tableReservationFragment"
-        android:name="com.foodandservice.ui.table_reservation.TableReservationFragment"
+        android:name="com.foodandservice.presentation.ui.table_reservation.TableReservationFragment"
         android:label="TableReservationFragment"
         tools:layout="@layout/fragment_table_reservation" />
     <fragment
         android:id="@+id/reviewCreateFragment"
-        android:name="com.foodandservice.ui.review_create.ReviewCreateFragment"
+        android:name="com.foodandservice.presentation.ui.review_create.ReviewCreateFragment"
         android:label="ReviewCreateFragment"
         tools:layout="@layout/fragment_review_create" />
     <fragment
         android:id="@+id/homeCategoryFilterFragment"
-        android:name="com.foodandservice.ui.home_category_filter.HomeCategoryFilterFragment"
+        android:name="com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterFragment"
         android:label="HomeCategoryFilterFragment"
         tools:layout="@layout/fragment_home_category_filter" >
         <argument

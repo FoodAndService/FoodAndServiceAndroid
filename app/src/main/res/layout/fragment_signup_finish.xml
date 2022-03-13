@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background"
-        tools:context=".ui.signup_finish.SignupFinishFragment">
+        tools:context=".presentation.ui.signup_finish.SignupFinishFragment">
 
         <ImageView
             android:id="@+id/imageView"

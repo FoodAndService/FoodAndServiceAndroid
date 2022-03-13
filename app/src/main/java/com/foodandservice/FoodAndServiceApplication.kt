@@ -1,7 +1,7 @@
 package com.foodandservice
 
 import android.app.Application
-import com.foodandservice.data.preferences.ClientPreferences
+import com.foodandservice.common.FysPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
@@ -12,6 +12,6 @@ class FoodAndServiceApplication : Application() {
     }
 
     private fun initSharedPreferences() {
-        ClientPreferences.init(applicationContext)
+        FysPreferences.init(applicationContext)
     }
 }

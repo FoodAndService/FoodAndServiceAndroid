@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/greyish_white"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".presentation.ui.home.HomeFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"

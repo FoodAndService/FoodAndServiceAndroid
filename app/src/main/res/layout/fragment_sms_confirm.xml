@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background"
-        tools:context=".ui.sms_confirm.SmsConfirmFragment">
+        tools:context=".presentation.ui.sms_confirm.SmsConfirmFragment">
 
         <ImageView
             android:id="@+id/imageView"
