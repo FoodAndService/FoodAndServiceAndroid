@@ -1,3 +1,5 @@
 package com.foodandservice.data.remote
 
-interface RestaurantApi
+interface RestaurantApi{
+
+}

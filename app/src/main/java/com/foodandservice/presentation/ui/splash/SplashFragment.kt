@@ -40,6 +40,7 @@ class SplashFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
                 else -> {
+
                 }
             }
         }

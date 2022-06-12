@@ -1,6 +1,6 @@
 package com.foodandservice.domain.repository
 
 interface ClientRepository {
-    fun smsSend(authToken: String, phone: String): String
-    fun smsVerify(authToken: String, phone: String, code: String): String
+    fun receiveSmsCode(authToken: String, phone: String): String
+    fun verifySmsCode(authToken: String, phone: String, code: String): String
 }

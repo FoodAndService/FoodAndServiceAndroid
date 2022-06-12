@@ -7,11 +7,11 @@ import com.foodandservice.domain.repository.ClientRepository
 import javax.inject.Inject
 
 class ClientRepositoryImpl @Inject constructor(private val api: ClientApi) : ClientRepository {
-    override fun smsSend(authToken: String, phone: String): String {
+    override fun receiveSmsCode(authToken: String, phone: String): String {
         return api.smsSend(authToken, RequestPhone(phone))
     }
 
-    override fun smsVerify(authToken: String, phone: String, code: String): String {
+    override fun verifySmsCode(authToken: String, phone: String, code: String): String {
         return api.smsVerify(authToken, RequestPhoneVerify(phone, code))
     }
 }

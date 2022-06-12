@@ -1,7 +1,7 @@
 package com.foodandservice
 
 import android.app.Application
-import com.foodandservice.common.FysPreferences
+import com.foodandservice.data.local.FysPreferences
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
