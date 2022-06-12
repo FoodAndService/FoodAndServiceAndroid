@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeBinding
@@ -23,7 +25,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     private lateinit var categoryRestaurantsAdapter: CategoryRestaurantsAdapter
     private lateinit var categoryTagAdapter: CategoryTagAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModels<HomeViewModelImpl>()
+    private val viewModel by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,24 +37,33 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         setAdapters()
 
-        viewModel.getState().observe(viewLifecycleOwner) {
-
-        }
-
-        viewModel.getCategoryTagList().observe(viewLifecycleOwner) {
-            categoryTagAdapter.submitList(it)
-        }
-
-        viewModel.getRestaurantList().observe(viewLifecycleOwner) {
-            categoryRestaurantsAdapter.submitList(it)
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.homeState.collect { state ->
+                when (state) {
+                    is HomeState.Success -> {
+                        categoryRestaurantsAdapter.submitList(state.restaurants)
+                        categoryTagAdapter.submitList(state.categoryTags)
+                    }
+                    is HomeState.Error -> {
+                        makeToast(state.message)
+                    }
+                    is HomeState.Loading -> {
+                        TODO("Loading effect")
+                    }
+                    else -> {}
+                }
+            }
         }
 
         binding.btnCart.setOnClickListener {
 
         }
+    }
+
+    private fun makeToast(message: String) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setAdapters() {

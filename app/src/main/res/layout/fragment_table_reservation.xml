@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.table_reservation.TableReservationViewModelImpl" />
+            type="com.foodandservice.presentation.ui.table_reservation.TableReservationViewModelImpl" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

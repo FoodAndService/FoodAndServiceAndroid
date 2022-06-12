@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.signup_finish.SignupFinishViewModelImpl" />
+            type="com.foodandservice.presentation.ui.signup_finish.SignupFinishViewModelImpl" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

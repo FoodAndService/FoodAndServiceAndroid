@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.sms_confirm.SmsConfirmViewModelImpl" />
+            type="com.foodandservice.presentation.ui.sms_confirm.SmsConfirmViewModelImpl" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

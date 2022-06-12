@@ -10,7 +10,7 @@ import com.foodandservice.domain.model.CategoryRestaurants
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter.ViewHolder
 
 class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAdapter.RestaurantClickListener) :
-    ListAdapter<CategoryRestaurants, ViewHolder>(CategoryWithRestaurantsDiffCallBack()) {
+    ListAdapter<CategoryRestaurants, ViewHolder>(CategoryRestaurantsDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
@@ -43,7 +43,7 @@ class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAda
     }
 }
 
-class CategoryWithRestaurantsDiffCallBack : DiffUtil.ItemCallback<CategoryRestaurants>() {
+class CategoryRestaurantsDiffCallback : DiffUtil.ItemCallback<CategoryRestaurants>() {
     override fun areItemsTheSame(
         oldItem: CategoryRestaurants,
         newItem: CategoryRestaurants

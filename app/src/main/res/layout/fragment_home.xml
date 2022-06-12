@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.home.HomeViewModelImpl" />
+            type="com.foodandservice.presentation.ui.home.HomeViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

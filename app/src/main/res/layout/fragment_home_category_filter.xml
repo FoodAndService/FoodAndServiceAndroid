@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.ui.home_category_filter.HomeCategoryFilterViewModelImpl" />
+            type="com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModelImpl" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
