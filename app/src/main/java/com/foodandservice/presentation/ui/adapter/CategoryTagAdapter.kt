@@ -15,10 +15,7 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
         fun onClick(categoryTag: CategoryTag)
     }
 
-    override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
-    ): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder.from(parent)
     }
 
@@ -26,14 +23,10 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
         holder.bind(getItem(position), listener)
     }
 
-    class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryTag, listener: CategoryTagClickListener) {
             binding.chipCategoryTagText.text = item.name
-
-            binding.root.setOnClickListener {
-                listener.onClick(item)
-            }
+            binding.root.setOnClickListener { listener.onClick(item) }
         }
 
         companion object {

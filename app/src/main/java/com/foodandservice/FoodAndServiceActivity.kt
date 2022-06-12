@@ -5,7 +5,8 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import com.foodandservice.common.Constants.Companion.BottomBarVisibleFragments
+import androidx.navigation.ui.setupWithNavController
+import com.foodandservice.common.Constants.BottomBarVisibleFragments
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
 import dagger.hilt.android.AndroidEntryPoint
 

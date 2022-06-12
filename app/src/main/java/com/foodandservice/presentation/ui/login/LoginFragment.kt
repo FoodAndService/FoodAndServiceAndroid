@@ -60,8 +60,7 @@ class LoginFragment : Fragment() {
     private fun getPhonePrefix() {
         var countryCode = ""
 
-        val manager =
-            requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
+        val manager = requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
         val countryId = manager.simCountryIso.uppercase(Locale.getDefault())
         val countryCodes = requireContext().resources.getStringArray(R.array.CountryCodes)
 
