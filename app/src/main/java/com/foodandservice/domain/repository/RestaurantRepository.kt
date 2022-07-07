@@ -1,3 +1,0 @@
-package com.foodandservice.domain.repository
-
-interface RestaurantRepository

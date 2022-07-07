@@ -9,3 +9,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Food & Service"
 include ':app'
+include ':domain'
+include ':data'
+include ':usecases'

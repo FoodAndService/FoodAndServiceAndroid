@@ -1,4 +1,4 @@
-package com.foodandservice.data.local
+package com.foodandservice.util
 
 import android.content.Context
 import android.content.SharedPreferences

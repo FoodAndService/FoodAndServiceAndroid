@@ -2,10 +2,10 @@ package com.foodandservice.di
 
 import com.foodandservice.data.remote.ClientApi
 import com.foodandservice.data.remote.RestaurantApi
+import com.foodandservice.data.repository.ClientRepository
 import com.foodandservice.data.repository.ClientRepositoryImpl
+import com.foodandservice.data.repository.RestaurantRepository
 import com.foodandservice.data.repository.RestaurantRepositoryImpl
-import com.foodandservice.domain.repository.ClientRepository
-import com.foodandservice.domain.repository.RestaurantRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

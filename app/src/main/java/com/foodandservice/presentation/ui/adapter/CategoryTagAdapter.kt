@@ -23,7 +23,8 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
         holder.bind(getItem(position), listener)
     }
 
-    class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(item: CategoryTag, listener: CategoryTagClickListener) {
             binding.chipCategoryTagText.text = item.name
             binding.root.setOnClickListener { listener.onClick(item) }

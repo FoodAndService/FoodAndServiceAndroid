@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
-import com.foodandservice.data.local.FysPreferences
 import com.foodandservice.databinding.FragmentViewPagerBinding
-import com.foodandservice.domain.model.OnboardingItem
 import com.foodandservice.presentation.ui.adapter.OnboardingAdapter
+import com.foodandservice.util.FysPreferences
+import com.foodandservice.domain.model.OnboardingItem
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

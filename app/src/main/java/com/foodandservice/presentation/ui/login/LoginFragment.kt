@@ -1,9 +1,6 @@
 package com.foodandservice.presentation.ui.login
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
-import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,16 +8,16 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
-import java.util.*
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel by viewModels<LoginViewModelImpl>()
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,13 +30,24 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getState().observe(viewLifecycleOwner) {
-            when (it) {
-                LoginViewModel.State.Success -> {
-                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                }
-                LoginViewModel.State.PhoneFormatError -> {
-                    binding.tilPhone.error = getString(R.string.error_phone_format)
+        viewModel.getPhonePrefix(requireContext())
+
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.loginState.collect { state ->
+                when (state) {
+                    is LoginState.Success -> {
+                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                    }
+                    is LoginState.Error -> {
+                        makeToast(state.message)
+                    }
+                    is LoginState.LoadPhonePrefix -> {
+                        binding.tiePrefix.setText(state.prefix)
+                    }
+                    is LoginState.Loading -> {
+                        TODO("Loading effect")
+                    }
+                    else -> {}
                 }
             }
         }
@@ -52,27 +60,6 @@ class LoginFragment : Fragment() {
             binding.tilPhone.isErrorEnabled = false
             viewModel.login(binding.tiePhone.text.toString())
         }
-
-        getPhonePrefix()
-    }
-
-    @SuppressLint("SetTextI18n")
-    private fun getPhonePrefix() {
-        var countryCode = ""
-
-        val manager = requireContext().getSystemService(Context.TELEPHONY_SERVICE) as TelephonyManager
-        val countryId = manager.simCountryIso.uppercase(Locale.getDefault())
-        val countryCodes = requireContext().resources.getStringArray(R.array.CountryCodes)
-
-        for (i in countryCodes.indices) {
-            val entry = countryCodes[i].split(",").toTypedArray()
-            if (entry[1].trim { it <= ' ' } == countryId.trim { it <= ' ' }) {
-                countryCode = entry[0]
-                break
-            }
-        }
-
-        binding.tiePrefix.setText(("+$countryCode"))
     }
 
     private fun makeToast(msg: String) {
