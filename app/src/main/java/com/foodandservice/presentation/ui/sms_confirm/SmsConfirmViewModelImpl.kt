@@ -1,25 +1,24 @@
 package com.foodandservice.presentation.ui.sms_confirm
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class SmsConfirmViewModelImpl @Inject constructor() : SmsConfirmViewModel() {
-    private val state = MutableLiveData<State>()
+class SmsConfirmViewModelImpl @Inject constructor() : ViewModel() {
+    private val _smsConfirmState = MutableStateFlow<SmsConfirmState>(SmsConfirmState.Empty)
+    val smsConfirmState: StateFlow<SmsConfirmState> = _smsConfirmState.asStateFlow()
 
-    override fun confirmSms(sms: String) {
+    fun confirmSms(sms: String) {
         if (sms.isEmpty())
-            state.value = State.SmsEmptyError
+            _smsConfirmState.value = SmsConfirmState.Error("SMS code is empty")
         else if (sms.length != 6)
-            state.value = State.SmsFormatError
+            _smsConfirmState.value = SmsConfirmState.Error("SMS format is invalid")
         else {
             TODO("Backend sms logic")
         }
-    }
-
-    override fun getState(): LiveData<State> {
-        return state
     }
 }

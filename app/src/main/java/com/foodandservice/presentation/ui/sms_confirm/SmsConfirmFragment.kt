@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
@@ -48,19 +49,16 @@ class SmsConfirmFragment : Fragment() {
 
             }
 
-        viewModel.getState().observe(viewLifecycleOwner) {
-            when (it) {
-                SmsConfirmViewModel.State.SmsFormatError -> {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.smsConfirmState.collect { state ->
+                when (state) {
+                    is SmsConfirmState.Success -> {
 
-                }
-                SmsConfirmViewModel.State.SmsEmptyError -> {
-
-                }
-                SmsConfirmViewModel.State.SmsIncorrectError -> {
-
-                }
-                SmsConfirmViewModel.State.Success -> {
-
+                    }
+                    is SmsConfirmState.Error -> {
+                        TODO("Show error")
+                    }
+                    is SmsConfirmState.Empty -> {}
                 }
             }
         }
