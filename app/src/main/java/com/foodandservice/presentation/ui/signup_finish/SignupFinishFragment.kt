@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSignupFinishBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SignupFinishFragment : Fragment() {
     private lateinit var binding: FragmentSignupFinishBinding
-    private val viewModel by viewModels<SignupFinishViewModelImpl>()
+    private val viewModel by viewModels<SignupFinishViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,15 +33,17 @@ class SignupFinishFragment : Fragment() {
             viewModel.finishSignup(binding.tieFullname.text.toString())
         }
 
-        viewModel.getState().observe(viewLifecycleOwner) {
-            when (it) {
-                SignupFinishViewModel.State.NameFormatError -> {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.signupFinishState.collect { state ->
+                when (state) {
+                    is SignupFinishState.Success -> {
 
+                    }
+                    is SignupFinishState.Error -> {
+                        TODO("Show error")
+                    }
+                    is SignupFinishState.Empty -> {}
                 }
-                SignupFinishViewModel.State.NameEmptyError -> {
-
-                }
-                SignupFinishViewModel.State.Success -> TODO("Confirm")
             }
         }
     }
