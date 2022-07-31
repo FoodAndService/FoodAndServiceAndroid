@@ -15,7 +15,6 @@ import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClickListener {
@@ -28,7 +27,12 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home_category_filter, container, false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_home_category_filter,
+            container,
+            false
+        )
         return binding.root
     }
 
@@ -48,8 +52,8 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
         viewModel.getRestaurantsByCategory(args.category)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.homeCategoryFilterState.collect{ state ->
-                when(state){
+            viewModel.homeCategoryFilterState.collect { state ->
+                when (state) {
                     is HomeCategoryFilterState.Success -> {
                         restaurantAdapter.submitList(state.restaurants)
                     }

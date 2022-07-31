@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemCategoryBinding
-import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter.ViewHolder
 import com.foodandservice.domain.model.CategoryRestaurants
+import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter.ViewHolder
 
 class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAdapter.RestaurantClickListener) :
     ListAdapter<CategoryRestaurants, ViewHolder>(CategoryRestaurantsDiffCallback()) {

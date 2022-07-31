@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentTableReservationBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,19 +29,16 @@ class TableReservationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getState().observe(viewLifecycleOwner) {
-            when (it) {
-                TableReservationViewModel.State.DinersEmptyError -> {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.tableReservationState.collect { state ->
+                when (state) {
+                    is TableReservationState.Success -> {
 
-                }
-                TableReservationViewModel.State.DateEmptyError -> {
-
-                }
-                TableReservationViewModel.State.HourEmptyError -> {
-
-                }
-                TableReservationViewModel.State.Success -> {
-
+                    }
+                    is TableReservationState.Error -> {
+                        TODO("Show error")
+                    }
+                    is TableReservationState.Empty -> {}
                 }
             }
         }

@@ -1,27 +1,28 @@
 package com.foodandservice.presentation.ui.table_reservation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 @HiltViewModel
-class TableReservationViewModelImpl @Inject constructor() : TableReservationViewModel() {
-    private val state = MutableLiveData<State>()
+class TableReservationViewModelImpl @Inject constructor() : ViewModel() {
+    private val _tableReservationState =
+        MutableStateFlow<TableReservationState>(TableReservationState.Empty)
+    val tableReservationState: StateFlow<TableReservationState> =
+        _tableReservationState.asStateFlow()
 
-    override fun reserve(diners: String, date: String, hour: String) {
+    fun reserveTable(diners: String, date: String, hour: String) {
         if (diners.isEmpty())
-            state.value = State.DinersEmptyError
+            _tableReservationState.value = TableReservationState.Error("Diners are empty")
         else if (date.isEmpty())
-            state.value = State.DateEmptyError
-        else if (date.isEmpty())
-            state.value = State.HourEmptyError
+            _tableReservationState.value = TableReservationState.Error("Date is empty")
+        else if (hour.isEmpty())
+            _tableReservationState.value = TableReservationState.Error("Hour is empty")
         else {
-            state.value = State.Success
+            _tableReservationState.value = TableReservationState.Success
         }
-    }
-
-    override fun getState(): LiveData<State> {
-        return state
     }
 }
