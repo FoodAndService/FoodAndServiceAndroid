@@ -50,7 +50,6 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.homeCategoryFilterState.collect{ state ->
                 when(state){
-                    is HomeCategoryFilterState.Empty -> {}
                     is HomeCategoryFilterState.Success -> {
                         restaurantAdapter.submitList(state.restaurants)
                     }
@@ -60,6 +59,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
                     is HomeCategoryFilterState.Error -> {
                         TODO("Error")
                     }
+                    is HomeCategoryFilterState.Empty -> {}
                 }
             }
         }

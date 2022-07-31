@@ -52,7 +52,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                     is HomeState.Loading -> {
                         TODO("Loading effect")
                     }
-                    else -> {}
+                    is HomeState.Empty -> {}
                 }
             }
         }

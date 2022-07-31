@@ -47,7 +47,7 @@ class LoginFragment : Fragment() {
                     is LoginState.Loading -> {
                         TODO("Loading effect")
                     }
-                    else -> {}
+                    is LoginState.Empty -> {}
                 }
             }
         }
