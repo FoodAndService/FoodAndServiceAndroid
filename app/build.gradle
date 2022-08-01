@@ -52,8 +52,8 @@ dependencies {
     implementation project(':domain')
 
     // Hilt
-    implementation "com.google.dagger:hilt-android:2.41"
-    kapt "com.google.dagger:hilt-android-compiler:2.40.5"
+    implementation "com.google.dagger:hilt-android:2.43.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.43.1"
 
     // Navigation component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
@@ -78,7 +78,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01'
 
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation 'androidx.room:room-ktx:2.4.2'
+    implementation 'androidx.room:room-ktx:2.4.3'
 
     // Retrofit2
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'

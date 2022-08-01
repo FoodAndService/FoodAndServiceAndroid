@@ -75,6 +75,9 @@
         <action
             android:id="@+id/action_homeFragment_to_homeCategoryFilterFragment"
             app:destination="@id/homeCategoryFilterFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_restaurantInfoFragment"
+            app:destination="@id/restaurantInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/tableReservationFragment"
@@ -95,4 +98,9 @@
             android:name="category"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantInfoFragment"
+        android:name="com.foodandservice.presentation.ui.restaurant_info.RestaurantInfoFragment"
+        android:label="RestaurantInfoFragment"
+        tools:layout="@layout/fragment_restaurant_info"/>
 </navigation>
