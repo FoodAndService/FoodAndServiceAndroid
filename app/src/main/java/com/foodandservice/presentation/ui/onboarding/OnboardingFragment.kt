@@ -7,18 +7,19 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.domain.model.OnboardingItem
 import com.foodandservice.presentation.ui.adapter.OnboardingAdapter
-import com.foodandservice.util.FysPreferences
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentViewPagerBinding
+    private val viewModel by viewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -73,7 +74,7 @@ class OnboardingFragment : Fragment() {
 
         binding.btnOnboarding.setOnClickListener {
             if (binding.btnOnboarding.text == getString(R.string.btn_finish)) {
-                FysPreferences.finishOnboarding()
+                viewModel.finishOnboarding()
                 findNavController().navigate(R.id.action_viewPagerFragment_to_loginFragment)
             } else
                 binding.vpOnboarding.currentItem += 1

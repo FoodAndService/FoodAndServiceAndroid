@@ -1,11 +1,15 @@
 package com.foodandservice.di
 
-import com.foodandservice.data.remote.ClientApi
-import com.foodandservice.data.remote.RestaurantApi
-import com.foodandservice.data.repository.ClientRepository
-import com.foodandservice.data.repository.ClientRepositoryImpl
-import com.foodandservice.data.repository.RestaurantRepository
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import com.foodandservice.data.remote.api.CustomerService
+import com.foodandservice.data.remote.api.RestarauntService
+import com.foodandservice.data.repository.CustomerRepositoryImpl
 import com.foodandservice.data.repository.RestaurantRepositoryImpl
+import com.foodandservice.data.repository.UserPreferencesRepositoryImpl
+import com.foodandservice.domain.repository.CustomerRepository
+import com.foodandservice.domain.repository.RestaurantRepository
+import com.foodandservice.domain.repository.UserPreferencesRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,13 +21,19 @@ import javax.inject.Singleton
 object RepositoryModule {
     @Singleton
     @Provides
-    fun provideClientRepository(api: ClientApi): ClientRepository {
-        return ClientRepositoryImpl(api)
+    fun provideCustomerRepository(api: CustomerService): CustomerRepository {
+        return CustomerRepositoryImpl(api)
     }
 
     @Singleton
     @Provides
-    fun provideRestaurantRepository(api: RestaurantApi): RestaurantRepository {
+    fun provideRestaurantRepository(api: RestarauntService): RestaurantRepository {
         return RestaurantRepositoryImpl(api)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserPreferencesRepository(dataStore: DataStore<Preferences>): UserPreferencesRepository {
+        return UserPreferencesRepositoryImpl(dataStore)
     }
 }

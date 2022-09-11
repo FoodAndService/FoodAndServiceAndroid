@@ -17,6 +17,8 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_bg_foodandservice.xml" value="0.3648148148148148" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_billing.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_cart.xml" value="0.3365740740740741" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_favorite.xml" value="0.1865" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_favorite_broken.xml" value="0.285" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_home.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_person.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/ic_profile.xml" value="0.3365740740740741" />
@@ -25,7 +27,10 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/onboarding_indicator_inactive.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/phone_prefix.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/shape_onboarding.xml" value="0.2" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/tab_color_selector.xml" value="0.1935" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/tab_selector.xml" value="0.3319634703196347" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/tab_style.xml" value="0.2995" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/tab_text_style.xml" value="0.1845" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/toolbar.xml" value="0.3319634703196347" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/drawable/transparent.xml" value="0.3365740740740741" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/activity_foodandservice.xml" value="0.33" />
@@ -37,21 +42,23 @@
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_login.xml" value="0.5" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_onboarding.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_onboarding_item.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_restaurant_info.xml" value="0.5" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_restaurant_info.xml" value="0.5412130637636081" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_review_create.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_second_screen.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_signup_finish.xml" value="0.33" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_sms_confirm.xml" value="0.14" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_signup_finish.xml" value="0.5" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_sms_confirm.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_splash.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_table_reservation.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_third_screen.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_view_pager.xml" value="0.5" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/fragment_view_pager.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/gradient.xml" value="0.2726449275362319" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_category.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_category_product.xml" value="0.32222222222222224" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_category_tag.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_order.xml" value="0.32222222222222224" />
-        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_restaurant.xml" value="0.67" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_product.xml" value="0.5" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_restaurant.xml" value="0.33" />
+        <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_restaurant_filter.xml" value="0.3569230769230769" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/layout/item_schedule.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
         <entry key="..\:/Users/kingb1rd/AndroidStudioProjects/FoodAndServiceAndroid/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.3319634703196347" />

@@ -1,8 +1,6 @@
 package com.foodandservice.presentation.ui.sms_confirm
 
 import android.os.Bundle
-import android.os.CountDownTimer
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +8,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SmsConfirmFragment : Fragment() {
     private lateinit var binding: FragmentSmsConfirmBinding
-    private lateinit var timer: CountDownTimer
-    private val viewModel by viewModels<SmsConfirmViewModelImpl>()
-    private val TAG = "SmsConfirmFragment"
+    private val args: SmsConfirmFragmentArgs by navArgs()
+    private val viewModel by viewModels<SmsConfirmViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,12 +36,36 @@ class SmsConfirmFragment : Fragment() {
 
         binding.etSms.startListeningForIncomingMessages()
 
-        binding.btnConfirm.setOnClickListener {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.smsConfirmState.collect { state ->
+                when (state) {
+                    is SmsConfirmState.SuccessNewCustomer -> navigateToSignUpFinish()
+                    is SmsConfirmState.SuccessExistentCustomer -> navigateToHome()
+                    is SmsConfirmState.Error -> Unit
+                    is SmsConfirmState.Loading -> Unit
+                    is SmsConfirmState.Idle -> Unit
+                }
+            }
+        }
 
+        lifecycleScope.launch {
+            viewModel.countDownTimerState.collect { state ->
+                binding.btnResendSms.isEnabled = state.isBtnEnabled
+
+                binding.btnResendSms.text =
+                    if (state.isBtnEnabled) getString(R.string.btn_resend_sms) else getString(
+                        R.string.btn_resend_sms_wait,
+                        state.time
+                    )
+            }
+        }
+
+        binding.btnConfirm.setOnClickListener {
+            viewModel.sendSms(args.phone, binding.etSms.enteredCode)
         }
 
         binding.btnResendSms.setOnClickListener {
-            initCountDownTimer()
+            viewModel.initCountDownTimer()
         }
 
         binding.etSms.onChangeListener =
@@ -49,47 +73,15 @@ class SmsConfirmFragment : Fragment() {
 
             }
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.smsConfirmState.collect { state ->
-                when (state) {
-                    is SmsConfirmState.Success -> {
-
-                    }
-                    is SmsConfirmState.Error -> {
-                        TODO("Show error")
-                    }
-                    is SmsConfirmState.Empty -> {}
-                }
-            }
-        }
-
-        initCountDownTimer()
     }
 
-    private fun initCountDownTimer() {
-        binding.btnResendSms.isEnabled = false
+    private fun navigateToHome() {
+        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToHomeFragment()
+        findNavController().navigate(action)
+    }
 
-        timer = object : CountDownTimer(60000, 1000) {
-            override fun onTick(millisUntilFinished: Long) {
-                try {
-                    binding.btnResendSms.text =
-                        getString(R.string.btn_resend_sms_wait, (millisUntilFinished / 1000))
-                } catch (e: Exception) {
-                    Log.e(TAG, e.message, e)
-                }
-            }
-
-            override fun onFinish() {
-                try {
-                    binding.btnResendSms.text =
-                        getString(R.string.btn_resend_sms)
-                    binding.btnResendSms.isEnabled = true
-                } catch (e: Exception) {
-                    Log.e(TAG, e.message, e)
-                }
-            }
-        }
-
-        timer.start()
+    private fun navigateToSignUpFinish() {
+        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToSignupFinishFragment()
+        findNavController().navigate(action)
     }
 }

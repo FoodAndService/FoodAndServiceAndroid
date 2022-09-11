@@ -14,12 +14,13 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
+import com.foodandservice.presentation.ui.adapter.RestaurantFilterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClickListener {
+class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.RestaurantClickListener {
     private lateinit var binding: FragmentHomeCategoryFilterBinding
-    private lateinit var restaurantAdapter: RestaurantAdapter
+    private lateinit var restaurantAdapter: RestaurantFilterAdapter
     private val args: HomeCategoryFilterFragmentArgs by navArgs()
     private val viewModel by viewModels<HomeCategoryFilterViewModel>()
 
@@ -68,11 +69,11 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
             }
         }
 
-        binding.tvCategory.text = args.category.uppercase()
+        binding.tvCategory.text = getString(R.string.category_filter_title, args.category.uppercase())
     }
 
     private fun setAdapter() {
-        restaurantAdapter = RestaurantAdapter(this)
+        restaurantAdapter = RestaurantFilterAdapter(this)
         binding.rvRestaurant.adapter = restaurantAdapter
     }
 

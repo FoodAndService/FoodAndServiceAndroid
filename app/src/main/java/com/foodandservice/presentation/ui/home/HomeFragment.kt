@@ -81,6 +81,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     override fun onClick(item: Restaurant) {
-
+        val action = HomeFragmentDirections.actionHomeFragmentToRestaurantInfoFragment()
+        findNavController().navigate(action)
     }
 }

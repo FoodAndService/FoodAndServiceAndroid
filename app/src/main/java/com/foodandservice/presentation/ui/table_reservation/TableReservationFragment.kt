@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class TableReservationFragment : Fragment() {
     private lateinit var binding: FragmentTableReservationBinding
-    private val viewModel by viewModels<TableReservationViewModelImpl>()
+    private val viewModel by viewModels<TableReservationViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

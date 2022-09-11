@@ -1,3 +1,0 @@
-package com.foodandservice.data.repository
-
-interface RestaurantRepository

@@ -2,25 +2,35 @@ package com.foodandservice.presentation.ui.login
 
 import android.content.Context
 import android.telephony.TelephonyManager
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.foodandservice.R
+import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
+import com.foodandservice.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor() : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val signInFirstPhaseUseCase: SignInFirstPhaseUseCase
+) : ViewModel() {
     private val _loginState = MutableStateFlow<LoginState>(LoginState.Empty)
     val loginState: StateFlow<LoginState> = _loginState.asStateFlow()
 
     fun login(phone: String) {
-        if (phone.length != 9)
-            _loginState.value = LoginState.Error("Incorrect phone format")
-        else
-            _loginState.value = LoginState.Success
+        viewModelScope.launch {
+            when (val response = signInFirstPhaseUseCase(phone)) {
+                is Resource.Success -> _loginState.value = LoginState.Success(phone)
+                is Resource.Loading -> _loginState.value = LoginState.Loading
+                is Resource.Error -> _loginState.value = LoginState.Error(response.message)
+            }
+        }
     }
 
     fun getPhonePrefix(context: Context) {

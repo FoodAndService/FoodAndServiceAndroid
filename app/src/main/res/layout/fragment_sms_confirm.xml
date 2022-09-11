@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.foodandservice.presentation.ui.sms_confirm.SmsConfirmViewModelImpl" />
+            type="com.foodandservice.presentation.ui.sms_confirm.SmsConfirmViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,6 +34,7 @@
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
             android:layout_marginBottom="-50dp"
+            android:elevation="50dp"
             app:cardCornerRadius="@dimen/radius_cardview"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,7 +76,7 @@
                     app:scv_symbolBorderColor="@color/greyish_white"
                     app:scv_symbolBorderCornerRadius="10dp"
                     app:scv_symbolTextColor="@color/gradient_start"
-                    app:scv_symbolsSpacing="14dp" />
+                    app:scv_symbolsSpacing="10dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"

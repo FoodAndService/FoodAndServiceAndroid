@@ -36,7 +36,7 @@ class LoginFragment : Fragment() {
             viewModel.loginState.collect { state ->
                 when (state) {
                     is LoginState.Success -> {
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+                        navigateToSmsConfirm(state.phone)
                     }
                     is LoginState.Error -> {
                         makeToast(state.message)
@@ -57,9 +57,13 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnAccess.setOnClickListener {
-            binding.tilPhone.isErrorEnabled = false
-            viewModel.login(binding.tiePhone.text.toString())
+            viewModel.login(binding.tiePrefix.text.toString() + binding.tiePhone.text.toString())
         }
+    }
+
+    private fun navigateToSmsConfirm(phone: String) {
+        val action = LoginFragmentDirections.actionLoginFragmentToSmsConfirmFragment(phone)
+        findNavController().navigate(action)
     }
 
     private fun makeToast(msg: String) {

@@ -2,7 +2,8 @@ package com.foodandservice.presentation.ui.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.foodandservice.util.FysPreferences
+import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
+import com.foodandservice.domain.usecases.auth.IsUserLoggedInUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -11,8 +12,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SplashViewModel @Inject constructor() : ViewModel() {
-    private val _splashState = MutableStateFlow<SplashState>(SplashState.Empty)
+class SplashViewModel @Inject constructor(
+    private val isUserLoggedInUseCase: IsUserLoggedInUseCase,
+    private val isOnboardingFinishedUseCase: IsOnboardingFinishedUseCase
+) :
+    ViewModel() {
+    private val _splashState = MutableStateFlow<SplashState>(SplashState.Idle)
     val splashState: StateFlow<SplashState> = _splashState.asStateFlow()
 
     init {
@@ -20,16 +25,15 @@ class SplashViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun getUserState() {
-        val authToken = FysPreferences.getSession()
-
         viewModelScope.launch {
             try {
-                if (!FysPreferences.isOnboardingFinished())
+                if (isOnboardingFinishedUseCase()) {
+                    if (isUserLoggedInUseCase())
+                        _splashState.value = SplashState.LoggedIn
+                    else
+                        _splashState.value = SplashState.NotLoggedIn
+                } else
                     _splashState.value = SplashState.OnboardingNotFinished
-                else if (authToken == null)
-                    _splashState.value = SplashState.NotLoggedIn
-                else
-                    _splashState.value = SplashState.LoggedIn
             } catch (e: Exception) {
                 _splashState.value = SplashState.Error(e.message.toString())
             }

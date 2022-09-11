@@ -32,19 +32,11 @@ class SplashFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.splashState.collect { state ->
                 when (state) {
-                    is SplashState.LoggedIn -> {
-                        findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
-                    }
-                    is SplashState.NotLoggedIn -> {
-                        findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
-                    }
-                    is SplashState.OnboardingNotFinished -> {
-                        findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
-                    }
-                    is SplashState.Error -> {
-                        TODO("Show error")
-                    }
-                    is SplashState.Empty -> {}
+                    is SplashState.LoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
+                    is SplashState.NotLoggedIn -> findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                    is SplashState.OnboardingNotFinished -> findNavController().navigate(R.id.action_splashFragment_to_viewPagerFragment)
+                    is SplashState.Error -> Unit
+                    is SplashState.Idle -> Unit
                 }
             }
         }

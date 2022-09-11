@@ -36,8 +36,10 @@
     <string name="menu_favorites">Favoritos</string>
     <string name="menu_billings">Facturas</string>
     <string name="menu_profile">Perfil</string>
-    <string name="tv_review_title">¿Qué te pareció X?</string>
+    <string name="tv_review_title">¿Qué te pareció %1$s?</string>
     <string name="btn_send_review">Enviar reseña</string>
     <string name="hint_tie_review">Deja tu reseña aquí</string>
-    <string name="actvSchedule">HORARIOS</string>
+    <string name="actv_schedule">HORARIOS</string>
+    <string name="tv_refill">Refill</string>
+    <string name="category_filter_title">CATEGORÍA %1$s</string>
 </resources>
