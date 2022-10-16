@@ -32,27 +32,27 @@ class OnboardingFragment : Fragment() {
             OnboardingItem(
                 R.drawable.shape_onboarding,
                 getString(R.string.onboarding_title1),
-                getString(R.string.onboarding_description1)
+                getString(R.string.onboarding_desc1)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
                 getString(R.string.onboarding_title2),
-                getString(R.string.onboarding_description2)
+                getString(R.string.onboarding_desc2)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
                 getString(R.string.onboarding_title3),
-                getString(R.string.onboarding_description3)
+                getString(R.string.onboarding_desc3)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
                 getString(R.string.onboarding_title4),
-                getString(R.string.onboarding_description4)
+                getString(R.string.onboarding_desc4)
             ),
             OnboardingItem(
                 R.drawable.shape_onboarding,
                 getString(R.string.onboarding_title5),
-                getString(R.string.onboarding_description5)
+                getString(R.string.onboarding_desc5)
             )
         )
 

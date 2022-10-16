@@ -27,12 +27,10 @@ class SplashViewModel @Inject constructor(
     private fun getUserState() {
         viewModelScope.launch {
             try {
-                if (isOnboardingFinishedUseCase()) {
-                    if (isUserLoggedInUseCase())
-                        _splashState.value = SplashState.LoggedIn
-                    else
-                        _splashState.value = SplashState.NotLoggedIn
-                } else
+                if (isOnboardingFinishedUseCase())
+                    _splashState.value =
+                        if (isUserLoggedInUseCase()) SplashState.LoggedIn else SplashState.NotLoggedIn
+                else
                     _splashState.value = SplashState.OnboardingNotFinished
             } catch (e: Exception) {
                 _splashState.value = SplashState.Error(e.message.toString())
