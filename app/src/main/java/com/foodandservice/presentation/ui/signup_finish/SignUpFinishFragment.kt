@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSignupFinishBinding
-import com.foodandservice.presentation.ui.sms_confirm.SmsConfirmFragmentDirections
+import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -48,6 +48,7 @@ class SignUpFinishFragment : Fragment() {
     }
 
     private fun navigateToHome() {
+        hideKeyboard()
         val action = SignUpFinishFragmentDirections.actionSignupFinishFragmentToHomeFragment()
         findNavController().navigate(action)
     }

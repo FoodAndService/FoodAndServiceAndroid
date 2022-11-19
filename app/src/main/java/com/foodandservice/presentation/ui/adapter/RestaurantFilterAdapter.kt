@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.foodandservice.databinding.ItemRestaurantBinding
 import com.foodandservice.databinding.ItemRestaurantFilterBinding
 import com.foodandservice.domain.model.Restaurant
 

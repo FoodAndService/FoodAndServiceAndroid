@@ -5,6 +5,4 @@ import com.foodandservice.domain.repository.RestaurantRepository
 import javax.inject.Inject
 
 class RestaurantRepositoryImpl @Inject constructor(private val api: RestarauntService) :
-    RestaurantRepository {
-
-}
+    RestaurantRepository

@@ -39,7 +39,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         initSchedule()
         initAdapters()
 
-        binding.btnReserve.setOnClickListener{
+        binding.btnReserve.setOnClickListener {
             findNavController().navigate(R.id.action_restaurantInfoFragment_to_tableReservationFragment)
         }
     }

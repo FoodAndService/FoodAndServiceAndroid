@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 class RestaurantDetailsViewModel @Inject constructor() : ViewModel() {
-    private val _restaurantInfoState = MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Empty)
+    private val _restaurantInfoState =
+        MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Empty)
     val restaurantInfoState: StateFlow<RestaurantDetailsState> = _restaurantInfoState.asStateFlow()
 
 

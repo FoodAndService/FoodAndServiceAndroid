@@ -13,7 +13,6 @@ import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantFilterAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -69,7 +68,8 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
             }
         }
 
-        binding.tvCategory.text = getString(R.string.category_filter_title, args.category.uppercase())
+        binding.tvCategory.text =
+            getString(R.string.category_filter_title, args.category.uppercase())
     }
 
     private fun setAdapter() {

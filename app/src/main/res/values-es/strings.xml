@@ -39,4 +39,5 @@
     <string name="actv_schedule">HORARIOS</string>
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORÍA: %1$s</string>
+    <string name="skip">Skip</string>
 </resources>

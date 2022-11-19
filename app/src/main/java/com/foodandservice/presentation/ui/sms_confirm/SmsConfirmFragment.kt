@@ -1,11 +1,9 @@
 package com.foodandservice.presentation.ui.sms_confirm
 
-import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +12,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
-import com.foodandservice.util.ContextExtensions.hideKeyboard
+import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -80,8 +78,8 @@ class SmsConfirmFragment : Fragment() {
     }
 
     private fun navigateToHome() {
-        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToHomeFragment()
         hideKeyboard()
+        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 

@@ -1,4 +1,4 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
+<resources>
     <string name="app_name" translatable="false">Food &amp; Service</string>
     <string name="tv_copyright" translatable="false">Food &amp; Service 2021</string>
 
@@ -11,7 +11,7 @@
     <string name="onboarding_title4">Discounts</string>
     <string name="onboarding_desc4">Our restaurants are always giving discounts to their customers through Food &amp; Service, whenever we can we will show you the best discounts!</string>
     <string name="onboarding_title5">Permissions</string>
-    <string name="onboarding_desc5">We request the the following Contacts (To get your number on the sign up process), Messaging (To automatically validate the SMS code) and Notifications (To notify you of the latest discounts and promotions).</string>
+    <string name="onboarding_desc5">We request the following Contacts (To get your number on the sign up process), Messaging (To automatically validate the SMS code) and Notifications (To notify you of the latest discounts and promotions).</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_finish">Finish</string>
     <string name="btn_next">Next</string>
@@ -41,4 +41,5 @@
     <string name="actv_schedule">SCHEDULE</string>
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORY: %1$s</string>
+    <string name="skip">Skip</string>
 </resources>

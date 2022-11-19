@@ -7,8 +7,8 @@ fun getTabbedListMediatorIndices(list: List<CategoryWithProducts>): List<Int> {
     indices.add(0)
 
     list.forEachIndexed { index, categoryWithProducts ->
-        if(index > 0)
-            indices.add(index * categoryWithProducts.products.size + 1)
+        if (index > 0)
+            indices.add(index * categoryWithProducts.products.size)
     }
 
     return indices

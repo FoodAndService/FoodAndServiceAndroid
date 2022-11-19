@@ -12,8 +12,8 @@ android {
 
     defaultConfig {
         applicationId "com.foodandservice"
-        minSdk 21
-        targetSdk 31
+        minSdk 23
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -39,15 +39,15 @@ android {
         jvmTarget = '1.8'
     }
     buildToolsVersion '32.1.0-rc1'
-    compileSdkVersion 32
+    compileSdkVersion 33
 }
 
 dependencies {
     implementation project(':data')
     implementation project(':domain')
 
-    implementation 'androidx.core:core-ktx:1.8.0'
-    implementation 'androidx.appcompat:appcompat:1.5.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -56,8 +56,8 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:2.43.1"
 
     // Navigation component
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     // SMS confirmation view
     implementation 'com.github.fraggjkee:sms-confirmation-view:1.5.0'
@@ -78,7 +78,7 @@ dependencies {
     implementation 'androidx.datastore:datastore-preferences:1.0.0'
 
     // Lifecycle
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha01'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.6.0-alpha03'
 
     // optional - Kotlin Extensions and Coroutines support for Room
     implementation 'androidx.room:room-ktx:2.4.3'
@@ -107,5 +107,5 @@ dependencies {
     implementation 'pub.devrel:easypermissions:3.0.0'
 
     // Material
-    implementation 'com.google.android.material:material:1.6.1'
+    implementation 'com.google.android.material:material:1.7.0'
 }

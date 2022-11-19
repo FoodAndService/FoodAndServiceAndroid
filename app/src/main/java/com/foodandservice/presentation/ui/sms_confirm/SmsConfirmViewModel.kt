@@ -51,7 +51,8 @@ class SmsConfirmViewModel @Inject constructor(
                     }
                 }
                 is Resource.Loading -> _smsConfirmState.value = SmsConfirmState.Loading
-                is Resource.Error -> _smsConfirmState.value = SmsConfirmState.Error(response.message)
+                is Resource.Error -> _smsConfirmState.value =
+                    SmsConfirmState.Error(response.message)
             }
         }
     }
@@ -63,7 +64,7 @@ class SmsConfirmViewModel @Inject constructor(
             override fun onTick(millisUntilFinished: Long) {
                 try {
                     _countDownTimerState.update { it.copy(time = (millisUntilFinished / 1000)) }
-                } catch (e: Exception) {
+                } catch (_: Exception) {
                 }
             }
 

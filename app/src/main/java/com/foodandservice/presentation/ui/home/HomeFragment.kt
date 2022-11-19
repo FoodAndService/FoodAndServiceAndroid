@@ -17,6 +17,7 @@ import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
+import com.foodandservice.util.extensions.ContextExtensions.showDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -58,7 +59,14 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         }
 
         binding.btnCart.setOnClickListener {
+            requireContext().showDialog(
+                "Confirmar reserva",
+                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
+                "Confirmar",
+                onBtnPositiveClick = {
 
+                }
+            )
         }
     }
 
