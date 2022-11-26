@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.foodandservice"
-        minSdk 23
+        minSdk 26
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -51,9 +51,15 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
+    // QR scanner
+    implementation 'com.budiyev.android:code-scanner:2.1.0'
+    
+    // Country Code Picker
+    implementation 'com.hbb20:ccp:2.6.1'
+    
     // Hilt
-    implementation "com.google.dagger:hilt-android:2.43.1"
-    kapt "com.google.dagger:hilt-android-compiler:2.43.1"
+    implementation 'com.google.dagger:hilt-android:2.43.1'
+    kapt 'com.google.dagger:hilt-android-compiler:2.43.1'
 
     // Navigation component
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'

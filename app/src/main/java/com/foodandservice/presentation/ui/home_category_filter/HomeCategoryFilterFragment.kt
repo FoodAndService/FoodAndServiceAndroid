@@ -41,10 +41,6 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
 
         setAdapter()
 
-        binding.btnCart.setOnClickListener {
-            TODO("from home filter to cart")
-        }
-
         binding.btnBack.setOnClickListener {
             findNavController().popBackStack()
         }

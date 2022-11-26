@@ -6,16 +6,16 @@
         android:icon="@drawable/ic_home"
         android:title="@string/menu_home" />
     <item
-        android:id="@+id/favoritesFragment"
+        android:id="@+id/favouritesFragment"
         android:icon="@drawable/ic_favorite_border"
         android:title="@string/menu_favorites" />
     <item
         android:enabled="false"
         android:title="" />
     <item
-        android:id="@+id/billingsFragment"
-        android:icon="@drawable/ic_billing"
-        android:title="@string/menu_billings" />
+        android:id="@+id/ordersFragment"
+        android:icon="@drawable/ic_orders"
+        android:title="@string/menu_orders" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"

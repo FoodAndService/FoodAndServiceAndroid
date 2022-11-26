@@ -26,12 +26,13 @@
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="btn_reserve">Reservar</string>
+    <string name="tv_order_history_days_ago">Hace %1$d días</string>
     <string name="hint_tie_diners">Cantidad de comensales</string>
     <string name="hint_tie_reserve_date">Fecha de la reserva</string>
     <string name="hint_tie_reserve_hours">Horas disponibles</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_favorites">Favoritos</string>
-    <string name="menu_billings">Facturas</string>
+    <string name="menu_orders">Pedidos</string>
     <string name="menu_profile">Perfil</string>
     <string name="tv_review_title">¿Qué te pareció %1$s?</string>
     <string name="btn_send_review">Enviar reseña</string>
@@ -40,4 +41,6 @@
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORÍA: %1$s</string>
     <string name="skip">Skip</string>
+    <string name="fragment_orders_title">Mis pedidos</string>
+    <string name="fragment_favourites_title">Mis favoritos</string>
 </resources>

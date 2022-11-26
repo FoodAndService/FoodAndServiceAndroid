@@ -203,7 +203,7 @@
                                 android:layout_height="match_parent"
                                 android:scaleType="fitXY"
                                 android:contentDescription="@null"
-                                android:src="@drawable/restlogo" />
+                                android:src="@drawable/restaurant_logo" />
                         </com.google.android.material.card.MaterialCardView>
                     </com.google.android.material.card.MaterialCardView>
 

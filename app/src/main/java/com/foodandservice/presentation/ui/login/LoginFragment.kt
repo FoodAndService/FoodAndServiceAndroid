@@ -1,5 +1,6 @@
 package com.foodandservice.presentation.ui.login
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
+import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -30,8 +32,6 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getPhonePrefix(requireContext())
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.loginState.collect { state ->
                 when (state) {
@@ -41,23 +41,24 @@ class LoginFragment : Fragment() {
                     is LoginState.Error -> {
                         makeToast(state.message)
                     }
-                    is LoginState.LoadPhonePrefix -> {
-                        binding.tiePrefix.setText(state.prefix)
-                    }
-                    is LoginState.Loading -> {
-                        TODO("Loading effect")
-                    }
-                    is LoginState.Empty -> {}
+                    is LoginState.Loading -> {}
+                    is LoginState.Idle -> {}
                 }
             }
+        }
+
+        binding.btnAccess.setOnClickListener {
+            viewModel.login(binding.countryCodePicker.selectedCountryCodeWithPlus + binding.tiePhone.text.toString())
         }
 
         binding.btnLostPhone.setOnClickListener {
 
         }
 
-        binding.btnAccess.setOnClickListener {
-            viewModel.login(binding.tiePrefix.text.toString() + binding.tiePhone.text.toString())
+        binding.apply {
+            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
+
+            countryCodePicker.setTypeFace(Typeface.createFromAsset(requireContext().assets, "fonts/poppins.ttf"))
         }
     }
 

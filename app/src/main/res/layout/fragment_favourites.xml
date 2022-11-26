@@ -3,18 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/greyish_white"
-        tools:context=".presentation.ui.home_category_filter.HomeCategoryFilterFragment">
+        tools:context=".presentation.ui.favourirtes.FavouritesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
@@ -41,16 +34,6 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:id="@+id/btnBack"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:layout_marginStart="12dp"
-                    android:layout_marginTop="28dp"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
                     android:id="@+id/ivLogo"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
@@ -66,21 +49,22 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <TextView
-            android:id="@+id/tvCategory"
+            android:id="@+id/tvFavourites"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins"
+            android:text="@string/fragment_favourites_title"
+            android:textAllCaps="true"
             android:textColor="@color/text_dark"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            tools:text="Categoría" />
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRestaurant"
+            android:id="@+id/rvFavourites"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="8dp"
@@ -88,7 +72,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCategory" />
+            app:layout_constraintTop_toBottomOf="@+id/tvFavourites" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

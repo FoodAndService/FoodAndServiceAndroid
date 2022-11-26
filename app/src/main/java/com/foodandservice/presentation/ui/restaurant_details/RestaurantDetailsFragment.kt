@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.foodandservice.R
-import com.foodandservice.databinding.FragmentRestaurantInfoBinding
+import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
 import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
@@ -20,7 +20,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListener {
-    private lateinit var binding: FragmentRestaurantInfoBinding
+    private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var productAdapter: ProductAdapter
     private val viewModel by viewModels<RestaurantDetailsViewModel>()
 
@@ -29,7 +29,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_restaurant_info, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_restaurant_details, container, false)
         return binding.root
     }
 

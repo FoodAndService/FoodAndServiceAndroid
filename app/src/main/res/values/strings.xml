@@ -29,11 +29,12 @@
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
     <string name="btn_reserve">Reserve</string>
     <string name="hint_tie_diners">Number of diners</string>
+    <string name="tv_order_history_days_ago">%1$d days ago</string>
     <string name="hint_tie_reserve_date">Booking date</string>
     <string name="hint_tie_reserve_hours">Available hours</string>
     <string name="menu_home">Home</string>
     <string name="menu_favorites">Favourites</string>
-    <string name="menu_billings">Bills</string>
+    <string name="menu_orders">Orders</string>
     <string name="menu_profile">Profile</string>
     <string name="tv_review_title">How did you like %1$s?</string>
     <string name="btn_send_review">Send review</string>
@@ -42,4 +43,6 @@
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORY: %1$s</string>
     <string name="skip">Skip</string>
+    <string name="fragment_orders_title">My orders</string>
+    <string name="fragment_favourites_title">My favourites</string>
 </resources>
