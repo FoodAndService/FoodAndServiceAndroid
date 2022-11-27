@@ -29,7 +29,12 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_restaurant_details, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_restaurant_details,
+                container,
+                false
+            )
         return binding.root
     }
 

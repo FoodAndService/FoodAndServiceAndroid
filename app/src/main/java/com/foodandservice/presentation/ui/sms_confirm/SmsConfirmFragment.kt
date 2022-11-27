@@ -11,12 +11,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
+import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class SmsConfirmFragment : Fragment() {
@@ -75,6 +75,7 @@ class SmsConfirmFragment : Fragment() {
 
             }
 
+        binding.tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
     }
 
     private fun navigateToHome() {

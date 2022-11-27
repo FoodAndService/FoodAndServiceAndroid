@@ -41,6 +41,7 @@
                     <ImageView
                         android:id="@+id/ivRestaurantIcon"
                         android:layout_width="match_parent"
+                        android:contentDescription="@null"
                         android:layout_height="match_parent"
                         android:scaleType="fitXY"
                         android:src="@drawable/restaurant_logo" />

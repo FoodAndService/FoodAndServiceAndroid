@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
+import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.domain.model.OnboardingItem
 import com.foodandservice.presentation.ui.adapter.OnboardingAdapter
@@ -18,15 +19,32 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentViewPagerBinding
+    private lateinit var onboardingAdapter: OnboardingAdapter
     private val viewModel by viewModels<OnboardingViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_view_pager, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_view_pager, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setUpAdapters()
+
+        binding.btnOnboarding.setOnClickListener {
+            if (binding.btnOnboarding.text == getString(R.string.btn_finish)) {
+                viewModel.finishOnboarding()
+                goToLogin()
+            } else
+                binding.vpOnboarding.currentItem += 1
+        }
+    }
+
+    private fun setUpAdapters() {
         val onboardingItems = listOf(
             OnboardingItem(
                 R.drawable.shape_onboarding,
@@ -54,36 +72,30 @@ class OnboardingFragment : Fragment() {
                 getString(R.string.onboarding_desc5)
             )
         )
+        onboardingAdapter = OnboardingAdapter(onboardingItems)
 
-        val adapter = OnboardingAdapter(onboardingItems)
+        binding.apply {
+            vpOnboarding.adapter = onboardingAdapter
 
-        binding.vpOnboarding.adapter = adapter
-        binding.dotsIndicator.setViewPager2(binding.vpOnboarding)
+            dotsIndicator.setViewPager2(binding.vpOnboarding)
 
-        binding.vpOnboarding.registerOnPageChangeCallback(object :
-            ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                if (position == onboardingItems.size - 1)
-                    binding.btnOnboarding.text = getString(R.string.btn_finish)
-                else
-                    binding.btnOnboarding.text = getString(R.string.btn_next)
-            }
-        })
+            vpOnboarding.registerOnPageChangeCallback(object :
+                ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+                    if (position == onboardingItems.size - 1)
+                        binding.btnOnboarding.text = getString(R.string.btn_finish)
+                    else
+                        binding.btnOnboarding.text = getString(R.string.btn_next)
+                }
+            })
 
-        binding.btnOnboarding.setOnClickListener {
-            if (binding.btnOnboarding.text == getString(R.string.btn_finish)) {
-                viewModel.finishOnboarding()
+            btnSkip.setOnClickListener {
                 goToLogin()
-            } else
-                binding.vpOnboarding.currentItem += 1
-        }
+            }
 
-        binding.btnSkip.setOnClickListener {
-            goToLogin()
+            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
-
-        return binding.root
     }
 
     private fun goToLogin() {

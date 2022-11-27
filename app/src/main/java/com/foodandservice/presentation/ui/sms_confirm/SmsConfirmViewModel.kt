@@ -1,7 +1,6 @@
 package com.foodandservice.presentation.ui.sms_confirm
 
 import android.os.CountDownTimer
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.auth.SaveTokenUseCase
@@ -19,9 +18,7 @@ import javax.inject.Inject
 class SmsConfirmViewModel @Inject constructor(
     private val signInSecondPhaseUseCase: SignInSecondPhaseUseCase,
     private val saveTokenUseCase: SaveTokenUseCase
-) :
-    ViewModel() {
-    private val TAG = "SmsConfirmVM"
+) : ViewModel() {
 
     private val _smsConfirmState = MutableStateFlow<SmsConfirmState>(SmsConfirmState.Idle)
     val smsConfirmState: StateFlow<SmsConfirmState> = _smsConfirmState.asStateFlow()
@@ -72,8 +69,7 @@ class SmsConfirmViewModel @Inject constructor(
                 try {
                     _countDownTimerState.update { it.copy(isBtnEnabled = true) }
                     timer?.cancel()
-                } catch (e: Exception) {
-                    Log.e(TAG, e.message, e)
+                } catch (_: Exception) {
                 }
             }
         }

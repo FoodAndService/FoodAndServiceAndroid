@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:context=".presentation.ui.onboarding.screens.FirstScreen">
 
         <ImageView
             android:id="@+id/ivOnboarding"
-            android:layout_width="203dp"
-            android:layout_height="218dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="142dp"
             android:contentDescription="@null"
-            android:layout_marginTop="100dp"
+            android:src="@drawable/shape_onboarding"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/shape_onboarding" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvOnboardingTitle"
@@ -24,29 +26,28 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:fontFamily="@font/poppins"
+            android:text="@string/onboarding_title4"
             android:textColor="@color/text_dark"
             android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivOnboarding"
-            tools:text="@string/onboarding_title1" />
+            app:layout_constraintTop_toBottomOf="@+id/ivOnboarding" />
 
         <TextView
             android:id="@+id/tvOnboardingDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="42dp"
             android:fontFamily="@font/poppins"
+            android:text="@string/onboarding_desc4"
             android:textAlignment="center"
             android:textColor="@color/text_normal"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvOnboardingTitle"
-            tools:text="@string/onboarding_desc1" />
-
+            app:layout_constraintTop_toBottomOf="@+id/tvOnboardingTitle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

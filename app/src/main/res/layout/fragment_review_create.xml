@@ -63,6 +63,7 @@
                     android:id="@+id/ivLogo"
                     android:layout_width="wrap_content"
                     android:layout_height="45dp"
+                    android:contentDescription="@null"
                     android:layout_marginTop="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -74,6 +75,7 @@
                     android:id="@+id/btnBack"
                     android:layout_width="45dp"
                     android:layout_height="45dp"
+                    android:contentDescription="@null"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="28dp"
                     android:src="@drawable/ic_arrow_back"
@@ -114,6 +116,7 @@
                 <ImageView
                     android:id="@+id/restLogo"
                     android:layout_width="match_parent"
+                    android:contentDescription="@null"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/bg1" />

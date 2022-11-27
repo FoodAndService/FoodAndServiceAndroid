@@ -32,6 +32,19 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="ButtonWhite" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_marginStart">35dp</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginEnd">35dp</item>
+        <item name="backgroundTint">@null</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:background">@drawable/white_corners</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/gradient_start</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
     <style name="ButtonQrScan" parent="Widget.MaterialComponents.Button">
         <item name="backgroundTint">@null</item>
         <item name="android:foreground">?android:attr/selectableItemBackground</item>

@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
+import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSignupFinishBinding
 import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,8 @@ class SignUpFinishFragment : Fragment() {
         binding.btnFinishSignup.setOnClickListener {
             viewModel.finishSignup(binding.tieFullname.text.toString())
         }
+
+        binding.tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.signUpFinishState.collect { state ->

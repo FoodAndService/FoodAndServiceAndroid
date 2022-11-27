@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name" translatable="false">Food &amp; Service</string>
-    <string name="tv_copyright" translatable="false">Food &amp; Service 2021</string>
 
     <string name="onboarding_title1">Welcome</string>
     <string name="onboarding_desc1">We are very happy to have you here, before we continue and after detecting that you are new, we would like to tell you a little bit about what is Food &amp; Service and why you will love it!</string>
@@ -45,4 +44,11 @@
     <string name="skip">Skip</string>
     <string name="fragment_orders_title">My orders</string>
     <string name="fragment_favourites_title">My favourites</string>
+    <string name="order_status_checking_payment">Checking payment method</string>
+    <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
+    <string name="order_status_preparing">Your order is being processed</string>
+    <string name="order_status_finished">Your order is ready to pick up</string>
+    <string name="order_status_payment_declined">The payment method has been declined</string>
+    <string name="order_status_order_declined">Your order has been declined</string>
+    <string name="view_my_order">View my order</string>
 </resources>

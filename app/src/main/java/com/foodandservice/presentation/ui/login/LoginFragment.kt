@@ -58,7 +58,12 @@ class LoginFragment : Fragment() {
         binding.apply {
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
 
-            countryCodePicker.setTypeFace(Typeface.createFromAsset(requireContext().assets, "fonts/poppins.ttf"))
+            countryCodePicker.setTypeFace(
+                Typeface.createFromAsset(
+                    requireContext().assets,
+                    "fonts/poppins.ttf"
+                )
+            )
         }
     }
 

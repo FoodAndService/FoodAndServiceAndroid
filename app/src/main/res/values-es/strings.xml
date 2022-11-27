@@ -43,4 +43,11 @@
     <string name="skip">Skip</string>
     <string name="fragment_orders_title">Mis pedidos</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
+    <string name="order_status_checking_payment">Comprobando método de pago</string>
+    <string name="order_status_waiting_confirmation">Esperando confirmación</string>
+    <string name="order_status_preparing">Tu pedido se está realizando</string>
+    <string name="order_status_finished">Tu pedido está listo para recoger</string>
+    <string name="order_status_payment_declined">El método de pago ha sido rechazado</string>
+    <string name="order_status_order_declined">Tu pedido ha sido rechazado</string>
+    <string name="view_my_order">Ver pedido</string>
 </resources>

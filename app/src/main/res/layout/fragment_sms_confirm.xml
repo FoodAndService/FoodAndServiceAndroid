@@ -19,6 +19,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="176dp"
+            android:contentDescription="@null"
             android:layout_height="103dp"
             android:layout_marginBottom="16dp"
             android:src="@drawable/fys"
@@ -108,10 +109,10 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins"
-            android:text="@string/tv_copyright"
             android:textColor="@color/text_normal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="Food&amp;Service © 2022" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
