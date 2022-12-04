@@ -1,14 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.signup_finish.SignUpFinishViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -26,7 +18,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/greyish_white" />
+            app:tint="@color/screen_background" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -59,7 +51,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="@string/tv_finish_signup"
-                    android:textColor="@color/text_dark"
+                    android:textColor="@color/text_normal"
                     android:textSize="16sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -68,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"
                     android:layout_marginEnd="@dimen/cardview"
-                    android:textColorHint="@color/text_dark"
+                    android:textColorHint="@color/text_normal"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
@@ -76,7 +68,7 @@
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:startIconDrawable="@drawable/ic_person"
-                    app:startIconTint="@color/gradient_start">
+                    app:startIconTint="@color/fys_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tieFullname"
@@ -90,13 +82,13 @@
                         android:maxLines="1"
                         android:minLines="1"
                         android:singleLine="true"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/gradient_start" />
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/fys_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnFinishSignup"
-                    style="@style/ButtonDefault"
+                    style="@style/ButtonPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"
@@ -113,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/text_normal"
+            android:textColor="@color/text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
@@ -14,13 +13,12 @@ import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentViewPagerBinding
 import com.foodandservice.domain.model.OnboardingItem
 import com.foodandservice.presentation.ui.adapter.OnboardingAdapter
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentViewPagerBinding
     private lateinit var onboardingAdapter: OnboardingAdapter
-    private val viewModel by viewModels<OnboardingViewModel>()
+    private val viewModel: OnboardingViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +36,7 @@ class OnboardingFragment : Fragment() {
         binding.btnOnboarding.setOnClickListener {
             if (binding.btnOnboarding.text == getString(R.string.btn_finish)) {
                 viewModel.finishOnboarding()
-                goToLogin()
+                navigateToLogin()
             } else
                 binding.vpOnboarding.currentItem += 1
         }
@@ -91,14 +89,14 @@ class OnboardingFragment : Fragment() {
             })
 
             btnSkip.setOnClickListener {
-                goToLogin()
+                navigateToLogin()
             }
 
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
     }
 
-    private fun goToLogin() {
+    private fun navigateToLogin() {
         findNavController().navigate(R.id.action_onboardingFragment_to_loginFragment)
     }
 }

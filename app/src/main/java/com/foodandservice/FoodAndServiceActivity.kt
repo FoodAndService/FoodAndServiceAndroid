@@ -9,39 +9,45 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.foodandservice.common.Constants.BottomBarVisibleFragments
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class FoodAndServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodandserviceBinding
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_foodandservice)
-        binding.bottomNavView.setupWithNavController(findNavController(R.id.navHostFragment))
 
-        findNavController(R.id.navHostFragment).addOnDestinationChangedListener { _, destination, _ ->
-            setBottomBarVisibility(BottomBarVisibleFragments.contains(destination.id))
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_foodandservice)
+
+        navController = findNavController(R.id.navHostFragment)
+
+        binding.apply {
+            bottomNavView.setupWithNavController(navController)
+
+            btnQrScan.setOnClickListener {
+                if (ContextCompat.checkSelfPermission(
+                        this@FoodAndServiceActivity,
+                        android.Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    openQrScanner()
+                } else {
+                    ActivityCompat.requestPermissions(
+                        this@FoodAndServiceActivity,
+                        arrayOf(android.Manifest.permission.CAMERA),
+                        100
+                    )
+                }
+            }
         }
 
-        binding.btnQrScan.setOnClickListener {
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.CAMERA
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                openQrScanner()
-            } else {
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(android.Manifest.permission.CAMERA),
-                    100
-                )
-            }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            setBottomBarVisibility(BottomBarVisibleFragments.contains(destination.id))
         }
     }
 

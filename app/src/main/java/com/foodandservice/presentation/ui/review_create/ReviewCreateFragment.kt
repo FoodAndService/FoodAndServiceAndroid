@@ -7,17 +7,15 @@ import android.view.ViewGroup
 import android.widget.RatingBar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentReviewCreateBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class ReviewCreateFragment : Fragment() {
     private lateinit var binding: FragmentReviewCreateBinding
-    private val viewModel by viewModels<ReviewCreateViewModel>()
+    private val viewModel: ReviewCreateViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

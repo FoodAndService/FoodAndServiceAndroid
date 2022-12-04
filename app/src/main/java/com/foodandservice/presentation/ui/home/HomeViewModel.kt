@@ -4,15 +4,11 @@ import androidx.lifecycle.ViewModel
 import com.foodandservice.domain.model.CategoryRestaurants
 import com.foodandservice.domain.model.CategoryTag
 import com.foodandservice.domain.model.Restaurant
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import javax.inject.Inject
 
-@HiltViewModel
-class HomeViewModel @Inject constructor(
-) : ViewModel() {
+class HomeViewModel : ViewModel() {
     private val _homeState = MutableStateFlow<HomeState>(HomeState.Empty)
     val homeState: StateFlow<HomeState> = _homeState.asStateFlow()
 

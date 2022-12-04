@@ -8,18 +8,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentLoginBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class LoginFragment : Fragment() {
     private lateinit var binding: FragmentLoginBinding
-    private val viewModel by viewModels<LoginViewModel>()
+    private val viewModel: LoginViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

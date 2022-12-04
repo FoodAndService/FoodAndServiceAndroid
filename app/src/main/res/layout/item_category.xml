@@ -17,7 +17,7 @@
             android:fontFamily="@font/poppins"
             android:gravity="center"
             android:textAllCaps="true"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_normal"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

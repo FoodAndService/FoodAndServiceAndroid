@@ -6,23 +6,20 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSignupFinishBinding
 import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class SignUpFinishFragment : Fragment() {
     private lateinit var binding: FragmentSignupFinishBinding
-    private val viewModel by viewModels<SignUpFinishViewModel>()
+    private val viewModel: SignUpFinishViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_signup_finish, container, false)

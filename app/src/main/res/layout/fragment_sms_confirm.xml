@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.sms_confirm.SmsConfirmViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -26,7 +19,7 @@
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/greyish_white" />
+            app:tint="@color/screen_background" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -59,7 +52,7 @@
                     android:fontFamily="@font/poppins"
                     android:gravity="center"
                     android:text="@string/tv_sms_sent"
-                    android:textColor="@color/text_dark"
+                    android:textColor="@color/text_normal"
                     android:textSize="16sp" />
 
                 <com.fraggjkee.smsconfirmationview.SmsConfirmationView
@@ -73,15 +66,15 @@
                     app:scv_codeLength="5"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
-                    app:scv_symbolBackgroundColor="@color/greyish_white"
-                    app:scv_symbolBorderColor="@color/greyish_white"
+                    app:scv_symbolBackgroundColor="@color/screen_background"
+                    app:scv_symbolBorderColor="@color/screen_background"
                     app:scv_symbolBorderCornerRadius="10dp"
-                    app:scv_symbolTextColor="@color/gradient_start"
+                    app:scv_symbolTextColor="@color/fys_primary"
                     app:scv_symbolsSpacing="10dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"
-                    style="@style/ButtonDefault"
+                    style="@style/ButtonPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"
@@ -109,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/text_normal"
+            android:textColor="@color/text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

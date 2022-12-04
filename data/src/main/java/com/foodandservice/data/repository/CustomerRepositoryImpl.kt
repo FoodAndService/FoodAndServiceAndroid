@@ -12,9 +12,8 @@ import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.Resource
 import retrofit2.HttpException
 import java.io.IOException
-import javax.inject.Inject
 
-class CustomerRepositoryImpl @Inject constructor(private val api: CustomerService) :
+class CustomerRepositoryImpl(private val api: CustomerService) :
     CustomerRepository {
     override suspend fun signInFirstPhase(phone: Phone): Resource<Phase> {
         return try {

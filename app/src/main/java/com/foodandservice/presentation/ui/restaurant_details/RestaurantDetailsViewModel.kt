@@ -4,12 +4,9 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import javax.inject.Inject
 
-class RestaurantDetailsViewModel @Inject constructor() : ViewModel() {
+class RestaurantDetailsViewModel : ViewModel() {
     private val _restaurantInfoState =
         MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Empty)
     val restaurantInfoState: StateFlow<RestaurantDetailsState> = _restaurantInfoState.asStateFlow()
-
-
 }

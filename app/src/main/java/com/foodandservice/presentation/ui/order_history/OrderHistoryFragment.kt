@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderHistoryBinding
 import com.foodandservice.domain.model.OrderHistory
@@ -68,6 +70,12 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderHistoryClickLi
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
 
         }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner) {
+                findNavController().navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToHomeFragment())
+            }
     }
 
     private fun setAdapter() {

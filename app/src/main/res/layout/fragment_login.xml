@@ -3,13 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.login.LoginViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            app:tint="@color/greyish_white" />
+            app:tint="@color/screen_background" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -62,7 +55,7 @@
                     app:ccpDialog_showCloseIcon="true"
                     app:ccp_autoDetectCountry="true"
                     app:ccp_autoDetectLanguage="true"
-                    app:ccp_contentColor="@color/text_dark"
+                    app:ccp_contentColor="@color/text_normal"
                     app:ccp_defaultPhoneCode="34"
                     app:ccp_arrowSize="24sp"
                     app:ccp_textSize="16sp"
@@ -81,7 +74,7 @@
                     android:layout_marginStart="15dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="15dp"
-                    android:textColorHint="@color/text_dark"
+                    android:textColorHint="@color/text_normal"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
@@ -89,7 +82,7 @@
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:startIconDrawable="@drawable/ic_phone"
-                    app:startIconTint="@color/gradient_start">
+                    app:startIconTint="@color/fys_primary">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/tiePhone"
@@ -104,13 +97,13 @@
                         android:maxLines="1"
                         android:minLines="1"
                         android:singleLine="true"
-                        android:textColor="@color/text_dark"
-                        android:textColorHint="@color/gradient_start" />
+                        android:textColor="@color/text_normal"
+                        android:textColorHint="@color/fys_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAccess"
-                    style="@style/ButtonDefault"
+                    style="@style/ButtonPrimary"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/cardview"
@@ -129,7 +122,7 @@
                     android:layout_marginBottom="@dimen/cardview"
                     android:gravity="center"
                     android:text="@string/tv_lost_phone_number"
-                    android:textColor="@color/gradient_start" />
+                    android:textColor="@color/fys_primary" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
@@ -139,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/poppins"
-            android:textColor="@color/text_normal"
+            android:textColor="@color/text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

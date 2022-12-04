@@ -6,20 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentTableReservationBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class TableReservationFragment : Fragment() {
     private lateinit var binding: FragmentTableReservationBinding
-    private val viewModel by viewModels<TableReservationViewModel>()
+    private val viewModel: TableReservationViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_table_reservation, container, false)

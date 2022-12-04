@@ -51,7 +51,7 @@
         android:layout_height="match_parent"
         app:frameAspectRatioHeight="1"
         app:frameAspectRatioWidth="1"
-        app:frameColor="@color/gradient_start"
+        app:frameColor="@color/fys_primary"
         app:frameCornersRadius="0dp"
         app:frameCornersSize="50dp"
         app:frameSize="0.7"

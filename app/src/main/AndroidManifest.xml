@@ -3,6 +3,7 @@
     package="com.foodandservice">
 
     <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".FoodAndServiceApplication"

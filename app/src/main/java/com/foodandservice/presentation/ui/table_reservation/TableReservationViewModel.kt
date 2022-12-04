@@ -1,14 +1,11 @@
 package com.foodandservice.presentation.ui.table_reservation
 
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import javax.inject.Inject
 
-@HiltViewModel
-class TableReservationViewModel @Inject constructor() : ViewModel() {
+class TableReservationViewModel : ViewModel() {
     private val _tableReservationState =
         MutableStateFlow<TableReservationState>(TableReservationState.Empty)
     val tableReservationState: StateFlow<TableReservationState> =

@@ -1,20 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel" />
-    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".presentation.ui.review_create.ReviewCreateFragment"
-        android:background="@color/greyish_white">
+        android:background="@color/screen_background">
 
         <RatingBar
             android:id="@+id/ratingBarReview"
@@ -25,7 +17,7 @@
             android:isIndicator="false"
             android:numStars="5"
             android:progressBackgroundTint="@color/star_inactive"
-            android:progressTint="@color/gradient_start"
+            android:progressTint="@color/fys_primary"
             android:rating="3"
             android:secondaryProgressTint="@android:color/transparent"
             android:stepSize="1"
@@ -130,7 +122,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins"
             android:text="@string/tv_review_title"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_normal"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,7 +152,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSendReview"
-            style="@style/ButtonDefault"
+            style="@style/ButtonPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"

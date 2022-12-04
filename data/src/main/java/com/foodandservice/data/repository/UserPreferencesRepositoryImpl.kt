@@ -8,9 +8,8 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.foodandservice.domain.repository.UserPreferencesRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class UserPreferencesRepositoryImpl @Inject constructor(private val dataStore: DataStore<Preferences>) :
+class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences>) :
     UserPreferencesRepository {
 
     private object Keys {

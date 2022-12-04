@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
@@ -6,7 +5,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyish_white"
+        android:background="@color/screen_background"
         tools:context=".presentation.ui.order_history.OrderHistoryFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -57,7 +56,7 @@
             android:fontFamily="@font/poppins"
             android:text="@string/fragment_orders_title"
             android:textAllCaps="true"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_normal"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

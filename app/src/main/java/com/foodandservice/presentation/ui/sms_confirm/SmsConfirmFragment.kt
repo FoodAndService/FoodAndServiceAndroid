@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -15,21 +14,18 @@ import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class SmsConfirmFragment : Fragment() {
     private lateinit var binding: FragmentSmsConfirmBinding
     private val args: SmsConfirmFragmentArgs by navArgs()
-    private val viewModel by viewModels<SmsConfirmViewModel>()
+    private val viewModel: SmsConfirmViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_sms_confirm, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sms_confirm, container, false)
         return binding.root
     }
 
@@ -56,8 +52,7 @@ class SmsConfirmFragment : Fragment() {
 
                 binding.btnResendSms.text =
                     if (state.isBtnEnabled) getString(R.string.btn_resend_sms) else getString(
-                        R.string.btn_resend_sms_wait,
-                        state.time
+                        R.string.btn_resend_sms_wait, state.time
                     )
             }
         }
@@ -70,10 +65,9 @@ class SmsConfirmFragment : Fragment() {
             viewModel.initCountDownTimer()
         }
 
-        binding.etSms.onChangeListener =
-            SmsConfirmationView.OnChangeListener { code, isComplete ->
+        binding.etSms.onChangeListener = SmsConfirmationView.OnChangeListener { code, isComplete ->
 
-            }
+        }
 
         binding.tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
     }

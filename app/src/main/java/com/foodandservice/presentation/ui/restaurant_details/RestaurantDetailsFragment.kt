@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.foodandservice.R
@@ -16,13 +15,12 @@ import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
 import com.foodandservice.util.ScheduleArrayAdapter
 import com.foodandservice.util.getTabbedListMediatorIndices
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListener {
     private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var productAdapter: ProductAdapter
-    private val viewModel by viewModels<RestaurantDetailsViewModel>()
+    private val viewModel: RestaurantDetailsViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +43,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         initAdapters()
 
         binding.btnReserve.setOnClickListener {
-            findNavController().navigate(R.id.action_restaurantInfoFragment_to_tableReservationFragment)
+            findNavController().navigate(R.id.action_restaurantDetailsFragment_to_tableReservationFragment)
         }
     }
 

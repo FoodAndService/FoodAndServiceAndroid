@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentFavouritesBinding
 import com.foodandservice.domain.model.FavouriteRestaurant
@@ -70,6 +72,12 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
 //                }
 //            }
         }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner) {
+                findNavController().navigate(FavouritesFragmentDirections.actionFavouritesFragmentToHomeFragment())
+            }
     }
 
     private fun setAdapter() {

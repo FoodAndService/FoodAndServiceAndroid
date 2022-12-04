@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
@@ -18,15 +18,14 @@ import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.extensions.ContextExtensions.showDialog
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.get
 
-@AndroidEntryPoint
 class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     CategoryTagAdapter.CategoryTagClickListener {
     private lateinit var categoryRestaurantsAdapter: CategoryRestaurantsAdapter
     private lateinit var categoryTagAdapter: CategoryTagAdapter
     private lateinit var binding: FragmentHomeBinding
-    private val viewModel by viewModels<HomeViewModel>()
+    private val viewModel: HomeViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,6 +67,12 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                 }
             )
         }
+
+        requireActivity()
+            .onBackPressedDispatcher
+            .addCallback(viewLifecycleOwner) {
+                requireActivity().moveTaskToBack(true)
+            }
     }
 
     private fun makeToast(message: String) {
@@ -89,7 +94,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     override fun onClick(item: Restaurant) {
-        val action = HomeFragmentDirections.actionHomeFragmentToRestaurantInfoFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment()
         findNavController().navigate(action)
     }
 }

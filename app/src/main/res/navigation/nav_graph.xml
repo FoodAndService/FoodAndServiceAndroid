@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/orderStatusFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/viewPagerFragment"
+        android:id="@+id/onboardingVpFragment"
         android:name="com.foodandservice.presentation.ui.onboarding.OnboardingFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
@@ -14,7 +14,7 @@
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/splashFragment"
@@ -23,17 +23,19 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_viewPagerFragment"
-            app:destination="@id/viewPagerFragment"
-            app:popUpTo="@id/nav_graph" />
+            app:destination="@id/onboardingVpFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment"
             app:popUpTo="@id/nav_graph"
-            app:popUpToInclusive="false" />
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_splashFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/nav_graph" />
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -42,11 +44,14 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_smsConfirmFragment"
-            app:destination="@id/smsConfirmFragment" />
+            app:destination="@id/smsConfirmFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/nav_graph" />
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/smsConfirmFragment"
@@ -55,13 +60,17 @@
         tools:layout="@layout/fragment_sms_confirm">
         <action
             android:id="@+id/action_smsConfirmFragment_to_signupFinishFragment"
-            app:destination="@id/signupFinishFragment" />
+            app:destination="@id/signupFinishFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true" />
         <argument
             android:name="phone"
             app:argType="string" />
         <action
             android:id="@+id/action_smsConfirmFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/signupFinishFragment"
@@ -71,7 +80,8 @@
         <action
             android:id="@+id/action_signupFinishFragment_to_homeFragment"
             app:destination="@id/homeFragment"
-            app:popUpTo="@id/nav_graph" />
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -82,8 +92,8 @@
             android:id="@+id/action_homeFragment_to_homeCategoryFilterFragment"
             app:destination="@id/homeCategoryFilterFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_restaurantInfoFragment"
-            app:destination="@id/restaurantInfoFragment" />
+            android:id="@+id/action_homeFragment_to_restaurantDetailsFragment"
+            app:destination="@id/restaurantDetailsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_favouritesFragment"
             app:destination="@id/favouritesFragment" />
@@ -111,24 +121,33 @@
             app:argType="string" />
     </fragment>
     <fragment
-        android:id="@+id/restaurantInfoFragment"
+        android:id="@+id/restaurantDetailsFragment"
         android:name="com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsFragment"
-        android:label="RestaurantInfoFragment"
+        android:label="RestaurantDetailsFragment"
         tools:layout="@layout/fragment_restaurant_details">
         <action
-            android:id="@+id/action_restaurantInfoFragment_to_tableReservationFragment"
+            android:id="@+id/action_restaurantDetailsFragment_to_tableReservationFragment"
             app:destination="@id/tableReservationFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
         android:name="com.foodandservice.presentation.ui.favourites.FavouritesFragment"
         android:label="FavouritesFragment"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites">
+        <action
+            android:id="@+id/action_favouritesFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/ordersFragment"
         android:name="com.foodandservice.presentation.ui.order_history.OrderHistoryFragment"
         android:label="OrdersFragment"
-        tools:layout="@layout/fragment_order_history" />
+        tools:layout="@layout/fragment_order_history">
+        <action
+            android:id="@+id/action_ordersFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/orderStatusFragment"
         android:name="com.foodandservice.presentation.ui.order_status.OrderStatusFragment"

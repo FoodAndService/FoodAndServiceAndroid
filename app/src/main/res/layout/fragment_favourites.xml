@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyish_white"
+        android:background="@color/screen_background"
         tools:context=".presentation.ui.favourirtes.FavouritesFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -57,7 +57,7 @@
             android:fontFamily="@font/poppins"
             android:text="@string/fragment_favourites_title"
             android:textAllCaps="true"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_normal"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"

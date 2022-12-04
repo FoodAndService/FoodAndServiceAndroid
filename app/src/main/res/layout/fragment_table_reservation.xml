@@ -1,19 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.foodandservice.presentation.ui.table_reservation.TableReservationViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/greyish_white"
+        android:background="@color/screen_background"
         tools:context=".presentation.ui.table_reservation.TableReservationFragment">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -110,7 +102,7 @@
             android:layout_marginTop="24dp"
             android:fontFamily="@font/poppins"
             android:text="Reservar en Rosario's Burger"
-            android:textColor="@color/text_dark"
+            android:textColor="@color/text_normal"
             android:textSize="22sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +116,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="32dp"
             android:gravity="start|center_vertical"
-            android:textColorHint="@color/text_dark"
+            android:textColorHint="@color/text_normal"
             app:boxBackgroundColor="@color/text_field"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -150,7 +142,7 @@
                 android:minLines="1"
                 android:padding="17dp"
                 android:singleLine="true"
-                android:textColor="@color/text_dark" />
+                android:textColor="@color/text_normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -162,7 +154,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="12dp"
             android:gravity="start|center_vertical"
-            android:textColorHint="@color/text_dark"
+            android:textColorHint="@color/text_normal"
             app:boxBackgroundColor="@color/text_field"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -188,7 +180,7 @@
                 android:minLines="1"
                 android:padding="17dp"
                 android:singleLine="true"
-                android:textColor="@color/text_dark" />
+                android:textColor="@color/text_normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -200,7 +192,7 @@
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="12dp"
             android:gravity="start|center_vertical"
-            android:textColorHint="@color/text_dark"
+            android:textColorHint="@color/text_normal"
             app:boxBackgroundColor="@color/text_field"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -226,12 +218,12 @@
                 android:minLines="1"
                 android:padding="17dp"
                 android:singleLine="true"
-                android:textColor="@color/text_dark" />
+                android:textColor="@color/text_normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnReserve"
-            style="@style/ButtonDefault"
+            style="@style/ButtonPrimary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
