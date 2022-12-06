@@ -16,7 +16,7 @@ import com.foodandservice.presentation.ui.adapter.FavouriteAdapter
 
 class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClickListener {
     private lateinit var binding: FragmentFavouritesBinding
-    private lateinit var favouritesAdapter: FavouriteAdapter
+    private lateinit var favouriteAdapter: FavouriteAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,7 +54,7 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
             )
         )
 
-        favouritesAdapter.submitList(favouriteRestaurants)
+        favouriteAdapter.submitList(favouriteRestaurants)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
 //            viewModel.favouritesState.collect { state ->
@@ -81,8 +81,8 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
     }
 
     private fun setAdapter() {
-        favouritesAdapter = FavouriteAdapter(this)
-        binding.rvFavourites.adapter = favouritesAdapter
+        favouriteAdapter = FavouriteAdapter(this)
+        binding.rvFavourites.adapter = favouriteAdapter
     }
 
     override fun onClick(item: FavouriteRestaurant) {

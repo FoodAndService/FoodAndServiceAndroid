@@ -38,11 +38,14 @@
     <string name="btn_send_review">Enviar reseña</string>
     <string name="hint_tie_review">Deja tu reseña aquí</string>
     <string name="actv_schedule">HORARIOS</string>
+    <string name="item_booking_diners_plural">%s (%s comensales)</string>
+    <string name="item_booking_diners_singular">%s (%s comensal)</string>
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORÍA: %1$s</string>
     <string name="skip">Skip</string>
     <string name="fragment_orders_title">Mis pedidos</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
+    <string name="fragment_bookings_title">Mis reservas</string>
     <string name="order_status_checking_payment">Comprobando método de pago</string>
     <string name="order_status_waiting_confirmation">Esperando confirmación</string>
     <string name="order_status_preparing">Tu pedido se está realizando</string>

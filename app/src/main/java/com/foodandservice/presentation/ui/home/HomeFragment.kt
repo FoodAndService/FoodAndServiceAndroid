@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -17,7 +16,7 @@ import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
-import com.foodandservice.util.extensions.ContextExtensions.showDialog
+import com.foodandservice.util.extensions.ContextExtensions.showToast
 import org.koin.android.ext.android.get
 
 class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
@@ -47,25 +46,28 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                         categoryTagAdapter.submitList(state.categoryTags)
                     }
                     is HomeState.Error -> {
-                        makeToast(state.message)
+                        showToast(state.message)
                     }
                     is HomeState.Loading -> {
-                        TODO("Loading effect")
+
                     }
-                    is HomeState.Idle -> {}
+                    is HomeState.Idle -> {
+
+                    }
                 }
             }
         }
 
         binding.btnCart.setOnClickListener {
-            requireContext().showDialog(
-                "Confirmar reserva",
-                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
-                "Confirmar",
-                onBtnPositiveClick = {
-
-                }
-            )
+//            requireContext().showDialog(
+//                "Confirmar reserva",
+//                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
+//                "Confirmar",
+//                onBtnPositiveClick = {
+//
+//                }
+//            )
+            findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
         }
 
         requireActivity()
@@ -73,10 +75,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             .addCallback(viewLifecycleOwner) {
                 requireActivity().moveTaskToBack(true)
             }
-    }
-
-    private fun makeToast(message: String) {
-        Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
     }
 
     private fun setAdapters() {

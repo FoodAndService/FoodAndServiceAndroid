@@ -17,7 +17,7 @@ import org.koin.android.ext.android.get
 
 class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.RestaurantClickListener {
     private lateinit var binding: FragmentHomeCategoryFilterBinding
-    private lateinit var restaurantAdapter: RestaurantFilterAdapter
+    private lateinit var restaurantFilterAdapter: RestaurantFilterAdapter
     private val args: HomeCategoryFilterFragmentArgs by navArgs()
     private val viewModel: HomeCategoryFilterViewModel = get()
 
@@ -49,7 +49,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
             viewModel.homeCategoryFilterState.collect { state ->
                 when (state) {
                     is HomeCategoryFilterState.Success -> {
-                        restaurantAdapter.submitList(state.restaurants)
+                        restaurantFilterAdapter.submitList(state.restaurants)
                     }
                     is HomeCategoryFilterState.Loading -> {
                         TODO("Show loading")
@@ -63,12 +63,12 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
         }
 
         binding.tvCategory.text =
-            getString(R.string.category_filter_title, args.category.uppercase())
+            getString(R.string.category_filter_title, args.category)
     }
 
     private fun setAdapter() {
-        restaurantAdapter = RestaurantFilterAdapter(this)
-        binding.rvRestaurant.adapter = restaurantAdapter
+        restaurantFilterAdapter = RestaurantFilterAdapter(this)
+        binding.rvRestaurant.adapter = restaurantFilterAdapter
     }
 
     override fun onClick(item: Restaurant) {

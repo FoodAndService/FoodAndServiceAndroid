@@ -39,11 +39,14 @@
     <string name="btn_send_review">Send review</string>
     <string name="hint_tie_review">Leave your review here</string>
     <string name="actv_schedule">SCHEDULE</string>
+    <string name="item_booking_diners_plural">%s (%s diners)</string>
+    <string name="item_booking_diners_singular">%s (%s diner)</string>
     <string name="tv_refill">Refill</string>
     <string name="category_filter_title">CATEGORY: %1$s</string>
     <string name="skip">Skip</string>
     <string name="fragment_orders_title">My orders</string>
     <string name="fragment_favourites_title">My favourites</string>
+    <string name="fragment_bookings_title">My bookings</string>
     <string name="order_status_checking_payment">Checking payment method</string>
     <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
     <string name="order_status_preparing">Your order is being processed</string>
