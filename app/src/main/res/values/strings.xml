@@ -15,11 +15,11 @@
     <string name="btn_finish">Finish</string>
     <string name="btn_next">Next</string>
     <string name="btn_access">Access</string>
-    <string name="btn_finish_signup">Finish register</string>
+    <string name="btn_finish_signup">Finish sign up</string>
     <string name="error_network">A network error occurred</string>
     <string name="error_phone_format">Incorrect format</string>
     <string name="hint_tie_phone_number">Phone number</string>
-    <string name="tie_fullname">Name and surname</string>
+    <string name="tie_fullname">Full name</string>
     <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
     <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
     <string name="tv_lost_phone_number">Lost your number?</string>

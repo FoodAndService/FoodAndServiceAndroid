@@ -1,8 +1,8 @@
 package com.foodandservice.di
 
 import com.foodandservice.common.Constants
-import com.foodandservice.data.remote.api.CustomerService
-import com.foodandservice.data.remote.api.RestarauntService
+import com.foodandservice.data.remote.service.CustomerService
+import com.foodandservice.data.remote.service.RestarauntService
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

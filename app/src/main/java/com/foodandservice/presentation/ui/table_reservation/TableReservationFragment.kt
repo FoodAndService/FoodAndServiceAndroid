@@ -35,7 +35,7 @@ class TableReservationFragment : Fragment() {
                     is TableReservationState.Error -> {
                         TODO("Show error")
                     }
-                    is TableReservationState.Empty -> {}
+                    is TableReservationState.Idle -> {}
                 }
             }
         }

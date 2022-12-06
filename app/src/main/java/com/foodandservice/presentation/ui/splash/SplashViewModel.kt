@@ -26,7 +26,7 @@ class SplashViewModel(
             try {
                 if (isOnboardingFinishedUseCase())
                     _splashState.value =
-                        if (isUserLoggedInUseCase()) SplashState.LoggedIn else SplashState.NotLoggedIn
+                        if (isUserLoggedInUseCase()) SplashState.UserLoggedIn else SplashState.UserNotLoggedIn
                 else
                     _splashState.value = SplashState.OnboardingNotFinished
             } catch (e: Exception) {

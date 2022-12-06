@@ -14,11 +14,11 @@
             android:layout_height="103dp"
             android:layout_marginBottom="16dp"
             android:contentDescription="@null"
-            android:src="@drawable/fys"
+            android:src="@drawable/fys_logo"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/screen_background" />
+            app:tint="@color/fys_background" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -27,7 +27,7 @@
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
             android:layout_marginBottom="-50dp"
-            app:cardCornerRadius="@dimen/radius_cardview"
+            app:cardCornerRadius="20dp"
             app:cardElevation="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,25 +41,22 @@
                 android:orientation="vertical">
 
                 <TextView
+                    style="@style/FysDarkMediumText"
                     android:id="@+id/tvFinishSignup"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
-                    android:layout_marginBottom="@dimen/cardview"
-                    android:fontFamily="@font/poppins"
-                    android:gravity="center"
-                    android:text="@string/tv_finish_signup"
-                    android:textColor="@color/text_normal"
-                    android:textSize="16sp" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/tv_finish_signup" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilFullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:textColorHint="@color/text_normal"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
@@ -75,7 +72,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/text_field"
-
                         android:fontFamily="@font/poppins"
                         android:hint="@string/tie_fullname"
                         android:inputType="textPersonName"
@@ -88,27 +84,27 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnFinishSignup"
-                    style="@style/ButtonPrimary"
+                    style="@style/FysPrimaryButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
-                    android:layout_marginBottom="@dimen/cardview"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
                     android:text="@string/btn_finish_signup" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
             android:id="@+id/tvCopyright"
+            style="@style/FysDarkSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:text="Food&amp;Service © 2022" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

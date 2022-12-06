@@ -20,13 +20,11 @@
 
         <TextView
             android:id="@+id/tvOnboardingTitle"
+            style="@style/FysDarkLargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:fontFamily="@font/poppins"
             android:text="@string/onboarding_title4"
-            android:textColor="@color/text_normal"
-            android:textSize="30sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,16 +32,13 @@
 
         <TextView
             android:id="@+id/tvOnboardingDescription"
-            android:layout_width="0dp"
+            style="@style/FysDarkMediumText"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="42dp"
-            android:fontFamily="@font/poppins"
             android:text="@string/onboarding_desc4"
-            android:textAlignment="center"
-            android:textColor="@color/text_dark"
-            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvOnboardingTitle" />

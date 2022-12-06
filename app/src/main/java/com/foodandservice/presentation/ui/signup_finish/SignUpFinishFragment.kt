@@ -29,12 +29,6 @@ class SignUpFinishFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnFinishSignup.setOnClickListener {
-            viewModel.finishSignup(binding.tieFullname.text.toString())
-        }
-
-        binding.tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
-
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.signUpFinishState.collect { state ->
                 when (state) {
@@ -44,6 +38,14 @@ class SignUpFinishFragment : Fragment() {
                     is SignUpFinishState.Idle -> Unit
                 }
             }
+        }
+
+        binding.btnFinishSignup.setOnClickListener {
+            viewModel.finishSignup(binding.tieFullname.text.toString())
+        }
+
+        binding.apply {
+            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
     }
 

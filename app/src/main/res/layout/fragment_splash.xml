@@ -14,11 +14,11 @@
             android:layout_height="103dp"
             android:contentDescription="@null"
             android:layout_marginTop="-100dp"
-            android:src="@drawable/fys"
+            android:src="@drawable/fys_logo"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/screen_background" />
+            app:tint="@color/fys_background" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

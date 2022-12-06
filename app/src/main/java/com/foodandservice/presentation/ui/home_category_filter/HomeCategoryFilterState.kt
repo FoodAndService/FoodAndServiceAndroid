@@ -9,5 +9,5 @@ sealed class HomeCategoryFilterState {
 
     data class Error(val message: String) : HomeCategoryFilterState()
     object Loading : HomeCategoryFilterState()
-    object Empty : HomeCategoryFilterState()
+    object Idle : HomeCategoryFilterState()
 }

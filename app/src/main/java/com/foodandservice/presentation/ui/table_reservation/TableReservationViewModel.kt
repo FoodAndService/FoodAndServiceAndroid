@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class TableReservationViewModel : ViewModel() {
     private val _tableReservationState =
-        MutableStateFlow<TableReservationState>(TableReservationState.Empty)
+        MutableStateFlow<TableReservationState>(TableReservationState.Idle)
     val tableReservationState: StateFlow<TableReservationState> =
         _tableReservationState.asStateFlow()
 

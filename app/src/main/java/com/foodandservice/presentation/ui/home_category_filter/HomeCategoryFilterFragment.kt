@@ -57,7 +57,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
                     is HomeCategoryFilterState.Error -> {
                         TODO("Error")
                     }
-                    is HomeCategoryFilterState.Empty -> {}
+                    is HomeCategoryFilterState.Idle -> {}
                 }
             }
         }

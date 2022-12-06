@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.asStateFlow
 
 class RestaurantDetailsViewModel : ViewModel() {
     private val _restaurantInfoState =
-        MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Empty)
+        MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Idle)
     val restaurantInfoState: StateFlow<RestaurantDetailsState> = _restaurantInfoState.asStateFlow()
 }

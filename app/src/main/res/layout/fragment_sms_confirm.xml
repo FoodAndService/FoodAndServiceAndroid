@@ -12,14 +12,14 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="176dp"
-            android:contentDescription="@null"
             android:layout_height="103dp"
             android:layout_marginBottom="16dp"
-            android:src="@drawable/fys"
+            android:contentDescription="@null"
+            android:src="@drawable/fys_logo"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:tint="@color/screen_background" />
+            app:tint="@color/fys_background" />
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
@@ -29,7 +29,7 @@
             android:layout_marginEnd="42dp"
             android:layout_marginBottom="-50dp"
             android:elevation="50dp"
-            app:cardCornerRadius="@dimen/radius_cardview"
+            app:cardCornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -43,17 +43,14 @@
 
                 <TextView
                     android:id="@+id/tvSmsSent"
+                    style="@style/FysDarkMediumText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
-                    android:layout_marginBottom="@dimen/cardview"
-                    android:fontFamily="@font/poppins"
-                    android:gravity="center"
-                    android:text="@string/tv_sms_sent"
-                    android:textColor="@color/text_normal"
-                    android:textSize="16sp" />
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/tv_sms_sent" />
 
                 <com.fraggjkee.smsconfirmationview.SmsConfirmationView
                     android:id="@+id/etSms"
@@ -66,31 +63,31 @@
                     app:scv_codeLength="5"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
-                    app:scv_symbolBackgroundColor="@color/screen_background"
-                    app:scv_symbolBorderColor="@color/screen_background"
+                    app:scv_symbolBackgroundColor="@color/fys_background"
+                    app:scv_symbolBorderColor="@color/fys_background"
                     app:scv_symbolBorderCornerRadius="10dp"
                     app:scv_symbolTextColor="@color/fys_primary"
                     app:scv_symbolsSpacing="10dp" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"
-                    style="@style/ButtonPrimary"
+                    style="@style/FysPrimaryButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/cardview"
-                    android:layout_marginTop="@dimen/cardview"
-                    android:layout_marginEnd="@dimen/cardview"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/btn_confirm" />
 
-                <com.google.android.material.button.MaterialButton
+                <TextView
                     android:id="@+id/btnResendSms"
-                    style="@style/ButtonNoPadding"
+                    style="@style/FysPrimarySmallText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:enabled="false"
-                    android:minHeight="0dp"
                     android:text="@string/btn_resend_sms" />
 
             </LinearLayout>
@@ -98,11 +95,10 @@
 
         <TextView
             android:id="@+id/tvCopyright"
+            style="@style/FysDarkSmallText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/poppins"
-            android:textColor="@color/text_dark"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

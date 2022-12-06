@@ -11,5 +11,5 @@ sealed class HomeState {
 
     data class Error(val message: String) : HomeState()
     object Loading : HomeState()
-    object Empty : HomeState()
+    object Idle : HomeState()
 }

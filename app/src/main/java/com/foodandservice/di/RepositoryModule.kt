@@ -10,11 +10,11 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     single<CustomerRepository> {
-        CustomerRepositoryImpl(api = get())
+        CustomerRepositoryImpl(customerService = get())
     }
 
     single<RestaurantRepository> {
-        RestaurantRepositoryImpl(api = get())
+        RestaurantRepositoryImpl(restarauntService = get())
     }
 
     single<UserPreferencesRepository> {

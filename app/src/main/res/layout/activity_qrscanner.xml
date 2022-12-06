@@ -22,7 +22,7 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="@drawable/toolbar"
+                android:background="@drawable/fys_toolbar"
                 android:minHeight="?attr/actionBarSize"
                 android:theme="?attr/actionBarTheme"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/ivLogo"
+                android:id="@+id/ivFysLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="45dp"
                 android:layout_marginTop="28dp"
@@ -38,7 +38,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/fys"
+                app:srcCompat="@drawable/fys_logo"
                 app:tint="@color/white" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

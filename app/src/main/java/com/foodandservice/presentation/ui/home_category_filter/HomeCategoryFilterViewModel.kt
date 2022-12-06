@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.StateFlow
 
 class HomeCategoryFilterViewModel : ViewModel() {
     private val _homeCategoryFilterState =
-        MutableStateFlow<HomeCategoryFilterState>(HomeCategoryFilterState.Empty)
+        MutableStateFlow<HomeCategoryFilterState>(HomeCategoryFilterState.Idle)
     val homeCategoryFilterState: StateFlow<HomeCategoryFilterState> = _homeCategoryFilterState
 
     fun getRestaurantsByCategory(category: String) {

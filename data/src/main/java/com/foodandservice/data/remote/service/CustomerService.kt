@@ -1,4 +1,4 @@
-package com.foodandservice.data.remote.api
+package com.foodandservice.data.remote.service
 
 import com.foodandservice.data.remote.model.sign.NetworPhaseWithAuth
 import com.foodandservice.data.remote.model.sign.PhaseDto

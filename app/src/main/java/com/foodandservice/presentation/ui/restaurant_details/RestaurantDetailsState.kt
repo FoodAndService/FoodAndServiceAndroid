@@ -6,5 +6,5 @@ sealed class RestaurantDetailsState {
     data class Success(val restaurant: Restaurant) : RestaurantDetailsState()
     data class Error(val message: String) : RestaurantDetailsState()
     object Loading : RestaurantDetailsState()
-    object Empty : RestaurantDetailsState()
+    object Idle : RestaurantDetailsState()
 }

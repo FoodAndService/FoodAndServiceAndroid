@@ -39,7 +39,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnQrScan"
-            style="@style/ButtonQrScan"
+            style="@style/FysButtonQrScan"
             android:layout_gravity="center|bottom"
             android:layout_marginBottom="24dp"
             android:visibility="gone" />

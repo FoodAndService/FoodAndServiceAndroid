@@ -1,4 +1,4 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:tint="@color/screen_background">
+    android:tint="@color/fys_background">
     <corners android:radius="10dp" />
 </shape>

@@ -18,7 +18,7 @@
     <string name="error_network">Ha ocurrido un error de red</string>
     <string name="error_phone_format">Formato incorrecto</string>
     <string name="hint_tie_phone_number">Nº de teléfono</string>
-    <string name="tie_fullname">Nombre y apellidos</string>
+    <string name="tie_fullname">Nombre completo</string>
     <string name="tv_sms_sent">Te hemos enviado un SMS a su teléfono, por favor introduce la clave a continuación</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>

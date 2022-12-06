@@ -6,14 +6,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/screen_background"
+        android:background="@color/fys_background"
         tools:context=".presentation.ui.home.HomeFragment">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
+        <Toolbar
+            android:id="@+id/toolbar"
+            style="@style/FysToolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -22,43 +20,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="@drawable/toolbar"
-                    android:minHeight="?attr/actionBarSize"
-                    android:theme="?attr/actionBarTheme"
+                <ImageView
+                    android:id="@+id/ivFysLogo"
+                    style="@style/FysLogo"
+                    android:contentDescription="@null"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/ivLogo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="45dp"
-                    android:contentDescription="@null"
-                    android:layout_marginTop="28dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/fys"
-                    app:tint="@color/white" />
-
-                <ImageView
+                <ImageButton
                     android:id="@+id/btnCart"
-                    android:layout_width="28dp"
-                    android:layout_height="28dp"
-                    android:layout_marginTop="34dp"
-                    android:layout_marginEnd="24dp"
+                    style="@style/FysCartButton"
                     android:contentDescription="@null"
-                    android:src="@drawable/ic_cart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </com.google.android.material.appbar.AppBarLayout>
+        </Toolbar>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoryTag"
@@ -71,7 +49,7 @@
             app:layout_constraintBottom_toTopOf="@+id/rvCategoriesWithRestaurants"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoriesWithRestaurants"

@@ -80,8 +80,8 @@
                     <ImageView
                         android:id="@+id/restLogo"
                         android:layout_width="match_parent"
-                        android:contentDescription="@null"
                         android:layout_height="match_parent"
+                        android:contentDescription="@null"
                         android:scaleType="fitXY"
                         android:src="@drawable/restaurant_logo" />
                 </com.google.android.material.card.MaterialCardView>
@@ -89,12 +89,10 @@
 
             <TextView
                 android:id="@+id/tvRestName"
+                style="@style/FysDarkMediumText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:fontFamily="@font/poppins"
-                android:textColor="@color/text_normal"
-                android:textSize="14sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -103,12 +101,11 @@
 
             <TextView
                 android:id="@+id/tvDistance"
+                style="@style/FysDarkSmallText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/poppins"
                 android:text="A 300 metros"
-                android:textColor="@color/text_normal"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

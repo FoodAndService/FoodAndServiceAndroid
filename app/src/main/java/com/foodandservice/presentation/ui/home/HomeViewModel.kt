@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class HomeViewModel : ViewModel() {
-    private val _homeState = MutableStateFlow<HomeState>(HomeState.Empty)
+    private val _homeState = MutableStateFlow<HomeState>(HomeState.Idle)
     val homeState: StateFlow<HomeState> = _homeState.asStateFlow()
 
     init {

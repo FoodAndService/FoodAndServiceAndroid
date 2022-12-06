@@ -2,7 +2,6 @@ package com.foodandservice.presentation.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -30,7 +29,6 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
         @SuppressLint("SetTextI18n")
         fun bind(item: Product, listener: ProductClickListener) {
             binding.tvProductName.text = item.name
-            binding.chipRefill.visibility = if (item.refill) View.VISIBLE else View.INVISIBLE
             binding.tvPrice.text = item.price + "€"
             binding.root.setOnClickListener { listener.onClick(item) }
         }

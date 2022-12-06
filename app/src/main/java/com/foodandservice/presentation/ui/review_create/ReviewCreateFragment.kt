@@ -38,7 +38,7 @@ class ReviewCreateFragment : Fragment() {
                     is ReviewCreateState.Error -> {
                         TODO("Show error")
                     }
-                    is ReviewCreateState.Empty -> {}
+                    is ReviewCreateState.Idle -> {}
                 }
             }
         }
