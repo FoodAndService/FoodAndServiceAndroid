@@ -14,11 +14,11 @@ val useCaseModule = module {
     }
 
     single {
-        GetUserTokenUseCase(userPreferencesRepository = get())
+        GetCustomerTokenUseCase(userPreferencesRepository = get())
     }
 
     single {
-        IsUserLoggedInUseCase(userPreferencesRepository = get())
+        IsCustomerLoggedInUseCase(userPreferencesRepository = get())
     }
 
     single {
@@ -26,7 +26,7 @@ val useCaseModule = module {
     }
 
     single {
-        SaveUserTokenUseCase(userPreferencesRepository = get())
+        SaveCustomerTokenUseCase(userPreferencesRepository = get())
     }
 
     single {

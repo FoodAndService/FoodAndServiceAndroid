@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.sms_confirm
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
+import com.foodandservice.domain.usecases.auth.SaveCustomerTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class SmsConfirmViewModel(
     private val signInSecondPhaseUseCase: SignInSecondPhaseUseCase,
-    private val saveUserTokenUseCase: SaveUserTokenUseCase
+    private val saveCustomerTokenUseCase: SaveCustomerTokenUseCase
 ) : ViewModel() {
 
     private val _smsConfirmState = MutableStateFlow<SmsConfirmState>(SmsConfirmState.Idle)
@@ -34,7 +34,7 @@ class SmsConfirmViewModel(
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
                 is Resource.Success -> {
                     response.data?.let { phaseWithAuth ->
-                        saveUserTokenUseCase(phaseWithAuth.authUser)
+                        saveCustomerTokenUseCase(phaseWithAuth.authUser)
 
                         when (phaseWithAuth.currentPhase) {
                             "phone_verified" -> _smsConfirmState.value =

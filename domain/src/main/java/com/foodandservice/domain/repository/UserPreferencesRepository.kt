@@ -1,11 +1,13 @@
 package com.foodandservice.domain.repository
 
 interface UserPreferencesRepository {
-    suspend fun saveAuthToken(authToken: String)
-    suspend fun getAuthToken(): String
+    suspend fun saveUserAuthToken(authToken: String)
+    suspend fun getUserAuthToken(): String
     suspend fun isUserLoggedIn(): Boolean
-    suspend fun saveCurrentPhase(currentPhase: String)
-    suspend fun getCurrentPhase(): String
+    suspend fun saveAuthCurrentPhase(currentPhase: String)
+    suspend fun getAuthCurrentPhase(): String
     suspend fun finishOnboarding()
     suspend fun isOnboardingFinished(): Boolean
+    suspend fun saveCustomerCart(cartId: String)
+    suspend fun getCustomerCart(): String
 }
