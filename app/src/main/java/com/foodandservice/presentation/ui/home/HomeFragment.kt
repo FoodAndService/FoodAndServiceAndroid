@@ -16,6 +16,7 @@ import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
+import com.foodandservice.util.MarginItemDecoration
 import com.foodandservice.util.extensions.ContextExtensions.showToast
 import org.koin.android.ext.android.get
 
@@ -81,8 +82,12 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         categoryRestaurantsAdapter = CategoryRestaurantsAdapter(this)
         categoryTagAdapter = CategoryTagAdapter(this)
 
-        binding.rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
-        binding.rvCategoryTag.adapter = categoryTagAdapter
+        binding.apply {
+            rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
+            rvCategoryTag.adapter = categoryTagAdapter
+
+            rvCategoryTag.addItemDecoration(MarginItemDecoration(24))
+        }
     }
 
     override fun onClick(categoryTag: CategoryTag) {

@@ -1,6 +1,5 @@
 package com.foodandservice.util.extensions
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Dialog
 import android.content.Context
@@ -23,7 +22,6 @@ object ContextExtensions {
         hideKeyboard(currentFocus ?: View(this))
     }
 
-    @SuppressLint("ServiceCast")
     fun Context.hideKeyboard(view: View) {
         val inputMethodManager =
             getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

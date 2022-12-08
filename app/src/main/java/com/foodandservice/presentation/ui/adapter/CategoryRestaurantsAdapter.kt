@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemCategoryBinding
 import com.foodandservice.domain.model.CategoryRestaurants
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter.ViewHolder
+import com.foodandservice.util.MarginItemDecoration
 
 class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAdapter.RestaurantClickListener) :
     ListAdapter<CategoryRestaurants, ViewHolder>(CategoryRestaurantsDiffCallback()) {
@@ -31,6 +32,7 @@ class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAda
             val adapter = RestaurantAdapter(listener)
             adapter.submitList(item.restaurants)
             binding.rvRestaurant.adapter = adapter
+            binding.rvRestaurant.addItemDecoration(MarginItemDecoration(32))
         }
 
         companion object {

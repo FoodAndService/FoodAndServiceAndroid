@@ -6,28 +6,23 @@
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
-        app:cardCornerRadius="25dp">
+        app:cardCornerRadius="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/gradient"
-            android:orientation="vertical" />
+            android:background="@drawable/gradient" />
 
         <TextView
             android:id="@+id/chipCategoryTagText"
+            style="@style/FysWhiteSmallText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="3dp"
-            android:fontFamily="@font/poppins"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="14sp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="2dp"
             tools:text="Category" />
 
     </com.google.android.material.card.MaterialCardView>

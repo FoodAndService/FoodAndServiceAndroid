@@ -6,15 +6,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp">
+        android:paddingBottom="8dp">
 
         <TextView
             android:id="@+id/tvCategory"
             style="@style/FysDarkLargeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -26,8 +24,7 @@
             android:id="@+id/rvRestaurant"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="12dp"
+            android:clipToPadding="false"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
