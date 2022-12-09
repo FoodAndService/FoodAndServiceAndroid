@@ -8,6 +8,18 @@
         android:layout_height="match_parent"
         tools:context=".presentation.ui.onboarding.OnboardingFragment">
 
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation"
+            android:layout_width="225dp"
+            android:layout_height="225dp"
+            android:layout_marginTop="112dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/scan_menu" />
+
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpOnboarding"
             android:layout_width="match_parent"
@@ -15,7 +27,7 @@
             app:layout_constraintBottom_toTopOf="@+id/gd"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/animation" />
 
         <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
             android:id="@+id/dots_indicator"

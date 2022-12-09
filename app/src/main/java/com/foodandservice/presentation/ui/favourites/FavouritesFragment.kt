@@ -22,12 +22,7 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_favourites,
-            container,
-            false
-        )
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourites, container, false)
         return binding.root
     }
 

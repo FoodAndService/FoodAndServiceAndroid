@@ -60,7 +60,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         }
 
         binding.btnCart.setOnClickListener {
-//            requireContext().showDialog(
+//            showDialog(
 //                "Confirmar reserva",
 //                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
 //                "Confirmar",

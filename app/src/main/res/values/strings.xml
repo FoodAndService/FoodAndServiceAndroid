@@ -1,57 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name" translatable="false">Food &amp; Service</string>
+    <string name="bottom_sheet_drag_icon" translatable="false">─────</string>
 
-    <string name="onboarding_title1">Welcome</string>
-    <string name="onboarding_desc1">We are very happy to have you here, before we continue and after detecting that you are new, we would like to tell you a little bit about what is Food &amp; Service and why you will love it!</string>
-    <string name="onboarding_title2">Comfort</string>
-    <string name="onboarding_desc2">Order in any restaurant in the world, in your own language, check allergens and intolerances and pay directly from your mobile with the payment method that is most convenient for you.</string>
-    <string name="onboarding_title3">Quickness</string>
-    <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order what you want and pay, you only have to worry about enjoying your meal.</string>
-    <string name="onboarding_title4">Discounts</string>
-    <string name="onboarding_desc4">Our restaurants are always giving discounts to their customers through Food &amp; Service, whenever we can we will show you the best discounts!</string>
-    <string name="onboarding_title5">Permissions</string>
-    <string name="onboarding_desc5">We request the following Contacts (To get your number on the sign up process), Messaging (To automatically validate the SMS code) and Notifications (To notify you of the latest discounts and promotions).</string>
+    <string name="actv_schedule">SCHEDULE</string>
+
+    <string name="btn_accept">Accept</string>
+    <string name="btn_access">Access</string>
+    <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_finish">Finish</string>
-    <string name="btn_next">Next</string>
-    <string name="btn_access">Access</string>
     <string name="btn_finish_signup">Finish sign up</string>
-    <string name="error_network">A network error occurred</string>
-    <string name="error_phone_format">Incorrect format</string>
-    <string name="hint_tie_phone_number">Phone number</string>
-    <string name="tie_fullname">Full name</string>
-    <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
-    <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
-    <string name="tv_lost_phone_number">Lost your number?</string>
-    <string name="hint_tie_prefix">Country</string>
+    <string name="btn_next">Next</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
     <string name="btn_reserve">Reserve</string>
+    <string name="btn_send_review">Send review</string>
+    <string name="btn_save_name">Save name</string>
+    <string name="btn_save_phone">Save phone</string>
+    <string name="btn_save_email">Save email</string>
+    <string name="btn_save_discount">Save discount</string>
+
+    <string name="category_filter_title">CATEGORY: %1$s</string>
+
+    <string name="dialog_delete_account_desc">Warning: if you delete your account, you will not be able to recover any information</string>
+    <string name="dialog_delete_account_title">Delete account</string>
+
+    <string name="error_network">A network error occurred</string>
+    <string name="error_phone_format">Incorrect format</string>
+
+    <string name="fragment_bookings_title">My bookings</string>
+    <string name="fragment_favourites_title">My favourites</string>
+    <string name="fragment_orders_title">My orders</string>
+    <string name="fragment_user_profile_title">My account</string>
+
     <string name="hint_tie_diners">Number of diners</string>
-    <string name="tv_order_history_days_ago">%1$d days ago</string>
+    <string name="hint_tie_phone_number">Phone number</string>
+    <string name="hint_tie_prefix">Country</string>
     <string name="hint_tie_reserve_date">Booking date</string>
     <string name="hint_tie_reserve_hours">Available hours</string>
-    <string name="menu_home">Home</string>
-    <string name="menu_favorites">Favourites</string>
-    <string name="menu_orders">Orders</string>
-    <string name="menu_profile">Profile</string>
-    <string name="tv_review_title">How did you like %1$s?</string>
-    <string name="btn_send_review">Send review</string>
     <string name="hint_tie_review">Leave your review here</string>
-    <string name="actv_schedule">SCHEDULE</string>
+    <string name="hint_tie_your_name">Your name</string>
+    <string name="hint_tie_your_email">Your email</string>
+    <string name="hint_tie_your_phone_number">Your phone number</string>
+
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
-    <string name="tv_refill">Refill</string>
-    <string name="category_filter_title">CATEGORY: %1$s</string>
-    <string name="skip">Skip</string>
-    <string name="fragment_orders_title">My orders</string>
-    <string name="fragment_favourites_title">My favourites</string>
-    <string name="fragment_bookings_title">My bookings</string>
+
+    <string name="menu_favorites">Favourites</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_orders">Orders</string>
+    <string name="menu_profile">Profile</string>
+
+    <string name="onboarding_desc1">We are very happy to have you here, before we continue and after detecting that you are new, we would like to tell you a little bit about what is Food &amp; Service and why you will love it!</string>
+    <string name="onboarding_desc2">Order in any restaurant in the world, in your own language, check allergens and intolerances and pay directly from your mobile with the payment method that is most convenient for you.</string>
+    <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order what you want and pay, you only have to worry about enjoying your meal.</string>
+    <string name="onboarding_desc4">Our restaurants are always giving discounts to their customers through Food &amp; Service, whenever we can we will show you the best discounts!</string>
+    <string name="onboarding_desc5">We request the following Contacts (To get your number on the sign up process), Messaging (To automatically validate the SMS code) and Notifications (To notify you of the latest discounts and promotions).</string>
+    <string name="onboarding_title1">Welcome</string>
+    <string name="onboarding_title2">Comfort</string>
+    <string name="onboarding_title3">Quickness</string>
+    <string name="onboarding_title4">Discounts</string>
+    <string name="onboarding_title5">Permissions</string>
+
     <string name="order_status_checking_payment">Checking payment method</string>
-    <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
-    <string name="order_status_preparing">Your order is being processed</string>
     <string name="order_status_finished">Your order is ready to pick up</string>
-    <string name="order_status_payment_declined">The payment method has been declined</string>
     <string name="order_status_order_declined">Your order has been declined</string>
+    <string name="order_status_payment_declined">The payment method has been declined</string>
+    <string name="order_status_preparing">Your order is being processed</string>
+    <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
+
+    <string name="settings_change_email">Change my email address</string>
+    <string name="settings_change_fullname">Change my name</string>
+    <string name="settings_change_phone_number">Change my phone number</string>
+    <string name="settings_credit_debit_cards">My debit/credit cards</string>
+    <string name="settings_delete_account">Delete my account</string>
+    <string name="settings_category_payment_methods">Payment methods</string>
+    <string name="settings_category_personal_details">Personal details</string>
+    <string name="settings_category_security">Security</string>
+
+    <string name="skip">Skip</string>
+
+    <string name="tie_fullname">Full name</string>
+
+    <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
+    <string name="tv_lost_phone_number">Lost your number?</string>
+    <string name="tv_order_history_days_ago">%1$d days ago</string>
+    <string name="tv_refill">Refill</string>
+    <string name="tv_review_title">How did you like %1$s?</string>
+    <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
+
     <string name="view_my_order">View my order</string>
 </resources>

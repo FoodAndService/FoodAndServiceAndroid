@@ -5,13 +5,15 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
-import android.widget.TextView
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.foodandservice.R
+import com.foodandservice.databinding.DialogLayoutBinding
 
 object ContextExtensions {
     fun Fragment.hideKeyboard() {
@@ -32,7 +34,7 @@ object ContextExtensions {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
 
-    fun Context.showDialog(
+    fun Fragment.showDialog(
         title: String,
         description: String,
         btnPositiveLabel: String? = null,
@@ -40,27 +42,37 @@ object ContextExtensions {
         onBtnPositiveClick: (() -> Unit)? = null,
         onBtnNegativeClick: (() -> Unit)? = null
     ) {
-        val dialog = Dialog(this, R.style.Theme_Dialog)
+        val binding: DialogLayoutBinding =
+            DataBindingUtil.inflate(
+                LayoutInflater.from(requireContext()),
+                R.layout.dialog_layout,
+                null,
+                false
+            )
+        val dialog = Dialog(requireContext(), R.style.Theme_Dialog)
+
         dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog.setCancelable(false)
-        dialog.setContentView(R.layout.dialog_layout)
-        val dialogTitle = dialog.findViewById(R.id.tvDialogTitle) as TextView
-        val dialogDesc = dialog.findViewById(R.id.tvDialogDesc) as TextView
-        val dialogPosBtn = dialog.findViewById(R.id.btnDialogPositive) as TextView
-        val dialogNegBtn = dialog.findViewById(R.id.btnDialogNegative) as TextView
-        dialogTitle.text = title
-        dialogDesc.text = description
-        btnPositiveLabel?.let { dialogPosBtn.text = it }
-        btnNegativeLabel?.let { dialogNegBtn.text = it }
-        dialogPosBtn.setOnClickListener {
-            onBtnPositiveClick?.invoke()
-            dialog.dismiss()
+        dialog.setContentView(binding.root)
+
+        binding.apply {
+            tvDialogTitle.text = title
+            tvDialogDesc.text = description
+            btnPositiveLabel?.let { btnDialogPositive.text = it }
+            btnNegativeLabel?.let { btnDialogNegative.text = it }
+
+            btnDialogPositive.setOnClickListener {
+                onBtnPositiveClick?.invoke()
+                dialog.dismiss()
+            }
+
+            btnDialogNegative.setOnClickListener {
+                onBtnNegativeClick?.invoke()
+                dialog.dismiss()
+            }
         }
-        dialogNegBtn.setOnClickListener {
-            onBtnNegativeClick?.invoke()
-            dialog.dismiss()
-        }
+
         dialog.show()
     }
 }
