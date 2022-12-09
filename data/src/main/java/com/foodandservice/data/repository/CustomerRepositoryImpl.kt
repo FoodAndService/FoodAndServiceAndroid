@@ -1,13 +1,13 @@
 package com.foodandservice.data.repository
 
-import com.foodandservice.data.remote.model.sign.toPhase
+import com.foodandservice.data.remote.model.sign.toAuthPhase
 import com.foodandservice.data.remote.model.sign.toSignPhase
 import com.foodandservice.data.remote.service.CustomerService
+import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
-import com.foodandservice.domain.model.Phone
-import com.foodandservice.domain.model.PhoneWithSmsCode
-import com.foodandservice.domain.model.sign.Phase
-import com.foodandservice.domain.model.sign.PhaseWithAuth
+import com.foodandservice.domain.model.PhoneWithOtp
+import com.foodandservice.domain.model.sign.AuthPhase
+import com.foodandservice.domain.model.sign.AuthPhaseWithToken
 import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.Resource
 import retrofit2.HttpException
@@ -15,10 +15,10 @@ import java.io.IOException
 
 class CustomerRepositoryImpl(private val customerService: CustomerService) :
     CustomerRepository {
-    override suspend fun signInFirstPhase(phone: Phone): Resource<Phase> {
+    override suspend fun signInFirstPhase(customerPhone: CustomerPhone): Resource<AuthPhase> {
         return try {
-            val response = customerService.signInFirstPhase(phone)
-            Resource.Success(response.toPhase())
+            val response = customerService.signInFirstPhase(customerPhone)
+            Resource.Success(response.toAuthPhase())
         } catch (e: HttpException) {
             Resource.Error(e.localizedMessage ?: "Unexpected error ocurred")
         } catch (e: IOException) {
@@ -26,9 +26,9 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
         }
     }
 
-    override suspend fun signInSecondPhase(phoneWithSmsCode: PhoneWithSmsCode): Resource<PhaseWithAuth> {
+    override suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): Resource<AuthPhaseWithToken> {
         return try {
-            val response = customerService.signInSecondPhase(phoneWithSmsCode)
+            val response = customerService.signInSecondPhase(phoneWithOtp)
             Resource.Success(response.toSignPhase())
         } catch (e: HttpException) {
             Resource.Error(e.localizedMessage ?: "Unexpected error ocurred")
@@ -37,7 +37,10 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
         }
     }
 
-    override suspend fun signUpFirstPhase(authToken: String, name: Name): Resource<PhaseWithAuth> {
+    override suspend fun signUpFirstPhase(
+        authToken: String,
+        name: Name
+    ): Resource<AuthPhaseWithToken> {
         return try {
             val response = customerService.signUpFirstPhase("Bearer $authToken", name)
             Resource.Success(response.toSignPhase())

@@ -1,6 +1,6 @@
 package com.foodandservice.domain.model
 
-data class PhoneWithSmsCode(
+data class PhoneWithOtp(
     val phone: String,
-    val code: String
+    val otp: String
 )

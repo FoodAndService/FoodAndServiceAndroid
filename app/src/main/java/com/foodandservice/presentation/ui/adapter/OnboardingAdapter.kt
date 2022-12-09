@@ -25,7 +25,6 @@ class OnboardingAdapter(private var list: List<OnboardingItem>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: OnboardingItem) {
-            binding.ivOnboarding.setImageResource(item.image)
             binding.tvOnboardingTitle.text = item.title
             binding.tvOnboardingDescription.text = item.description
         }

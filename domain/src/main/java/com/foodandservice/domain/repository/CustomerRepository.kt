@@ -1,14 +1,14 @@
 package com.foodandservice.domain.repository
 
+import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
-import com.foodandservice.domain.model.Phone
-import com.foodandservice.domain.model.PhoneWithSmsCode
-import com.foodandservice.domain.model.sign.Phase
-import com.foodandservice.domain.model.sign.PhaseWithAuth
+import com.foodandservice.domain.model.PhoneWithOtp
+import com.foodandservice.domain.model.sign.AuthPhase
+import com.foodandservice.domain.model.sign.AuthPhaseWithToken
 import com.foodandservice.domain.util.Resource
 
 interface CustomerRepository {
-    suspend fun signInFirstPhase(phone: Phone): Resource<Phase>
-    suspend fun signInSecondPhase(phoneWithSmsCode: PhoneWithSmsCode): Resource<PhaseWithAuth>
-    suspend fun signUpFirstPhase(authToken: String, name: Name): Resource<PhaseWithAuth>
+    suspend fun signInFirstPhase(customerPhone: CustomerPhone): Resource<AuthPhase>
+    suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): Resource<AuthPhaseWithToken>
+    suspend fun signUpFirstPhase(authToken: String, name: Name): Resource<AuthPhaseWithToken>
 }

@@ -2,11 +2,316 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/fys_background"
-        android:fitsSystemWindows="false">
+        android:layout_height="match_parent">
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/fys_background">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:background="@color/fys_background">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toTopOf="@+id/tabLayout"
+                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnReserve"
+                            style="@style/FysNoPaddingButton"
+                            android:layout_marginStart="22dp"
+                            android:layout_marginTop="20dp"
+                            android:text="@string/btn_reserve"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnLocation"
+                            style="@style/FysIconButton"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="8dp"
+                            app:icon="@drawable/ic_location"
+                            app:layout_constraintEnd_toStartOf="@+id/btnPhone"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnPhone"
+                            style="@style/FysIconButton"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="8dp"
+                            app:icon="@drawable/ic_phone"
+                            app:layout_constraintEnd_toStartOf="@+id/btnFavourite"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnFavourite"
+                            style="@style/FysIconButton"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginEnd="22dp"
+                            app:icon="@drawable/ic_favorite"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginBottom="-36dp"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="24dp"
+                            app:layout_constraintBottom_toTopOf="@+id/cvRestaurantInfo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@android:color/transparent"
+                                app:cardCornerRadius="5dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/restLogo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:contentDescription="@null"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/restaurant_logo" />
+                            </com.google.android.material.card.MaterialCardView>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/cvRestaurantInfo"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="22dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="22dp"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="8dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/btnReserve">
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/tvRestName"
+                                    style="@style/FysDarkLargeText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="48dp"
+                                    android:text="Rosario's Burger"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <TextView
+                                    android:id="@+id/tvDistance"
+                                    style="@style/FysDarkSmallText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="A 300 metros"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/ratingRestaurant" />
+
+                                <TextView
+                                    android:id="@+id/tvDescription"
+                                    style="@style/FysDarkSmallText"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_margin="12dp"
+                                    android:layout_marginTop="6dp"
+                                    android:ellipsize="end"
+                                    android:maxLines="4"
+                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
+
+                                <RatingBar
+                                    android:id="@+id/ratingRestaurant"
+                                    style="?android:attr/ratingBarStyleSmall"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="16dp"
+                                    android:backgroundTint="@color/fys_primary"
+                                    android:isIndicator="true"
+                                    android:numStars="5"
+                                    android:progressTint="@color/fys_primary"
+                                    android:rating="3"
+                                    android:secondaryProgressTint="@android:color/transparent"
+                                    android:stepSize="0.5"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/chipBusinessClosed">
+
+                                </RatingBar>
+
+                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/chipBusinessClosed"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="24dp"
+                                    android:layout_marginTop="8dp"
+                                    android:layout_marginEnd="24dp"
+                                    app:cardCornerRadius="10dp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintHorizontal_bias="0.5"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toBottomOf="@+id/tvRestName">
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:background="@drawable/gradient"
+                                        android:orientation="vertical" />
+
+                                    <TextView
+                                        android:id="@+id/tvClosed"
+                                        style="@style/FysWhiteMediumText"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="3dp"
+                                        android:paddingVertical="8dp"
+                                        android:text="¡El negocio está cerrado!" />
+                                </androidx.cardview.widget.CardView>
+
+                                <TextView
+                                    android:id="@+id/tvRatingText"
+                                    style="@style/FysDarkSmallText"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:fontFamily="@font/poppins"
+                                    android:text="3"
+                                    android:textColor="@color/text_normal"
+                                    app:layout_constraintBottom_toBottomOf="@+id/ratingRestaurant"
+                                    app:layout_constraintStart_toEndOf="@+id/ratingRestaurant"
+                                    app:layout_constraintTop_toTopOf="@+id/ratingRestaurant" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:id="@+id/tilSchedule"
+                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="22dp"
+                            android:layout_marginTop="12dp"
+
+                            android:layout_marginEnd="22dp"
+                            android:elevation="8dp"
+                            android:padding="0dp"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxCornerRadiusBottomEnd="8dp"
+                            app:boxCornerRadiusBottomStart="8dp"
+                            app:boxCornerRadiusTopEnd="8dp"
+                            app:boxCornerRadiusTopStart="8dp"
+                            app:boxStrokeColor="@color/white"
+                            app:boxStrokeWidth="0dp"
+                            app:boxStrokeWidthFocused="0dp"
+                            app:endIconDrawable="@drawable/ic_arrow_down"
+                            app:endIconTint="@color/fys_primary"
+                            app:hintTextColor="@color/fys_primary"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/cvRestaurantInfo"
+                            app:startIconDrawable="@drawable/ic_schedule"
+                            app:startIconTint="@color/fys_primary">
+
+                            <AutoCompleteTextView
+                                android:id="@+id/scheduleMenu"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/poppins"
+                                android:inputType="none"
+                                android:padding="0dp"
+                                android:text="@string/actv_schedule"
+                                android:textColor="@color/fys_primary"
+                                tools:ignore="LabelFor" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/fys_background"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="24dp"
+                    android:backgroundTint="@color/fys_background"
+                    android:elevation="0dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabBackground="@drawable/tab_style"
+                    app:tabIndicatorAnimationMode="elastic"
+                    app:tabIndicatorHeight="0dp"
+                    app:tabMode="scrollable"
+                    app:tabRippleColor="@null"
+                    app:tabSelectedTextColor="@color/white"
+                    app:tabTextAppearance="@style/TabText"
+                    app:tabTextColor="@color/black" />
+
+                <View
+                    style="@style/Divider"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProduct"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginBottom="8dp"
+                    android:clipToPadding="false"
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -41,303 +346,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
         </Toolbar>
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:background="@color/fys_background">
-
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:id="@+id/collapsingToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/restaurantDetailsConstraint"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="22dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="22dp"
-                    app:layout_constraintBottom_toTopOf="@+id/tabLayout"
-                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnReserve"
-                        style="@style/FysNoPaddingButton"
-                        android:text="@string/btn_reserve"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnLocation"
-                        style="@style/FysIconButton"
-                        android:layout_marginEnd="8dp"
-                        app:icon="@drawable/ic_location"
-                        app:layout_constraintEnd_toStartOf="@+id/btnPhone"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnPhone"
-                        style="@style/FysIconButton"
-                        android:layout_marginEnd="8dp"
-                        app:icon="@drawable/ic_phone"
-                        app:layout_constraintEnd_toStartOf="@+id/btnFavourite"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnFavourite"
-                        style="@style/FysIconButton"
-                        app:icon="@drawable/ic_favorite"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/materialCardView"
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
-                        android:layout_marginBottom="-36dp"
-                        android:background="@android:color/transparent"
-                        app:cardCornerRadius="8dp"
-                        app:cardElevation="24dp"
-                        app:layout_constraintBottom_toTopOf="@+id/cvRestaurantInfo"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="4dp"
-                            android:layout_marginTop="4dp"
-                            android:layout_marginEnd="4dp"
-                            android:layout_marginBottom="4dp"
-                            android:background="@android:color/transparent"
-                            app:cardCornerRadius="5dp"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/restLogo2"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:contentDescription="@null"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/restaurant_logo" />
-                        </com.google.android.material.card.MaterialCardView>
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cvRestaurantInfo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/btnReserve">
-
-                        <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-                                android:id="@+id/tvRestName"
-                                style="@style/FysDarkLargeText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="48dp"
-                                android:text="Rosario's Burger"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
-
-                            <TextView
-                                android:id="@+id/tvDistance"
-                                style="@style/FysDarkSmallText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:text="A 300 metros"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/ratingRestaurant" />
-
-                            <TextView
-                                android:id="@+id/tvDescription"
-                                style="@style/FysDarkSmallText"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_margin="12dp"
-                                android:layout_marginTop="6dp"
-                                android:ellipsize="end"
-                                android:maxLines="4"
-                                android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvDistance" />
-
-                            <RatingBar
-                                android:id="@+id/ratingRestaurant"
-                                style="?android:attr/ratingBarStyleSmall"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:backgroundTint="@color/fys_primary"
-                                android:isIndicator="true"
-                                android:numStars="5"
-                                android:progressTint="@color/fys_primary"
-                                android:rating="3"
-                                android:secondaryProgressTint="@android:color/transparent"
-                                android:stepSize="0.5"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/chipBusinessClosed">
-
-                            </RatingBar>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/chipBusinessClosed"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="24dp"
-                                android:layout_marginTop="8dp"
-                                android:layout_marginEnd="24dp"
-                                app:cardCornerRadius="10dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintHorizontal_bias="0.5"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toBottomOf="@+id/tvRestName">
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:background="@drawable/gradient"
-                                    android:orientation="vertical" />
-
-                                <TextView
-                                    android:id="@+id/tvClosed"
-                                    style="@style/FysWhiteMediumText"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginBottom="3dp"
-                                    android:paddingVertical="8dp"
-                                    android:text="¡El negocio está cerrado!" />
-                            </androidx.cardview.widget.CardView>
-
-                            <TextView
-                                android:id="@+id/tvRatingText"
-                                style="@style/FysDarkSmallText"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="8dp"
-                                android:fontFamily="@font/poppins"
-                                android:text="3"
-                                android:textColor="@color/text_normal"
-                                app:layout_constraintBottom_toBottomOf="@+id/ratingRestaurant"
-                                app:layout_constraintStart_toEndOf="@+id/ratingRestaurant"
-                                app:layout_constraintTop_toTopOf="@+id/ratingRestaurant" />
-
-                        </androidx.constraintlayout.widget.ConstraintLayout>
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/tilSchedule"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="12dp"
-                        android:elevation="8dp"
-                        android:padding="0dp"
-                        app:boxBackgroundColor="@color/white"
-                        app:boxCornerRadiusBottomEnd="8dp"
-                        app:boxCornerRadiusBottomStart="8dp"
-                        app:boxCornerRadiusTopEnd="8dp"
-                        app:boxCornerRadiusTopStart="8dp"
-                        app:boxStrokeColor="@color/white"
-                        app:boxStrokeWidth="0dp"
-                        app:boxStrokeWidthFocused="0dp"
-                        app:endIconDrawable="@drawable/ic_arrow_down"
-                        app:endIconTint="@color/fys_primary"
-                        app:hintTextColor="@color/fys_primary"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/cvRestaurantInfo"
-                        app:startIconDrawable="@drawable/ic_schedule"
-                        app:startIconTint="@color/fys_primary">
-
-                        <AutoCompleteTextView
-                            android:id="@+id/scheduleMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/poppins"
-                            android:inputType="none"
-                            android:padding="0dp"
-                            android:text="@string/actv_schedule"
-                            android:textColor="@color/fys_primary"
-                            tools:ignore="LabelFor" />
-
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/fys_background"
-            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="22dp"
-                android:backgroundTint="@color/fys_background"
-                android:elevation="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tabBackground="@drawable/tab_style"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicatorHeight="0dp"
-                app:tabMode="scrollable"
-                app:tabRippleColor="@null"
-                app:tabSelectedTextColor="@color/white"
-                app:tabTextAppearance="@style/TabText"
-                app:tabTextColor="@color/black" />
-
-            <View
-                style="@style/Divider"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvProduct"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="8dp"
-                android:nestedScrollingEnabled="true"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

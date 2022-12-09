@@ -1,3 +1,3 @@
 package com.foodandservice.domain.model.sign
 
-data class Phase(val currentPhase: String)
+data class AuthPhase(val currentPhase: String)

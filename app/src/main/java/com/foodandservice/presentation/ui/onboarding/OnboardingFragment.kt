@@ -45,29 +45,24 @@ class OnboardingFragment : Fragment() {
     private fun setUpAdapters() {
         val onboardingItems = listOf(
             OnboardingItem(
-                R.drawable.shape_onboarding,
-                getString(R.string.onboarding_title1),
-                getString(R.string.onboarding_desc1)
+                title = getString(R.string.onboarding_title1),
+                description = getString(R.string.onboarding_desc1)
             ),
             OnboardingItem(
-                R.drawable.shape_onboarding,
-                getString(R.string.onboarding_title2),
-                getString(R.string.onboarding_desc2)
+                title = getString(R.string.onboarding_title2),
+                description = getString(R.string.onboarding_desc2)
             ),
             OnboardingItem(
-                R.drawable.shape_onboarding,
-                getString(R.string.onboarding_title3),
-                getString(R.string.onboarding_desc3)
+                title = getString(R.string.onboarding_title3),
+                description = getString(R.string.onboarding_desc3)
             ),
             OnboardingItem(
-                R.drawable.shape_onboarding,
-                getString(R.string.onboarding_title4),
-                getString(R.string.onboarding_desc4)
+                title = getString(R.string.onboarding_title4),
+                description = getString(R.string.onboarding_desc4)
             ),
             OnboardingItem(
-                R.drawable.shape_onboarding,
-                getString(R.string.onboarding_title5),
-                getString(R.string.onboarding_desc5)
+                title = getString(R.string.onboarding_title5),
+                description = getString(R.string.onboarding_desc5)
             )
         )
         onboardingAdapter = OnboardingAdapter(onboardingItems)

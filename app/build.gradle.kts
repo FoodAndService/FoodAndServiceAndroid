@@ -65,6 +65,9 @@ dependencies {
     implementation("io.insert-koin:koin-core:3.2.2")
     implementation("io.insert-koin:koin-android:3.3.0")
 
+    // Lottie
+    implementation("com.airbnb.android:lottie:5.2.0")
+
     // Navigation component
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")

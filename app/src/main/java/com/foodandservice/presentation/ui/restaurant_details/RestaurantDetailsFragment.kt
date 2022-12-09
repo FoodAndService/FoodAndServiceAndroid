@@ -13,6 +13,7 @@ import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
 import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
+import com.foodandservice.util.MarginItemDecoration
 import com.foodandservice.util.ScheduleArrayAdapter
 import com.foodandservice.util.getTabbedListMediatorIndices
 import org.koin.android.ext.android.get
@@ -23,16 +24,11 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     private val viewModel: RestaurantDetailsViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_restaurant_details,
-                container,
-                false
-            )
+        binding = DataBindingUtil.inflate(
+            inflater, R.layout.fragment_restaurant_details, container, false
+        )
         return binding.root
     }
 
@@ -49,13 +45,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
     private fun initSchedule() {
         val schedule = listOf(
-            "Lunes: Cerrado\n" +
-                    "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" +
-                    "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" +
-                    "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" +
-                    "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" +
-                    "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" +
-                    "Domingo: 12:00 a 17:00 y 20:30 a 02:00"
+            "Lunes: Cerrado\n" + "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" + "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" + "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" + "Domingo: 12:00 a 17:00 y 20:30 a 02:00"
         )
 
         val scheduleAdapter =
@@ -73,8 +63,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                     Product(4, 1, "Pepsi Max", true, "2,90"),
                     Product(5, 1, "Lágrimas", true, "4,20"),
                 )
-            ),
-            CategoryWithProducts(
+            ), CategoryWithProducts(
                 "Entrantes", listOf(
                     Product(6, 1, "Aceitunas verdes", false, "1,50"),
                     Product(7, 1, "Aceitunas negras", false, "1,80"),
@@ -82,8 +71,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                     Product(9, 1, "Guacamole", false, "2,80"),
                     Product(10, 1, "Quesadillas", false, "2,20"),
                 )
-            ),
-            CategoryWithProducts(
+            ), CategoryWithProducts(
                 "Pizzas", listOf(
                     Product(11, 1, "Pizza carbonara", false, "8,50"),
                     Product(12, 1, "Pizza barbacoa", false, "9,80"),
@@ -91,8 +79,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                     Product(14, 1, "Pizza extravaganza", false, "9,50"),
                     Product(15, 1, "Pizza pulled pork", false, "12,80"),
                 )
-            ),
-            CategoryWithProducts(
+            ), CategoryWithProducts(
                 "Sopas", listOf(
                     Product(16, 1, "Gazpacho", false, "5,80"),
                     Product(17, 1, "Salmorejo", false, "5,90"),
@@ -100,8 +87,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                     Product(19, 1, "Caldo de pollo", false, "3,90"),
                     Product(20, 1, "Sopa de verduras", false, "5,10"),
                 )
-            ),
-            CategoryWithProducts(
+            ), CategoryWithProducts(
                 "Aperitivos", listOf(
                     Product(21, 1, "Patatas fritas", false, "3,10"),
                     Product(22, 1, "Patatas gajo", false, "3,10"),
@@ -109,8 +95,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                     Product(24, 1, "Tiras de pollo", false, "4,50"),
                     Product(25, 1, "Patatas bravas", false, "6,10"),
                 )
-            ),
-            CategoryWithProducts(
+            ), CategoryWithProducts(
                 "Postres", listOf(
                     Product(26, 1, "Helado de fresa", false, "2,90"),
                     Product(27, 1, "Helado de chocolate", false, "3,10"),
@@ -125,7 +110,11 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         val products = mutableListOf<Product>()
         categoriesWithProducts.forEach { it -> it.products.forEach { products.add(it) } }
         productAdapter.submitList(products)
-        binding.rvProduct.adapter = productAdapter
+
+        binding.apply {
+            rvProduct.adapter = productAdapter
+            rvProduct.addItemDecoration(MarginItemDecoration(topMargin = 32))
+        }
 
         initTabLayout(categoriesWithProducts)
     }

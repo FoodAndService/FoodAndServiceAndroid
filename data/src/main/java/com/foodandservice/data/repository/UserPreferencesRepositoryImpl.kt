@@ -24,9 +24,9 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         const val AUTH_CURRENT_PHASE_INFO_ADDED = "info_added"
     }
 
-    override suspend fun saveUserAuthToken(authToken: String) {
+    override suspend fun saveUserAuthToken(token: String) {
         dataStore.edit {
-            it[Keys.AUTH_TOKEN] = authToken
+            it[Keys.AUTH_TOKEN] = token
         }
     }
 
