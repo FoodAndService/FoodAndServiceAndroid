@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -73,11 +74,13 @@ object CoreExtensions {
         dialog.show()
     }
 
-    fun Fragment.showBottomSheet(layout: Int) {
+    fun Fragment.showBottomSheet(layout: Int, onBtnActionClick: (() -> Unit)? = null) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
         layoutInflater.inflate(layout, null).also {
             dialog.setContentView(it)
             dialog.show()
+        }.findViewById<Button>(R.id.btnBottomSheetAction).setOnClickListener {
+            onBtnActionClick?.invoke()
         }
     }
 }

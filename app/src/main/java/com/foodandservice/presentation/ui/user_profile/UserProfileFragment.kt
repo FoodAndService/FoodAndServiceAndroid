@@ -12,6 +12,7 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentUserProfileBinding
 import com.foodandservice.util.extensions.CoreExtensions.showBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showDialog
+import com.foodandservice.util.extensions.CoreExtensions.showToast
 
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
@@ -34,15 +35,30 @@ class UserProfileFragment : Fragment() {
             }
 
             btnChangeFullname.setOnClickListener {
-                showBottomSheet(R.layout.bottom_sheet_change_name)
+                showBottomSheet(
+                    layout = R.layout.bottom_sheet_change_name,
+                    onBtnActionClick = {
+                        showToast("Name saved")
+                    }
+                )
             }
 
             btnChangeEmail.setOnClickListener {
-                showBottomSheet(R.layout.bottom_sheet_change_email)
+                showBottomSheet(
+                    layout = R.layout.bottom_sheet_change_email,
+                    onBtnActionClick = {
+                        showToast("Email saved")
+                    }
+                )
             }
 
             btnChangePhone.setOnClickListener {
-                showBottomSheet(R.layout.bottom_sheet_change_phone)
+                showBottomSheet(
+                    layout = R.layout.bottom_sheet_change_phone,
+                    onBtnActionClick = {
+                        showToast("Phone saved")
+                    }
+                )
             }
         }
 
