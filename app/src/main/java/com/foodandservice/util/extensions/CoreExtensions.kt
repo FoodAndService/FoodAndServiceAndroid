@@ -14,14 +14,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.foodandservice.R
 import com.foodandservice.databinding.DialogLayoutBinding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
-object ContextExtensions {
+object CoreExtensions {
     fun Fragment.hideKeyboard() {
         view?.let { activity?.hideKeyboard(it) }
-    }
-
-    fun Activity.hideKeyboard() {
-        hideKeyboard(currentFocus ?: View(this))
     }
 
     fun Context.hideKeyboard(view: View) {
@@ -74,5 +71,13 @@ object ContextExtensions {
         }
 
         dialog.show()
+    }
+
+    fun Fragment.showBottomSheet(layout: Int) {
+        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+        layoutInflater.inflate(layout, null).also {
+            dialog.setContentView(it)
+            dialog.show()
+        }
     }
 }

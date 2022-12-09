@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSignupFinishBinding
-import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
+import com.foodandservice.util.extensions.CoreExtensions.hideKeyboard
 import org.koin.android.ext.android.get
 
 class SignUpFinishFragment : Fragment() {

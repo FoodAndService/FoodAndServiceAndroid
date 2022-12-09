@@ -12,7 +12,7 @@ import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
-import com.foodandservice.util.extensions.ContextExtensions.hideKeyboard
+import com.foodandservice.util.extensions.CoreExtensions.hideKeyboard
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get

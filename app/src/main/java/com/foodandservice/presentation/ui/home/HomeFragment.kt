@@ -17,7 +17,7 @@ import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.MarginItemDecoration
-import com.foodandservice.util.extensions.ContextExtensions.showToast
+import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
 
 class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,

@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentUserProfileBinding
-import com.foodandservice.util.extensions.ContextExtensions.showDialog
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.foodandservice.util.extensions.CoreExtensions.showBottomSheet
+import com.foodandservice.util.extensions.CoreExtensions.showDialog
 
 class UserProfileFragment : Fragment() {
     private lateinit var binding: FragmentUserProfileBinding
@@ -34,15 +34,15 @@ class UserProfileFragment : Fragment() {
             }
 
             btnChangeFullname.setOnClickListener {
-                showChangeFullnameBottomSheet()
+                showBottomSheet(R.layout.bottom_sheet_change_name)
             }
 
             btnChangeEmail.setOnClickListener {
-                showChangeEmailBottomSheet()
+                showBottomSheet(R.layout.bottom_sheet_change_email)
             }
 
             btnChangePhone.setOnClickListener {
-                showChangePhoneBottomSheet()
+                showBottomSheet(R.layout.bottom_sheet_change_phone)
             }
         }
 
@@ -66,32 +66,5 @@ class UserProfileFragment : Fragment() {
 
             }
         )
-    }
-
-    private fun showChangeFullnameBottomSheet() {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-
-        layoutInflater.inflate(R.layout.bottom_sheet_save_name, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }
-    }
-
-    private fun showChangeEmailBottomSheet() {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-
-        layoutInflater.inflate(R.layout.bottom_sheet_save_email, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }
-    }
-
-    private fun showChangePhoneBottomSheet() {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-
-        layoutInflater.inflate(R.layout.bottom_sheet_save_phone, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }
     }
 }
