@@ -17,11 +17,16 @@ class LoginViewModel(
 
     fun login(phone: String) {
         viewModelScope.launch {
+            _loginState.value = LoginState.Loading
+
             when (val response = signInFirstPhaseUseCase(phone)) {
-                is Resource.Success -> _loginState.value = LoginState.Success(phone)
-                is Resource.Loading -> _loginState.value = LoginState.Loading
-                is Resource.Error -> _loginState.value = LoginState.Error(response.message)
+                is Resource.Success -> {
+                    _loginState.value = LoginState.Success(phone)
+                }
+                is Resource.Failure -> _loginState.value = LoginState.Error(response.message)
             }
+
+            _loginState.value = LoginState.Idle
         }
     }
 }

@@ -11,6 +11,6 @@ class SignInFirstPhaseUseCase(private val customerRepository: CustomerRepository
         return if (RegexHelper.phoneRegex.containsMatchIn(phone))
             customerRepository.signInFirstPhase(CustomerPhone(phone))
         else
-            Resource.Error("Phone format is not valid")
+            Resource.Failure("Phone format is not valid")
     }
 }

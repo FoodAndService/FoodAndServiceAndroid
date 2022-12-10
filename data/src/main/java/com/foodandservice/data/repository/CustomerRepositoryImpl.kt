@@ -20,9 +20,9 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
             val response = customerService.signInFirstPhase(customerPhone)
             Resource.Success(response.toAuthPhase())
         } catch (e: HttpException) {
-            Resource.Error(e.localizedMessage ?: "Unexpected error ocurred")
+            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
         } catch (e: IOException) {
-            Resource.Error("Couldn't reach the server. Check your internet connection")
+            Resource.Failure("Couldn't reach the server. Check your internet connection")
         }
     }
 
@@ -31,9 +31,9 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
             val response = customerService.signInSecondPhase(phoneWithOtp)
             Resource.Success(response.toSignPhase())
         } catch (e: HttpException) {
-            Resource.Error(e.localizedMessage ?: "Unexpected error ocurred")
+            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
         } catch (e: IOException) {
-            Resource.Error("Couldn't reach the server. Check your internet connection")
+            Resource.Failure("Couldn't reach the server. Check your internet connection")
         }
     }
 
@@ -45,9 +45,9 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
             val response = customerService.signUpFirstPhase("Bearer $authToken", name)
             Resource.Success(response.toSignPhase())
         } catch (e: HttpException) {
-            Resource.Error(e.localizedMessage ?: "Unexpected error ocurred")
+            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
         } catch (e: IOException) {
-            Resource.Error("Couldn't reach the server. Check your internet connection")
+            Resource.Failure("Couldn't reach the server. Check your internet connection")
         }
     }
 }

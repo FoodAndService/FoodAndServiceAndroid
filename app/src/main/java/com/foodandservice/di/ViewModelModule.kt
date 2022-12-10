@@ -42,17 +42,21 @@ val viewModelModule = module {
         SignUpFinishViewModel(
             signUpFirstPhaseUseCase = get(),
             getCustomerTokenUseCase = get(),
-            saveCustomerTokenUseCase = get(),
-            saveCurrentPhaseUseCase = get()
+            saveUserTokenUseCase = get(),
+            saveAuthCurrentPhaseUseCase = get()
         )
     }
 
     viewModel {
-        SmsConfirmViewModel(signInSecondPhaseUseCase = get(), saveCustomerTokenUseCase = get())
+        SmsConfirmViewModel(
+            signInSecondPhaseUseCase = get(),
+            saveUserTokenUseCase = get(),
+            saveAuthCurrentPhaseUseCase = get()
+        )
     }
 
     viewModel {
-        SplashViewModel(isCustomerLoggedInUseCase = get(), isOnboardingFinishedUseCase = get())
+        SplashViewModel(isUserLoggedInUseCase = get(), isOnboardingFinishedUseCase = get())
     }
 
     viewModel {

@@ -18,15 +18,15 @@ val useCaseModule = module {
     }
 
     single {
-        IsCustomerLoggedInUseCase(userPreferencesRepository = get())
+        IsUserLoggedInUseCase(userPreferencesRepository = get())
     }
 
     single {
-        SaveCurrentPhaseUseCase(userPreferencesRepository = get())
+        SaveAuthCurrentPhaseUseCase(userPreferencesRepository = get())
     }
 
     single {
-        SaveCustomerTokenUseCase(userPreferencesRepository = get())
+        SaveUserTokenUseCase(userPreferencesRepository = get())
     }
 
     single {

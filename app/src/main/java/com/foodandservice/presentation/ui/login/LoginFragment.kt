@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +12,7 @@ import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentLoginBinding
+import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
 
 class LoginFragment : Fragment() {
@@ -37,10 +37,20 @@ class LoginFragment : Fragment() {
                         navigateToSmsConfirm(state.phone)
                     }
                     is LoginState.Error -> {
-                        makeToast(state.message)
+                        showToast(state.message)
                     }
-                    is LoginState.Loading -> {}
-                    is LoginState.Idle -> {}
+                    is LoginState.Loading -> {
+                        binding.apply {
+                            btnAccess.isEnabled = false
+                            progressBar.visibility = View.VISIBLE
+                        }
+                    }
+                    is LoginState.Idle -> {
+                        binding.apply {
+                            btnAccess.isEnabled = true
+                            progressBar.visibility = View.GONE
+                        }
+                    }
                 }
             }
         }
@@ -68,9 +78,5 @@ class LoginFragment : Fragment() {
     private fun navigateToSmsConfirm(phone: String) {
         val action = LoginFragmentDirections.actionLoginFragmentToSmsConfirmFragment(phone)
         findNavController().navigate(action)
-    }
-
-    private fun makeToast(msg: String) {
-        Toast.makeText(requireContext(), msg, Toast.LENGTH_SHORT).show()
     }
 }

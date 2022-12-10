@@ -33,10 +33,9 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
     override suspend fun getUserAuthToken() =
         dataStore.data.map { it[Keys.AUTH_TOKEN] ?: "" }.first()
 
-    override suspend fun isUserLoggedIn() =
-        dataStore.data.map { it[Keys.AUTH_TOKEN] ?: "" }.first()
-            .isNotEmpty() && dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] ?: "" }
-            .first() == AuthCurrentPhase.AUTH_CURRENT_PHASE_INFO_ADDED
+    override suspend fun isUserLoggedIn() = dataStore.data.map { it[Keys.AUTH_TOKEN] ?: "" }.first()
+        .isNotEmpty() && dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] ?: "" }
+        .first() == AuthCurrentPhase.AUTH_CURRENT_PHASE_INFO_ADDED
 
     override suspend fun saveAuthCurrentPhase(currentPhase: String) {
         dataStore.edit {
@@ -62,8 +61,7 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         }
     }
 
-    override suspend fun getCartId() =
-        dataStore.data.map { it[Keys.CART_ID] ?: "" }.first()
+    override suspend fun getCartId() = dataStore.data.map { it[Keys.CART_ID] ?: "" }.first()
 
     override suspend fun saveRestaurantId(restaurantId: String) {
         dataStore.edit {

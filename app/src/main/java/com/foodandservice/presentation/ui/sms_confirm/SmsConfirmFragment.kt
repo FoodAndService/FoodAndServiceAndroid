@@ -13,6 +13,7 @@ import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentSmsConfirmBinding
 import com.foodandservice.util.extensions.CoreExtensions.hideKeyboard
+import com.foodandservice.util.extensions.CoreExtensions.showToast
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
@@ -39,9 +40,21 @@ class SmsConfirmFragment : Fragment() {
                 when (state) {
                     is SmsConfirmState.SuccessNewCustomer -> navigateToSignUpFinish()
                     is SmsConfirmState.SuccessExistentCustomer -> navigateToHome()
-                    is SmsConfirmState.Error -> Unit
-                    is SmsConfirmState.Loading -> Unit
-                    is SmsConfirmState.Idle -> Unit
+                    is SmsConfirmState.Error -> {
+                        showToast(state.message)
+                    }
+                    is SmsConfirmState.Loading -> {
+                        binding.apply {
+                            btnConfirm.isEnabled = false
+                            progressBar.visibility = View.VISIBLE
+                        }
+                    }
+                    is SmsConfirmState.Idle -> {
+                        binding.apply {
+                            btnConfirm.isEnabled = true
+                            progressBar.visibility = View.GONE
+                        }
+                    }
                 }
             }
         }

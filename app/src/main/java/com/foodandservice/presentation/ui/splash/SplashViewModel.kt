@@ -2,7 +2,7 @@ package com.foodandservice.presentation.ui.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.foodandservice.domain.usecases.auth.IsCustomerLoggedInUseCase
+import com.foodandservice.domain.usecases.auth.IsUserLoggedInUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class SplashViewModel(
-    private val isCustomerLoggedInUseCase: IsCustomerLoggedInUseCase,
+    private val isUserLoggedInUseCase: IsUserLoggedInUseCase,
     private val isOnboardingFinishedUseCase: IsOnboardingFinishedUseCase
 ) :
     ViewModel() {
@@ -26,7 +26,7 @@ class SplashViewModel(
             try {
                 if (isOnboardingFinishedUseCase())
                     _splashState.value =
-                        if (isCustomerLoggedInUseCase()) SplashState.UserLoggedIn else SplashState.UserNotLoggedIn
+                        if (isUserLoggedInUseCase()) SplashState.UserLoggedIn else SplashState.UserNotLoggedIn
                 else
                     _splashState.value = SplashState.OnboardingNotFinished
             } catch (e: Exception) {

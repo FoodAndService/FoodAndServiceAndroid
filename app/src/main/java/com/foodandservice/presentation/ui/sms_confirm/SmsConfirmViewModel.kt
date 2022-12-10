@@ -3,7 +3,9 @@ package com.foodandservice.presentation.ui.sms_confirm
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.foodandservice.domain.usecases.auth.SaveCustomerTokenUseCase
+import com.foodandservice.domain.model.sign.AuthCurrentPhase
+import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
+import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.util.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +16,8 @@ import kotlinx.coroutines.launch
 
 class SmsConfirmViewModel(
     private val signInSecondPhaseUseCase: SignInSecondPhaseUseCase,
-    private val saveCustomerTokenUseCase: SaveCustomerTokenUseCase
+    private val saveUserTokenUseCase: SaveUserTokenUseCase,
+    private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
 ) : ViewModel() {
 
     private val _smsConfirmState = MutableStateFlow<SmsConfirmState>(SmsConfirmState.Idle)
@@ -31,21 +34,25 @@ class SmsConfirmViewModel(
 
     fun sendSms(phone: String, smsCode: String) {
         viewModelScope.launch {
+            _smsConfirmState.value = SmsConfirmState.Loading
+
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
                 is Resource.Success -> {
-                    response.data?.let { phaseWithAuth ->
-                        saveCustomerTokenUseCase(phaseWithAuth.authUser)
+                    response.data?.let { authPhaseWithToken ->
+                        saveUserTokenUseCase(authPhaseWithToken.authUser)
+                        saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
 
-                        when (phaseWithAuth.currentPhase) {
-                            "phone_verified" -> _smsConfirmState.value =
-                                SmsConfirmState.SuccessNewCustomer(phaseWithAuth.authUser)
-                            "info_added" -> _smsConfirmState.value =
+                        when (authPhaseWithToken.currentPhase) {
+                            AuthCurrentPhase.PHONE_VERIFIED -> _smsConfirmState.value =
+                                SmsConfirmState.SuccessNewCustomer(authPhaseWithToken.authUser)
+                            AuthCurrentPhase.INFO_ADDED -> _smsConfirmState.value =
                                 SmsConfirmState.SuccessExistentCustomer
+                            AuthCurrentPhase.UNKNOWN -> _smsConfirmState.value =
+                                SmsConfirmState.Error("")
                         }
                     }
                 }
-                is Resource.Loading -> _smsConfirmState.value = SmsConfirmState.Loading
-                is Resource.Error -> _smsConfirmState.value =
+                is Resource.Failure -> _smsConfirmState.value =
                     SmsConfirmState.Error(response.message)
             }
         }
