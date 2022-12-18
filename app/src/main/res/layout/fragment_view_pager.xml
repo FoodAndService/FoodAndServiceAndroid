@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/scan_menu" />
+            app:lottie_rawRes="@raw/onboarding_lottie" />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/vpOnboarding"

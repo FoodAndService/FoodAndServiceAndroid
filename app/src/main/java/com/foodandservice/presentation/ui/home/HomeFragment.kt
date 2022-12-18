@@ -85,7 +85,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         binding.apply {
             rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
             rvCategoryTag.adapter = categoryTagAdapter
-
             rvCategoryTag.addItemDecoration(MarginItemDecoration(24))
         }
     }

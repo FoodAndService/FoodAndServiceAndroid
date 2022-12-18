@@ -43,11 +43,13 @@ class LoginFragment : Fragment() {
                         binding.apply {
                             btnAccess.isEnabled = false
                             progressBar.visibility = View.VISIBLE
+                            btnAccess.text = ""
                         }
                     }
                     is LoginState.Idle -> {
                         binding.apply {
                             btnAccess.isEnabled = true
+                            btnAccess.text = getString(R.string.btn_access)
                             progressBar.visibility = View.GONE
                         }
                     }

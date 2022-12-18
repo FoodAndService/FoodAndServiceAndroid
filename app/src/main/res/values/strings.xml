@@ -52,16 +52,16 @@
     <string name="menu_orders">Orders</string>
     <string name="menu_profile">Profile</string>
 
-    <string name="onboarding_desc1">We are very happy to have you here, before we continue and after detecting that you are new, we would like to tell you a little bit about what is Food &amp; Service and why you will love it!</string>
-    <string name="onboarding_desc2">Order in any restaurant in the world, in your own language, check allergens and intolerances and pay directly from your mobile with the payment method that is most convenient for you.</string>
-    <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order what you want and pay, you only have to worry about enjoying your meal.</string>
-    <string name="onboarding_desc4">Our restaurants are always giving discounts to their customers through Food &amp; Service, whenever we can we will show you the best discounts!</string>
-    <string name="onboarding_desc5">We request the following Contacts (To get your number on the sign up process), Messaging (To automatically validate the SMS code) and Notifications (To notify you of the latest discounts and promotions).</string>
-    <string name="onboarding_title1">Welcome</string>
-    <string name="onboarding_title2">Comfort</string>
-    <string name="onboarding_title3">Quickness</string>
-    <string name="onboarding_title4">Discounts</string>
-    <string name="onboarding_title5">Permissions</string>
+    <string name="onboarding_desc1">Take advantage of the many offers and discounts offered by our restaurants.</string>
+    <string name="onboarding_desc2">Order in any restaurant, in your own language, check allergens, intolerances and ingredients.</string>
+    <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order and pay.</string>
+    <string name="onboarding_desc4">Check your orders, add your restaurants to favourites, manage your allergies and intolerances.</string>
+    <string name="onboarding_desc5">Follow your orders in real time, from the moment you place them.</string>
+    <string name="onboarding_title1">Great offers!</string>
+    <string name="onboarding_title2">Extreme convenience!</string>
+    <string name="onboarding_title3">Save time!</string>
+    <string name="onboarding_title4">Personal treatment!</string>
+    <string name="onboarding_title5">Real-time tracking!</string>
 
     <string name="order_status_checking_payment">Checking payment method</string>
     <string name="order_status_finished">Your order is ready to pick up</string>

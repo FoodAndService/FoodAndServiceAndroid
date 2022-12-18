@@ -25,7 +25,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cardView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="42dp"
             android:layout_marginEnd="42dp"
@@ -37,10 +37,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLogin"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <com.hbb20.CountryCodePicker
                     android:id="@+id/countryCodePicker"
@@ -65,7 +65,10 @@
                     app:ccp_showPhoneCode="false"
                     app:ccp_textGravity="LEFT"
                     app:ccp_textSize="16sp"
-                    app:ccp_useFlagEmoji="true" />
+                    app:ccp_useFlagEmoji="true"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLogin"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLogin"
+                    app:layout_constraintTop_toTopOf="@+id/constraintLogin" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/tilPhone"
@@ -81,6 +84,9 @@
                     app:boxCornerRadiusTopStart="12dp"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLogin"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLogin"
+                    app:layout_constraintTop_toBottomOf="@+id/countryCodePicker"
                     app:startIconDrawable="@drawable/ic_phone"
                     app:startIconTint="@color/fys_primary">
 
@@ -90,7 +96,6 @@
                         android:layout_height="wrap_content"
                         android:backgroundTint="@color/text_field"
                         android:fontFamily="@font/poppins"
-
                         android:hint="@string/hint_tie_phone_number"
                         android:inputType="phone"
                         android:longClickable="false"
@@ -102,19 +107,6 @@
                         android:textColorHint="@color/fys_primary" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="12dp"
-                    android:indeterminate="true"
-                    android:indeterminateTint="@color/fys_primary"
-                    android:indeterminateTintMode="src_atop"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAccess"
                     style="@style/FysPrimaryButton"
@@ -123,19 +115,44 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/btn_access" />
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/btn_access"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLogin"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLogin"
+                    app:layout_constraintTop_toBottomOf="@+id/tilPhone" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/white"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnAccess"
+                    app:layout_constraintEnd_toEndOf="@+id/btnAccess"
+                    app:layout_constraintStart_toStartOf="@+id/btnAccess"
+                    app:layout_constraintTop_toTopOf="@+id/btnAccess"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/btnLostPhone"
                     style="@style/FysPrimarySmallText"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/tv_lost_phone_number" />
-            </LinearLayout>
+                    android:text="@string/tv_lost_phone_number"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@id/constraintLogin"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintLogin"
+                    app:layout_constraintStart_toStartOf="@+id/constraintLogin"
+                    app:layout_constraintTop_toBottomOf="@+id/btnAccess" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView

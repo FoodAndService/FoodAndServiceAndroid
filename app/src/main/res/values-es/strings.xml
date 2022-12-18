@@ -49,16 +49,16 @@
     <string name="menu_orders">Pedidos</string>
     <string name="menu_profile">Perfil</string>
 
-    <string name="onboarding_desc1">Estamos muy contentos de tenerte aquí, antes de continuar y tras detectar que eres nuev@, nos gustaría contarte un poco qué es Food &amp; Service y ¡porqué te encantará!</string>
-    <string name="onboarding_desc2">Pide en cualquier restaurante del mundo, en tu propio idioma, consulta los alérgenos e intolerancias y paga directamente desde tu móvil con la forma de pago que más cómoda te sea.</string>
-    <string name="onboarding_desc3">Puedes realizar tu pedido en cualquier momento sin esperar a ser atendido, pedir lo que quieras y pagar, tan solo debes preocuparte de disfrutar de tu comida.</string>
-    <string name="onboarding_desc4">Nuestros restaurantes están siempre dando descuentos a sus clientes a través de Food &amp; Service, siempre que podamos te mostraremos ¡los mejores descuentos!</string>
-    <string name="onboarding_desc5">Solicitamos los siguientes permisos: Contactos (Para obtener su número en el registro), Mensajería (Para validar automáticamente la clave SMS) y Notificaciones (para avisarte de los últimos descuentos y promociones)</string>
-    <string name="onboarding_title1">Bienvenido</string>
-    <string name="onboarding_title2">Comodidad</string>
-    <string name="onboarding_title3">Rapidez</string>
-    <string name="onboarding_title4">Descuentos</string>
-    <string name="onboarding_title5">Permisos</string>
+    <string name="onboarding_desc1">Aprovéchate de las múltiples ofertas y descuentos que ofrecen nuestros restaurantes.</string>
+    <string name="onboarding_desc2">Pide en cualquier restaurante, en tu propio idioma, consulta los alérgenos, intolerancias y los ingredientes.</string>
+    <string name="onboarding_desc3">Puedes realizar tu pedido en cualquier momento sin esperar a ser atendido, pedir y pagar.</string>
+    <string name="onboarding_desc4">Revisa tus pedidos, añade tus restaurantes a favoritos, gestiona tus alergias e intolerancias.</string>
+    <string name="onboarding_desc5">Sigue tus pedidos en tiempo real, desde el momento en el que lo realizas.</string>
+    <string name="onboarding_title1">¡Grandes ofertas!</string>
+    <string name="onboarding_title2">¡Extrema comodidad!</string>
+    <string name="onboarding_title3">¡Ahorra tiempo!</string>
+    <string name="onboarding_title4">¡Trato personal!</string>
+    <string name="onboarding_title5">¡Seguimiento en tiempo real!</string>
 
     <string name="order_status_checking_payment">Comprobando método de pago</string>
     <string name="order_status_finished">Tu pedido está listo para recoger</string>
@@ -76,7 +76,7 @@
     <string name="settings_category_personal_details">Datos personales</string>
     <string name="settings_category_security">Seguridad</string>
 
-    <string name="skip">Skip</string>
+    <string name="skip">Saltar</string>
 
     <string name="tie_fullname">Nombre completo</string>
 
