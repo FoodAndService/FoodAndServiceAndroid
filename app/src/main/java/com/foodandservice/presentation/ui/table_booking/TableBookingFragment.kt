@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentTableReservationBinding
 import org.koin.android.ext.android.get
@@ -37,6 +38,12 @@ class TableBookingFragment : Fragment() {
                     }
                     is TableBookingState.Idle -> {}
                 }
+            }
+        }
+
+        binding.apply {
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
             }
         }
     }

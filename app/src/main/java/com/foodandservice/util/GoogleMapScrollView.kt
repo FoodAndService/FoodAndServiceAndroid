@@ -1,54 +1,32 @@
 package com.foodandservice.util
 
-import android.R
+import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.AttributeSet
 import android.view.MotionEvent
-import android.view.View
-import android.view.ViewGroup
-import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
-import com.google.android.gms.maps.SupportMapFragment
+import android.widget.ScrollView
 
-class GoogleMapScrollView : SupportMapFragment() {
-    private var mListener: OnTouchListener? = null
+class GoogleMapScrollView : ScrollView {
+    constructor(context: Context?) : super(context)
+    constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
+    constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(
+        context, attrs, defStyle
+    )
 
-    override fun onCreateView(
-        layoutInflater: LayoutInflater, viewGroup: ViewGroup?, savedInstance: Bundle?
-    ): View {
-        val layout: View = super.onCreateView(layoutInflater, viewGroup, savedInstance)
-        val frameLayout: TouchableWrapper = TouchableWrapper(
-            activity
-        )
-        frameLayout.setBackgroundColor(
-            ContextCompat.getColor(
-                requireContext(), R.color.transparent
-            )
-        )
-        (layout as ViewGroup).addView(
-            frameLayout, ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-        return layout
-    }
-
-    fun setListener(listener: OnTouchListener?) {
-        mListener = listener
-    }
-
-    interface OnTouchListener {
-        fun onTouch()
-    }
-
-    inner class TouchableWrapper(context: Context?) : FrameLayout(context!!) {
-        override fun dispatchTouchEvent(event: MotionEvent): Boolean {
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> mListener!!.onTouch()
-                MotionEvent.ACTION_UP -> mListener!!.onTouch()
-            }
-            return super.dispatchTouchEvent(event)
+    override fun onInterceptTouchEvent(ev: MotionEvent): Boolean {
+        when (ev.action) {
+            MotionEvent.ACTION_DOWN -> super.onTouchEvent(ev)
+            MotionEvent.ACTION_MOVE -> return false
+            MotionEvent.ACTION_CANCEL -> super.onTouchEvent(ev)
+            MotionEvent.ACTION_UP -> return false
+            else -> {}
         }
+        return false
+    }
+
+    @SuppressLint("ClickableViewAccessibility")
+    override fun onTouchEvent(ev: MotionEvent): Boolean {
+        super.onTouchEvent(ev)
+        return true
     }
 }

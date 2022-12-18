@@ -44,6 +44,10 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
             btnMoreInfo.setOnClickListener {
                 navigateToExtraDetails()
             }
+
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
