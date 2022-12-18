@@ -23,7 +23,7 @@
                 <ImageView
                     android:id="@+id/ivFysLogo"
                     style="@style/FysLogo"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -31,7 +31,7 @@
                 <ImageButton
                     android:id="@+id/btnCart"
                     style="@style/FysCartButton"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -61,7 +61,7 @@
             android:id="@+id/btnFilter"
             style="@style/FysFilterButton"
             android:layout_marginTop="16dp"
-            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar" />
 

@@ -22,14 +22,14 @@
                 <ImageButton
                     android:id="@+id/btnBack"
                     style="@style/FysBackButton"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
                     android:id="@+id/ivFysLogo"
                     style="@style/FysLogo"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -67,7 +67,7 @@
                     android:id="@+id/restLogo2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     android:scaleType="fitXY"
                     android:src="@drawable/restaurant_logo" />
             </com.google.android.material.card.MaterialCardView>

@@ -9,7 +9,7 @@ import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
 import com.foodandservice.presentation.ui.signup_finish.SignUpFinishViewModel
 import com.foodandservice.presentation.ui.sms_confirm.SmsConfirmViewModel
 import com.foodandservice.presentation.ui.splash.SplashViewModel
-import com.foodandservice.presentation.ui.table_reservation.TableReservationViewModel
+import com.foodandservice.presentation.ui.table_booking.TableBookingViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -60,6 +60,6 @@ val viewModelModule = module {
     }
 
     viewModel {
-        TableReservationViewModel()
+        TableBookingViewModel()
     }
 }

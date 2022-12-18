@@ -39,7 +39,7 @@
                     android:id="@+id/restBackground"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
                     android:src="@drawable/bg1" />
 
@@ -81,7 +81,7 @@
                         android:id="@+id/restLogo"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"
                         android:scaleType="fitXY"
                         android:src="@drawable/restaurant_logo" />
                 </com.google.android.material.card.MaterialCardView>

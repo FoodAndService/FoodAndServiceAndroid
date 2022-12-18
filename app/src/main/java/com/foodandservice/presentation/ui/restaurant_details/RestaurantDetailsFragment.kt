@@ -14,7 +14,6 @@ import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
 import com.foodandservice.util.MarginItemDecoration
-import com.foodandservice.util.ScheduleArrayAdapter
 import com.foodandservice.util.getTabbedListMediatorIndices
 import org.koin.android.ext.android.get
 
@@ -35,22 +34,25 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initSchedule()
         initAdapters()
 
-        binding.btnReserve.setOnClickListener {
-            findNavController().navigate(R.id.action_restaurantDetailsFragment_to_tableReservationFragment)
+        binding.apply {
+            btnReserve.setOnClickListener {
+                navigateToTableBooking()
+            }
+
+            btnMoreInfo.setOnClickListener {
+                navigateToExtraDetails()
+            }
         }
     }
 
-    private fun initSchedule() {
-        val schedule = listOf(
-            "Lunes: Cerrado\n" + "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" + "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" + "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" + "Domingo: 12:00 a 17:00 y 20:30 a 02:00"
-        )
+    private fun navigateToTableBooking() {
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_tableBookingFragment)
+    }
 
-        val scheduleAdapter =
-            ScheduleArrayAdapter(requireContext(), R.layout.item_schedule, schedule)
-        binding.scheduleMenu.setAdapter(scheduleAdapter)
+    private fun navigateToExtraDetails() {
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantExtraDetailsFragment)
     }
 
     private fun initAdapters() {

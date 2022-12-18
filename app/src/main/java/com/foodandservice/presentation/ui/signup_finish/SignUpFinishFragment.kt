@@ -32,10 +32,26 @@ class SignUpFinishFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.signUpFinishState.collect { state ->
                 when (state) {
-                    is SignUpFinishState.Success -> navigateToHome()
-                    is SignUpFinishState.Error -> Unit
-                    is SignUpFinishState.Loading -> Unit
-                    is SignUpFinishState.Idle -> Unit
+                    is SignUpFinishState.Success -> {
+                        navigateToHome()
+                    }
+                    is SignUpFinishState.Error -> {
+
+                    }
+                    is SignUpFinishState.Loading -> {
+                        binding.apply {
+                            btnFinishSignup.isEnabled = true
+                            btnFinishSignup.text = ""
+                            progressBar.visibility = View.GONE
+                        }
+                    }
+                    is SignUpFinishState.Idle -> {
+                        binding.apply {
+                            btnFinishSignup.isEnabled = true
+                            btnFinishSignup.text = getString(R.string.btn_finish_signup)
+                            progressBar.visibility = View.GONE
+                        }
+                    }
                 }
             }
         }

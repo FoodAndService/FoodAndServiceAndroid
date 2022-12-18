@@ -60,6 +60,10 @@ class UserProfileFragment : Fragment() {
                     }
                 )
             }
+
+            btnLogout.setOnClickListener {
+                showLogOutDialog()
+            }
         }
 
         requireActivity()
@@ -67,6 +71,21 @@ class UserProfileFragment : Fragment() {
             .addCallback(viewLifecycleOwner) {
                 findNavController().navigate(UserProfileFragmentDirections.actionUserProfileFragmentToHomeFragment())
             }
+    }
+
+    private fun showLogOutDialog() {
+        showDialog(
+            title = getString(R.string.dialog_logout_title),
+            description = getString(R.string.dialog_logout_desc),
+            btnPositiveLabel = getString(R.string.btn_confirm),
+            btnNegativeLabel = getString(R.string.btn_cancel),
+            onBtnPositiveClick = {
+
+            },
+            onBtnNegativeClick = {
+
+            }
+        )
     }
 
     private fun showDeleteAccountDialog() {

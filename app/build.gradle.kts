@@ -4,6 +4,7 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -57,6 +58,9 @@ dependencies {
 
     // QR scanner
     implementation("com.budiyev.android:code-scanner:2.1.0")
+
+    // Google maps
+    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     // Country Code Picker
     implementation("com.hbb20:ccp:2.6.1")

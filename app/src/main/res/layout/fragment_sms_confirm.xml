@@ -14,7 +14,7 @@
             android:layout_width="176dp"
             android:layout_height="103dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             android:src="@drawable/fys_logo"
             app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,10 +36,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintSmsConfirm"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/tvSmsSent"
@@ -48,9 +48,13 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+
                     android:layout_marginEnd="16dp"
                     android:layout_marginBottom="16dp"
-                    android:text="@string/tv_sms_sent" />
+                    android:text="@string/tv_sms_sent"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintStart_toStartOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintTop_toTopOf="@+id/constraintSmsConfirm" />
 
                 <com.fraggjkee.smsconfirmationview.SmsConfirmationView
                     android:id="@+id/etSms"
@@ -60,6 +64,9 @@
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:background="@android:color/transparent"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintStart_toStartOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSmsSent"
                     app:scv_codeLength="5"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
@@ -69,19 +76,6 @@
                     app:scv_symbolTextColor="@color/fys_primary"
                     app:scv_symbolsSpacing="10dp" />
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    style="?android:attr/progressBarStyleSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="12dp"
-                    android:indeterminate="true"
-                    android:indeterminateTint="@color/fys_primary"
-                    android:indeterminateTintMode="src_atop"
-                    android:visibility="gone"
-                    tools:visibility="visible" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnConfirm"
                     style="@style/FysPrimaryButton"
@@ -90,7 +84,25 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="@string/btn_confirm" />
+                    android:text="@string/btn_confirm"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintStart_toStartOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintTop_toBottomOf="@+id/etSms" />
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:indeterminateTint="@color/white"
+                    android:indeterminateTintMode="src_atop"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/btnConfirm"
+                    app:layout_constraintEnd_toEndOf="@+id/btnConfirm"
+                    app:layout_constraintStart_toStartOf="@+id/btnConfirm"
+                    app:layout_constraintTop_toTopOf="@+id/btnConfirm"
+                    tools:visibility="visible" />
 
                 <TextView
                     android:id="@+id/btnResendSms"
@@ -101,9 +113,13 @@
                     android:layout_marginTop="12dp"
                     android:layout_marginBottom="12dp"
                     android:enabled="false"
-                    android:text="@string/btn_resend_sms" />
+                    android:text="@string/btn_resend_sms"
+                    app:layout_constraintBottom_toBottomOf="@id/constraintSmsConfirm"
+                    app:layout_constraintEnd_toEndOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintStart_toStartOf="@+id/constraintSmsConfirm"
+                    app:layout_constraintTop_toBottomOf="@+id/btnConfirm" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
         <TextView

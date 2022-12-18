@@ -12,7 +12,7 @@
             android:id="@+id/imageView"
             android:layout_width="176dp"
             android:layout_height="103dp"
-            android:contentDescription="@null"
+            android:importantForAccessibility="no"
             android:layout_marginTop="-100dp"
             android:src="@drawable/fys_logo"
             app:layout_constraintBottom_toBottomOf="parent"

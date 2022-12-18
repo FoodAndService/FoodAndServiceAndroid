@@ -109,7 +109,7 @@
     </fragment>
     <fragment
         android:id="@+id/tableReservationFragment"
-        android:name="com.foodandservice.presentation.ui.table_reservation.TableReservationFragment"
+        android:name="com.foodandservice.presentation.ui.table_booking.TableBookingFragment"
         android:label="TableReservationFragment"
         tools:layout="@layout/fragment_table_reservation" />
     <fragment
@@ -132,8 +132,11 @@
         android:label="RestaurantDetailsFragment"
         tools:layout="@layout/fragment_restaurant_details">
         <action
-            android:id="@+id/action_restaurantDetailsFragment_to_tableReservationFragment"
+            android:id="@+id/action_restaurantDetailsFragment_to_tableBookingFragment"
             app:destination="@id/tableReservationFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_restaurantExtraDetailsFragment"
+            app:destination="@id/restaurantExtraDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -178,4 +181,9 @@
             android:id="@+id/action_userProfileFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/restaurantExtraDetailsFragment"
+        android:name="com.foodandservice.presentation.ui.restaurant_extra_details.RestaurantExtraDetailsFragment"
+        android:label="RestaurantExtraDetailsFragment"
+        tools:layout="@layout/fragment_restaurant_extra_details" />
 </navigation>

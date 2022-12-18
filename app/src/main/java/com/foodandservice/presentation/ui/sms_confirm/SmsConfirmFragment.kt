@@ -46,12 +46,14 @@ class SmsConfirmFragment : Fragment() {
                     is SmsConfirmState.Loading -> {
                         binding.apply {
                             btnConfirm.isEnabled = false
+                            btnConfirm.text = ""
                             progressBar.visibility = View.VISIBLE
                         }
                     }
                     is SmsConfirmState.Idle -> {
                         binding.apply {
                             btnConfirm.isEnabled = true
+                            btnConfirm.text = getString(R.string.btn_confirm)
                             progressBar.visibility = View.GONE
                         }
                     }

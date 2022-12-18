@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="actv_schedule">HORARIOS</string>
+    <string name="schedule">Horario</string>
 
     <string name="btn_accept">Aceptar</string>
     <string name="btn_access">Acceder</string>
@@ -12,16 +12,18 @@
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="btn_reserve">Reservar</string>
-    <string name="btn_send_review">Enviar reseña</string>
+    <string name="btn_save_discount">Guardar cupón</string>
+    <string name="btn_save_email">Guardar email</string>
     <string name="btn_save_name">Guardar nombre</string>
     <string name="btn_save_phone">Guardar número</string>
-    <string name="btn_save_email">Guardar email</string>
-    <string name="btn_save_discount">Guardar cupón</string>
+    <string name="btn_send_review">Enviar reseña</string>
 
     <string name="category_filter_title">CATEGORÍA: %1$s</string>
 
     <string name="dialog_delete_account_desc">Atención: si elimina su cuenta, no podrá recuperar ninguna información</string>
     <string name="dialog_delete_account_title">Eliminar cuenta</string>
+    <string name="dialog_logout_desc">¿Estás seguro de que quieres cerrar sesión?</string>
+    <string name="dialog_logout_title">Cerrar sesión</string>
 
     <string name="error_network">Ha ocurrido un error de red</string>
     <string name="error_phone_format">Formato incorrecto</string>
@@ -37,8 +39,8 @@
     <string name="hint_tie_reserve_date">Fecha de la reserva</string>
     <string name="hint_tie_reserve_hours">Horas disponibles</string>
     <string name="hint_tie_review">Deja tu reseña aquí</string>
-    <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_email">Tu email</string>
+    <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_phone_number">Tu Nº de teléfono</string>
 
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
@@ -67,14 +69,15 @@
     <string name="order_status_preparing">Tu pedido se está realizando</string>
     <string name="order_status_waiting_confirmation">Esperando confirmación</string>
 
+    <string name="settings_category_payment_methods">Métodos de pago</string>
+    <string name="settings_category_personal_details">Datos personales</string>
+    <string name="settings_category_security">Seguridad</string>
     <string name="settings_change_email">Cambiar mi email</string>
     <string name="settings_change_fullname">Cambiar mi nombre</string>
     <string name="settings_change_phone_number">Cambiar mi número</string>
     <string name="settings_credit_debit_cards">Mis tarjetas de débito/crédito</string>
     <string name="settings_delete_account">Eliminar cuenta</string>
-    <string name="settings_category_payment_methods">Métodos de pago</string>
-    <string name="settings_category_personal_details">Datos personales</string>
-    <string name="settings_category_security">Seguridad</string>
+    <string name="settings_logout">Cerrar sesión</string>
 
     <string name="skip">Saltar</string>
 

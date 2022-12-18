@@ -42,8 +42,8 @@ class LoginFragment : Fragment() {
                     is LoginState.Loading -> {
                         binding.apply {
                             btnAccess.isEnabled = false
-                            progressBar.visibility = View.VISIBLE
                             btnAccess.text = ""
+                            progressBar.visibility = View.VISIBLE
                         }
                     }
                     is LoginState.Idle -> {

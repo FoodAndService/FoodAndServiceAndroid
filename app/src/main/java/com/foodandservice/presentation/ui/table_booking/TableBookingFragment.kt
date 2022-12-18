@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.table_reservation
+package com.foodandservice.presentation.ui.table_booking
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,9 +11,9 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentTableReservationBinding
 import org.koin.android.ext.android.get
 
-class TableReservationFragment : Fragment() {
+class TableBookingFragment : Fragment() {
     private lateinit var binding: FragmentTableReservationBinding
-    private val viewModel: TableReservationViewModel = get()
+    private val viewModel: TableBookingViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -27,15 +27,15 @@ class TableReservationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.tableReservationState.collect { state ->
+            viewModel.tableBookingState.collect { state ->
                 when (state) {
-                    is TableReservationState.Success -> {
+                    is TableBookingState.Success -> {
 
                     }
-                    is TableReservationState.Error -> {
+                    is TableBookingState.Error -> {
                         TODO("Show error")
                     }
-                    is TableReservationState.Idle -> {}
+                    is TableBookingState.Idle -> {}
                 }
             }
         }
