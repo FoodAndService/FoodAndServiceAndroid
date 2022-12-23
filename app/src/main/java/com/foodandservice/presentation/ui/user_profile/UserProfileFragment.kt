@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentUserProfileBinding
-import com.foodandservice.util.extensions.CoreExtensions.showBottomSheet
+import com.foodandservice.util.extensions.CoreExtensions.showAccountSettingsBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showDialog
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 
@@ -35,7 +35,7 @@ class UserProfileFragment : Fragment() {
             }
 
             btnChangeFullname.setOnClickListener {
-                showBottomSheet(
+                showAccountSettingsBottomSheet(
                     layout = R.layout.bottom_sheet_change_name,
                     onBtnActionClick = {
                         showToast("Name saved")
@@ -44,7 +44,7 @@ class UserProfileFragment : Fragment() {
             }
 
             btnChangeEmail.setOnClickListener {
-                showBottomSheet(
+                showAccountSettingsBottomSheet(
                     layout = R.layout.bottom_sheet_change_email,
                     onBtnActionClick = {
                         showToast("Email saved")
@@ -53,7 +53,7 @@ class UserProfileFragment : Fragment() {
             }
 
             btnChangePhone.setOnClickListener {
-                showBottomSheet(
+                showAccountSettingsBottomSheet(
                     layout = R.layout.bottom_sheet_change_phone,
                     onBtnActionClick = {
                         showToast("Phone saved")

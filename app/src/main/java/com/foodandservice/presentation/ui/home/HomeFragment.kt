@@ -17,6 +17,7 @@ import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.MarginItemDecoration
+import com.foodandservice.util.extensions.CoreExtensions.showHomeFilterBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
 
@@ -59,7 +60,8 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             }
         }
 
-        binding.btnCart.setOnClickListener {
+        binding.apply {
+            btnCart.setOnClickListener {
 //            showDialog(
 //                "Confirmar reserva",
 //                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
@@ -68,7 +70,32 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 //
 //                }
 //            )
-            findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
+                findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
+            }
+
+            btnFilter.setOnClickListener {
+                showHomeFilterBottomSheet(
+                    layout = R.layout.bottom_sheet_home_filter,
+                    onBtnRecommendedClick = {
+
+                    },
+                    onBtnPopularClick = {
+
+                    },
+                    onBtnValoratedClick = {
+
+                    },
+                    onBtnPriceLowClick = {
+
+                    },
+                    onBtnPriceMediumClick = {
+
+                    },
+                    onBtnPriceHighClick = {
+
+                    }
+                )
+            }
         }
 
         requireActivity()

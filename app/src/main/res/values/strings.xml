@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="schedule">SCHEDULE</string>
-
     <string name="app_name" translatable="false">Food &amp; Service</string>
 
     <string name="btn_accept">Accept</string>
@@ -10,6 +8,12 @@
     <string name="btn_confirm">Confirm</string>
     <string name="btn_finish">Finish</string>
     <string name="btn_finish_signup">Finish sign up</string>
+    <string name="btn_home_filter_popular">Popular</string>
+    <string name="btn_home_filter_price_high" translatable="false">$$$</string>
+    <string name="btn_home_filter_price_low" translatable="false">$</string>
+    <string name="btn_home_filter_price_medium" translatable="false">$$</string>
+    <string name="btn_home_filter_recommended">Recommended</string>
+    <string name="btn_home_filter_valorated">Valorated</string>
     <string name="btn_next">Next</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
@@ -20,7 +24,7 @@
     <string name="btn_save_phone">Save phone</string>
     <string name="btn_send_review">Send review</string>
 
-    <string name="category_filter_title">CATEGORY: %1$s</string>
+    <string name="category_filter_title">Category: %1$s</string>
 
     <string name="dialog_delete_account_desc">Warning: if you delete your account, you will not be able to recover any information</string>
     <string name="dialog_delete_account_title">Delete account</string>
@@ -44,6 +48,8 @@
     <string name="hint_tie_your_email">Your email</string>
     <string name="hint_tie_your_name">Your name</string>
     <string name="hint_tie_your_phone_number">Your phone number</string>
+
+    <string name="home_bottom_sheet_filters">Filters</string>
 
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
@@ -71,6 +77,8 @@
     <string name="order_status_preparing">Your order is being processed</string>
     <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
 
+    <string name="schedule">Schedule</string>
+
     <string name="settings_category_payment_methods">Payment methods</string>
     <string name="settings_category_personal_details">Personal details</string>
     <string name="settings_category_security">Security</string>
@@ -84,6 +92,8 @@
     <string name="skip">Skip</string>
 
     <string name="tie_fullname">Full name</string>
+
+    <string name="til_hint_search_restaurant">Search for restaurants near you</string>
 
     <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
     <string name="tv_lost_phone_number">Lost your number?</string>

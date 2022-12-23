@@ -91,8 +91,8 @@
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            style="@style/FysDarkLargeText"
             android:id="@+id/tvReviewTitle"
+            style="@style/FysDarkLargeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -118,9 +118,9 @@
                 android:id="@+id/tieReview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
                 android:background="@android:color/transparent"
                 android:hint="@string/hint_tie_review"
+                android:inputType="text"
                 android:maxLength="180" />
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
-    <string name="schedule">Horario</string>
-
     <string name="btn_accept">Aceptar</string>
     <string name="btn_access">Acceder</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_confirm">Confirmar</string>
     <string name="btn_finish">Finalizar</string>
     <string name="btn_finish_signup">Finalizar registro</string>
+    <string name="btn_home_filter_popular">Populares</string>
+    <string name="btn_home_filter_recommended">Recomendados</string>
+    <string name="btn_home_filter_valorated">Valorados</string>
     <string name="btn_next">Siguiente</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
@@ -18,7 +19,7 @@
     <string name="btn_save_phone">Guardar número</string>
     <string name="btn_send_review">Enviar reseña</string>
 
-    <string name="category_filter_title">CATEGORÍA: %1$s</string>
+    <string name="category_filter_title">Categoría: %1$s</string>
 
     <string name="dialog_delete_account_desc">Atención: si elimina su cuenta, no podrá recuperar ninguna información</string>
     <string name="dialog_delete_account_title">Eliminar cuenta</string>
@@ -42,6 +43,8 @@
     <string name="hint_tie_your_email">Tu email</string>
     <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_phone_number">Tu Nº de teléfono</string>
+
+    <string name="home_bottom_sheet_filters">Filtros</string>
 
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
     <string name="item_booking_diners_singular">%s (%s comensal)</string>
@@ -69,6 +72,8 @@
     <string name="order_status_preparing">Tu pedido se está realizando</string>
     <string name="order_status_waiting_confirmation">Esperando confirmación</string>
 
+    <string name="schedule">Horario</string>
+
     <string name="settings_category_payment_methods">Métodos de pago</string>
     <string name="settings_category_personal_details">Datos personales</string>
     <string name="settings_category_security">Seguridad</string>
@@ -82,6 +87,8 @@
     <string name="skip">Saltar</string>
 
     <string name="tie_fullname">Nombre completo</string>
+
+    <string name="til_hint_search_restaurant">Buscar restaurantes cerca de ti</string>
 
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>

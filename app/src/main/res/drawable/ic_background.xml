@@ -10,25 +10,25 @@
     android:viewportHeight="812">
     <group>
         <path
-            android:pathData="M0,0h375v812h-375z"
-            android:fillColor="#fff" />
+            android:fillColor="#fff"
+            android:pathData="M0,0h375v812h-375z" />
         <path android:pathData="M-661.505,-482.949l2243.154,-275.425l121.382,988.576l-2243.154,275.425z">
             <aapt:attr name="android:fillColor">
                 <gradient
-                    android:startY="-482.8218"
-                    android:startX="-318.64728"
-                    android:endY="524.587"
                     android:endX="1350.7151"
+                    android:endY="524.587"
+                    android:startX="-318.64728"
+                    android:startY="-482.8218"
                     android:type="linear">
                     <item
-                        android:offset="0"
-                        android:color="#FFAE375D" />
+                        android:color="#FFAE375D"
+                        android:offset="0" />
                     <item
-                        android:offset="0.013"
-                        android:color="#FFAE375D" />
+                        android:color="#FFAE375D"
+                        android:offset="0.013" />
                     <item
-                        android:offset="1"
-                        android:color="#FFB24239" />
+                        android:color="#FFB24239"
+                        android:offset="1" />
                 </gradient>
             </aapt:attr>
         </path>

@@ -1,0 +1,175 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/ivGrapple"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_grapple"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/ivFilter"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_filter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/tvFilters"
+            style="@style/FysDarkLargeText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
+            android:text="@string/home_bottom_sheet_filters"
+            app:layout_constraintBottom_toBottomOf="@+id/ivFilter"
+            app:layout_constraintStart_toEndOf="@+id/ivFilter"
+            app:layout_constraintTop_toTopOf="@+id/ivFilter" />
+
+        <ImageView
+            android:id="@+id/ivRecommended"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_recommend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivFilter"
+            app:tint="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/btnRecommended"
+            style="@style/FysDarkTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/btn_home_filter_recommended"
+            app:layout_constraintBottom_toBottomOf="@id/ivRecommended"
+            app:layout_constraintStart_toEndOf="@id/ivRecommended"
+            app:layout_constraintTop_toTopOf="@id/ivRecommended"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <ImageView
+            android:id="@+id/ivPopular"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_recommend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivRecommended"
+            app:tint="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/btnPopular"
+            style="@style/FysDarkTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/btn_home_filter_popular"
+            app:layout_constraintBottom_toBottomOf="@id/ivPopular"
+            app:layout_constraintStart_toEndOf="@id/ivPopular"
+            app:layout_constraintTop_toTopOf="@id/ivPopular"
+            app:layout_constraintVertical_bias="0.7" />
+
+        <ImageView
+            android:id="@+id/ivValorated"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_recommend"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivPopular"
+            app:tint="@color/text_dark" />
+
+        <TextView
+            android:id="@+id/btnValorated"
+            style="@style/FysDarkTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/btn_home_filter_valorated"
+            app:layout_constraintBottom_toBottomOf="@id/ivValorated"
+            app:layout_constraintStart_toEndOf="@id/ivValorated"
+            app:layout_constraintTop_toTopOf="@id/ivValorated"
+            app:layout_constraintVertical_bias="0.7" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPriceLow"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/square_shape_white"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/btn_home_filter_price_low"
+            android:textColor="@color/text_normal"
+            app:backgroundTint="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnValorated" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPriceMedium"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/square_shape_white"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/btn_home_filter_price_medium"
+            android:textColor="@color/text_normal"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/btnPriceLow"
+            app:layout_constraintStart_toEndOf="@id/btnPriceLow"
+            app:layout_constraintTop_toTopOf="@id/btnPriceLow" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPriceHigh"
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/square_shape_white"
+            android:elevation="10dp"
+            android:foreground="?attr/selectableItemBackground"
+            android:stateListAnimator="@null"
+            android:text="@string/btn_home_filter_price_high"
+            android:textColor="@color/text_normal"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/btnPriceMedium"
+            app:layout_constraintStart_toEndOf="@id/btnPriceMedium"
+            app:layout_constraintTop_toTopOf="@id/btnPriceMedium" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnPriceLow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
