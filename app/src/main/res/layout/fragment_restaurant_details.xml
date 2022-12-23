@@ -96,8 +96,10 @@
                             android:layout_marginStart="22dp"
                             android:layout_marginTop="16dp"
                             android:layout_marginEnd="22dp"
+                            android:layout_marginBottom="8dp"
                             app:cardCornerRadius="10dp"
                             app:cardElevation="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/btnReserve">
@@ -274,8 +276,11 @@
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    style="@style/FysBackButton"
+                    style="@style/FysImageButton"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="34dp"
                     android:importantForAccessibility="no"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -289,8 +294,11 @@
 
                 <ImageButton
                     android:id="@+id/btnCart"
-                    style="@style/FysCartButton"
+                    style="@style/FysImageButton"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginEnd="18dp"
                     android:importantForAccessibility="no"
+                    android:src="@drawable/ic_cart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

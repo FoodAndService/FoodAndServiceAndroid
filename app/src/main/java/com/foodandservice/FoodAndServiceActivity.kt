@@ -11,12 +11,13 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import com.foodandservice.common.Constants.BottomBarVisibleFragments
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
 
 class FoodAndServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodandserviceBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,6 +26,15 @@ class FoodAndServiceActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_foodandservice)
 
         navController = findNavController(R.id.navHostFragment)
+
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.homeFragment,
+                R.id.favouritesFragment,
+                R.id.ordersFragment,
+                R.id.userProfileFragment
+            )
+        )
 
         binding.apply {
             bottomNavView.setupWithNavController(navController)
@@ -47,7 +57,7 @@ class FoodAndServiceActivity : AppCompatActivity() {
         }
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            setBottomBarVisibility(BottomBarVisibleFragments.contains(destination.id))
+            setBottomBarVisibility(appBarConfiguration.topLevelDestinations.contains(destination.id))
         }
     }
 

@@ -30,8 +30,11 @@
 
                 <ImageButton
                     android:id="@+id/btnCart"
-                    style="@style/FysCartButton"
+                    style="@style/FysImageButton"
+                    android:layout_marginTop="34dp"
+                    android:layout_marginEnd="18dp"
                     android:importantForAccessibility="no"
+                    android:src="@drawable/ic_cart"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -56,18 +59,22 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:hint="@string/til_hint_search_restaurant"
+                android:inputType="text"
+                android:maxLines="1"
                 android:textColor="@color/text_normal" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <ImageButton
             android:id="@+id/btnFilter"
-            style="@style/FysFilterButton"
+            style="@style/FysIconButtonPrimary"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="16dp"
             android:importantForAccessibility="no"
+            android:src="@drawable/ic_filter"
             app:layout_constraintBottom_toBottomOf="@+id/tilSearch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tilSearch"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="2" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoryTag"

@@ -22,8 +22,11 @@
 
                 <ImageButton
                     android:id="@+id/btnBack"
-                    style="@style/FysBackButton"
+                    style="@style/FysImageButton"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="34dp"
                     android:importantForAccessibility="no"
+                    android:src="@drawable/ic_arrow_back"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 

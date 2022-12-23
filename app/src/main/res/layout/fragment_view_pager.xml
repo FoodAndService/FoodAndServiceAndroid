@@ -84,9 +84,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSkip"
             style="@style/FysPrimaryTextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="32dp"
             android:text="@string/skip"
             app:layout_constraintBottom_toTopOf="@+id/tvCopyright"

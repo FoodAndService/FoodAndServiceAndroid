@@ -55,6 +55,8 @@ class SmsConfirmViewModel(
                 is Resource.Failure -> _smsConfirmState.value =
                     SmsConfirmState.Error(response.message)
             }
+
+            _smsConfirmState.value = SmsConfirmState.Idle
         }
     }
 

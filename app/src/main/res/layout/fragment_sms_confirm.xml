@@ -104,9 +104,11 @@
                     app:layout_constraintTop_toTopOf="@+id/btnConfirm"
                     tools:visibility="visible" />
 
-                <TextView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnResendSms"
                     style="@style/FysPrimaryTextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="6dp"
                     android:layout_marginBottom="6dp"
                     android:enabled="false"
