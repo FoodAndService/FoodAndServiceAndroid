@@ -8,17 +8,8 @@ import java.util.logging.LogManager
 import java.util.logging.LogRecord
 
 class AndroidLoggingHandler : Handler() {
-
     override fun isLoggable(record: LogRecord?): Boolean =
         super.isLoggable(record) && BuildConfig.DEBUG
-
-    override fun close() {
-        // ignore
-    }
-
-    override fun flush() {
-        // ignore
-    }
 
     override fun publish(record: LogRecord) {
         val tag = record.loggerName
@@ -53,4 +44,7 @@ class AndroidLoggingHandler : Handler() {
             rootLogger.level = Level.FINE
         }
     }
+
+    override fun close() {}
+    override fun flush() {}
 }

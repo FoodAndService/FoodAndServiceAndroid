@@ -13,7 +13,7 @@ import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
 import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
-import com.foodandservice.util.MarginItemDecoration
+import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.getTabbedListMediatorIndices
 import org.koin.android.ext.android.get
 
@@ -119,7 +119,7 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
         binding.apply {
             rvProduct.adapter = productAdapter
-            rvProduct.addItemDecoration(MarginItemDecoration(topMargin = 32))
+            rvProduct.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))
         }
 
         initTabLayout(categoriesWithProducts)

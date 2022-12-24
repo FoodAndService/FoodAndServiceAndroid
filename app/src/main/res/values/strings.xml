@@ -98,6 +98,7 @@
     <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
     <string name="tv_lost_phone_number">Lost your number?</string>
     <string name="tv_order_history_days_ago">%1$d days ago</string>
+    <string name="tv_product_refill" translatable="false">Refill</string>
     <string name="tv_refill">Refill</string>
     <string name="tv_review_title">How did you like %1$s?</string>
     <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>

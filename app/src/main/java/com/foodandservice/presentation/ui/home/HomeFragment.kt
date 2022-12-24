@@ -16,7 +16,7 @@ import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.CategoryRestaurantsAdapter
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
-import com.foodandservice.util.MarginItemDecoration
+import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.showHomeFilterBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
@@ -112,7 +112,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         binding.apply {
             rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
             rvCategoryTag.adapter = categoryTagAdapter
-            rvCategoryTag.addItemDecoration(MarginItemDecoration(24))
+            rvCategoryTag.addItemDecoration(RecyclerViewItemDecoration(24))
         }
     }
 
