@@ -62,52 +62,262 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     private fun initAdapters() {
         val categoriesWithProducts = listOf(
             CategoryWithProducts(
-                "Bebidas", listOf(
-                    Product(1, 1, "Pepsi", true, "2,00"),
-                    Product(2, 1, "Fanta", true, "2,00"),
-                    Product(3, 1, "Nestea", true, "2,50"),
-                    Product(4, 1, "Pepsi Max", true, "2,90"),
-                    Product(5, 1, "Lágrimas", true, "4,20"),
+                categoryName = "Bebidas", products = listOf(
+                    Product(
+                        id = "1",
+                        name = "Pepsi",
+                        image = "1",
+                        inStock = false,
+                        isRefill = true,
+                        price = "2,00"
+                    ),
+                    Product(
+                        id = "2",
+                        name = "Fanta",
+                        image = "1",
+                        inStock = true,
+                        isRefill = true,
+                        price = "2,00"
+                    ),
+                    Product(
+                        id = "3",
+                        name = "Nestea",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,50"
+                    ),
+                    Product(
+                        id = "4",
+                        name = "Pepsi Max",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,90"
+                    ),
+                    Product(
+                        id = "5",
+                        name = "Lágrimas",
+                        image = "1",
+                        inStock = false,
+                        isRefill = true,
+                        price = "4,20"
+                    ),
                 )
             ), CategoryWithProducts(
-                "Entrantes", listOf(
-                    Product(6, 1, "Aceitunas verdes", false, "1,50"),
-                    Product(7, 1, "Aceitunas negras", false, "1,80"),
-                    Product(8, 1, "Croquetas de atún", false, "3,80"),
-                    Product(9, 1, "Guacamole", false, "2,80"),
-                    Product(10, 1, "Quesadillas", false, "2,20"),
+                categoryName = "Entrantes", products = listOf(
+                    Product(
+                        id = "6",
+                        name = "Aceitunas verdes",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "1,50"
+                    ),
+                    Product(
+                        id = "7",
+                        name = "Aceitunas negras",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "1,80"
+                    ),
+                    Product(
+                        id = "8",
+                        name = "Croquetas de atún",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "3,80"
+                    ),
+                    Product(
+                        id = "9",
+                        name = "Guacamole",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,80"
+                    ),
+                    Product(
+                        id = "10",
+                        name = "Quesadillas",
+                        image = "1",
+                        inStock = false,
+                        isRefill = false,
+                        price = "2,20"
+                    ),
                 )
             ), CategoryWithProducts(
-                "Pizzas", listOf(
-                    Product(11, 1, "Pizza carbonara", false, "8,50"),
-                    Product(12, 1, "Pizza barbacoa", false, "9,80"),
-                    Product(13, 1, "Pizza cuatro quesos", false, "7,80"),
-                    Product(14, 1, "Pizza extravaganza", false, "9,50"),
-                    Product(15, 1, "Pizza pulled pork", false, "12,80"),
+                categoryName = "Pizzas", products = listOf(
+                    Product(
+                        id = "11",
+                        name = "Pizza carbonara",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "8,50"
+                    ),
+                    Product(
+                        id = "12",
+                        name = "Pizza barbacoa",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "9,80"
+                    ),
+                    Product(
+                        id = "13",
+                        name = "Pizza cuatro quesos",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "7,80"
+                    ),
+                    Product(
+                        id = "14",
+                        name = "Pizza extravaganza",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "9,50"
+                    ),
+                    Product(
+                        id = "15",
+                        name = "Pizza pulled pork",
+                        image = "1",
+                        inStock = false,
+                        isRefill = false,
+                        price = "12,80"
+                    ),
                 )
             ), CategoryWithProducts(
-                "Sopas", listOf(
-                    Product(16, 1, "Gazpacho", false, "5,80"),
-                    Product(17, 1, "Salmorejo", false, "5,90"),
-                    Product(18, 1, "Sopa de fideos", false, "4,90"),
-                    Product(19, 1, "Caldo de pollo", false, "3,90"),
-                    Product(20, 1, "Sopa de verduras", false, "5,10"),
+                categoryName = "Sopas", products = listOf(
+                    Product(
+                        id = "16",
+                        name = "Gazpacho",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "5,80"
+                    ),
+                    Product(
+                        id = "17",
+                        name = "Salmorejo",
+                        image = "1",
+                        inStock = false,
+                        isRefill = false,
+                        price = "5,90"
+                    ),
+                    Product(
+                        id = "18",
+                        name = "Sopa de fideos",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "4,90"
+                    ),
+                    Product(
+                        id = "19",
+                        name = "Caldo de pollo",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "3,90"
+                    ),
+                    Product(
+                        id = "20",
+                        name = "Sopa de verduras",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "5,10"
+                    ),
                 )
             ), CategoryWithProducts(
-                "Aperitivos", listOf(
-                    Product(21, 1, "Patatas fritas", false, "3,10"),
-                    Product(22, 1, "Patatas gajo", false, "3,10"),
-                    Product(23, 1, "Nuggets de pollo", false, "4,10"),
-                    Product(24, 1, "Tiras de pollo", false, "4,50"),
-                    Product(25, 1, "Patatas bravas", false, "6,10"),
+                categoryName = "Aperitivos", products = listOf(
+                    Product(
+                        id = "21",
+                        name = "Patatas fritas",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "3,10"
+                    ),
+                    Product(
+                        id = "22",
+                        name = "Patatas gajo",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "3,10"
+                    ),
+                    Product(
+                        id = "23",
+                        name = "Nuggets de pollo",
+                        image = "1",
+                        inStock = false,
+                        isRefill = false,
+                        price = "4,10"
+                    ),
+                    Product(
+                        id = "24",
+                        name = "Tiras de pollo",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "4,50"
+                    ),
+                    Product(
+                        id = "25",
+                        name = "Patatas bravas",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "6,10"
+                    ),
                 )
             ), CategoryWithProducts(
-                "Postres", listOf(
-                    Product(26, 1, "Helado de fresa", false, "2,90"),
-                    Product(27, 1, "Helado de chocolate", false, "3,10"),
-                    Product(28, 1, "Tarta de queso", false, "2,90"),
-                    Product(29, 1, "Flan", false, "2,90"),
-                    Product(30, 1, "Tiramisú", false, "2,90"),
+                categoryName = "Postres", products = listOf(
+                    Product(
+                        id = "26",
+                        name = "Helado de fresa",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,90"
+                    ),
+                    Product(
+                        id = "27",
+                        name = "Helado de chocolate",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "3,10"
+                    ),
+                    Product(
+                        id = "28",
+                        name = "Tarta de queso",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,90"
+                    ),
+                    Product(
+                        id = "29",
+                        name = "Flan",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,90"
+                    ),
+                    Product(
+                        id = "30",
+                        name = "Tiramisú",
+                        image = "1",
+                        inStock = true,
+                        isRefill = false,
+                        price = "2,90"
+                    )
                 )
             )
         )

@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fys_background"
-        tools:context=".presentation.ui.apply_discount.ApplyDiscountFragment">
+        tools:context=".presentation.ui.save_discount.SaveDiscountFragment">
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -44,14 +44,16 @@
             android:id="@+id/materialCardView"
             android:layout_width="65dp"
             android:layout_height="65dp"
-            android:layout_marginTop="132dp"
+            android:layout_marginBottom="16dp"
             android:background="@android:color/transparent"
             app:cardCornerRadius="8dp"
             app:cardElevation="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvApplyDiscount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_chainStyle="packed">
 
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -82,8 +84,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="22dp"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvDiscountDescription"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -96,67 +99,90 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="22dp"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="5"
+            app:layout_constraintBottom_toTopOf="@+id/chipOne"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvApplyDiscount"
             tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" />
 
-        <com.google.android.material.chip.Chip
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/chipOne"
-            style="@style/FysWhiteChip"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/chipTwo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvDiscountDescription"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Discount of 20%" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDiscountDescription">
 
-        <com.google.android.material.chip.Chip
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/FysPrimaryMediumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="Discount of 20%" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/chipTwo"
-            style="@style/FysWhiteChip"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="22dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/chipThree"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipOne"
-            tools:text="Expires in 30 days" />
+            app:layout_constraintTop_toBottomOf="@+id/chipOne">
 
-        <com.google.android.material.chip.Chip
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/FysPrimaryMediumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="Expires in 30 days" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
             android:id="@+id/chipThree"
-            style="@style/FysWhiteChip"
             android:layout_width="match_parent"
+            android:layout_height="50dp"
             android:layout_marginStart="22dp"
             android:layout_marginEnd="22dp"
-            android:layout_marginBottom="12dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintBottom_toTopOf="@+id/btnSaveDiscount"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipTwo"
-            tools:text="Minimum spend of 20€" />
+            app:layout_constraintTop_toBottomOf="@+id/chipTwo">
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/FysPrimaryMediumText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="Minimum spend of 20€" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveDiscount"
-            style="@style/FysPrimaryButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="22dp"
-            android:layout_marginEnd="22dp"
+            style="@style/FysPrimaryFullWidthButton"
+            android:text="@string/btn_save_discount"
+            app:icon="@drawable/ic_discount"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/chipThree"
-            tools:text="Save discount" />
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -2,6 +2,7 @@
 <resources>
     <string name="btn_accept">Aceptar</string>
     <string name="btn_access">Acceder</string>
+    <string name="btn_book">Reservar</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_confirm">Confirmar</string>
     <string name="btn_finish">Finalizar</string>
@@ -12,8 +13,7 @@
     <string name="btn_next">Siguiente</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
-    <string name="btn_reserve">Reservar</string>
-    <string name="btn_save_discount">Guardar cupón</string>
+    <string name="btn_save_discount">Guardar descuento</string>
     <string name="btn_save_email">Guardar email</string>
     <string name="btn_save_name">Guardar nombre</string>
     <string name="btn_save_phone">Guardar número</string>
@@ -42,7 +42,7 @@
     <string name="hint_tie_review">Deja tu reseña aquí</string>
     <string name="hint_tie_your_email">Tu email</string>
     <string name="hint_tie_your_name">Tu nombre</string>
-    <string name="hint_tie_your_phone_number">Tu Nº de teléfono</string>
+    <string name="hint_tie_your_phone_number">Tu número</string>
 
     <string name="home_bottom_sheet_filters">Filtros</string>
 
@@ -81,21 +81,22 @@
     <string name="settings_change_fullname">Cambiar mi nombre</string>
     <string name="settings_change_phone_number">Cambiar mi número</string>
     <string name="settings_credit_debit_cards">Mis tarjetas de débito/crédito</string>
-    <string name="settings_delete_account">Eliminar cuenta</string>
+    <string name="settings_delete_account">Eliminar mi cuenta</string>
     <string name="settings_logout">Cerrar sesión</string>
 
     <string name="skip">Saltar</string>
 
     <string name="tie_fullname">Nombre completo</string>
 
-    <string name="til_hint_search_restaurant">Buscar restaurantes cerca de ti</string>
+    <string name="til_hint_search_restaurant">Buscar restaurantes cerca de mi</string>
 
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>
     <string name="tv_order_history_days_ago">Hace %1$d días</string>
     <string name="tv_refill">Refill</string>
     <string name="tv_review_title">¿Qué te pareció %1$s?</string>
-    <string name="tv_sms_sent">Te hemos enviado un SMS a su teléfono, por favor introduce la clave a continuación</string>
+    <string name="tv_sms_sent">Hemos enviado un SMS a tu teléfono, por favor introduce la clave a continuación</string>
+    <string name="tv_table_booking_restaurant">Reservar en %s</string>
 
     <string name="view_my_order">Ver pedido</string>
 </resources>

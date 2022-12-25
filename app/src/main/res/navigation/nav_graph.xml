@@ -111,7 +111,7 @@
         android:id="@+id/tableReservationFragment"
         android:name="com.foodandservice.presentation.ui.table_booking.TableBookingFragment"
         android:label="TableReservationFragment"
-        tools:layout="@layout/fragment_table_reservation" />
+        tools:layout="@layout/fragment_table_booking" />
     <fragment
         android:id="@+id/reviewCreateFragment"
         android:name="com.foodandservice.presentation.ui.review_create.ReviewCreateFragment"
@@ -164,9 +164,9 @@
         tools:layout="@layout/fragment_order_status" />
     <fragment
         android:id="@+id/applyDiscountFragment"
-        android:name="com.foodandservice.presentation.ui.apply_discount.ApplyDiscountFragment"
+        android:name="com.foodandservice.presentation.ui.save_discount.SaveDiscountFragment"
         android:label="ApplyDiscountFragment"
-        tools:layout="@layout/fragment_apply_discount" />
+        tools:layout="@layout/fragment_save_discount" />
     <fragment
         android:id="@+id/bookingsFragment"
         android:name="com.foodandservice.presentation.ui.bookings.BookingsFragment"

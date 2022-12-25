@@ -4,6 +4,7 @@
 
     <string name="btn_accept">Accept</string>
     <string name="btn_access">Access</string>
+    <string name="btn_book">Book</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_finish">Finish</string>
@@ -17,7 +18,6 @@
     <string name="btn_next">Next</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
-    <string name="btn_reserve">Reserve</string>
     <string name="btn_save_discount">Save discount</string>
     <string name="btn_save_email">Save email</string>
     <string name="btn_save_name">Save name</string>
@@ -44,10 +44,10 @@
     <string name="hint_tie_prefix">Country</string>
     <string name="hint_tie_reserve_date">Booking date</string>
     <string name="hint_tie_reserve_hours">Available hours</string>
-    <string name="hint_tie_review">Leave your review here</string>
+    <string name="hint_tie_review">Write your review here</string>
     <string name="hint_tie_your_email">Your email</string>
     <string name="hint_tie_your_name">Your name</string>
-    <string name="hint_tie_your_phone_number">Your phone number</string>
+    <string name="hint_tie_your_phone_number">Your number</string>
 
     <string name="home_bottom_sheet_filters">Filters</string>
 
@@ -82,9 +82,9 @@
     <string name="settings_category_payment_methods">Payment methods</string>
     <string name="settings_category_personal_details">Personal details</string>
     <string name="settings_category_security">Security</string>
-    <string name="settings_change_email">Change my email address</string>
+    <string name="settings_change_email">Change my email</string>
     <string name="settings_change_fullname">Change my name</string>
-    <string name="settings_change_phone_number">Change my phone number</string>
+    <string name="settings_change_phone_number">Change my number</string>
     <string name="settings_credit_debit_cards">My debit/credit cards</string>
     <string name="settings_delete_account">Delete my account</string>
     <string name="settings_logout">Log out</string>
@@ -102,6 +102,7 @@
     <string name="tv_refill">Refill</string>
     <string name="tv_review_title">How did you like %1$s?</string>
     <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
+    <string name="tv_table_booking_restaurant">Book at %s</string>
 
     <string name="view_my_order">View my order</string>
 </resources>

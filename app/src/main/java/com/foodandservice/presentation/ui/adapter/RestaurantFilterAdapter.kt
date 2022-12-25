@@ -9,7 +9,7 @@ import com.foodandservice.databinding.ItemRestaurantFilterBinding
 import com.foodandservice.domain.model.Restaurant
 
 class RestaurantFilterAdapter constructor(private val listener: RestaurantClickListener) :
-    ListAdapter<Restaurant, RestaurantFilterAdapter.ViewHolder>(RestaurantDiffCallBack()) {
+    ListAdapter<Restaurant, RestaurantFilterAdapter.ViewHolder>(RestaurantFilterDiffCallBack()) {
 
     interface RestaurantClickListener {
         fun onClick(item: Restaurant)
@@ -27,7 +27,7 @@ class RestaurantFilterAdapter constructor(private val listener: RestaurantClickL
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Restaurant, listener: RestaurantClickListener) {
-            binding.tvRestName.text = item.name
+            binding.tvRestaurantName.text = item.name
             binding.ratingRestaurant.rating = item.rating
             binding.tvDistance.text = "A ${item.distance.toDouble() / 1000} km"
 

@@ -27,7 +27,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Restaurant, listener: RestaurantClickListener) {
-            binding.tvRestName.text = item.name
+            binding.tvRestaurantName.text = item.name
             binding.ratingRestaurant.rating = item.rating
             binding.tvDistance.text = "A ${item.distance.toDouble() / 1000} km"
 

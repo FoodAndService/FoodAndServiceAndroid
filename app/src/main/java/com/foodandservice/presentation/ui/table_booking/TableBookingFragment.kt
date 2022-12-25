@@ -9,18 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
-import com.foodandservice.databinding.FragmentTableReservationBinding
 import org.koin.android.ext.android.get
 
 class TableBookingFragment : Fragment() {
-    private lateinit var binding: FragmentTableReservationBinding
+    private lateinit var binding: com.foodandservice.databinding.FragmentTableBookingBinding
     private val viewModel: TableBookingViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_table_reservation, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_table_booking, container, false)
         return binding.root
     }
 
@@ -34,9 +33,11 @@ class TableBookingFragment : Fragment() {
 
                     }
                     is TableBookingState.Error -> {
-                        TODO("Show error")
+
                     }
-                    is TableBookingState.Idle -> {}
+                    is TableBookingState.Idle -> {
+
+                    }
                 }
             }
         }
@@ -45,6 +46,8 @@ class TableBookingFragment : Fragment() {
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
+
+            tvRestaurantName.text = getString(R.string.tv_table_booking_restaurant, "Wendy's")
         }
     }
 }

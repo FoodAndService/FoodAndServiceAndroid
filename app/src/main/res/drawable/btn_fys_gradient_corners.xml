@@ -4,14 +4,18 @@
     <item>
         <selector>
             <item
-                android:drawable="@drawable/fys_button_disabled"
+                android:drawable="@drawable/fys_button_disabled_corners"
                 android:state_enabled="false" />
             <item
-                android:drawable="@drawable/fys_button_gradient_enabled"
+                android:drawable="@drawable/fys_button_gradient_enabled_corners"
                 android:state_enabled="true" />
             <item
-                android:drawable="@drawable/fys_button_gradient_enabled"
+                android:drawable="@drawable/fys_button_gradient_enabled_corners"
                 android:state_pressed="false" />
         </selector>
+
+        <shape android:shape="rectangle">
+            <corners android:radius="10dp" />
+        </shape>
     </item>
 </ripple>

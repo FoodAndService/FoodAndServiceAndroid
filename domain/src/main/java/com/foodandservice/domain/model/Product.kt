@@ -1,9 +1,10 @@
 package com.foodandservice.domain.model
 
 data class Product(
-    val id: Int,
-    val image: Int,
-    var name: String,
-    val refill: Boolean,
+    val id: String,
+    val name: String,
+    val image: String,
+    val inStock: Boolean,
+    val isRefill: Boolean,
     val price: String
 )
