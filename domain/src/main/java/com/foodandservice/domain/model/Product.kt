@@ -1,5 +1,7 @@
 package com.foodandservice.domain.model
 
+import java.io.Serializable
+
 data class Product(
     val id: String,
     val name: String,
@@ -7,4 +9,4 @@ data class Product(
     val inStock: Boolean,
     val isRefill: Boolean,
     val price: String
-)
+) : Serializable

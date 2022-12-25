@@ -105,4 +105,7 @@
     <string name="tv_table_booking_restaurant">Book at %s</string>
 
     <string name="view_my_order">View my order</string>
+    <string name="btn_ingredients">Ingredients</string>
+    <string name="btn_allergies_intolerances">Allergies &amp; intolerances</string>
+    <string name="btn_product_extras">Extras</string>
 </resources>

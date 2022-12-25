@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
-import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
@@ -70,7 +69,6 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                                     R.color.background_not_in_stock
                                 )
                             )
-                            foreground = null
                         }
 
                         ivProduct.setColorFilter(Color.DKGRAY, PorterDuff.Mode.MULTIPLY)
@@ -97,12 +95,6 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                     product.apply {
                         mainCardView.apply {
                             setCardBackgroundColor(Color.WHITE)
-                            foreground = with(TypedValue()) {
-                                context.theme.resolveAttribute(
-                                    R.attr.selectableItemBackground, this, true
-                                )
-                                ContextCompat.getDrawable(context, resourceId)
-                            }
                         }
 
                         ivProduct.clearColorFilter()
@@ -166,7 +158,6 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                                     R.color.background_not_in_stock
                                 )
                             )
-                            foreground = null
                         }
 
                         cardRefill.setCardBackgroundColor(
@@ -199,12 +190,6 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                     product.apply {
                         mainCardView.apply {
                             setCardBackgroundColor(Color.WHITE)
-                            foreground = with(TypedValue()) {
-                                context.theme.resolveAttribute(
-                                    R.attr.selectableItemBackground, this, true
-                                )
-                                ContextCompat.getDrawable(context, resourceId)
-                            }
                         }
 
                         cardRefill.setCardBackgroundColor(

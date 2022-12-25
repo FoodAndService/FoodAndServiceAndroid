@@ -137,6 +137,9 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_restaurantExtraDetailsFragment"
             app:destination="@id/restaurantExtraDetailsFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_productDetailsFragment"
+            app:destination="@id/productDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -186,4 +189,13 @@
         android:name="com.foodandservice.presentation.ui.restaurant_extra_details.RestaurantExtraDetailsFragment"
         android:label="RestaurantExtraDetailsFragment"
         tools:layout="@layout/fragment_restaurant_extra_details" />
+    <fragment
+        android:id="@+id/productDetailsFragment"
+        android:name="com.foodandservice.presentation.ui.product_details.ProductDetailsFragment"
+        android:label="ProductDetailsFragment"
+        tools:layout="@layout/fragment_product_details">
+        <argument
+            android:name="product"
+            app:argType="com.foodandservice.domain.model.Product" />
+    </fragment>
 </navigation>

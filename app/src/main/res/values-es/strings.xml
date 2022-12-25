@@ -99,4 +99,7 @@
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
 
     <string name="view_my_order">Ver pedido</string>
+    <string name="btn_ingredients">Ingredientes</string>
+    <string name="btn_allergies_intolerances">Alergias e intolerancias</string>
+    <string name="btn_product_extras">Extras</string>
 </resources>

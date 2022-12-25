@@ -349,6 +349,10 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     }
 
     override fun onClick(product: Product) {
-
+        val action =
+            RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToProductDetailsFragment(
+                product
+            )
+        findNavController().navigate(action)
     }
 }
