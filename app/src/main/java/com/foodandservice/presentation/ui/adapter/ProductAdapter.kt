@@ -66,7 +66,7 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                             setCardBackgroundColor(
                                 ContextCompat.getColor(
                                     this@ProductNormalViewHolder.binding.root.context,
-                                    R.color.background_not_in_stock
+                                    R.color.card_background_not_in_stock
                                 )
                             )
                         }
@@ -155,7 +155,7 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
                             setCardBackgroundColor(
                                 ContextCompat.getColor(
                                     this@ProductRefillViewHolder.binding.root.context,
-                                    R.color.background_not_in_stock
+                                    R.color.card_background_not_in_stock
                                 )
                             )
                         }

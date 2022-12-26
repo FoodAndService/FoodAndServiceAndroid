@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:gravity="start"
-            android:text="@string/home_bottom_sheet_filters"
+            android:text="@string/bottom_sheet_home_filter"
             app:layout_constraintBottom_toBottomOf="@+id/ivFilter"
             app:layout_constraintStart_toEndOf="@+id/ivFilter"
             app:layout_constraintTop_toTopOf="@+id/ivFilter" />

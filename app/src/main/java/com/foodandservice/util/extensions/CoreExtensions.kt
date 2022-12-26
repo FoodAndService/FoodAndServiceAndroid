@@ -9,14 +9,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
-import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.foodandservice.R
 import com.foodandservice.databinding.DialogLayoutBinding
-import com.google.android.material.bottomsheet.BottomSheetDialog
 
 object CoreExtensions {
     fun Fragment.hideKeyboard() {
@@ -69,54 +66,5 @@ object CoreExtensions {
         }
 
         dialog.show()
-    }
-
-    fun Fragment.showAccountSettingsBottomSheet(
-        layout: Int, onBtnActionClick: (() -> Unit)? = null
-    ) {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-        layoutInflater.inflate(layout, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }.findViewById<Button>(R.id.btnBottomSheetAction).setOnClickListener {
-            onBtnActionClick?.invoke()
-        }
-    }
-
-    fun Fragment.showHomeFilterBottomSheet(
-        layout: Int,
-        onBtnRecommendedClick: (() -> Unit)? = null,
-        onBtnPopularClick: (() -> Unit)? = null,
-        onBtnValoratedClick: (() -> Unit)? = null,
-        onBtnPriceLowClick: (() -> Unit)? = null,
-        onBtnPriceMediumClick: (() -> Unit)? = null,
-        onBtnPriceHighClick: (() -> Unit)? = null,
-    ) {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-        val inflatedLayout = layoutInflater.inflate(layout, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }
-
-        inflatedLayout.apply {
-            findViewById<TextView>(R.id.btnRecommended).setOnClickListener {
-                onBtnRecommendedClick?.invoke()
-            }
-            findViewById<TextView>(R.id.btnPopular).setOnClickListener {
-                onBtnPopularClick?.invoke()
-            }
-            findViewById<TextView>(R.id.btnValorated).setOnClickListener {
-                onBtnValoratedClick?.invoke()
-            }
-            findViewById<Button>(R.id.btnPriceLow).setOnClickListener {
-                onBtnPriceLowClick?.invoke()
-            }
-            findViewById<Button>(R.id.btnPriceMedium).setOnClickListener {
-                onBtnPriceMediumClick?.invoke()
-            }
-            findViewById<Button>(R.id.btnPriceHigh).setOnClickListener {
-                onBtnPriceHighClick?.invoke()
-            }
-        }
     }
 }

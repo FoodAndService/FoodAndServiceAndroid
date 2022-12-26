@@ -17,7 +17,7 @@
     <color name="text_light">#FF606060</color>
     <color name="btn_pressed">#ADADAD</color>
     <color name="product_not_in_stock">#ADADAD</color>
-    <color name="background_not_in_stock">#E0E0E0</color>
+    <color name="card_background_not_in_stock">#E0E0E0</color>
 
     <color name="dot_active">#FFAE375D</color>
     <color name="dot_inactive">#70AE375D</color>

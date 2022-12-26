@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentUserProfileBinding
-import com.foodandservice.util.extensions.CoreExtensions.showAccountSettingsBottomSheet
+import com.foodandservice.util.FysBottomSheets.showAccountSettingsBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showDialog
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 

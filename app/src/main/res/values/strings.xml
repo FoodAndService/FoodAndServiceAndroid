@@ -49,7 +49,7 @@
     <string name="hint_tie_your_name">Your name</string>
     <string name="hint_tie_your_phone_number">Your number</string>
 
-    <string name="home_bottom_sheet_filters">Filters</string>
+    <string name="bottom_sheet_home_filter">Filters</string>
 
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
@@ -108,4 +108,25 @@
     <string name="btn_ingredients">Ingredients</string>
     <string name="btn_allergies_intolerances">Allergies &amp; intolerances</string>
     <string name="btn_product_extras">Extras</string>
+
+    <string name="food_allergy_intolerance_celery">Celery</string>
+    <string name="food_allergy_intolerance_celiac">Celiac</string>
+    <string name="food_allergy_intolerance_crustacean">Crustacean</string>
+    <string name="food_allergy_intolerance_diabetics">Diabetics</string>
+    <string name="food_allergy_intolerance_egg">Egg</string>
+    <string name="food_allergy_intolerance_fish">Fish</string>
+    <string name="food_allergy_intolerance_gluten">Gluten</string>
+    <string name="food_allergy_intolerance_lactose">Lactose</string>
+    <string name="food_allergy_intolerance_lupins">Lupins</string>
+    <string name="food_allergy_intolerance_milk">Milk</string>
+    <string name="food_allergy_intolerance_mollusks">Mollusks</string>
+    <string name="food_allergy_intolerance_mustard">Mustard</string>
+    <string name="food_allergy_intolerance_nuts">Nuts</string>
+    <string name="food_allergy_intolerance_pasteurized">Pasteurized</string>
+    <string name="food_allergy_intolerance_peanut">Peanut</string>
+    <string name="food_allergy_intolerance_sesame">Sesame</string>
+    <string name="food_allergy_intolerance_soy">Soy</string>
+    <string name="food_allergy_intolerance_sulphites">Sulphites</string>
+    <string name="food_allergy_intolerance_vegan">Vegan</string>
+    <string name="food_allergy_intolerance_vegetarian">Vegetarian</string>
 </resources>

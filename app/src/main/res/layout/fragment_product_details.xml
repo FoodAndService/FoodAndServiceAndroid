@@ -73,6 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="220dp"
                     android:layout_marginTop="12dp"
+                    android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
                     android:src="@drawable/pepsi"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -95,7 +96,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnIngredients"
+                    android:id="@+id/btnShowProductIngredients"
                     style="@style/FysWhiteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -106,7 +107,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnAllergiesIntolerances"
+                    android:id="@+id/btnShowAllergensAndIntolerances"
                     style="@style/FysWhiteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -114,10 +115,10 @@
                     android:text="@string/btn_allergies_intolerances"
                     android:textAllCaps="true"
                     app:icon="@drawable/ic_allergies"
-                    app:layout_constraintTop_toBottomOf="@+id/btnIngredients" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowProductIngredients" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnProductExtras"
+                    android:id="@+id/btnShowProductExtras"
                     style="@style/FysWhiteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,7 +126,7 @@
                     android:text="@string/btn_product_extras"
                     android:textAllCaps="true"
                     app:icon="@drawable/ic_restaurant"
-                    app:layout_constraintTop_toBottomOf="@+id/btnAllergiesIntolerances" />
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowAllergensAndIntolerances" />
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"

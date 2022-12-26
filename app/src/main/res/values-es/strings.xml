@@ -44,7 +44,7 @@
     <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_phone_number">Tu número</string>
 
-    <string name="home_bottom_sheet_filters">Filtros</string>
+    <string name="bottom_sheet_home_filter">Filtros</string>
 
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
     <string name="item_booking_diners_singular">%s (%s comensal)</string>
@@ -102,4 +102,25 @@
     <string name="btn_ingredients">Ingredientes</string>
     <string name="btn_allergies_intolerances">Alergias e intolerancias</string>
     <string name="btn_product_extras">Extras</string>
+
+    <string name="food_allergy_intolerance_celery">Apio</string>
+    <string name="food_allergy_intolerance_celiac">Celiaco</string>
+    <string name="food_allergy_intolerance_crustacean">Crustáceos</string>
+    <string name="food_allergy_intolerance_diabetics">Diabéticos</string>
+    <string name="food_allergy_intolerance_egg">Huevos</string>
+    <string name="food_allergy_intolerance_fish">Pescado</string>
+    <string name="food_allergy_intolerance_gluten">Gluten</string>
+    <string name="food_allergy_intolerance_lactose">Lactosa</string>
+    <string name="food_allergy_intolerance_lupins">Altramuces</string>
+    <string name="food_allergy_intolerance_milk">Lácteos</string>
+    <string name="food_allergy_intolerance_mollusks">Moluscos</string>
+    <string name="food_allergy_intolerance_mustard">Mostaza</string>
+    <string name="food_allergy_intolerance_nuts">Frutos de cáscara</string>
+    <string name="food_allergy_intolerance_pasteurized">Pasteurizado</string>
+    <string name="food_allergy_intolerance_peanut">Cacahuetes</string>
+    <string name="food_allergy_intolerance_sesame">Sésamo</string>
+    <string name="food_allergy_intolerance_soy">Soja</string>
+    <string name="food_allergy_intolerance_sulphites">Sulfitos</string>
+    <string name="food_allergy_intolerance_vegan">Vegano</string>
+    <string name="food_allergy_intolerance_vegetarian">Vegetariano</string>
 </resources>
