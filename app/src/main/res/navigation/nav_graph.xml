@@ -140,6 +140,9 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_productDetailsFragment"
             app:destination="@id/productDetailsFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_restaurantReviewsFragment"
+            app:destination="@id/restaurantReviewsFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -197,5 +200,14 @@
         <argument
             android:name="product"
             app:argType="com.foodandservice.domain.model.Product" />
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantReviewsFragment"
+        android:name="com.foodandservice.presentation.ui.restaurant_reviews.RestaurantReviewsFragment"
+        android:label="RestaurantReviewsFragment"
+        tools:layout="@layout/fragment_restaurant_reviews">
+        <action
+            android:id="@+id/action_restaurantReviewsFragment_to_reviewCreateFragment"
+            app:destination="@id/reviewCreateFragment" />
     </fragment>
 </navigation>

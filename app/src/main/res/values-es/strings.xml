@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
+    <string name="bottom_sheet_home_filter">Filtros</string>
+
     <string name="btn_accept">Aceptar</string>
     <string name="btn_access">Acceder</string>
+    <string name="btn_allergies_intolerances">Alergias e intolerancias</string>
     <string name="btn_book">Reservar</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_confirm">Confirmar</string>
@@ -10,7 +13,9 @@
     <string name="btn_home_filter_popular">Populares</string>
     <string name="btn_home_filter_recommended">Recomendados</string>
     <string name="btn_home_filter_valorated">Valorados</string>
+    <string name="btn_ingredients">Ingredientes</string>
     <string name="btn_next">Siguiente</string>
+    <string name="btn_product_extras">Extras</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="btn_save_discount">Guardar descuento</string>
@@ -29,6 +34,27 @@
     <string name="error_network">Ha ocurrido un error de red</string>
     <string name="error_phone_format">Formato incorrecto</string>
 
+    <string name="food_allergen_intolerance_celery">Apio</string>
+    <string name="food_allergen_intolerance_celiac">Celiaco</string>
+    <string name="food_allergen_intolerance_crustacean">Crustáceos</string>
+    <string name="food_allergen_intolerance_diabetics">Diabéticos</string>
+    <string name="food_allergen_intolerance_egg">Huevos</string>
+    <string name="food_allergen_intolerance_fish">Pescado</string>
+    <string name="food_allergen_intolerance_gluten">Gluten</string>
+    <string name="food_allergen_intolerance_lactose">Lactosa</string>
+    <string name="food_allergen_intolerance_lupins">Altramuces</string>
+    <string name="food_allergen_intolerance_milk">Lácteos</string>
+    <string name="food_allergen_intolerance_mollusks">Moluscos</string>
+    <string name="food_allergen_intolerance_mustard">Mostaza</string>
+    <string name="food_allergen_intolerance_nuts">Frutos de cáscara</string>
+    <string name="food_allergen_intolerance_pasteurized">Pasteurizado</string>
+    <string name="food_allergen_intolerance_peanut">Cacahuetes</string>
+    <string name="food_allergen_intolerance_sesame">Sésamo</string>
+    <string name="food_allergen_intolerance_soy">Soja</string>
+    <string name="food_allergen_intolerance_sulphites">Sulfitos</string>
+    <string name="food_allergen_intolerance_vegan">Vegano</string>
+    <string name="food_allergen_intolerance_vegetarian">Vegetariano</string>
+
     <string name="fragment_bookings_title">Mis reservas</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
     <string name="fragment_orders_title">Mis pedidos</string>
@@ -43,8 +69,6 @@
     <string name="hint_tie_your_email">Tu email</string>
     <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_phone_number">Tu número</string>
-
-    <string name="bottom_sheet_home_filter">Filtros</string>
 
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
     <string name="item_booking_diners_singular">%s (%s comensal)</string>
@@ -90,37 +114,14 @@
 
     <string name="til_hint_search_restaurant">Buscar restaurantes cerca de mi</string>
 
+    <string name="tv_days_ago">Hace %1$d días</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>
-    <string name="tv_order_history_days_ago">Hace %1$d días</string>
     <string name="tv_refill">Refill</string>
+    <string name="tv_review_owner_answer">Respuesta del propietario</string>
     <string name="tv_review_title">¿Qué te pareció %1$s?</string>
     <string name="tv_sms_sent">Hemos enviado un SMS a tu teléfono, por favor introduce la clave a continuación</string>
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
 
     <string name="view_my_order">Ver pedido</string>
-    <string name="btn_ingredients">Ingredientes</string>
-    <string name="btn_allergies_intolerances">Alergias e intolerancias</string>
-    <string name="btn_product_extras">Extras</string>
-
-    <string name="food_allergy_intolerance_celery">Apio</string>
-    <string name="food_allergy_intolerance_celiac">Celiaco</string>
-    <string name="food_allergy_intolerance_crustacean">Crustáceos</string>
-    <string name="food_allergy_intolerance_diabetics">Diabéticos</string>
-    <string name="food_allergy_intolerance_egg">Huevos</string>
-    <string name="food_allergy_intolerance_fish">Pescado</string>
-    <string name="food_allergy_intolerance_gluten">Gluten</string>
-    <string name="food_allergy_intolerance_lactose">Lactosa</string>
-    <string name="food_allergy_intolerance_lupins">Altramuces</string>
-    <string name="food_allergy_intolerance_milk">Lácteos</string>
-    <string name="food_allergy_intolerance_mollusks">Moluscos</string>
-    <string name="food_allergy_intolerance_mustard">Mostaza</string>
-    <string name="food_allergy_intolerance_nuts">Frutos de cáscara</string>
-    <string name="food_allergy_intolerance_pasteurized">Pasteurizado</string>
-    <string name="food_allergy_intolerance_peanut">Cacahuetes</string>
-    <string name="food_allergy_intolerance_sesame">Sésamo</string>
-    <string name="food_allergy_intolerance_soy">Soja</string>
-    <string name="food_allergy_intolerance_sulphites">Sulfitos</string>
-    <string name="food_allergy_intolerance_vegan">Vegano</string>
-    <string name="food_allergy_intolerance_vegetarian">Vegetariano</string>
 </resources>

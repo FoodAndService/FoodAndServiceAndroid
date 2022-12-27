@@ -33,28 +33,32 @@ class ReviewCreateFragment : Fragment() {
             viewModel.createReviewState.collect { state ->
                 when (state) {
                     is ReviewCreateState.Success -> {
-                        TODO("On success")
+
                     }
                     is ReviewCreateState.Error -> {
-                        TODO("Show error")
+
                     }
-                    is ReviewCreateState.Idle -> {}
+                    is ReviewCreateState.Idle -> {
+
+                    }
                 }
             }
         }
 
-        binding.btnSendReview.setOnClickListener {
+        binding.apply {
+            btnSendReview.setOnClickListener {
 
-        }
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
-        binding.ratingBarReview.onRatingBarChangeListener =
-            RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
-                if (rating < 1.0f)
-                    ratingBar.rating = 1.0f
             }
+
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+
+            ratingBarReview.onRatingBarChangeListener =
+                RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
+                    if (rating < 1.0f)
+                        ratingBar.rating = 1.0f
+                }
+        }
     }
 }

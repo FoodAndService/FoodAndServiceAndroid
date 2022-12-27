@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:gravity="start"
-        android:text="@string/food_allergy_intolerance_celery"
+        android:text="@string/food_allergen_intolerance_celery"
         app:layout_constraintBottom_toBottomOf="@+id/iv_allergen_intolerance"
         app:layout_constraintStart_toEndOf="@+id/iv_allergen_intolerance"
         app:layout_constraintTop_toTopOf="@+id/iv_allergen_intolerance" />

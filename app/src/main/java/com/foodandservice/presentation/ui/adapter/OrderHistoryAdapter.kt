@@ -41,7 +41,7 @@ class OrderHistoryAdapter constructor(private val listener: OrderHistoryClickLis
             binding.tvRestaurantName.text = item.restaurantName
             binding.tvPrice.text = "${item.amount}€"
             binding.tvDate.text =
-                itemView.context.getString(R.string.tv_order_history_days_ago, diffInDays)
+                itemView.context.getString(R.string.tv_days_ago, diffInDays)
 
             binding.root.setOnClickListener {
                 listener.onClick(item)

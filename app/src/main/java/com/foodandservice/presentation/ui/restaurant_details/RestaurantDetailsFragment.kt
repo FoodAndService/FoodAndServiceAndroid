@@ -1,5 +1,6 @@
 package com.foodandservice.presentation.ui.restaurant_details
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -48,7 +49,17 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
             btnBack.setOnClickListener {
                 findNavController().popBackStack()
             }
+
+            llRating.setOnClickListener {
+                navigateToReviews()
+            }
+
+            tvRatingText.paintFlags = tvRatingText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         }
+    }
+
+    private fun navigateToReviews() {
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantReviewsFragment)
     }
 
     private fun navigateToTableBooking() {
