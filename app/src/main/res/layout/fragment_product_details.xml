@@ -86,7 +86,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="24dp"
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="5"
@@ -100,7 +100,9 @@
                     style="@style/FysWhiteButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
                     android:text="@string/btn_ingredients"
                     android:textAllCaps="true"
                     app:icon="@drawable/ic_menu"
@@ -112,9 +114,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:text="@string/btn_allergies_intolerances"
+                    android:text="@string/btn_allergens_intolerances"
                     android:textAllCaps="true"
-                    app:icon="@drawable/ic_allergies"
+                    app:icon="@drawable/ic_allergens"
                     app:layout_constraintTop_toBottomOf="@+id/btnShowProductIngredients" />
 
                 <com.google.android.material.button.MaterialButton
@@ -133,7 +135,66 @@
                     android:layout_height="65dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSubtract"
+                            style="@style/FysIconButton"
+                            android:layout_marginStart="16dp"
+                            app:icon="@drawable/ic_minus"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvQuantity"
+                            style="@style/FysPrimaryLargeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="4"
+                            app:layout_constraintBottom_toBottomOf="@id/btnSubtract"
+                            app:layout_constraintStart_toEndOf="@id/btnSubtract"
+                            app:layout_constraintTop_toTopOf="@id/btnSubtract" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAdd"
+                            style="@style/FysIconButton"
+                            android:layout_marginStart="16dp"
+                            app:icon="@drawable/ic_add"
+                            app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
+                            app:layout_constraintStart_toEndOf="@id/tvQuantity"
+                            app:layout_constraintTop_toTopOf="@id/tvQuantity" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvPriceSingle"
+                            style="@style/FysPrimaryLargeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="1,99€"
+                            app:layout_constraintBottom_toBottomOf="@id/tvPriceTotal"
+                            app:layout_constraintEnd_toStartOf="@id/tvPriceTotal"
+                            app:layout_constraintTop_toTopOf="@id/tvPriceTotal" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/tvPriceTotal"
+                            style="@style/FysPrimaryLargeText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text="(7,96€)"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

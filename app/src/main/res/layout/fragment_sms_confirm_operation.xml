@@ -1,0 +1,96 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/fys_background"
+        tools:context=".presentation.ui.sms_confirm_operation.SmsConfirmOperationFragment">
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            style="@style/FysToolbar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    style="@style/FysImageButton"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="34dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_arrow_back"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/ivFysLogo"
+                    style="@style/FysLogo"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </Toolbar>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvConfirmOperationTitle"
+            style="@style/FysDarkLargeText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm_operation_title"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/tvConfirmOperationDesc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvConfirmOperationDesc"
+            style="@style/FysDarkMediumText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="52dp"
+            android:text="@string/confirm_operation_desc"
+            app:layout_constraintBottom_toTopOf="@+id/etSms"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvConfirmOperationTitle" />
+
+        <com.fraggjkee.smsconfirmationview.SmsConfirmationView
+            android:id="@+id/etSms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvConfirmOperationDesc"
+            app:scv_codeLength="5"
+            app:scv_showCursor="false"
+            app:scv_smsDetectionMode="manual"
+            app:scv_symbolBackgroundColor="@color/sms_background"
+            app:scv_symbolBorderColor="@color/sms_background"
+            app:scv_symbolBorderCornerRadius="10dp"
+            app:scv_symbolTextColor="@color/fys_primary"
+            app:scv_symbolsSpacing="10dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

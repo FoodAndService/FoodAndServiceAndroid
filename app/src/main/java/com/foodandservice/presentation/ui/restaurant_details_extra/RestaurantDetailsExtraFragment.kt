@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.restaurant_extra_details
+package com.foodandservice.presentation.ui.restaurant_details_extra
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
-import com.foodandservice.databinding.FragmentRestaurantExtraDetailsBinding
+import com.foodandservice.databinding.FragmentRestaurantDetailsExtraBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -16,15 +16,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
-class RestaurantExtraDetailsFragment : Fragment(), OnMapReadyCallback {
-    private lateinit var binding: FragmentRestaurantExtraDetailsBinding
+class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
+    private lateinit var binding: FragmentRestaurantDetailsExtraBinding
     private lateinit var mapFragment: SupportMapFragment
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_restaurant_extra_details, container, false
+            inflater, R.layout.fragment_restaurant_details_extra, container, false
         )
         return binding.root
     }

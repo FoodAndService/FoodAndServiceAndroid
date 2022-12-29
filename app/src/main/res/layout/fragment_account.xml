@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/fys_background"
-        tools:context=".presentation.ui.user_profile.UserProfileFragment">
+        tools:context=".presentation.ui.account.AccountFragment">
 
         <Toolbar
             android:id="@+id/toolbar"
@@ -39,24 +39,54 @@
             app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
         <TextView
+            android:id="@+id/tvUserGreeting"
+            style="@style/FysPrimaryMediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fragment_user_profile_greeting"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvMyProfile" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMyBookings"
+            style="@style/FysSettingsButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/user_profile_my_bookings"
+            app:icon="@drawable/ic_calendar"
+            app:layout_constraintTop_toBottomOf="@+id/tvUserGreeting" />
+
+        <View
+            android:id="@+id/divider7"
+            style="@style/ButtonDivider"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnMyBookings" />
+
+        <TextView
             android:id="@+id/tvPaymentMethodsCategory"
             style="@style/FysDarkMediumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/settings_category_payment_methods"
+            android:text="@string/user_profile_category_payment_methods"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyProfile" />
+            app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCreditDebitCards"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_credit_debit_cards"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_credit_debit_cards"
             app:icon="@drawable/ic_card"
             app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethodsCategory" />
 
@@ -75,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/settings_category_personal_details"
+            android:text="@string/user_profile_category_personal_details"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,8 +115,8 @@
             android:id="@+id/btnChangeFullname"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_change_fullname"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_change_fullname"
             app:icon="@drawable/ic_person"
             app:layout_constraintTop_toBottomOf="@+id/tvPersonalDetailsCategory" />
 
@@ -102,8 +132,8 @@
             android:id="@+id/btnChangeEmail"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_change_email"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_change_email"
             app:icon="@drawable/ic_email"
             app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
@@ -119,8 +149,8 @@
             android:id="@+id/btnChangePhone"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_change_phone_number"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_change_phone_number"
             app:icon="@drawable/ic_phone"
             app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
@@ -139,7 +169,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="24dp"
-            android:text="@string/settings_category_security"
+            android:text="@string/user_profile_category_security"
             android:textAllCaps="true"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -149,8 +179,8 @@
             android:id="@+id/btnDeleteAccount"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_delete_account"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_delete_account"
             app:icon="@drawable/ic_delete"
             app:layout_constraintTop_toBottomOf="@+id/tvSecurityCategory"
             tools:layout_editor_absoluteX="16dp" />
@@ -167,8 +197,8 @@
             android:id="@+id/btnLogout"
             style="@style/FysSettingsButton"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:text="@string/settings_logout"
+            android:layout_height="55dp"
+            android:text="@string/user_profile_logout"
             app:icon="@drawable/ic_logout"
             app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccount"
             tools:layout_editor_absoluteX="16dp" />

@@ -11,6 +11,7 @@
     <color name="fys_primary">#FFAE375D</color>
     <color name="fys_secondary">#FFB24239</color>
     <color name="fys_background">#FFF5F5F5</color>
+    <color name="sms_background">#EEEEEE</color>
     <color name="text_field">#EEEEEE</color>
     <color name="text_normal">#FF464646</color>
     <color name="text_dark">#FF404040</color>

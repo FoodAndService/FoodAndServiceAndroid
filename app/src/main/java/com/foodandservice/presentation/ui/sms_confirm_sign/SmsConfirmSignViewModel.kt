@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.sms_confirm
+package com.foodandservice.presentation.ui.sms_confirm_sign
 
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
@@ -20,8 +20,9 @@ class SmsConfirmViewModel(
     private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
 ) : ViewModel() {
 
-    private val _smsConfirmState = MutableStateFlow<SmsConfirmState>(SmsConfirmState.Idle)
-    val smsConfirmState: StateFlow<SmsConfirmState> = _smsConfirmState.asStateFlow()
+    private val _smsConfirmSignState =
+        MutableStateFlow<SmsConfirmSignState>(SmsConfirmSignState.Idle)
+    val smsConfirmSignState: StateFlow<SmsConfirmSignState> = _smsConfirmSignState.asStateFlow()
 
     private var _countDownTimerState = MutableStateFlow(CountDownTimerState())
     val countDownTimerState = _countDownTimerState.asStateFlow()
@@ -34,7 +35,7 @@ class SmsConfirmViewModel(
 
     fun sendSms(phone: String, smsCode: String) {
         viewModelScope.launch {
-            _smsConfirmState.value = SmsConfirmState.Loading
+            _smsConfirmSignState.value = SmsConfirmSignState.Loading
 
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
                 is Resource.Success -> {
@@ -43,20 +44,20 @@ class SmsConfirmViewModel(
                         saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
 
                         when (authPhaseWithToken.currentPhase) {
-                            AuthCurrentPhase.PHONE_VERIFIED -> _smsConfirmState.value =
-                                SmsConfirmState.SuccessNewCustomer(authPhaseWithToken.authUser)
-                            AuthCurrentPhase.INFO_ADDED -> _smsConfirmState.value =
-                                SmsConfirmState.SuccessExistentCustomer
-                            AuthCurrentPhase.UNKNOWN -> _smsConfirmState.value =
-                                SmsConfirmState.Error("")
+                            AuthCurrentPhase.PHONE_VERIFIED -> _smsConfirmSignState.value =
+                                SmsConfirmSignState.SuccessNewCustomer(authPhaseWithToken.authUser)
+                            AuthCurrentPhase.INFO_ADDED -> _smsConfirmSignState.value =
+                                SmsConfirmSignState.SuccessExistentCustomer
+                            AuthCurrentPhase.UNKNOWN -> _smsConfirmSignState.value =
+                                SmsConfirmSignState.Error("")
                         }
                     }
                 }
-                is Resource.Failure -> _smsConfirmState.value =
-                    SmsConfirmState.Error(response.message)
+                is Resource.Failure -> _smsConfirmSignState.value =
+                    SmsConfirmSignState.Error(response.message)
             }
 
-            _smsConfirmState.value = SmsConfirmState.Idle
+            _smsConfirmSignState.value = SmsConfirmSignState.Idle
         }
     }
 
@@ -90,6 +91,5 @@ class SmsConfirmViewModel(
 }
 
 data class CountDownTimerState(
-    val isBtnEnabled: Boolean = false,
-    val time: Long = 59
+    val isBtnEnabled: Boolean = false, val time: Long = 59
 )

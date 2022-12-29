@@ -78,7 +78,7 @@ class LoginFragment : Fragment() {
     }
 
     private fun navigateToSmsConfirm(phone: String) {
-        val action = LoginFragmentDirections.actionLoginFragmentToSmsConfirmFragment(phone)
+        val action = LoginFragmentDirections.actionLoginFragmentToSmsConfirmSignFragment(phone)
         findNavController().navigate(action)
     }
 }

@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.table_booking
+package com.foodandservice.presentation.ui.restaurant_booking
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,15 +11,20 @@ import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import org.koin.android.ext.android.get
 
-class TableBookingFragment : Fragment() {
-    private lateinit var binding: com.foodandservice.databinding.FragmentTableBookingBinding
-    private val viewModel: TableBookingViewModel = get()
+class RestaurantBookingFragment : Fragment() {
+    private lateinit var binding: com.foodandservice.databinding.FragmentRestaurantBookingBinding
+    private val viewModel: RestaurantBookingViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_table_booking, container, false)
+            DataBindingUtil.inflate(
+                inflater,
+                R.layout.fragment_restaurant_booking,
+                container,
+                false
+            )
         return binding.root
     }
 
@@ -27,15 +32,15 @@ class TableBookingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.tableBookingState.collect { state ->
+            viewModel.restaurantBookingState.collect { state ->
                 when (state) {
-                    is TableBookingState.Success -> {
+                    is RestaurantBookingState.Success -> {
 
                     }
-                    is TableBookingState.Error -> {
+                    is RestaurantBookingState.Error -> {
 
                     }
-                    is TableBookingState.Idle -> {
+                    is RestaurantBookingState.Idle -> {
 
                     }
                 }

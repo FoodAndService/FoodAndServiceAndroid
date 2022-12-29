@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/ic_background"
-        tools:context=".presentation.ui.sms_confirm.SmsConfirmFragment">
+        tools:context=".presentation.ui.sms_confirm_sign.SmsConfirmSignFragment">
 
         <ImageView
             android:id="@+id/imageView"
@@ -70,8 +70,8 @@
                     app:scv_codeLength="5"
                     app:scv_showCursor="false"
                     app:scv_smsDetectionMode="manual"
-                    app:scv_symbolBackgroundColor="@color/fys_background"
-                    app:scv_symbolBorderColor="@color/fys_background"
+                    app:scv_symbolBackgroundColor="@color/sms_background"
+                    app:scv_symbolBorderColor="@color/sms_background"
                     app:scv_symbolBorderCornerRadius="10dp"
                     app:scv_symbolTextColor="@color/fys_primary"
                     app:scv_symbolsSpacing="10dp" />

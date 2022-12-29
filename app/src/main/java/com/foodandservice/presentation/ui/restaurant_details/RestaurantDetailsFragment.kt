@@ -63,11 +63,11 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     }
 
     private fun navigateToTableBooking() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_tableBookingFragment)
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantBookingFragment)
     }
 
     private fun navigateToExtraDetails() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantExtraDetailsFragment)
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantDetailsExtraFragment)
     }
 
     private fun initAdapters() {

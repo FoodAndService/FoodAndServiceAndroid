@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.user_profile
+package com.foodandservice.presentation.ui.account
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,20 +9,20 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
-import com.foodandservice.databinding.FragmentUserProfileBinding
+import com.foodandservice.databinding.FragmentAccountBinding
 import com.foodandservice.util.FysBottomSheets.showAccountSettingsBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.showDialog
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 
-class UserProfileFragment : Fragment() {
-    private lateinit var binding: FragmentUserProfileBinding
+class AccountFragment : Fragment() {
+    private lateinit var binding: FragmentAccountBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_account, container, false)
         return binding.root
     }
 
@@ -61,16 +61,26 @@ class UserProfileFragment : Fragment() {
                 )
             }
 
+            btnMyBookings.setOnClickListener {
+                navigateToMyBookings()
+            }
+
             btnLogout.setOnClickListener {
                 showLogOutDialog()
             }
+
+            tvUserGreeting.text = getString(R.string.fragment_user_profile_greeting, "Eugenio")
         }
 
         requireActivity()
             .onBackPressedDispatcher
             .addCallback(viewLifecycleOwner) {
-                findNavController().navigate(UserProfileFragmentDirections.actionUserProfileFragmentToHomeFragment())
+                findNavController().navigate(AccountFragmentDirections.actionAccountFragmentToHomeFragment())
             }
+    }
+
+    private fun navigateToMyBookings() {
+        findNavController().navigate(R.id.action_accountFragment_to_bookingsFragment)
     }
 
     private fun showLogOutDialog() {

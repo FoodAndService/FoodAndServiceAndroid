@@ -79,13 +79,16 @@ class AllergenIntoleranceAdapter :
             val text = STRING_REF[item.name.lowercase()]
 
             icon?.let { iconFound ->
-                binding.ivAllergenIntolerance.setImageDrawable(
-                    ResourcesCompat.getDrawable(
-                        binding.root.resources, iconFound, null
-                    )
-                )
                 text?.let { textFound ->
-                    binding.tvAllergenIntolerance.text = binding.root.resources.getString(textFound)
+                    binding.apply {
+                        ivAllergenIntolerance.setImageDrawable(
+                            ResourcesCompat.getDrawable(
+                                binding.root.resources, iconFound, null
+                            )
+                        )
+
+                        tvAllergenIntolerance.text = binding.root.resources.getString(textFound)
+                    }
                 }
             }
         }

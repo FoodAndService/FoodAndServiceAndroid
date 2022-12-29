@@ -32,7 +32,7 @@ class FoodAndServiceActivity : AppCompatActivity() {
                 R.id.homeFragment,
                 R.id.favouritesFragment,
                 R.id.ordersFragment,
-                R.id.userProfileFragment
+                R.id.accountFragment
             )
         )
 

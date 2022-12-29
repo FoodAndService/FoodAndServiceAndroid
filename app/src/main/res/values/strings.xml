@@ -6,7 +6,7 @@
 
     <string name="btn_accept">Accept</string>
     <string name="btn_access">Access</string>
-    <string name="btn_allergies_intolerances">Allergies &amp; intolerances</string>
+    <string name="btn_allergens_intolerances">Allergens &amp; intolerances</string>
     <string name="btn_book">Book</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
@@ -86,7 +86,7 @@
     <string name="onboarding_desc1">Take advantage of the many offers and discounts offered by our restaurants.</string>
     <string name="onboarding_desc2">Order in any restaurant, in your own language, check allergens, intolerances and ingredients.</string>
     <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order and pay.</string>
-    <string name="onboarding_desc4">Check your orders, add your restaurants to favourites, manage your allergies and intolerances.</string>
+    <string name="onboarding_desc4">Check your orders, add your restaurants to favourites, check the allergens and intolerances.</string>
     <string name="onboarding_desc5">Follow your orders in real time, from the moment you place them.</string>
     <string name="onboarding_title1">Great offers!</string>
     <string name="onboarding_title2">Extreme convenience!</string>
@@ -103,15 +103,15 @@
 
     <string name="schedule">Schedule</string>
 
-    <string name="settings_category_payment_methods">Payment methods</string>
-    <string name="settings_category_personal_details">Personal details</string>
-    <string name="settings_category_security">Security</string>
-    <string name="settings_change_email">Change my email</string>
-    <string name="settings_change_fullname">Change my name</string>
-    <string name="settings_change_phone_number">Change my number</string>
-    <string name="settings_credit_debit_cards">My debit/credit cards</string>
-    <string name="settings_delete_account">Delete my account</string>
-    <string name="settings_logout">Log out</string>
+    <string name="user_profile_category_payment_methods">Payment methods</string>
+    <string name="user_profile_category_personal_details">Personal details</string>
+    <string name="user_profile_category_security">Security</string>
+    <string name="user_profile_change_email">Change my email</string>
+    <string name="user_profile_change_fullname">Change my name</string>
+    <string name="user_profile_change_phone_number">Change my number</string>
+    <string name="user_profile_credit_debit_cards">My debit/credit cards</string>
+    <string name="user_profile_delete_account">Delete my account</string>
+    <string name="user_profile_logout">Log out</string>
 
     <string name="skip">Skip</string>
 
@@ -130,4 +130,9 @@
     <string name="tv_table_booking_restaurant">Book at %s</string>
 
     <string name="view_my_order">View my order</string>
+    <string name="product_extras">Extras</string>
+    <string name="fragment_user_profile_greeting">Hi, %s!</string>
+    <string name="user_profile_my_bookings">My bookings</string>
+    <string name="confirm_operation_title">Confirm operation</string>
+    <string name="confirm_operation_desc">We have sent you an SMS, please enter the one time password below</string>
 </resources>

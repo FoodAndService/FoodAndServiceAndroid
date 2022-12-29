@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
 import com.foodandservice.presentation.ui.adapter.AllergenIntoleranceAdapter
+import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 object FysBottomSheets {
@@ -31,7 +32,7 @@ object FysBottomSheets {
         }
     }
 
-    fun Fragment.showAllergiesAndIntolerancesBottomSheet(
+    fun Fragment.showAllergensAndIntolerancesBottomSheet(
         layout: Int, allergenIntoleranceAdapter: AllergenIntoleranceAdapter
     ) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
@@ -42,6 +43,20 @@ object FysBottomSheets {
         inflatedLayout.apply {
             findViewById<RecyclerView>(R.id.rvAllergenIntolerance).adapter =
                 allergenIntoleranceAdapter
+        }
+    }
+
+    fun Fragment.showProductExtrasBottomSheet(
+        layout: Int, productExtraAdapter: ProductExtraAdapter
+    ) {
+        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
+        val inflatedLayout = layoutInflater.inflate(layout, null).also {
+            dialog.setContentView(it)
+            dialog.behavior.peekHeight = 1000
+            dialog.show()
+        }
+        inflatedLayout.apply {
+            findViewById<RecyclerView>(R.id.rvProductExtra).adapter = productExtraAdapter
         }
     }
 

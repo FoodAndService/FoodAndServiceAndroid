@@ -62,15 +62,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         binding.apply {
             btnCart.setOnClickListener {
-//            showDialog(
-//                "Confirmar reserva",
-//                "Va a realizar una reserva el día 30/12/2023 para 2 comensales a las 23:00 en Wendy's.",
-//                "Confirmar",
-//                onBtnPositiveClick = {
-//
-//                }
-//            )
-                findNavController().navigate(R.id.action_homeFragment_to_bookingsFragment)
+
             }
 
             btnFilter.setOnClickListener {

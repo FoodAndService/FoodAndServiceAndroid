@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.sms_confirm
+package com.foodandservice.presentation.ui.sms_confirm_sign
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,22 +11,23 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.common.Constants
-import com.foodandservice.databinding.FragmentSmsConfirmBinding
+import com.foodandservice.databinding.FragmentSmsConfirmSignBinding
 import com.foodandservice.util.extensions.CoreExtensions.hideKeyboard
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 import com.fraggjkee.smsconfirmationview.SmsConfirmationView
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
-class SmsConfirmFragment : Fragment() {
-    private lateinit var binding: FragmentSmsConfirmBinding
-    private val args: SmsConfirmFragmentArgs by navArgs()
+class SmsConfirmSignFragment : Fragment() {
+    private lateinit var binding: FragmentSmsConfirmSignBinding
+    private val args: SmsConfirmSignFragmentArgs by navArgs()
     private val viewModel: SmsConfirmViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sms_confirm, container, false)
+        binding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_sms_confirm_sign, container, false)
         return binding.root
     }
 
@@ -36,21 +37,21 @@ class SmsConfirmFragment : Fragment() {
         binding.etSms.startListeningForIncomingMessages()
 
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.smsConfirmState.collect { state ->
+            viewModel.smsConfirmSignState.collect { state ->
                 when (state) {
-                    is SmsConfirmState.SuccessNewCustomer -> navigateToSignUpFinish()
-                    is SmsConfirmState.SuccessExistentCustomer -> navigateToHome()
-                    is SmsConfirmState.Error -> {
+                    is SmsConfirmSignState.SuccessNewCustomer -> navigateToSignUpFinish()
+                    is SmsConfirmSignState.SuccessExistentCustomer -> navigateToHome()
+                    is SmsConfirmSignState.Error -> {
                         showToast(state.message)
                     }
-                    is SmsConfirmState.Loading -> {
+                    is SmsConfirmSignState.Loading -> {
                         binding.apply {
                             btnConfirm.isEnabled = false
                             btnConfirm.text = ""
                             progressBar.visibility = View.VISIBLE
                         }
                     }
-                    is SmsConfirmState.Idle -> {
+                    is SmsConfirmSignState.Idle -> {
                         binding.apply {
                             btnConfirm.isEnabled = true
                             btnConfirm.text = getString(R.string.btn_confirm)
@@ -89,12 +90,13 @@ class SmsConfirmFragment : Fragment() {
 
     private fun navigateToHome() {
         hideKeyboard()
-        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToHomeFragment()
+        val action = SmsConfirmSignFragmentDirections.actionSmsConfirmSignFragmentToHomeFragment()
         findNavController().navigate(action)
     }
 
     private fun navigateToSignUpFinish() {
-        val action = SmsConfirmFragmentDirections.actionSmsConfirmFragmentToSignupFinishFragment()
+        val action =
+            SmsConfirmSignFragmentDirections.actionSmsConfirmSignFragmentToSignupFinishFragment()
         findNavController().navigate(action)
     }
 }
