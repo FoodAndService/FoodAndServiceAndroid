@@ -103,6 +103,9 @@
         <action
             android:id="@+id/action_homeFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantBookingFragment"
@@ -140,6 +143,9 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_restaurantReviewsFragment"
             app:destination="@id/restaurantReviewsFragment" />
+        <action
+            android:id="@+id/action_restaurantDetailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -215,4 +221,9 @@
         android:name="com.foodandservice.presentation.ui.sms_confirm_operation.SmsConfirmOperationFragment"
         android:label="SmsConfirmOperationFragment"
         tools:layout="@layout/fragment_sms_confirm_operation" />
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.foodandservice.presentation.ui.cart.CartFragment"
+        android:label="CartFragment"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

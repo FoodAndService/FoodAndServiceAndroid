@@ -62,7 +62,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         binding.apply {
             btnCart.setOnClickListener {
-
+                navigateToCart()
             }
 
             btnFilter.setOnClickListener {
@@ -95,6 +95,10 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             .addCallback(viewLifecycleOwner) {
                 requireActivity().moveTaskToBack(true)
             }
+    }
+
+    private fun navigateToCart() {
+        findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
     }
 
     private fun setAdapters() {

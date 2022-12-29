@@ -20,6 +20,7 @@
     <string name="btn_home_filter_valorated">Valorated</string>
     <string name="btn_ingredients">Ingredients</string>
     <string name="btn_next">Next</string>
+    <string name="btn_pay">Proceed with payment</string>
     <string name="btn_product_extras">Extras</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
@@ -30,6 +31,9 @@
     <string name="btn_send_review">Send review</string>
 
     <string name="category_filter_title">Category: %1$s</string>
+
+    <string name="confirm_operation_desc">We have sent you an SMS, please enter the one time password below</string>
+    <string name="confirm_operation_title">Confirm operation</string>
 
     <string name="dialog_delete_account_desc">Warning: if you delete your account, you will not be able to recover any information</string>
     <string name="dialog_delete_account_title">Delete account</string>
@@ -61,8 +65,10 @@
     <string name="food_allergen_intolerance_vegetarian">Vegetarian</string>
 
     <string name="fragment_bookings_title">My bookings</string>
+    <string name="fragment_cart_title">My order</string>
     <string name="fragment_favourites_title">My favourites</string>
     <string name="fragment_orders_title">My orders</string>
+    <string name="fragment_user_profile_greeting">Hi, %s!</string>
     <string name="fragment_user_profile_title">My account</string>
 
     <string name="hint_tie_diners">Number of diners</string>
@@ -101,17 +107,9 @@
     <string name="order_status_preparing">Your order is being processed</string>
     <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
 
-    <string name="schedule">Schedule</string>
+    <string name="product_extras">Extras</string>
 
-    <string name="user_profile_category_payment_methods">Payment methods</string>
-    <string name="user_profile_category_personal_details">Personal details</string>
-    <string name="user_profile_category_security">Security</string>
-    <string name="user_profile_change_email">Change my email</string>
-    <string name="user_profile_change_fullname">Change my name</string>
-    <string name="user_profile_change_phone_number">Change my number</string>
-    <string name="user_profile_credit_debit_cards">My debit/credit cards</string>
-    <string name="user_profile_delete_account">Delete my account</string>
-    <string name="user_profile_logout">Log out</string>
+    <string name="schedule">Schedule</string>
 
     <string name="skip">Skip</string>
 
@@ -129,10 +127,16 @@
     <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
     <string name="tv_table_booking_restaurant">Book at %s</string>
 
-    <string name="view_my_order">View my order</string>
-    <string name="product_extras">Extras</string>
-    <string name="fragment_user_profile_greeting">Hi, %s!</string>
+    <string name="user_profile_category_payment_methods">Payment methods</string>
+    <string name="user_profile_category_personal_details">Personal details</string>
+    <string name="user_profile_category_security">Security</string>
+    <string name="user_profile_change_email">Change my email</string>
+    <string name="user_profile_change_fullname">Change my name</string>
+    <string name="user_profile_change_phone_number">Change my number</string>
+    <string name="user_profile_credit_debit_cards">My debit/credit cards</string>
+    <string name="user_profile_delete_account">Delete my account</string>
+    <string name="user_profile_logout">Log out</string>
     <string name="user_profile_my_bookings">My bookings</string>
-    <string name="confirm_operation_title">Confirm operation</string>
-    <string name="confirm_operation_desc">We have sent you an SMS, please enter the one time password below</string>
+
+    <string name="view_my_order">View my order</string>
 </resources>

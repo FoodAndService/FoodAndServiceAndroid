@@ -54,8 +54,16 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                 navigateToReviews()
             }
 
+            btnCart.setOnClickListener {
+                navigateToCart()
+            }
+
             tvRatingText.paintFlags = tvRatingText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         }
+    }
+
+    private fun navigateToCart() {
+        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_cartFragment)
     }
 
     private fun navigateToReviews() {
