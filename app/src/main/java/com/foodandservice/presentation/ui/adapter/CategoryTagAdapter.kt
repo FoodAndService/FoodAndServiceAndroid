@@ -25,9 +25,11 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
 
     class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryTag, listener: CategoryTagClickListener) {
-            binding.chipCategoryTagText.text = item.name
-            binding.root.setOnClickListener { listener.onClick(item) }
+        fun bind(item: CategoryTag, categoryTagClickListener: CategoryTagClickListener) {
+            binding.apply {
+                chipCategoryTagText.text = item.name
+                root.setOnClickListener { categoryTagClickListener.onClick(item) }
+            }
         }
 
         companion object {
@@ -41,11 +43,8 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
 }
 
 class CategoryTagDiffCallback : DiffUtil.ItemCallback<CategoryTag>() {
-    override fun areItemsTheSame(oldItem: CategoryTag, newItem: CategoryTag): Boolean {
-        return oldItem.id == newItem.id
-    }
+    override fun areItemsTheSame(oldItem: CategoryTag, newItem: CategoryTag) =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: CategoryTag, newItem: CategoryTag): Boolean {
-        return oldItem == newItem
-    }
+    override fun areContentsTheSame(oldItem: CategoryTag, newItem: CategoryTag) = oldItem == newItem
 }

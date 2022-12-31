@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
 import com.foodandservice.databinding.ItemOrderHistoryBinding
-import com.foodandservice.domain.model.OrderHistory
+import com.foodandservice.domain.model.Order
 import java.time.ZoneId
 import java.util.*
 import java.util.concurrent.TimeUnit
 
-class OrderHistoryAdapter constructor(private val listener: OrderHistoryClickListener) :
-    ListAdapter<OrderHistory, OrderHistoryAdapter.ViewHolder>(OrderHistoryDiffCallBack()) {
+class OrderHistoryAdapter constructor(private val orderClickListener: OrderClickListener) :
+    ListAdapter<Order, OrderHistoryAdapter.ViewHolder>(OrderHistoryDiffCallBack()) {
 
-    interface OrderHistoryClickListener {
-        fun onClick(item: OrderHistory)
+    interface OrderClickListener {
+        fun onClick(item: Order)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,26 +25,26 @@ class OrderHistoryAdapter constructor(private val listener: OrderHistoryClickLis
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), listener)
+        holder.bind(item = getItem(position), orderClickListener = orderClickListener)
     }
 
     class ViewHolder private constructor(private val binding: ItemOrderHistoryBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
-        fun bind(item: OrderHistory, listener: OrderHistoryClickListener) {
+        fun bind(item: Order, orderClickListener: OrderClickListener) {
             val diffInMillis =
                 Calendar.getInstance().timeInMillis - item.date.atZone(ZoneId.systemDefault())
                     .toInstant().toEpochMilli()
             val diffInDays = TimeUnit.MILLISECONDS.toDays(diffInMillis)
 
-            binding.tvRestaurantName.text = item.restaurantName
-            binding.tvPrice.text = "${item.amount}€"
-            binding.tvDate.text =
-                itemView.context.getString(R.string.tv_days_ago, diffInDays)
-
-            binding.root.setOnClickListener {
-                listener.onClick(item)
+            binding.apply {
+                tvRestaurantName.text = item.restaurantName
+                tvPrice.text = "${item.amount}€"
+                tvDate.text = itemView.context.getString(R.string.tv_days_ago, diffInDays)
+                cvOrder.setOnClickListener {
+                    orderClickListener.onClick(item = item)
+                }
             }
         }
 
@@ -58,18 +58,12 @@ class OrderHistoryAdapter constructor(private val listener: OrderHistoryClickLis
     }
 }
 
-class OrderHistoryDiffCallBack : DiffUtil.ItemCallback<OrderHistory>() {
+class OrderHistoryDiffCallBack : DiffUtil.ItemCallback<Order>() {
     override fun areItemsTheSame(
-        oldItem: OrderHistory,
-        newItem: OrderHistory
-    ): Boolean {
-        return oldItem.date == newItem.date
-    }
+        oldItem: Order, newItem: Order
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: OrderHistory,
-        newItem: OrderHistory
-    ): Boolean {
-        return oldItem == newItem
-    }
+        oldItem: Order, newItem: Order
+    ) = oldItem == newItem
 }

@@ -26,11 +26,16 @@ class FavouriteAdapter constructor(private val listener: FavouriteRestaurantClic
     class ViewHolder private constructor(private val binding: ItemFavouriteRestaurantBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: FavouriteRestaurant, listener: FavouriteRestaurantClickListener) {
-            binding.tvRestaurantName.text = item.name
+        fun bind(
+            item: FavouriteRestaurant,
+            favouriteRestaurantClickListener: FavouriteRestaurantClickListener
+        ) {
+            binding.apply {
+                tvRestaurantName.text = item.name
 
-            binding.root.setOnClickListener {
-                listener.onClick(item)
+                root.setOnClickListener {
+                    favouriteRestaurantClickListener.onClick(item)
+                }
             }
         }
 
@@ -46,16 +51,10 @@ class FavouriteAdapter constructor(private val listener: FavouriteRestaurantClic
 
 class FavouriteRestaurantDiffCallBack : DiffUtil.ItemCallback<FavouriteRestaurant>() {
     override fun areItemsTheSame(
-        oldItem: FavouriteRestaurant,
-        newItem: FavouriteRestaurant
-    ): Boolean {
-        return oldItem.name == newItem.name
-    }
+        oldItem: FavouriteRestaurant, newItem: FavouriteRestaurant
+    ) = oldItem.name == newItem.name
 
     override fun areContentsTheSame(
-        oldItem: FavouriteRestaurant,
-        newItem: FavouriteRestaurant
-    ): Boolean {
-        return oldItem == newItem
-    }
+        oldItem: FavouriteRestaurant, newItem: FavouriteRestaurant
+    ) = oldItem == newItem
 }

@@ -2,7 +2,8 @@ package com.foodandservice.domain.model
 
 import java.time.LocalDateTime
 
-data class OrderHistory(
+data class Order(
+    val id: String,
     val restaurantName: String,
     val amount: String,
     val date: LocalDateTime

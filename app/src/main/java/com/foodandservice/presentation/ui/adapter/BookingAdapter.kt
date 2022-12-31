@@ -29,25 +29,23 @@ class BookingAdapter constructor(private val listener: BookingClickListener) :
     class ViewHolder private constructor(private val binding: ItemBookingBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: Booking, listener: BookingClickListener) {
-            if (item.diners > 1)
-                binding.tvRestaurantName.text = itemView.context.getString(
-                    R.string.item_booking_diners_plural,
-                    item.restaurantName,
-                    item.diners.toString()
+        fun bind(item: Booking, bookingClickListener: BookingClickListener) {
+            binding.apply {
+                if (item.diners > 1) tvRestaurantName.text = itemView.context.getString(
+                    R.string.item_booking_diners_plural, item.restaurantName, item.diners.toString()
                 )
-            else
-                binding.tvRestaurantName.text = itemView.context.getString(
+                else tvRestaurantName.text = itemView.context.getString(
                     R.string.item_booking_diners_singular,
                     item.restaurantName,
                     item.diners.toString()
                 )
-            binding.btnCancel.visibility = if (item.isActive) View.VISIBLE else View.GONE
-            binding.tvDateTime.text =
-                item.dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
+                btnCancel.visibility = if (item.isActive) View.VISIBLE else View.GONE
+                tvDateTime.text =
+                    item.dateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"))
 
-            binding.root.setOnClickListener {
-                listener.onClick(item)
+                root.setOnClickListener {
+                    bookingClickListener.onClick(item)
+                }
             }
         }
 
@@ -63,16 +61,10 @@ class BookingAdapter constructor(private val listener: BookingClickListener) :
 
 class BookingDiffCallBack : DiffUtil.ItemCallback<Booking>() {
     override fun areItemsTheSame(
-        oldItem: Booking,
-        newItem: Booking
-    ): Boolean {
-        return oldItem.restaurantName == newItem.restaurantName
-    }
+        oldItem: Booking, newItem: Booking
+    ) = oldItem.restaurantName == newItem.restaurantName
 
     override fun areContentsTheSame(
-        oldItem: Booking,
-        newItem: Booking
-    ): Boolean {
-        return oldItem == newItem
-    }
+        oldItem: Booking, newItem: Booking
+    ) = oldItem == newItem
 }

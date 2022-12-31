@@ -62,6 +62,7 @@
     <string name="fragment_bookings_title">Mis reservas</string>
     <string name="fragment_cart_title">Mi pedido</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
+    <string name="fragment_order_details_past_title">Pedido %s</string>
     <string name="fragment_orders_title">Mis pedidos</string>
     <string name="fragment_user_profile_greeting">¡Hola, %s!</string>
     <string name="fragment_user_profile_title">Mi cuenta</string>
@@ -119,7 +120,9 @@
     <string name="tv_review_owner_answer">Respuesta del propietario</string>
     <string name="tv_review_title">¿Qué te pareció %1$s?</string>
     <string name="tv_sms_sent">Hemos enviado un SMS a tu teléfono, por favor introduce la clave a continuación</string>
+    <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
+    <string name="tv_total">Total</string>
 
     <string name="user_profile_category_payment_methods">Métodos de pago</string>
     <string name="user_profile_category_personal_details">Datos personales</string>

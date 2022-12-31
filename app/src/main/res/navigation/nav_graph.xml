@@ -165,6 +165,9 @@
         <action
             android:id="@+id/action_ordersFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_ordersFragment_to_orderDetailsPastFragment"
+            app:destination="@id/orderDetailsPastFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderStatusFragment"
@@ -226,4 +229,9 @@
         android:name="com.foodandservice.presentation.ui.cart.CartFragment"
         android:label="CartFragment"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/orderDetailsPastFragment"
+        android:name="com.foodandservice.presentation.ui.order_details_past.OrderDetailsPastFragment"
+        android:label="OrderDetailsPastFragment"
+        tools:layout="@layout/fragment_order_details_past" />
 </navigation>
