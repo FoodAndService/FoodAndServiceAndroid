@@ -98,15 +98,12 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         binding.apply {
             rvCategoriesWithRestaurants.adapter = categoryRestaurantsAdapter
             rvCategoryTag.adapter = categoryTagAdapter
-            rvCategoryTag.addItemDecoration(RecyclerViewItemDecoration(24))
+            rvCategoryTag.addItemDecoration(RecyclerViewItemDecoration(48))
         }
     }
 
     override fun onClick(categoryTag: CategoryTag) {
-        HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(categoryTag.name)
-            .also { action ->
-                navigate(action)
-            }
+        navigate(HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(categoryTag.name))
     }
 
     override fun onClick(item: Restaurant) {

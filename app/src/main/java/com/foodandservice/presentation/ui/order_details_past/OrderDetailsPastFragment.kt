@@ -57,9 +57,7 @@ class OrderDetailsPastFragment : Fragment() {
             ProductOrderPast("7", "Pepsi", "", "1,99", false),
             ProductOrderPast("8", "Copa de vino", "", "2,99", false),
             ProductOrderPast("9", "Patatas fritas", "", "0,99", true),
-            ProductOrderPast("10", "Pollo frito", "", "3,99", false),
-            ProductOrderPast("11", "Patatas fritas", "", "0,99", true),
-            ProductOrderPast("12", "Patatas gajo", "", "0,99", true),
+            ProductOrderPast("10", "Pollo frito", "", "3,99", false)
         )
 
         orderPastAdapter = OrderPastAdapter().also { adapter ->

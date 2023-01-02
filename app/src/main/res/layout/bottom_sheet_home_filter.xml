@@ -58,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:gravity="start|center_vertical"
             android:text="@string/btn_home_filter_recommended"
             app:layout_constraintBottom_toBottomOf="@id/ivRecommended"
             app:layout_constraintStart_toEndOf="@id/ivRecommended"
@@ -82,6 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:gravity="start|center_vertical"
             android:text="@string/btn_home_filter_popular"
             app:layout_constraintBottom_toBottomOf="@id/ivPopular"
             app:layout_constraintStart_toEndOf="@id/ivPopular"
@@ -106,12 +108,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:gravity="start|center_vertical"
             android:text="@string/btn_home_filter_valorated"
             app:layout_constraintBottom_toBottomOf="@id/ivValorated"
             app:layout_constraintStart_toEndOf="@id/ivValorated"
             app:layout_constraintTop_toTopOf="@id/ivValorated"
             app:layout_constraintVertical_bias="0.7" />
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPriceLow"

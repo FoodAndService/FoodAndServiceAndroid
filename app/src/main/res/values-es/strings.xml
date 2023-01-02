@@ -34,7 +34,7 @@
     <string name="current_order_status_cancelled">Pedido cancelado</string>
     <string name="current_order_status_declined">Pedido rechazado</string>
     <string name="current_order_status_finished">Pedido finalizado</string>
-    <string name="current_order_status_order_number">Pedido</string>
+    <string name="current_order_status_order_number">Pedido\n#%s</string>
     <string name="current_order_status_waiting">Esperando pedido</string>
     <string name="current_order_status_your_order">Tu pedido</string>
 

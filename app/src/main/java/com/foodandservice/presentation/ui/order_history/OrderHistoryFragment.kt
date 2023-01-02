@@ -45,7 +45,7 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
                 id = "1",
                 restaurantName = "Wendy's",
                 amount = "15,00",
-                date = LocalDateTime.of(2022, 11, 20, 0, 0)
+                date = LocalDateTime.now()
             ), Order(
                 id = "2",
                 restaurantName = "Rosario's Burger",
@@ -76,6 +76,7 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
     }
 
     override fun onClick(item: Order) {
-        navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment())
+        if (item.id.toInt() > 1) navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment())
+        else navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsCurrentFragment())
     }
 }

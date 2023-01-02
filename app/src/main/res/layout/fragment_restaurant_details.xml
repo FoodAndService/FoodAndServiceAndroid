@@ -31,7 +31,7 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnReserve"
                             style="@style/FysNoPaddingButton"
-                            android:layout_marginStart="22dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="20dp"
                             android:text="@string/btn_book"
                             app:layout_constraintStart_toStartOf="parent"
@@ -50,56 +50,21 @@
                             android:id="@+id/btnFavourite"
                             style="@style/FysIconButton"
                             android:layout_marginTop="20dp"
-                            android:layout_marginEnd="22dp"
+                            android:layout_marginEnd="16dp"
                             app:icon="@drawable/ic_favorite"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/materialCardView"
-                            android:layout_width="65dp"
-                            android:layout_height="65dp"
-                            android:layout_marginBottom="-36dp"
-                            android:background="@android:color/transparent"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="24dp"
-                            app:layout_constraintBottom_toTopOf="@+id/cvRestaurantInfo"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent">
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginStart="4dp"
-                                android:layout_marginTop="4dp"
-                                android:layout_marginEnd="4dp"
-                                android:layout_marginBottom="4dp"
-                                android:background="@android:color/transparent"
-                                app:cardCornerRadius="5dp"
-                                app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent">
-
-                                <ImageView
-                                    android:id="@+id/restLogo2"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:importantForAccessibility="no"
-                                    android:scaleType="fitXY"
-                                    android:src="@drawable/restaurant_logo" />
-                            </com.google.android.material.card.MaterialCardView>
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <com.google.android.material.card.MaterialCardView
                             android:id="@+id/cvRestaurantInfo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="22dp"
+                            android:layout_marginStart="16dp"
                             android:layout_marginTop="16dp"
-                            android:layout_marginEnd="22dp"
+                            android:layout_marginEnd="16dp"
                             android:layout_marginBottom="8dp"
                             app:cardCornerRadius="10dp"
-                            app:cardElevation="8dp"
+                            app:cardElevation="10dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -214,6 +179,41 @@
 
                             </androidx.constraintlayout.widget.ConstraintLayout>
 
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/materialCardView"
+                            android:layout_width="65dp"
+                            android:layout_height="65dp"
+                            android:layout_marginBottom="-36dp"
+                            android:background="@android:color/transparent"
+                            app:cardCornerRadius="10dp"
+                            app:cardElevation="10dp"
+                            app:layout_constraintBottom_toTopOf="@+id/cvRestaurantInfo"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginTop="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:layout_marginBottom="4dp"
+                                android:background="@android:color/transparent"
+                                app:cardCornerRadius="5dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <ImageView
+                                    android:id="@+id/restLogo2"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:importantForAccessibility="no"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/restaurant_logo" />
+                            </com.google.android.material.card.MaterialCardView>
                         </com.google.android.material.card.MaterialCardView>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
