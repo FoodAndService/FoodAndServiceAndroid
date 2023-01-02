@@ -1,4 +1,4 @@
-package com.foodandservice.presentation.ui.sms_confirm_sign
+package com.foodandservice.presentation.ui.sms_confirm_auth
 
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
@@ -20,9 +20,9 @@ class SmsConfirmViewModel(
     private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
 ) : ViewModel() {
 
-    private val _smsConfirmSignState =
-        MutableStateFlow<SmsConfirmSignState>(SmsConfirmSignState.Idle)
-    val smsConfirmSignState: StateFlow<SmsConfirmSignState> = _smsConfirmSignState.asStateFlow()
+    private val _smsConfirmAuthState =
+        MutableStateFlow<SmsConfirmAuthState>(SmsConfirmAuthState.Idle)
+    val smsConfirmAuthState: StateFlow<SmsConfirmAuthState> = _smsConfirmAuthState.asStateFlow()
 
     private var _countDownTimerState = MutableStateFlow(CountDownTimerState())
     val countDownTimerState = _countDownTimerState.asStateFlow()
@@ -35,7 +35,7 @@ class SmsConfirmViewModel(
 
     fun sendSms(phone: String, smsCode: String) {
         viewModelScope.launch {
-            _smsConfirmSignState.value = SmsConfirmSignState.Loading
+            _smsConfirmAuthState.value = SmsConfirmAuthState.Loading
 
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
                 is Resource.Success -> {
@@ -44,20 +44,20 @@ class SmsConfirmViewModel(
                         saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
 
                         when (authPhaseWithToken.currentPhase) {
-                            AuthCurrentPhase.PHONE_VERIFIED -> _smsConfirmSignState.value =
-                                SmsConfirmSignState.SuccessNewCustomer(authPhaseWithToken.authUser)
-                            AuthCurrentPhase.INFO_ADDED -> _smsConfirmSignState.value =
-                                SmsConfirmSignState.SuccessExistentCustomer
-                            AuthCurrentPhase.UNKNOWN -> _smsConfirmSignState.value =
-                                SmsConfirmSignState.Error("")
+                            AuthCurrentPhase.PHONE_VERIFIED -> _smsConfirmAuthState.value =
+                                SmsConfirmAuthState.SuccessNewCustomer(authPhaseWithToken.authUser)
+                            AuthCurrentPhase.INFO_ADDED -> _smsConfirmAuthState.value =
+                                SmsConfirmAuthState.SuccessExistentCustomer
+                            AuthCurrentPhase.UNKNOWN -> _smsConfirmAuthState.value =
+                                SmsConfirmAuthState.Error("")
                         }
                     }
                 }
-                is Resource.Failure -> _smsConfirmSignState.value =
-                    SmsConfirmSignState.Error(response.message)
+                is Resource.Failure -> _smsConfirmAuthState.value =
+                    SmsConfirmAuthState.Error(response.message)
             }
 
-            _smsConfirmSignState.value = SmsConfirmSignState.Idle
+            _smsConfirmAuthState.value = SmsConfirmAuthState.Idle
         }
     }
 

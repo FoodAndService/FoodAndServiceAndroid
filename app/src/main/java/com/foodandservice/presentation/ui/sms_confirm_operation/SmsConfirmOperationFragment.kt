@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentSmsConfirmOperationBinding
 
 class SmsConfirmOperationFragment : Fragment() {
@@ -16,9 +14,8 @@ class SmsConfirmOperationFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
+        binding = FragmentSmsConfirmOperationBinding.inflate(
             inflater,
-            R.layout.fragment_sms_confirm_operation,
             container,
             false
         )

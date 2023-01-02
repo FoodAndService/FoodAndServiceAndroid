@@ -55,11 +55,11 @@
     </fragment>
     <fragment
         android:id="@+id/smsConfirmSignFragment"
-        android:name="com.foodandservice.presentation.ui.sms_confirm_sign.SmsConfirmSignFragment"
+        android:name="com.foodandservice.presentation.ui.sms_confirm_auth.SmsConfirmAuthFragment"
         android:label="SmsConfirmSignFragment"
         tools:layout="@layout/fragment_sms_confirm_sign">
         <action
-            android:id="@+id/action_smsConfirmSignFragment_to_signupFinishFragment"
+            android:id="@+id/action_smsConfirmAuthFragment_to_signupFinishFragment"
             app:destination="@id/signupFinishFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
@@ -67,7 +67,7 @@
             android:name="phone"
             app:argType="string" />
         <action
-            android:id="@+id/action_smsConfirmSignFragment_to_homeFragment"
+            android:id="@+id/action_smsConfirmAuthFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />

@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentCartBinding
 import com.foodandservice.domain.model.CartItem
 import com.foodandservice.presentation.ui.adapter.CartAdapter
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 
 
 class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
@@ -20,7 +18,7 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_cart, container, false)
+        binding = FragmentCartBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -35,14 +33,12 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
             }
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
         }
     }
 
     private fun setAdapter() {
-        cartAdapter = CartAdapter(this)
-
         val cart = listOf(
             CartItem("1", "Pepsi", "", "1,99", 1, false),
             CartItem("2", "Copa de vino", "", "2,99", 1, false),
@@ -52,8 +48,10 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
             CartItem("6", "Patatas gajo", "", "0,99", 1, true),
         )
 
-        cartAdapter.submitList(cart)
-        binding.rvCart.adapter = cartAdapter
+        cartAdapter = CartAdapter(this).also { adapter ->
+            binding.rvCart.adapter = adapter
+            adapter.submitList(cart)
+        }
     }
 
     override fun onClickSubtractQuantity(cartItem: CartItem, position: Int) {

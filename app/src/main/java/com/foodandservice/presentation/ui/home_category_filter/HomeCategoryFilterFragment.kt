@@ -4,15 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.presentation.ui.adapter.RestaurantFilterAdapter
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import org.koin.android.ext.android.get
 
 class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.RestaurantClickListener {
@@ -22,15 +21,9 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
     private val viewModel: HomeCategoryFilterViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_home_category_filter,
-            container,
-            false
-        )
+        binding = FragmentHomeCategoryFilterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -38,10 +31,6 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
-
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
         viewModel.getRestaurantsByCategory(args.category)
 
@@ -52,23 +41,31 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
                         restaurantFilterAdapter.submitList(state.restaurants)
                     }
                     is HomeCategoryFilterState.Loading -> {
-                        TODO("Show loading")
+
                     }
                     is HomeCategoryFilterState.Error -> {
-                        TODO("Error")
+
                     }
-                    is HomeCategoryFilterState.Idle -> {}
+                    is HomeCategoryFilterState.Idle -> {
+
+                    }
                 }
             }
         }
 
-        binding.tvCategory.text =
-            getString(R.string.category_filter_title, args.category)
+        binding.apply {
+            tvCategory.text = getString(R.string.category_filter_title, args.category)
+
+            btnBack.setOnClickListener {
+                navigateBack()
+            }
+        }
     }
 
     private fun setAdapter() {
-        restaurantFilterAdapter = RestaurantFilterAdapter(this)
-        binding.rvRestaurant.adapter = restaurantFilterAdapter
+        restaurantFilterAdapter = RestaurantFilterAdapter(this).also { adapter ->
+            binding.rvRestaurant.adapter = adapter
+        }
     }
 
     override fun onClick(item: Restaurant) {

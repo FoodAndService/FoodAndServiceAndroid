@@ -12,6 +12,8 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.DialogLayoutBinding
 
@@ -28,6 +30,14 @@ object CoreExtensions {
 
     fun Fragment.showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
+
+    fun Fragment.navigateBack() {
+        findNavController().popBackStack()
+    }
+
+    fun Fragment.navigate(action: NavDirections) {
+        findNavController().navigate(action)
     }
 
     fun Fragment.showDialog(

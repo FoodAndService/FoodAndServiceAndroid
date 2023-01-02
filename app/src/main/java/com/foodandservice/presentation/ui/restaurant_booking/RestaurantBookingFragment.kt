@@ -4,27 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
+import com.foodandservice.databinding.FragmentRestaurantBookingBinding
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import org.koin.android.ext.android.get
 
 class RestaurantBookingFragment : Fragment() {
-    private lateinit var binding: com.foodandservice.databinding.FragmentRestaurantBookingBinding
+    private lateinit var binding: FragmentRestaurantBookingBinding
     private val viewModel: RestaurantBookingViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_restaurant_booking,
-                container,
-                false
-            )
+        binding = FragmentRestaurantBookingBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,7 +43,7 @@ class RestaurantBookingFragment : Fragment() {
 
         binding.apply {
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
 
             tvRestaurantName.text = getString(R.string.tv_table_booking_restaurant, "Wendy's")

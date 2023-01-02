@@ -4,13 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderDetailsPastBinding
 import com.foodandservice.domain.model.ProductOrderPast
 import com.foodandservice.presentation.ui.adapter.OrderPastAdapter
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 
 class OrderDetailsPastFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailsPastBinding
@@ -19,8 +18,8 @@ class OrderDetailsPastFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_order_details_past, container, false
+        binding = FragmentOrderDetailsPastBinding.inflate(
+            inflater, container, false
         )
         return binding.root
     }
@@ -32,7 +31,7 @@ class OrderDetailsPastFragment : Fragment() {
 
         binding.apply {
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
 
             btnQr.setOnClickListener {

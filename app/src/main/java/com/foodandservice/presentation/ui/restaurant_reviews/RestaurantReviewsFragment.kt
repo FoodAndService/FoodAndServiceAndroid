@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantReviewsBinding
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.presentation.ui.adapter.RestaurantReviewAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
+import com.foodandservice.util.extensions.CoreExtensions.navigate
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import java.time.LocalDateTime
 
 class RestaurantReviewsFragment : Fragment() {
@@ -21,8 +20,8 @@ class RestaurantReviewsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_restaurant_reviews, container, false
+        binding = FragmentRestaurantReviewsBinding.inflate(
+            inflater, container, false
         )
         return binding.root
     }
@@ -33,21 +32,16 @@ class RestaurantReviewsFragment : Fragment() {
         setAdapters()
 
         binding.apply {
-            rvRestaurantReview.adapter = restaurantReviewAdapter
             rvRestaurantReview.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
 
             btnAddReview.setOnClickListener {
-                navigateToAddReview()
+                navigate(RestaurantReviewsFragmentDirections.actionRestaurantReviewsFragmentToReviewCreateFragment())
             }
         }
-    }
-
-    private fun navigateToAddReview() {
-        findNavController().navigate(R.id.action_restaurantReviewsFragment_to_reviewCreateFragment)
     }
 
     private fun setAdapters() {
@@ -125,7 +119,9 @@ class RestaurantReviewsFragment : Fragment() {
             )
         )
 
-        restaurantReviewAdapter = RestaurantReviewAdapter()
-        restaurantReviewAdapter.submitList(reviews)
+        restaurantReviewAdapter = RestaurantReviewAdapter().also { adapter ->
+            binding.rvRestaurantReview.adapter = adapter
+            adapter.submitList(reviews)
+        }
     }
 }

@@ -5,24 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentFavouritesBinding
 import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.presentation.ui.adapter.FavouriteAdapter
+import com.foodandservice.util.extensions.CoreExtensions.navigate
 
 class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClickListener {
     private lateinit var binding: FragmentFavouritesBinding
     private lateinit var favouriteAdapter: FavouriteAdapter
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_favourites, container, false)
+        binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -31,53 +28,34 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
 
         setAdapter()
 
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            navigate(FavouritesFragmentDirections.actionFavouritesFragmentToHomeFragment())
+        }
+    }
+
+    private fun setAdapter() {
         val favouriteRestaurants = listOf(
             FavouriteRestaurant(
                 "Rosario's Burger"
-            ),
-            FavouriteRestaurant(
+            ), FavouriteRestaurant(
                 "Domino's Pizza"
-            ),
-            FavouriteRestaurant(
+            ), FavouriteRestaurant(
                 "Five Guys"
-            ),
-            FavouriteRestaurant(
+            ), FavouriteRestaurant(
                 "Foster Hollywood"
-            ),
-            FavouriteRestaurant(
+            ), FavouriteRestaurant(
                 "La Calle Burger"
             )
         )
 
-        favouriteAdapter.submitList(favouriteRestaurants)
-
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-//            viewModel.favouritesState.collect { state ->
-//                when (state) {
-//                    is FavouritesState.Success -> {
-//                        favouritesAdapter.submitList(state.favourites)
-//                    }
-//                    is FavouritesState.Loading -> {
-//                        TODO("Show loading")
-//                    }
-//                    is FavouritesState.Error -> {
-//                        TODO("Error")
-//                    }
-//                    is FavouritesState.Empty -> {}
-//                }
-//            }
+        favouriteAdapter = FavouriteAdapter(this).also { adapter ->
+            binding.rvFavourites.adapter = adapter
+            adapter.submitList(favouriteRestaurants)
         }
-
-        requireActivity()
-            .onBackPressedDispatcher
-            .addCallback(viewLifecycleOwner) {
-                findNavController().navigate(FavouritesFragmentDirections.actionFavouritesFragmentToHomeFragment())
-            }
-    }
-
-    private fun setAdapter() {
-        favouriteAdapter = FavouriteAdapter(this)
-        binding.rvFavourites.adapter = favouriteAdapter
     }
 
     override fun onClick(item: FavouriteRestaurant) {

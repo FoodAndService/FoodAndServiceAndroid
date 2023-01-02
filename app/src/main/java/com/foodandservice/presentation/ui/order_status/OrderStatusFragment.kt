@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderStatusBinding
 
 class OrderStatusFragment : Fragment() {
@@ -17,7 +15,7 @@ class OrderStatusFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_order_status, container, false)
+            FragmentOrderStatusBinding.inflate(inflater, container, false)
         return binding.root
     }
 

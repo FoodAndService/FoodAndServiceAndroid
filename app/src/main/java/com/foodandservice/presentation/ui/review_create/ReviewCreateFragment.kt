@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentReviewCreateBinding
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import org.koin.android.ext.android.get
 
 class ReviewCreateFragment : Fragment() {
@@ -18,11 +16,9 @@ class ReviewCreateFragment : Fragment() {
     private val viewModel: ReviewCreateViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_review_create, container, false)
+        binding = FragmentReviewCreateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -51,13 +47,12 @@ class ReviewCreateFragment : Fragment() {
             }
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
 
             ratingBarReview.onRatingBarChangeListener =
                 RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
-                    if (rating < 1.0f)
-                        ratingBar.rating = 1.0f
+                    if (rating < 1.0f) ratingBar.rating = 1.0f
                 }
         }
     }

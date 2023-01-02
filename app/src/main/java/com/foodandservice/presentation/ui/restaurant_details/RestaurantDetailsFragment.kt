@@ -5,16 +5,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.ahmadhamwi.tabsync.TabbedListMediator
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
 import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
+import com.foodandservice.util.extensions.CoreExtensions.navigate
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.foodandservice.util.getTabbedListMediatorIndices
 import org.koin.android.ext.android.get
 
@@ -26,8 +25,8 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_restaurant_details, container, false
+        binding = FragmentRestaurantDetailsBinding.inflate(
+            inflater, container, false
         )
         return binding.root
     }
@@ -35,50 +34,34 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initAdapters()
+        setAdapter()
 
         binding.apply {
             btnReserve.setOnClickListener {
-                navigateToTableBooking()
+                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantBookingFragment())
             }
 
             btnMoreInfo.setOnClickListener {
-                navigateToExtraDetails()
+                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantDetailsExtraFragment())
             }
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
 
             llRating.setOnClickListener {
-                navigateToReviews()
+                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantReviewsFragment())
             }
 
             btnCart.setOnClickListener {
-                navigateToCart()
+                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToCartFragment())
             }
 
             tvRatingText.paintFlags = tvRatingText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         }
     }
 
-    private fun navigateToCart() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_cartFragment)
-    }
-
-    private fun navigateToReviews() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantReviewsFragment)
-    }
-
-    private fun navigateToTableBooking() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantBookingFragment)
-    }
-
-    private fun navigateToExtraDetails() {
-        findNavController().navigate(R.id.action_restaurantDetailsFragment_to_restaurantDetailsExtraFragment)
-    }
-
-    private fun initAdapters() {
+    private fun setAdapter() {
         val categoriesWithProducts = listOf(
             CategoryWithProducts(
                 categoryName = "Bebidas", products = listOf(
@@ -304,32 +287,28 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                         inStock = true,
                         isRefill = false,
                         price = "2,90"
-                    ),
-                    Product(
+                    ), Product(
                         id = "27",
                         name = "Helado de chocolate",
                         image = "1",
                         inStock = true,
                         isRefill = false,
                         price = "3,10"
-                    ),
-                    Product(
+                    ), Product(
                         id = "28",
                         name = "Tarta de queso",
                         image = "1",
                         inStock = true,
                         isRefill = false,
                         price = "2,90"
-                    ),
-                    Product(
+                    ), Product(
                         id = "29",
                         name = "Flan",
                         image = "1",
                         inStock = true,
                         isRefill = false,
                         price = "2,90"
-                    ),
-                    Product(
+                    ), Product(
                         id = "30",
                         name = "Tiramisú",
                         image = "1",
@@ -340,38 +319,37 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                 )
             )
         )
-
-        productAdapter = ProductAdapter(this)
         val products = mutableListOf<Product>()
         categoriesWithProducts.forEach { it -> it.products.forEach { products.add(it) } }
-        productAdapter.submitList(products)
 
-        binding.apply {
-            rvProduct.adapter = productAdapter
-            rvProduct.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))
+        productAdapter = ProductAdapter(this).also { adapter ->
+            binding.apply {
+                rvProduct.adapter = adapter
+                rvProduct.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))
+            }
+            adapter.submitList(products)
         }
 
         initTabLayout(categoriesWithProducts)
     }
 
     private fun initTabLayout(categoriesWithProducts: List<CategoryWithProducts>) {
-        categoriesWithProducts.forEach {
-            binding.tabLayout.addTab(binding.tabLayout.newTab().setText(it.categoryName))
-        }
+        binding.apply {
+            categoriesWithProducts.forEach {
+                tabLayout.addTab(tabLayout.newTab().setText(it.categoryName))
+            }
 
-        TabbedListMediator(
-            binding.rvProduct,
-            binding.tabLayout,
-            getTabbedListMediatorIndices(categoriesWithProducts),
-            true
-        ).attach()
+            TabbedListMediator(
+                rvProduct, tabLayout, getTabbedListMediatorIndices(categoriesWithProducts), true
+            ).attach()
+        }
     }
 
     override fun onClick(product: Product) {
-        val action =
+        navigate(
             RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToProductDetailsFragment(
                 product
             )
-        findNavController().navigate(action)
+        )
     }
 }

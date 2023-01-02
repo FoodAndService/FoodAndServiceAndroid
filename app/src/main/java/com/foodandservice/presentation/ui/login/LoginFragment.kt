@@ -5,13 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentLoginBinding
+import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
 
@@ -20,10 +19,9 @@ class LoginFragment : Fragment() {
     private val viewModel: LoginViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
+        binding = FragmentLoginBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -57,28 +55,28 @@ class LoginFragment : Fragment() {
             }
         }
 
-        binding.btnAccess.setOnClickListener {
-            viewModel.login(binding.countryCodePicker.selectedCountryCodeWithPlus + binding.tiePhone.text.toString())
-        }
-
-        binding.btnLostPhone.setOnClickListener {
-
-        }
-
         binding.apply {
-            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
-
             countryCodePicker.setTypeFace(
                 Typeface.createFromAsset(
-                    requireContext().assets,
-                    "fonts/poppins.ttf"
+                    requireContext().assets, "fonts/poppins.ttf"
                 )
             )
+
+            btnAccess.setOnClickListener {
+                viewModel.login(binding.countryCodePicker.selectedCountryCodeWithPlus + binding.tiePhone.text.toString())
+            }
+
+            btnLostPhone.setOnClickListener {
+
+            }
+
+            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
     }
 
     private fun navigateToSmsConfirm(phone: String) {
-        val action = LoginFragmentDirections.actionLoginFragmentToSmsConfirmSignFragment(phone)
-        findNavController().navigate(action)
+        LoginFragmentDirections.actionLoginFragmentToSmsConfirmSignFragment(phone).also { action ->
+            navigate(action)
+        }
     }
 }

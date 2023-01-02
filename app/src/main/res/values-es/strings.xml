@@ -30,6 +30,14 @@
     <string name="confirm_operation_desc">Te hemos enviado un SMS, por favor introduce la clave a continuación</string>
     <string name="confirm_operation_title">Confirmar operación</string>
 
+    <string name="current_order_status_accepted">Pedido aceptado</string>
+    <string name="current_order_status_cancelled">Pedido cancelado</string>
+    <string name="current_order_status_declined">Pedido rechazado</string>
+    <string name="current_order_status_finished">Pedido finalizado</string>
+    <string name="current_order_status_order_number">Pedido</string>
+    <string name="current_order_status_waiting">Esperando pedido</string>
+    <string name="current_order_status_your_order">Tu pedido</string>
+
     <string name="dialog_delete_account_desc">Atención: si elimina su cuenta, no podrá recuperar ninguna información</string>
     <string name="dialog_delete_account_title">Eliminar cuenta</string>
     <string name="dialog_logout_desc">¿Estás seguro de que quieres cerrar sesión?</string>

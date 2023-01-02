@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderHistoryBinding
 import com.foodandservice.domain.model.Order
 import com.foodandservice.presentation.ui.adapter.OrderHistoryAdapter
+import com.foodandservice.util.extensions.CoreExtensions.navigate
 import java.time.LocalDateTime
 
 class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener {
@@ -21,8 +19,8 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_order_history, container, false
+        binding = FragmentOrderHistoryBinding.inflate(
+            inflater, container, false
         )
         return binding.root
     }
@@ -37,7 +35,7 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-            findNavController().navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToHomeFragment())
+            navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToHomeFragment())
         }
     }
 
@@ -78,9 +76,6 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
     }
 
     override fun onClick(item: Order) {
-        OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment()
-            .also { action ->
-                findNavController().navigate(action)
-            }
+        navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment())
     }
 }

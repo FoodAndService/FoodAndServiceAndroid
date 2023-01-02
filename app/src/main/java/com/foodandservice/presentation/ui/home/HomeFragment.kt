@@ -5,10 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeBinding
 import com.foodandservice.domain.model.CategoryTag
@@ -18,6 +16,7 @@ import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
 import com.foodandservice.util.RecyclerViewItemDecoration
+import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
 import org.koin.android.ext.android.get
 
@@ -29,10 +28,9 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     private val viewModel: HomeViewModel = get()
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -62,12 +60,11 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         binding.apply {
             btnCart.setOnClickListener {
-                navigateToCart()
+                navigate(HomeFragmentDirections.actionHomeFragmentToCartFragment())
             }
 
             btnFilter.setOnClickListener {
-                showHomeFilterBottomSheet(
-                    layout = R.layout.bottom_sheet_home_filter,
+                showHomeFilterBottomSheet(layout = R.layout.bottom_sheet_home_filter,
                     onBtnRecommendedClick = {
 
                     },
@@ -85,20 +82,13 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                     },
                     onBtnPriceHighClick = {
 
-                    }
-                )
+                    })
             }
         }
 
-        requireActivity()
-            .onBackPressedDispatcher
-            .addCallback(viewLifecycleOwner) {
-                requireActivity().moveTaskToBack(true)
-            }
-    }
-
-    private fun navigateToCart() {
-        findNavController().navigate(R.id.action_homeFragment_to_cartFragment)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            requireActivity().moveTaskToBack(true)
+        }
     }
 
     private fun setAdapters() {
@@ -113,13 +103,13 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     override fun onClick(categoryTag: CategoryTag) {
-        val action =
-            HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(categoryTag.name)
-        findNavController().navigate(action)
+        HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(categoryTag.name)
+            .also { action ->
+                navigate(action)
+            }
     }
 
     override fun onClick(item: Restaurant) {
-        val action = HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment()
-        findNavController().navigate(action)
+        navigate(HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment())
     }
 }

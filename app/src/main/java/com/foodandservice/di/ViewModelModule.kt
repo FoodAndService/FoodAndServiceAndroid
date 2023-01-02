@@ -8,7 +8,7 @@ import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingVi
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
 import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
 import com.foodandservice.presentation.ui.signup_finish.SignUpFinishViewModel
-import com.foodandservice.presentation.ui.sms_confirm_sign.SmsConfirmViewModel
+import com.foodandservice.presentation.ui.sms_confirm_auth.SmsConfirmViewModel
 import com.foodandservice.presentation.ui.splash.SplashViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

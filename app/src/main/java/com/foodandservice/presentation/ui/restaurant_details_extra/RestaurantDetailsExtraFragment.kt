@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsExtraBinding
+import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -23,8 +22,8 @@ class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
-        binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_restaurant_details_extra, container, false
+        binding = FragmentRestaurantDetailsExtraBinding.inflate(
+            inflater, container, false
         )
         return binding.root
     }
@@ -41,7 +40,7 @@ class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
             tvSchedule.text = schedule
 
             btnBack.setOnClickListener {
-                findNavController().popBackStack()
+                navigateBack()
             }
         }
     }
