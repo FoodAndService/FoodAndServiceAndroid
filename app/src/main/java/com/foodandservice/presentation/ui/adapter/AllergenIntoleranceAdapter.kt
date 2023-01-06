@@ -106,13 +106,9 @@ class AllergenIntoleranceAdapter :
 class AllergenIntoleranceDiffCallback : DiffUtil.ItemCallback<AllergenIntolerance>() {
     override fun areItemsTheSame(
         oldItem: AllergenIntolerance, newItem: AllergenIntolerance
-    ): Boolean {
-        return oldItem.name == newItem.name
-    }
+    ) = oldItem.name == newItem.name
 
     override fun areContentsTheSame(
         oldItem: AllergenIntolerance, newItem: AllergenIntolerance
-    ): Boolean {
-        return oldItem == newItem
-    }
+    ) = oldItem == newItem
 }

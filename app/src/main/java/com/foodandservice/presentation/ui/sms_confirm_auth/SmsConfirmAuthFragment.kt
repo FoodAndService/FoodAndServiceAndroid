@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.common.Constants
@@ -32,45 +34,45 @@ class SmsConfirmAuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.smsConfirmAuthState.collect { state ->
-                when (state) {
-                    is SmsConfirmAuthState.SuccessNewCustomer -> {
-                        navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToSignupFinishFragment())
-                    }
-                    is SmsConfirmAuthState.SuccessExistentCustomer -> {
-                        hideKeyboard()
-                        navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToHomeFragment())
-                    }
-                    is SmsConfirmAuthState.Error -> {
-                        showToast(state.message)
-                    }
-                    is SmsConfirmAuthState.Loading -> {
-                        binding.apply {
-                            btnConfirm.isEnabled = false
-                            btnConfirm.text = ""
-                            progressBar.visibility = View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.smsConfirmAuthState.collect { state ->
+                    when (state) {
+                        is SmsConfirmAuthState.SuccessNewCustomer -> {
+                            navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToSignupFinishFragment())
                         }
-                    }
-                    is SmsConfirmAuthState.Idle -> {
-                        binding.apply {
-                            btnConfirm.isEnabled = true
-                            btnConfirm.text = getString(R.string.btn_confirm)
-                            progressBar.visibility = View.GONE
+                        is SmsConfirmAuthState.SuccessExistentCustomer -> {
+                            hideKeyboard()
+                            navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToHomeFragment())
+                        }
+                        is SmsConfirmAuthState.Error -> {
+                            showToast(state.message)
+                        }
+                        is SmsConfirmAuthState.Loading -> {
+                            setLoadingState()
+                        }
+                        is SmsConfirmAuthState.Idle -> {
+                            binding.apply {
+                                btnConfirm.isEnabled = true
+                                btnConfirm.text = getString(R.string.btn_confirm)
+                                progressBar.visibility = View.GONE
+                            }
                         }
                     }
                 }
             }
         }
 
-        lifecycleScope.launch {
-            viewModel.countDownTimerState.collect { state ->
-                binding.apply {
-                    btnResendSms.isEnabled = state.isBtnEnabled
-                    btnResendSms.text =
-                        if (state.isBtnEnabled) getString(R.string.btn_resend_sms) else getString(
-                            R.string.btn_resend_sms_wait, state.time
-                        )
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.countDownTimerState.collect { state ->
+                    binding.apply {
+                        btnResendSms.isEnabled = state.isBtnEnabled
+                        btnResendSms.text =
+                            if (state.isBtnEnabled) getString(R.string.btn_resend_sms) else getString(
+                                R.string.btn_resend_sms_wait, state.time
+                            )
+                    }
                 }
             }
         }
@@ -89,6 +91,14 @@ class SmsConfirmAuthFragment : Fragment() {
             etSms.onChangeListener = SmsConfirmationView.OnChangeListener { code, isComplete -> }
 
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
+        }
+    }
+
+    private fun setLoadingState() {
+        binding.apply {
+            btnConfirm.isEnabled = false
+            btnConfirm.text = ""
+            progressBar.visibility = View.VISIBLE
         }
     }
 }

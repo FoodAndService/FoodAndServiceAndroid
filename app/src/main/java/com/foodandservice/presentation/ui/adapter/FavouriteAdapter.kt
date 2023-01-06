@@ -52,7 +52,7 @@ class FavouriteAdapter constructor(private val listener: FavouriteRestaurantClic
 class FavouriteRestaurantDiffCallBack : DiffUtil.ItemCallback<FavouriteRestaurant>() {
     override fun areItemsTheSame(
         oldItem: FavouriteRestaurant, newItem: FavouriteRestaurant
-    ) = oldItem.name == newItem.name
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
         oldItem: FavouriteRestaurant, newItem: FavouriteRestaurant

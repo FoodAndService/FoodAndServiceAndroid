@@ -8,8 +8,7 @@ import com.foodandservice.domain.util.Resource
 
 class SignUpFirstPhaseUseCase(private val customerRepository: CustomerRepository) {
     suspend operator fun invoke(authToken: String, name: String): Resource<AuthPhaseWithToken> {
-        if (name.length > 3)
-            return customerRepository.signUpFirstPhase(authToken, Name(name))
-        else throw InvalidNameFormatException()
+        if (name.length < 3) throw InvalidNameFormatException()
+        else return customerRepository.signUpFirstPhase(authToken, Name(name))
     }
 }

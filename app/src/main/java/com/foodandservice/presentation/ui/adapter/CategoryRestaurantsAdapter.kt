@@ -28,11 +28,14 @@ class CategoryRestaurantsAdapter constructor(private val listener: RestaurantAda
             item: CategoryRestaurants,
             listener: RestaurantAdapter.RestaurantClickListener
         ) {
-            binding.tvCategory.text = item.name
-            val adapter = RestaurantAdapter(listener)
-            adapter.submitList(item.restaurants)
-            binding.rvRestaurant.adapter = adapter
-            binding.rvRestaurant.addItemDecoration(RecyclerViewItemDecoration(32))
+            val adapter =
+                RestaurantAdapter(listener).also { adapter -> adapter.submitList(item.restaurants) }
+
+            binding.apply {
+                tvCategory.text = item.name
+                rvRestaurant.adapter = adapter
+                rvRestaurant.addItemDecoration(RecyclerViewItemDecoration(32))
+            }
         }
 
         companion object {
@@ -49,14 +52,10 @@ class CategoryRestaurantsDiffCallback : DiffUtil.ItemCallback<CategoryRestaurant
     override fun areItemsTheSame(
         oldItem: CategoryRestaurants,
         newItem: CategoryRestaurants
-    ): Boolean {
-        return oldItem.id == newItem.id
-    }
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
         oldItem: CategoryRestaurants,
         newItem: CategoryRestaurants
-    ): Boolean {
-        return oldItem == newItem
-    }
+    ) = oldItem == newItem
 }

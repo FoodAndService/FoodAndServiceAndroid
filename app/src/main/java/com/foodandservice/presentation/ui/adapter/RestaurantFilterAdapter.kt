@@ -49,11 +49,8 @@ class RestaurantFilterAdapter constructor(private val listener: RestaurantClickL
 }
 
 class RestaurantFilterDiffCallBack : DiffUtil.ItemCallback<Restaurant>() {
-    override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
-        return oldItem.name == newItem.name
-    }
+    override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant) =
+        oldItem.name == newItem.name
 
-    override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
-        return oldItem == newItem
-    }
+    override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant) = oldItem == newItem
 }

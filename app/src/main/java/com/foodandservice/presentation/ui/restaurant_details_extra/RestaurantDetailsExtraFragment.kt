@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsExtraBinding
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
@@ -14,6 +17,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import kotlinx.coroutines.launch
 
 class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentRestaurantDetailsExtraBinding
@@ -32,6 +36,12 @@ class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
         super.onViewCreated(view, savedInstanceState)
 
         initGoogleMap()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
 
         val schedule =
             "Lunes: Cerrado\n" + "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" + "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" + "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" + "Domingo: 12:00 a 17:00 y 20:30 a 02:00"

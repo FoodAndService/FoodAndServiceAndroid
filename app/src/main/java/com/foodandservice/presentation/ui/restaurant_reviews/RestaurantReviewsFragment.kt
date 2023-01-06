@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentRestaurantReviewsBinding
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.presentation.ui.adapter.RestaurantReviewAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 class RestaurantReviewsFragment : Fragment() {
@@ -30,6 +34,12 @@ class RestaurantReviewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapters()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
 
         binding.apply {
             rvRestaurantReview.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))

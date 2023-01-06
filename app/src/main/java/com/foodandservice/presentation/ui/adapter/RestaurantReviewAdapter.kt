@@ -109,11 +109,9 @@ class RestaurantReviewAdapter :
 }
 
 class RestaurantReviewDiffCallback : DiffUtil.ItemCallback<RestaurantReview>() {
-    override fun areItemsTheSame(oldItem: RestaurantReview, newItem: RestaurantReview): Boolean {
-        return oldItem.id == newItem.id
-    }
+    override fun areItemsTheSame(oldItem: RestaurantReview, newItem: RestaurantReview) =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: RestaurantReview, newItem: RestaurantReview): Boolean {
-        return oldItem == newItem
-    }
+    override fun areContentsTheSame(oldItem: RestaurantReview, newItem: RestaurantReview) =
+        oldItem == newItem
 }

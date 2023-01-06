@@ -13,19 +13,22 @@ class HomeCategoryFilterViewModel : ViewModel() {
     fun getRestaurantsByCategory(category: String) {
         val restaurants = listOf(
             Restaurant(
-                "Rosario's Burger",
-                2f,
-                300,
+                id = "1",
+                name = "Rosario's Burger",
+                rating = 2f,
+                distance = 300,
             ),
             Restaurant(
-                "Domino's Pizza",
-                4f,
-                200,
+                id = "2",
+                name = "Domino's Pizza",
+                rating = 4f,
+                distance = 200,
             ),
             Restaurant(
-                "Five Guys",
-                3f,
-                900,
+                id = "3",
+                name = "Five Guys",
+                rating = 3f,
+                distance = 900,
             )
         )
 

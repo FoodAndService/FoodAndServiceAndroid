@@ -5,11 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderDetailsCurrentBinding
 import com.foodandservice.domain.model.ProductOrderPast
 import com.foodandservice.presentation.ui.adapter.OrderPastAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 
 class OrderDetailsCurrentFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailsCurrentBinding
@@ -26,6 +30,12 @@ class OrderDetailsCurrentFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
 
         binding.apply {
             btnBack.setOnClickListener {

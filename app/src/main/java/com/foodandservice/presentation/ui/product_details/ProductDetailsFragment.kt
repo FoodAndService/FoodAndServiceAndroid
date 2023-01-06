@@ -5,6 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentProductDetailsBinding
 import com.foodandservice.domain.model.AllergenIntolerance
@@ -15,6 +18,7 @@ import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBotto
 import com.foodandservice.util.FysBottomSheets.showGenericBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 
 class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClickListener {
     private lateinit var binding: FragmentProductDetailsBinding
@@ -32,12 +36,18 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
+
         val allergensAndIntolerances = listOf(
-            AllergenIntolerance(name = "Celiac"),
-            AllergenIntolerance(name = "Egg"),
-            AllergenIntolerance(name = "Milk"),
-            AllergenIntolerance(name = "Sesame"),
-            AllergenIntolerance(name = "Vegetarian")
+            AllergenIntolerance(id = "1", name = "Celiac"),
+            AllergenIntolerance(id = "2", name = "Egg"),
+            AllergenIntolerance(id = "3", name = "Milk"),
+            AllergenIntolerance(id = "4", name = "Sesame"),
+            AllergenIntolerance(id = "5", name = "Vegetarian")
         )
 
         productExtras = mutableListOf(

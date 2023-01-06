@@ -45,7 +45,7 @@
             android:layout_height="0dp"
             android:fillViewport="true"
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cvProductQuantity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -130,75 +130,85 @@
                     app:icon="@drawable/ic_restaurant"
                     app:layout_constraintTop_toBottomOf="@+id/btnShowAllergensAndIntolerances" />
 
-                <com.google.android.material.card.MaterialCardView
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="65dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnSubtract"
-                            style="@style/FysIconButton"
-                            android:layout_marginStart="16dp"
-                            app:icon="@drawable/ic_minus"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tvQuantity"
-                            style="@style/FysPrimaryLargeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="4"
-                            app:layout_constraintBottom_toBottomOf="@id/btnSubtract"
-                            app:layout_constraintStart_toEndOf="@id/btnSubtract"
-                            app:layout_constraintTop_toTopOf="@id/btnSubtract" />
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnAdd"
-                            style="@style/FysIconButton"
-                            android:layout_marginStart="16dp"
-                            app:icon="@drawable/ic_add"
-                            app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
-                            app:layout_constraintStart_toEndOf="@id/tvQuantity"
-                            app:layout_constraintTop_toTopOf="@id/tvQuantity" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tvPriceSingle"
-                            style="@style/FysPrimaryLargeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:text="1,99€"
-                            app:layout_constraintBottom_toBottomOf="@id/tvPriceTotal"
-                            app:layout_constraintEnd_toStartOf="@id/tvPriceTotal"
-                            app:layout_constraintTop_toTopOf="@id/tvPriceTotal" />
-
-                        <com.google.android.material.textview.MaterialTextView
-                            android:id="@+id/tvPriceTotal"
-                            style="@style/FysPrimaryLargeText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="8dp"
-                            android:text="(7,96€)"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </com.google.android.material.card.MaterialCardView>
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnShowProductExtras" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </ScrollView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvProductQuantity"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubtract"
+                    style="@style/FysIconButton"
+                    android:layout_marginStart="16dp"
+                    app:icon="@drawable/ic_minus"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvQuantity"
+                    style="@style/FysPrimaryLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="4"
+                    app:layout_constraintBottom_toBottomOf="@id/btnSubtract"
+                    app:layout_constraintStart_toEndOf="@id/btnSubtract"
+                    app:layout_constraintTop_toTopOf="@id/btnSubtract" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAdd"
+                    style="@style/FysIconButton"
+                    android:layout_marginStart="16dp"
+                    app:icon="@drawable/ic_add"
+                    app:layout_constraintBottom_toBottomOf="@id/tvQuantity"
+                    app:layout_constraintStart_toEndOf="@id/tvQuantity"
+                    app:layout_constraintTop_toTopOf="@id/tvQuantity" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPriceSingle"
+                    style="@style/FysPrimaryLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="1,99€"
+                    app:layout_constraintBottom_toBottomOf="@id/tvPriceTotal"
+                    app:layout_constraintEnd_toStartOf="@id/tvPriceTotal"
+                    app:layout_constraintTop_toTopOf="@id/tvPriceTotal" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPriceTotal"
+                    style="@style/FysPrimaryLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="(7,96€)"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

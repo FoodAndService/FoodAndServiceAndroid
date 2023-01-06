@@ -1,7 +1,8 @@
 package com.foodandservice.domain.model
 
 data class Restaurant(
-    var name: String,
+    val id: String,
+    val name: String,
     val rating: Float,
     val distance: Int
 )

@@ -10,19 +10,14 @@ import com.foodandservice.domain.model.sign.AuthPhase
 import com.foodandservice.domain.model.sign.AuthPhaseWithToken
 import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.Resource
-import retrofit2.HttpException
-import java.io.IOException
 
-class CustomerRepositoryImpl(private val customerService: CustomerService) :
-    CustomerRepository {
+class CustomerRepositoryImpl(private val customerService: CustomerService) : CustomerRepository {
     override suspend fun signInFirstPhase(customerPhone: CustomerPhone): Resource<AuthPhase> {
         return try {
             val response = customerService.signInFirstPhase(customerPhone)
             Resource.Success(response.toAuthPhase())
-        } catch (e: HttpException) {
-            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
-        } catch (e: IOException) {
-            Resource.Failure("Couldn't reach the server. Check your internet connection")
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
         }
     }
 
@@ -30,24 +25,19 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) :
         return try {
             val response = customerService.signInSecondPhase(phoneWithOtp)
             Resource.Success(response.toSignPhase())
-        } catch (e: HttpException) {
-            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
-        } catch (e: IOException) {
-            Resource.Failure("Couldn't reach the server. Check your internet connection")
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
         }
     }
 
     override suspend fun signUpFirstPhase(
-        authToken: String,
-        name: Name
+        authToken: String, name: Name
     ): Resource<AuthPhaseWithToken> {
         return try {
             val response = customerService.signUpFirstPhase("Bearer $authToken", name)
             Resource.Success(response.toSignPhase())
-        } catch (e: HttpException) {
-            Resource.Failure(e.localizedMessage ?: "Unexpected error ocurred")
-        } catch (e: IOException) {
-            Resource.Failure("Couldn't reach the server. Check your internet connection")
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
         }
     }
 }

@@ -6,6 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
 import com.foodandservice.domain.model.CategoryWithProducts
@@ -15,6 +18,7 @@ import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.foodandservice.util.getTabbedListMediatorIndices
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListener {
@@ -35,6 +39,12 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
 
         binding.apply {
             btnReserve.setOnClickListener {

@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantBookingBinding
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class RestaurantBookingFragment : Fragment() {
@@ -25,17 +28,19 @@ class RestaurantBookingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.restaurantBookingState.collect { state ->
-                when (state) {
-                    is RestaurantBookingState.Success -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.restaurantBookingState.collect { state ->
+                    when (state) {
+                        is RestaurantBookingState.Success -> {
 
-                    }
-                    is RestaurantBookingState.Error -> {
+                        }
+                        is RestaurantBookingState.Error -> {
 
-                    }
-                    is RestaurantBookingState.Idle -> {
+                        }
+                        is RestaurantBookingState.Idle -> {
 
+                        }
                     }
                 }
             }

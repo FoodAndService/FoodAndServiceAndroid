@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentFavouritesBinding
 import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.presentation.ui.adapter.FavouriteAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigate
+import kotlinx.coroutines.launch
 
 class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClickListener {
     private lateinit var binding: FragmentFavouritesBinding
@@ -28,8 +31,10 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
 
         setAdapter()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
@@ -40,15 +45,20 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
     private fun setAdapter() {
         val favouriteRestaurants = listOf(
             FavouriteRestaurant(
-                "Rosario's Burger"
+                id = "1",
+                name = "Rosario's Burger"
             ), FavouriteRestaurant(
-                "Domino's Pizza"
+                id = "2",
+                name = "Domino's Pizza"
             ), FavouriteRestaurant(
-                "Five Guys"
+                id = "3",
+                name = "Five Guys"
             ), FavouriteRestaurant(
-                "Foster Hollywood"
+                id = "4",
+                name = "Foster Hollywood"
             ), FavouriteRestaurant(
-                "La Calle Burger"
+                id = "5",
+                name = "La Calle Burger"
             )
         )
 

@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentOrderHistoryBinding
 import com.foodandservice.domain.model.Order
 import com.foodandservice.presentation.ui.adapter.OrderHistoryAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigate
+import kotlinx.coroutines.launch
 import java.time.LocalDateTime
 
 class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener {
@@ -30,8 +33,10 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
 
         setAdapter()
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
+            }
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {

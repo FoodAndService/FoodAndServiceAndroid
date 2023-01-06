@@ -8,9 +8,9 @@ import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
 import com.foodandservice.domain.util.Resource
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 
 class SignUpFinishViewModel(
@@ -18,15 +18,12 @@ class SignUpFinishViewModel(
     private val getCustomerTokenUseCase: GetCustomerTokenUseCase,
     private val saveUserTokenUseCase: SaveUserTokenUseCase,
     private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
-) :
-    ViewModel() {
-    private val _signUpFinishState = MutableStateFlow<SignUpFinishState>(SignUpFinishState.Idle)
-    val signUpFinishState: StateFlow<SignUpFinishState> = _signUpFinishState.asStateFlow()
+) : ViewModel() {
+    private val _signUpFinishState = MutableSharedFlow<SignUpFinishState>(replay = 10)
+    val signUpFinishState: SharedFlow<SignUpFinishState> = _signUpFinishState.asSharedFlow()
 
     fun finishSignup(name: String) {
         viewModelScope.launch {
-            _signUpFinishState.value = SignUpFinishState.Loading
-
             val authToken = getCustomerTokenUseCase()
 
             try {
@@ -36,14 +33,18 @@ class SignUpFinishViewModel(
                             saveUserTokenUseCase(authPhaseWithToken.authUser)
                             saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
                         }
-                        _signUpFinishState.value = SignUpFinishState.Success
+                        _signUpFinishState.emit(SignUpFinishState.Success)
                     }
-                    is Resource.Failure -> _signUpFinishState.value =
-                        SignUpFinishState.Error(response.message)
+                    is Resource.Failure -> {
+                        _signUpFinishState.emit(
+                            SignUpFinishState.Error(
+                                response.exception?.message ?: "Something went wrong"
+                            )
+                        )
+                    }
                 }
             } catch (e: InvalidNameFormatException) {
-                _signUpFinishState.value =
-                    SignUpFinishState.Error("Invalid name format")
+                _signUpFinishState.emit(SignUpFinishState.Error("Invalid name format"))
             }
         }
     }

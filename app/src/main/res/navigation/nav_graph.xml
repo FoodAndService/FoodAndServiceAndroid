@@ -43,8 +43,8 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_smsConfirmSignFragment"
-            app:destination="@id/smsConfirmSignFragment"
+            android:id="@+id/action_loginFragment_to_smsConfirmAuthFragment"
+            app:destination="@id/smsConfirmAuthFragment"
             app:popUpTo="@id/loginFragment"
             app:popUpToInclusive="true" />
         <action
@@ -54,9 +54,9 @@
             app:popUpToInclusive="true" />
     </fragment>
     <fragment
-        android:id="@+id/smsConfirmSignFragment"
+        android:id="@+id/smsConfirmAuthFragment"
         android:name="com.foodandservice.presentation.ui.sms_confirm_auth.SmsConfirmAuthFragment"
-        android:label="SmsConfirmSignFragment"
+        android:label="SmsConfirmAuthFragment"
         tools:layout="@layout/fragment_sms_confirm_sign">
         <action
             android:id="@+id/action_smsConfirmAuthFragment_to_signupFinishFragment"

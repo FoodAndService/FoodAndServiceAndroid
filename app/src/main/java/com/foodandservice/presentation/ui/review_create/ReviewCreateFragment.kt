@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RatingBar
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentReviewCreateBinding
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class ReviewCreateFragment : Fragment() {
@@ -25,35 +28,25 @@ class ReviewCreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.createReviewState.collect { state ->
-                when (state) {
-                    is ReviewCreateState.Success -> {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
 
-                    }
-                    is ReviewCreateState.Error -> {
+            }
 
-                    }
-                    is ReviewCreateState.Idle -> {
+            binding.apply {
+                btnSendReview.setOnClickListener {
 
-                    }
                 }
-            }
-        }
 
-        binding.apply {
-            btnSendReview.setOnClickListener {
-
-            }
-
-            btnBack.setOnClickListener {
-                navigateBack()
-            }
-
-            ratingBarReview.onRatingBarChangeListener =
-                RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
-                    if (rating < 1.0f) ratingBar.rating = 1.0f
+                btnBack.setOnClickListener {
+                    navigateBack()
                 }
+
+                ratingBarReview.onRatingBarChangeListener =
+                    RatingBar.OnRatingBarChangeListener { ratingBar, rating, _ ->
+                        if (rating < 1.0f) ratingBar.rating = 1.0f
+                    }
+            }
         }
     }
 }

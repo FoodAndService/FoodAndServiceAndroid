@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentLoginBinding
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class LoginFragment : Fragment() {
@@ -28,27 +31,29 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.loginState.collect { state ->
-                when (state) {
-                    is LoginState.Success -> {
-                        navigateToSmsConfirm(state.phone)
-                    }
-                    is LoginState.Error -> {
-                        showToast(state.message)
-                    }
-                    is LoginState.Loading -> {
-                        binding.apply {
-                            btnAccess.isEnabled = false
-                            btnAccess.text = ""
-                            progressBar.visibility = View.VISIBLE
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.loginState.collect { state ->
+                    when (state) {
+                        is LoginState.Success -> {
+                            navigate(
+                                LoginFragmentDirections.actionLoginFragmentToSmsConfirmAuthFragment(
+                                    state.phone
+                                )
+                            )
                         }
-                    }
-                    is LoginState.Idle -> {
-                        binding.apply {
-                            btnAccess.isEnabled = true
-                            btnAccess.text = getString(R.string.btn_access)
-                            progressBar.visibility = View.GONE
+                        is LoginState.Loading -> {
+                            setLoadingState()
+                        }
+                        is LoginState.Error -> {
+                            showToast(state.message)
+                        }
+                        is LoginState.Idle -> {
+                            binding.apply {
+                                btnAccess.isEnabled = true
+                                btnAccess.text = getString(R.string.btn_access)
+                                progressBar.visibility = View.GONE
+                            }
                         }
                     }
                 }
@@ -74,9 +79,11 @@ class LoginFragment : Fragment() {
         }
     }
 
-    private fun navigateToSmsConfirm(phone: String) {
-        LoginFragmentDirections.actionLoginFragmentToSmsConfirmSignFragment(phone).also { action ->
-            navigate(action)
+    private fun setLoadingState() {
+        binding.apply {
+            btnAccess.isEnabled = false
+            btnAccess.text = ""
+            progressBar.visibility = View.VISIBLE
         }
     }
 }

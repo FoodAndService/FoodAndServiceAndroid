@@ -11,7 +11,7 @@ class RestaurantBookingViewModel : ViewModel() {
     val restaurantBookingState: StateFlow<RestaurantBookingState> =
         _restaurantBookingState.asStateFlow()
 
-    fun bookgTable(diners: String, date: String, hour: String) {
+    fun bookRestaurantTable(diners: String, date: String, hour: String) {
         if (diners.isEmpty())
             _restaurantBookingState.value = RestaurantBookingState.Error("Diners are empty")
         else if (date.isEmpty())

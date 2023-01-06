@@ -5,10 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentCartBinding
 import com.foodandservice.domain.model.CartItem
 import com.foodandservice.presentation.ui.adapter.CartAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.launch
 
 
 class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
@@ -26,6 +30,12 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+
+            }
+        }
 
         binding.apply {
             btnPaymentProceed.setOnClickListener {

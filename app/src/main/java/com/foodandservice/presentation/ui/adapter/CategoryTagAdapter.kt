@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemCategoryTagBinding
-import com.foodandservice.domain.model.CategoryTag
+import com.foodandservice.domain.model.RestaurantCategoryTag
 
 class CategoryTagAdapter constructor(private val listener: CategoryTagClickListener) :
-    ListAdapter<CategoryTag, CategoryTagAdapter.ViewHolder>(CategoryTagDiffCallback()) {
+    ListAdapter<RestaurantCategoryTag, CategoryTagAdapter.ViewHolder>(CategoryTagDiffCallback()) {
 
     interface CategoryTagClickListener {
-        fun onClick(categoryTag: CategoryTag)
+        fun onClick(restaurantCategoryTag: RestaurantCategoryTag)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +25,7 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
 
     class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: CategoryTag, categoryTagClickListener: CategoryTagClickListener) {
+        fun bind(item: RestaurantCategoryTag, categoryTagClickListener: CategoryTagClickListener) {
             binding.apply {
                 chipCategoryTagText.text = item.name
                 root.setOnClickListener { categoryTagClickListener.onClick(item) }
@@ -42,9 +42,12 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
     }
 }
 
-class CategoryTagDiffCallback : DiffUtil.ItemCallback<CategoryTag>() {
-    override fun areItemsTheSame(oldItem: CategoryTag, newItem: CategoryTag) =
+class CategoryTagDiffCallback : DiffUtil.ItemCallback<RestaurantCategoryTag>() {
+    override fun areItemsTheSame(oldItem: RestaurantCategoryTag, newItem: RestaurantCategoryTag) =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: CategoryTag, newItem: CategoryTag) = oldItem == newItem
+    override fun areContentsTheSame(
+        oldItem: RestaurantCategoryTag,
+        newItem: RestaurantCategoryTag
+    ) = oldItem == newItem
 }

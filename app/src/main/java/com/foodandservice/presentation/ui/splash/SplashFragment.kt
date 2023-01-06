@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentSplashBinding
 import com.foodandservice.util.extensions.CoreExtensions.navigate
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class SplashFragment : Fragment() {
@@ -22,23 +25,19 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            viewModel.splashState.collect { state ->
-                when (state) {
-                    is SplashState.UserLoggedIn -> {
-                        navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
-                    }
-                    is SplashState.UserNotLoggedIn -> {
-                        navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
-                    }
-                    is SplashState.OnboardingNotFinished -> {
-                        navigate(SplashFragmentDirections.actionSplashFragmentToViewPagerFragment())
-                    }
-                    is SplashState.Error -> {
-
-                    }
-                    is SplashState.Idle -> {
-
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.splashState.collect { state ->
+                    when (state) {
+                        is SplashState.UserLoggedIn -> {
+                            navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
+                        }
+                        is SplashState.UserNotLoggedIn -> {
+                            navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
+                        }
+                        is SplashState.OnboardingNotFinished -> {
+                            navigate(SplashFragmentDirections.actionSplashFragmentToViewPagerFragment())
+                        }
                     }
                 }
             }

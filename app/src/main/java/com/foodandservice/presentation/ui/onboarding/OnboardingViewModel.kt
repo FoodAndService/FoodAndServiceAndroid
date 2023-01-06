@@ -7,6 +7,7 @@ import kotlinx.coroutines.launch
 
 class OnboardingViewModel(private val finishOnboardingUseCase: FinishOnboardingUseCase) :
     ViewModel() {
+
     fun finishOnboarding() {
         viewModelScope.launch {
             finishOnboardingUseCase()

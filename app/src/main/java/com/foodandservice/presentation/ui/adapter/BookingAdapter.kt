@@ -62,7 +62,7 @@ class BookingAdapter constructor(private val listener: BookingClickListener) :
 class BookingDiffCallBack : DiffUtil.ItemCallback<Booking>() {
     override fun areItemsTheSame(
         oldItem: Booking, newItem: Booking
-    ) = oldItem.restaurantName == newItem.restaurantName
+    ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
         oldItem: Booking, newItem: Booking

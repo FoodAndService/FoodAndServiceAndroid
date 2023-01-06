@@ -25,190 +25,208 @@
 
         </Toolbar>
 
-        <TextView
-            android:id="@+id/tvMyProfile"
-            style="@style/FysDarkLargeText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/fragment_user_profile_title"
-            android:textAllCaps="true"
-            android:textStyle="bold"
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+            app:layout_constraintTop_toBottomOf="@id/toolbar">
 
-        <TextView
-            android:id="@+id/tvUserGreeting"
-            style="@style/FysPrimaryMediumText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fragment_user_profile_greeting"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvMyProfile" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintAccount"
+                android:layout_width="match_parent"
+                android:paddingBottom="100dp"
+                android:layout_height="wrap_content">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnMyBookings"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/user_profile_my_bookings"
-            app:icon="@drawable/ic_calendar"
-            app:layout_constraintTop_toBottomOf="@+id/tvUserGreeting" />
+                <TextView
+                    android:id="@+id/tvMyProfile"
+                    style="@style/FysDarkLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/fragment_user_profile_title"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/constraintAccount" />
 
-        <View
-            android:id="@+id/divider7"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnMyBookings" />
+                <TextView
+                    android:id="@+id/tvUserGreeting"
+                    style="@style/FysPrimaryMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fragment_user_profile_greeting"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvMyProfile" />
 
-        <TextView
-            android:id="@+id/tvPaymentMethodsCategory"
-            style="@style/FysDarkMediumText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/user_profile_category_payment_methods"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider7" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMyBookings"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/user_profile_my_bookings"
+                    app:icon="@drawable/ic_calendar"
+                    app:layout_constraintTop_toBottomOf="@+id/tvUserGreeting" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCreditDebitCards"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_credit_debit_cards"
-            app:icon="@drawable/ic_card"
-            app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethodsCategory" />
+                <View
+                    android:id="@+id/divider7"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnMyBookings" />
 
-        <View
-            android:id="@+id/divider1"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnCreditDebitCards" />
+                <TextView
+                    android:id="@+id/tvPaymentMethodsCategory"
+                    style="@style/FysDarkMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/user_profile_category_payment_methods"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
-        <TextView
-            android:id="@+id/tvPersonalDetailsCategory"
-            style="@style/FysDarkMediumText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/user_profile_category_personal_details"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider1" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCreditDebitCards"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_credit_debit_cards"
+                    app:icon="@drawable/ic_card"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethodsCategory" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChangeFullname"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_change_fullname"
-            app:icon="@drawable/ic_person"
-            app:layout_constraintTop_toBottomOf="@+id/tvPersonalDetailsCategory" />
+                <View
+                    android:id="@+id/divider1"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnCreditDebitCards" />
 
-        <View
-            android:id="@id/divider2"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChangeFullname" />
+                <TextView
+                    android:id="@+id/tvPersonalDetailsCategory"
+                    style="@style/FysDarkMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/user_profile_category_personal_details"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChangeEmail"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_change_email"
-            app:icon="@drawable/ic_email"
-            app:layout_constraintTop_toBottomOf="@+id/divider2" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChangeFullname"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_change_fullname"
+                    app:icon="@drawable/ic_person"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPersonalDetailsCategory" />
 
-        <View
-            android:id="@+id/divider3"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChangeEmail" />
+                <View
+                    android:id="@id/divider2"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnChangeFullname" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnChangePhone"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_change_phone_number"
-            app:icon="@drawable/ic_phone"
-            app:layout_constraintTop_toBottomOf="@+id/divider3" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChangeEmail"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_change_email"
+                    app:icon="@drawable/ic_email"
+                    app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-        <View
-            android:id="@+id/divider4"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnChangePhone" />
+                <View
+                    android:id="@+id/divider3"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnChangeEmail" />
 
-        <TextView
-            android:id="@+id/tvSecurityCategory"
-            style="@style/FysDarkMediumText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:text="@string/user_profile_category_security"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider4" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnChangePhone"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_change_phone_number"
+                    app:icon="@drawable/ic_phone"
+                    app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnDeleteAccount"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_delete_account"
-            app:icon="@drawable/ic_delete"
-            app:layout_constraintTop_toBottomOf="@+id/tvSecurityCategory"
-            tools:layout_editor_absoluteX="16dp" />
+                <View
+                    android:id="@+id/divider4"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnChangePhone" />
 
-        <View
-            android:id="@+id/divider5"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccount" />
+                <TextView
+                    android:id="@+id/tvSecurityCategory"
+                    style="@style/FysDarkMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="24dp"
+                    android:text="@string/user_profile_category_security"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/divider4" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogout"
-            style="@style/FysSettingsButton"
-            android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:text="@string/user_profile_logout"
-            app:icon="@drawable/ic_logout"
-            app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccount"
-            tools:layout_editor_absoluteX="16dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDeleteAccount"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_delete_account"
+                    app:icon="@drawable/ic_delete"
+                    app:layout_constraintTop_toBottomOf="@+id/tvSecurityCategory"
+                    tools:layout_editor_absoluteX="16dp" />
 
-        <View
-            android:id="@+id/divider6"
-            style="@style/ButtonDivider"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+                <View
+                    android:id="@+id/divider5"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccount" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    style="@style/FysSettingsButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:text="@string/user_profile_logout"
+                    app:icon="@drawable/ic_logout"
+                    app:layout_constraintTop_toBottomOf="@+id/btnDeleteAccount"
+                    tools:layout_editor_absoluteX="16dp" />
+
+                <View
+                    android:id="@+id/divider6"
+                    style="@style/ButtonDivider"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnLogout" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
