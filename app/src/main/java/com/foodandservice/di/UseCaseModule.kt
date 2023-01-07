@@ -3,6 +3,7 @@ package com.foodandservice.di
 import com.foodandservice.domain.usecases.auth.*
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
+import com.foodandservice.domain.usecases.restaurant.GetFavouriteRestaurantsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantTagsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
@@ -13,6 +14,10 @@ import org.koin.dsl.module
 val useCaseModule = module {
     single {
         GetCurrentPhaseUseCase(userPreferencesRepository = get())
+    }
+
+    single {
+        GetFavouriteRestaurantsUseCase(restaurantRepository = get())
     }
 
     single {

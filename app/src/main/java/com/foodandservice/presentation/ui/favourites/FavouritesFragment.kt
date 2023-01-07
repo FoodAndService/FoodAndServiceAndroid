@@ -14,10 +14,12 @@ import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.presentation.ui.adapter.FavouriteAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
 class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClickListener {
     private lateinit var binding: FragmentFavouritesBinding
     private lateinit var favouriteAdapter: FavouriteAdapter
+    private val viewModel: FavouritesViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,7 +35,22 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.favouritesState.collect { state ->
+                    when (state) {
+                        is FavouritesState.Success -> {
+                            favouriteAdapter.submitList(state.favouriteRestaurants)
+                        }
+                        is FavouritesState.Loading -> {
+                            setLoadingState()
+                        }
+                        is FavouritesState.Error -> {
 
+                        }
+                        is FavouritesState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
 
@@ -43,32 +60,20 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
     }
 
     private fun setAdapter() {
-        val favouriteRestaurants = listOf(
-            FavouriteRestaurant(
-                id = "1",
-                name = "Rosario's Burger"
-            ), FavouriteRestaurant(
-                id = "2",
-                name = "Domino's Pizza"
-            ), FavouriteRestaurant(
-                id = "3",
-                name = "Five Guys"
-            ), FavouriteRestaurant(
-                id = "4",
-                name = "Foster Hollywood"
-            ), FavouriteRestaurant(
-                id = "5",
-                name = "La Calle Burger"
-            )
-        )
-
         favouriteAdapter = FavouriteAdapter(this).also { adapter ->
             binding.rvFavourites.adapter = adapter
-            adapter.submitList(favouriteRestaurants)
         }
     }
 
     override fun onClick(item: FavouriteRestaurant) {
+
+    }
+
+    private fun setLoadingState() {
+
+    }
+
+    private fun setIdleState() {
 
     }
 }

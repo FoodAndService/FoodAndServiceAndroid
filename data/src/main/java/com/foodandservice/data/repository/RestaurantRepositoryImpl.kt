@@ -2,6 +2,7 @@ package com.foodandservice.data.repository
 
 import com.foodandservice.data.remote.service.RestarauntService
 import com.foodandservice.domain.model.CategoryRestaurants
+import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.RestaurantCategoryTag
 import com.foodandservice.domain.repository.RestaurantRepository
@@ -135,6 +136,27 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                 RestaurantCategoryTag(id = "5", name = "Española")
             )
             Resource.Success(data = restaurantTags)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun getFavouriteRestaurants(): Resource<List<FavouriteRestaurant>> {
+        return try {
+            val favouriteRestaurants = listOf(
+                FavouriteRestaurant(
+                    id = "1", name = "Rosario's Burger"
+                ), FavouriteRestaurant(
+                    id = "2", name = "Domino's Pizza"
+                ), FavouriteRestaurant(
+                    id = "3", name = "Five Guys"
+                ), FavouriteRestaurant(
+                    id = "4", name = "Foster Hollywood"
+                ), FavouriteRestaurant(
+                    id = "5", name = "La Calle Burger"
+                )
+            )
+            Resource.Success(data = favouriteRestaurants)
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }

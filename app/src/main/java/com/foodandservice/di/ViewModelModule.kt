@@ -1,5 +1,6 @@
 package com.foodandservice.di
 
+import com.foodandservice.presentation.ui.favourites.FavouritesViewModel
 import com.foodandservice.presentation.ui.home.HomeViewModel
 import com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModel
 import com.foodandservice.presentation.ui.login.LoginViewModel
@@ -16,6 +17,10 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel {
         HomeViewModel(getRestaurantsUseCase = get(), getRestaurantTagsUseCase = get())
+    }
+
+    viewModel {
+        FavouritesViewModel(getFavouriteRestaurantsUseCase = get())
     }
 
     viewModel {
