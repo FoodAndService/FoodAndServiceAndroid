@@ -35,11 +35,14 @@ class RestaurantBookingFragment : Fragment() {
                         is RestaurantBookingState.Success -> {
 
                         }
+                        is RestaurantBookingState.Loading -> {
+                            setLoadingState()
+                        }
                         is RestaurantBookingState.Error -> {
 
                         }
                         is RestaurantBookingState.Idle -> {
-
+                            setIdleState()
                         }
                     }
                 }
@@ -53,5 +56,13 @@ class RestaurantBookingFragment : Fragment() {
 
             tvRestaurantName.text = getString(R.string.tv_table_booking_restaurant, "Wendy's")
         }
+    }
+
+    private fun setIdleState() {
+
+    }
+
+    private fun setLoadingState() {
+
     }
 }

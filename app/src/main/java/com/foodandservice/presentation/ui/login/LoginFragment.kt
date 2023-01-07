@@ -49,11 +49,7 @@ class LoginFragment : Fragment() {
                             showToast(state.message)
                         }
                         is LoginState.Idle -> {
-                            binding.apply {
-                                btnAccess.isEnabled = true
-                                btnAccess.text = getString(R.string.btn_access)
-                                progressBar.visibility = View.GONE
-                            }
+                            setIdleState()
                         }
                     }
                 }
@@ -76,6 +72,14 @@ class LoginFragment : Fragment() {
             }
 
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
+        }
+    }
+
+    private fun setIdleState() {
+        binding.apply {
+            btnAccess.isEnabled = true
+            btnAccess.text = getString(R.string.btn_access)
+            progressBar.visibility = View.GONE
         }
     }
 

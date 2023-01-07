@@ -42,7 +42,22 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.restaurantDetailsState.collect { state ->
+                    when (state) {
+                        is RestaurantDetailsState.Success -> {
 
+                        }
+                        is RestaurantDetailsState.Loading -> {
+                            setLoadingState()
+                        }
+                        is RestaurantDetailsState.Error -> {
+
+                        }
+                        is RestaurantDetailsState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
 
@@ -361,5 +376,13 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
                 product
             )
         )
+    }
+
+    private fun setIdleState() {
+
+    }
+
+    private fun setLoadingState() {
+
     }
 }

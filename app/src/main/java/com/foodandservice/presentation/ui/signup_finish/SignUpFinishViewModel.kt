@@ -24,6 +24,8 @@ class SignUpFinishViewModel(
 
     fun finishSignup(name: String) {
         viewModelScope.launch {
+            _signUpFinishState.emit(SignUpFinishState.Loading)
+
             val authToken = getCustomerTokenUseCase()
 
             try {

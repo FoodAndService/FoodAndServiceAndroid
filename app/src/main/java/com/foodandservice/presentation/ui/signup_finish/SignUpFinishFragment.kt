@@ -42,18 +42,10 @@ class SignUpFinishFragment : Fragment() {
 
                         }
                         is SignUpFinishState.Loading -> {
-                            binding.apply {
-                                btnFinishSignup.isEnabled = true
-                                btnFinishSignup.text = ""
-                                progressBar.visibility = View.GONE
-                            }
+                            setLoadingState()
                         }
                         is SignUpFinishState.Idle -> {
-                            binding.apply {
-                                btnFinishSignup.isEnabled = true
-                                btnFinishSignup.text = getString(R.string.btn_finish_signup)
-                                progressBar.visibility = View.GONE
-                            }
+                            setIdleState()
                         }
                     }
                 }
@@ -66,6 +58,22 @@ class SignUpFinishFragment : Fragment() {
 
                 tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
             }
+        }
+    }
+
+    private fun setIdleState() {
+        binding.apply {
+            btnFinishSignup.isEnabled = true
+            btnFinishSignup.text = getString(R.string.btn_finish_signup)
+            progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun setLoadingState() {
+        binding.apply {
+            btnFinishSignup.isEnabled = true
+            btnFinishSignup.text = ""
+            progressBar.visibility = View.GONE
         }
     }
 }

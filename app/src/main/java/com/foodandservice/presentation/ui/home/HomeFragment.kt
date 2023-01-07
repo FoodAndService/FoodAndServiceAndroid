@@ -51,13 +51,13 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                             categoryTagAdapter.submitList(state.restaurantCategoryTags)
                         }
                         is HomeState.Loading -> {
-
+                            setLoadingState()
                         }
                         is HomeState.Error -> {
                             showToast(state.message)
                         }
                         is HomeState.Idle -> {
-
+                            setIdleState()
                         }
                     }
                 }
@@ -106,6 +106,14 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             rvCategoryTag.adapter = categoryTagAdapter
             rvCategoryTag.addItemDecoration(RecyclerViewItemDecoration(48))
         }
+    }
+
+    private fun setLoadingState() {
+
+    }
+
+    private fun setIdleState() {
+
     }
 
     override fun onClick(restaurantCategoryTag: RestaurantCategoryTag) {

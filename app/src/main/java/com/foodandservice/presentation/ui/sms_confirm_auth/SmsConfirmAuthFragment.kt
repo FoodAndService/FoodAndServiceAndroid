@@ -52,11 +52,7 @@ class SmsConfirmAuthFragment : Fragment() {
                             setLoadingState()
                         }
                         is SmsConfirmAuthState.Idle -> {
-                            binding.apply {
-                                btnConfirm.isEnabled = true
-                                btnConfirm.text = getString(R.string.btn_confirm)
-                                progressBar.visibility = View.GONE
-                            }
+                            setIdleState()
                         }
                     }
                 }
@@ -99,6 +95,14 @@ class SmsConfirmAuthFragment : Fragment() {
             btnConfirm.isEnabled = false
             btnConfirm.text = ""
             progressBar.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setIdleState() {
+        binding.apply {
+            btnConfirm.isEnabled = true
+            btnConfirm.text = getString(R.string.btn_confirm)
+            progressBar.visibility = View.GONE
         }
     }
 }
