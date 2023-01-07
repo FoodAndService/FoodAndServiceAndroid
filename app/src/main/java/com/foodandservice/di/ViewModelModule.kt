@@ -5,6 +5,7 @@ import com.foodandservice.presentation.ui.home.HomeViewModel
 import com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModel
 import com.foodandservice.presentation.ui.login.LoginViewModel
 import com.foodandservice.presentation.ui.onboarding.OnboardingViewModel
+import com.foodandservice.presentation.ui.order_history.OrderHistoryViewModel
 import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingViewModel
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
 import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
@@ -21,6 +22,10 @@ val viewModelModule = module {
 
     viewModel {
         FavouritesViewModel(getFavouriteRestaurantsUseCase = get())
+    }
+
+    viewModel {
+        OrderHistoryViewModel(getOrderHistoryUseCase = get())
     }
 
     viewModel {

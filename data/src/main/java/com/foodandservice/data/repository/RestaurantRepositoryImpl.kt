@@ -1,12 +1,10 @@
 package com.foodandservice.data.repository
 
 import com.foodandservice.data.remote.service.RestarauntService
-import com.foodandservice.domain.model.CategoryRestaurants
-import com.foodandservice.domain.model.FavouriteRestaurant
-import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.domain.model.RestaurantCategoryTag
+import com.foodandservice.domain.model.*
 import com.foodandservice.domain.repository.RestaurantRepository
 import com.foodandservice.domain.util.Resource
+import java.time.LocalDateTime
 
 class RestaurantRepositoryImpl(private val restarauntService: RestarauntService) :
     RestaurantRepository {
@@ -157,6 +155,42 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                 )
             )
             Resource.Success(data = favouriteRestaurants)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun getOrderHistory(): Resource<List<Order>> {
+        return try {
+            val orderHistory = listOf(
+                Order(
+                    id = "1",
+                    restaurantName = "Wendy's",
+                    amount = "15,00",
+                    date = LocalDateTime.now()
+                ), Order(
+                    id = "2",
+                    restaurantName = "Rosario's Burger",
+                    amount = "12,00",
+                    date = LocalDateTime.of(2022, 11, 14, 0, 0)
+                ), Order(
+                    id = "3",
+                    restaurantName = "Foster Hollywood",
+                    amount = "30,00",
+                    date = LocalDateTime.of(2022, 11, 11, 0, 0)
+                ), Order(
+                    id = "4",
+                    restaurantName = "La Calle Burger",
+                    amount = "17,00",
+                    date = LocalDateTime.of(2022, 11, 7, 0, 0)
+                ), Order(
+                    id = "5",
+                    restaurantName = "Kalua",
+                    amount = "6,00",
+                    date = LocalDateTime.of(2022, 10, 3, 0, 0)
+                )
+            )
+            Resource.Success(data = orderHistory)
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
