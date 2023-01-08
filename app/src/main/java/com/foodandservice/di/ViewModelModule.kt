@@ -1,5 +1,6 @@
 package com.foodandservice.di
 
+import com.foodandservice.presentation.ui.bookings.BookingsViewModel
 import com.foodandservice.presentation.ui.favourites.FavouritesViewModel
 import com.foodandservice.presentation.ui.home.HomeViewModel
 import com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModel
@@ -22,6 +23,10 @@ val viewModelModule = module {
 
     viewModel {
         FavouritesViewModel(getFavouriteRestaurantsUseCase = get())
+    }
+
+    viewModel {
+        BookingsViewModel(getBookingsUseCase = get())
     }
 
     viewModel {

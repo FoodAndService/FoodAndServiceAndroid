@@ -195,4 +195,45 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getBookings(): Resource<List<Booking>> {
+        return try {
+            val bookings = listOf(
+                Booking(
+                    id = "1",
+                    restaurantName = "Rosario's Burger",
+                    diners = 1,
+                    isActive = true,
+                    dateTime = LocalDateTime.now()
+                ), Booking(
+                    id = "2",
+                    restaurantName = "Foster Hollywood",
+                    diners = 2,
+                    isActive = true,
+                    dateTime = LocalDateTime.now().minusDays(1)
+                ), Booking(
+                    id = "3",
+                    restaurantName = "Domino's Pizza",
+                    diners = 3,
+                    isActive = false,
+                    dateTime = LocalDateTime.now().minusDays(3)
+                ), Booking(
+                    id = "4",
+                    restaurantName = "Kanival Burger",
+                    diners = 4,
+                    isActive = false,
+                    dateTime = LocalDateTime.now().minusDays(5)
+                ), Booking(
+                    id = "5",
+                    restaurantName = "G.O.A.T Burger",
+                    diners = 5,
+                    isActive = false,
+                    dateTime = LocalDateTime.now().minusDays(7)
+                )
+            )
+            Resource.Success(data = bookings)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }

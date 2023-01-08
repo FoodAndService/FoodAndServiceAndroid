@@ -1,9 +1,6 @@
 package com.foodandservice.domain.repository
 
-import com.foodandservice.domain.model.CategoryRestaurants
-import com.foodandservice.domain.model.FavouriteRestaurant
-import com.foodandservice.domain.model.Order
-import com.foodandservice.domain.model.RestaurantCategoryTag
+import com.foodandservice.domain.model.*
 import com.foodandservice.domain.util.Resource
 
 interface RestaurantRepository {
@@ -11,4 +8,5 @@ interface RestaurantRepository {
     suspend fun getRestaurantTags(): Resource<List<RestaurantCategoryTag>>
     suspend fun getFavouriteRestaurants(): Resource<List<FavouriteRestaurant>>
     suspend fun getOrderHistory(): Resource<List<Order>>
+    suspend fun getBookings(): Resource<List<Booking>>
 }

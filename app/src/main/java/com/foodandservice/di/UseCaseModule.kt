@@ -3,10 +3,7 @@ package com.foodandservice.di
 import com.foodandservice.domain.usecases.auth.*
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
-import com.foodandservice.domain.usecases.restaurant.GetFavouriteRestaurantsUseCase
-import com.foodandservice.domain.usecases.restaurant.GetOrderHistoryUseCase
-import com.foodandservice.domain.usecases.restaurant.GetRestaurantTagsUseCase
-import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
+import com.foodandservice.domain.usecases.restaurant.*
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
@@ -19,6 +16,10 @@ val useCaseModule = module {
 
     single {
         GetFavouriteRestaurantsUseCase(restaurantRepository = get())
+    }
+
+    single {
+        GetBookingsUseCase(restaurantRepository = get())
     }
 
     single {

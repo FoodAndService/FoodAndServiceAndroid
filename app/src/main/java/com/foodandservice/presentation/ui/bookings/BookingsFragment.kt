@@ -13,11 +13,12 @@ import com.foodandservice.domain.model.Booking
 import com.foodandservice.presentation.ui.adapter.BookingAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
-import java.time.LocalDateTime
+import org.koin.android.ext.android.get
 
 class BookingsFragment : Fragment(), BookingAdapter.BookingClickListener {
     private lateinit var binding: FragmentBookingsBinding
     private lateinit var bookingAdapter: BookingAdapter
+    private val viewModel: BookingsViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,7 +34,22 @@ class BookingsFragment : Fragment(), BookingAdapter.BookingClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.bookingsState.collect { state ->
+                    when (state) {
+                        is BookingsState.Success -> {
+                            bookingAdapter.submitList(state.bookings)
+                        }
+                        is BookingsState.Loading -> {
+                            setLoadingState()
+                        }
+                        is BookingsState.Error -> {
 
+                        }
+                        is BookingsState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
 
@@ -44,44 +60,17 @@ class BookingsFragment : Fragment(), BookingAdapter.BookingClickListener {
         }
     }
 
-    private fun setAdapter() {
-        val bookings = listOf(
-            Booking(
-                id = "1",
-                restaurantName = "Rosario's Burger",
-                diners = 1,
-                isActive = true,
-                dateTime = LocalDateTime.now()
-            ), Booking(
-                id = "2",
-                restaurantName = "Foster Hollywood",
-                diners = 2,
-                isActive = true,
-                dateTime = LocalDateTime.now().minusDays(1)
-            ), Booking(
-                id = "3",
-                restaurantName = "Domino's Pizza",
-                diners = 3,
-                isActive = false,
-                dateTime = LocalDateTime.now().minusDays(3)
-            ), Booking(
-                id = "4",
-                restaurantName = "Kanival Burger",
-                diners = 4,
-                isActive = false,
-                dateTime = LocalDateTime.now().minusDays(5)
-            ), Booking(
-                id = "5",
-                restaurantName = "G.O.A.T Burger",
-                diners = 5,
-                isActive = false,
-                dateTime = LocalDateTime.now().minusDays(7)
-            )
-        )
+    private fun setLoadingState() {
 
+    }
+
+    private fun setIdleState() {
+
+    }
+
+    private fun setAdapter() {
         bookingAdapter = BookingAdapter(this).also { adapter ->
             binding.rvBookings.adapter = adapter
-            adapter.submitList(bookings)
         }
     }
 
