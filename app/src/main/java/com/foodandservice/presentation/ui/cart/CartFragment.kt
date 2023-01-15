@@ -13,11 +13,12 @@ import com.foodandservice.domain.model.CartItem
 import com.foodandservice.presentation.ui.adapter.CartAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
-
+import org.koin.android.ext.android.get
 
 class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartAdapter: CartAdapter
+    private val viewModel: CartViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,7 +34,22 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.cartState.collect { state ->
+                    when (state) {
+                        is CartState.Success -> {
+                            cartAdapter.submitList(state.cartItems)
+                        }
+                        is CartState.Loading -> {
+                            setLoadingState()
+                        }
+                        is CartState.Error -> {
 
+                        }
+                        is CartState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
 
@@ -48,19 +64,17 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         }
     }
 
-    private fun setAdapter() {
-        val cart = listOf(
-            CartItem("1", "Pepsi", "", "1,99", 1, false),
-            CartItem("2", "Copa de vino", "", "2,99", 1, false),
-            CartItem("3", "Patatas fritas", "", "0,99", 1, true),
-            CartItem("4", "Pollo frito", "", "3,99", 1, false),
-            CartItem("5", "Patatas fritas", "", "0,99", 1, true),
-            CartItem("6", "Patatas gajo", "", "0,99", 1, true),
-        )
+    private fun setLoadingState() {
 
+    }
+
+    private fun setIdleState() {
+
+    }
+
+    private fun setAdapter() {
         cartAdapter = CartAdapter(this).also { adapter ->
             binding.rvCart.adapter = adapter
-            adapter.submitList(cart)
         }
     }
 

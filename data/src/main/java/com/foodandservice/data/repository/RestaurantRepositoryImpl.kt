@@ -124,6 +124,32 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
         }
     }
 
+    override suspend fun getCategoryRestaurants(category: String): Resource<List<Restaurant>> {
+        return try {
+            val restaurants = listOf(
+                Restaurant(
+                    id = "1",
+                    name = "Rosario's Burger",
+                    rating = 2f,
+                    distance = 300,
+                ), Restaurant(
+                    id = "2",
+                    name = "Domino's Pizza",
+                    rating = 4f,
+                    distance = 200,
+                ), Restaurant(
+                    id = "3",
+                    name = "Five Guys",
+                    rating = 3f,
+                    distance = 900,
+                )
+            )
+            Resource.Success(data = restaurants)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
     override suspend fun getRestaurantTags(): Resource<List<RestaurantCategoryTag>> {
         return try {
             val restaurantTags = listOf(
@@ -232,6 +258,22 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                 )
             )
             Resource.Success(data = bookings)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
+
+    override suspend fun getCart(): Resource<List<CartItem>> {
+        return try {
+            val cartItems = listOf(
+                CartItem("1", "Pepsi", "", "1,99", 1, false),
+                CartItem("2", "Copa de vino", "", "2,99", 1, false),
+                CartItem("3", "Patatas fritas", "", "0,99", 1, true),
+                CartItem("4", "Pollo frito", "", "3,99", 1, false),
+                CartItem("5", "Patatas fritas", "", "0,99", 1, true),
+                CartItem("6", "Patatas gajo", "", "0,99", 1, true),
+            )
+            Resource.Success(data = cartItems)
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }

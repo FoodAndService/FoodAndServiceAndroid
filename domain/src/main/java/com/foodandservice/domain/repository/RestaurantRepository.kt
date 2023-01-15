@@ -5,8 +5,10 @@ import com.foodandservice.domain.util.Resource
 
 interface RestaurantRepository {
     suspend fun getRestaurantsWithCategories(): Resource<List<CategoryRestaurants>>
+    suspend fun getCategoryRestaurants(category: String): Resource<List<Restaurant>>
     suspend fun getRestaurantTags(): Resource<List<RestaurantCategoryTag>>
     suspend fun getFavouriteRestaurants(): Resource<List<FavouriteRestaurant>>
     suspend fun getOrderHistory(): Resource<List<Order>>
     suspend fun getBookings(): Resource<List<Booking>>
+    suspend fun getCart(): Resource<List<CartItem>>
 }

@@ -1,6 +1,7 @@
 package com.foodandservice.di
 
 import com.foodandservice.domain.usecases.auth.*
+import com.foodandservice.domain.usecases.cart.GetCartUseCase
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
 import com.foodandservice.domain.usecases.restaurant.*
@@ -20,6 +21,10 @@ val useCaseModule = module {
 
     single {
         GetBookingsUseCase(restaurantRepository = get())
+    }
+
+    single {
+        GetCartUseCase(restaurantRepository = get())
     }
 
     single {

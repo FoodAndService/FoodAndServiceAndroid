@@ -18,8 +18,8 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.RestaurantClickListener {
-    private lateinit var binding: FragmentHomeCategoryFilterBinding
     private lateinit var restaurantFilterAdapter: RestaurantFilterAdapter
+    private lateinit var binding: FragmentHomeCategoryFilterBinding
     private val args: HomeCategoryFilterFragmentArgs by navArgs()
     private val viewModel: HomeCategoryFilterViewModel = get()
 
@@ -35,7 +35,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
 
         setAdapter()
 
-        viewModel.getRestaurantsByCategory(args.category)
+        viewModel.getCategoryRestaurants(args.category)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -45,13 +45,13 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
                             restaurantFilterAdapter.submitList(state.restaurants)
                         }
                         is HomeCategoryFilterState.Loading -> {
-
+                            setLoadingState()
                         }
                         is HomeCategoryFilterState.Error -> {
 
                         }
                         is HomeCategoryFilterState.Idle -> {
-
+                            setIdleState()
                         }
                     }
                 }
@@ -65,6 +65,14 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
                 navigateBack()
             }
         }
+    }
+
+    private fun setLoadingState() {
+
+    }
+
+    private fun setIdleState() {
+
     }
 
     private fun setAdapter() {
