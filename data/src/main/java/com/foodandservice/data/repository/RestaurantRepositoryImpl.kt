@@ -278,4 +278,24 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getOrderProducts(): Resource<List<OrderProduct>> {
+        return try {
+            val orderProducts = listOf(
+                OrderProduct("1", "Pepsi", "", "1,99", false),
+                OrderProduct("2", "Copa de vino", "", "2,99", false),
+                OrderProduct("3", "Patatas fritas", "", "0,99", true),
+                OrderProduct("4", "Pollo frito", "", "3,99", false),
+                OrderProduct("5", "Patatas fritas", "", "0,99", true),
+                OrderProduct("6", "Patatas gajo", "", "0,99", true),
+                OrderProduct("7", "Pepsi", "", "1,99", false),
+                OrderProduct("8", "Copa de vino", "", "2,99", false),
+                OrderProduct("9", "Patatas fritas", "", "0,99", true),
+                OrderProduct("10", "Pollo frito", "", "3,99", false)
+            )
+            Resource.Success(data = orderProducts)
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }

@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemProductOrderPastBinding
 import com.foodandservice.databinding.ItemProductOrderPastExtraBinding
-import com.foodandservice.domain.model.ProductOrderPast
+import com.foodandservice.domain.model.OrderProduct
 import java.util.*
 
 class OrderPastAdapter :
-    ListAdapter<ProductOrderPast, OrderPastAdapter.AbstractViewHolder>(OrderPastDiffCallback()) {
+    ListAdapter<OrderProduct, OrderPastAdapter.AbstractViewHolder>(OrderPastDiffCallback()) {
     companion object {
         private const val ITEM_PRODUCT_NORMAL = 1
         private const val ITEM_PRODUCT_EXTRA = 2
@@ -22,7 +22,7 @@ class OrderPastAdapter :
     abstract class AbstractViewHolder(
         val binding: ViewDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        abstract fun bind(item: ProductOrderPast)
+        abstract fun bind(item: OrderProduct)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
@@ -34,7 +34,7 @@ class OrderPastAdapter :
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: ProductOrderPast) {
+        override fun bind(item: OrderProduct) {
             val binding = binding as ItemProductOrderPastBinding
 
             binding.apply {
@@ -57,7 +57,7 @@ class OrderPastAdapter :
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: ProductOrderPast) {
+        override fun bind(item: OrderProduct) {
             val binding = binding as ItemProductOrderPastExtraBinding
 
             binding.apply {
@@ -86,10 +86,10 @@ class OrderPastAdapter :
     }
 }
 
-class OrderPastDiffCallback : DiffUtil.ItemCallback<ProductOrderPast>() {
-    override fun areItemsTheSame(oldItem: ProductOrderPast, newItem: ProductOrderPast) =
+class OrderPastDiffCallback : DiffUtil.ItemCallback<OrderProduct>() {
+    override fun areItemsTheSame(oldItem: OrderProduct, newItem: OrderProduct) =
         oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: ProductOrderPast, newItem: ProductOrderPast) =
+    override fun areContentsTheSame(oldItem: OrderProduct, newItem: OrderProduct) =
         oldItem == newItem
 }

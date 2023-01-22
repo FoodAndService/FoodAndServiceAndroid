@@ -10,14 +10,15 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderDetailsCurrentBinding
-import com.foodandservice.domain.model.ProductOrderPast
 import com.foodandservice.presentation.ui.adapter.OrderPastAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
 class OrderDetailsCurrentFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailsCurrentBinding
     private lateinit var orderCurrentAdapter: OrderPastAdapter
+    private val viewModel: OrderDetailsCurrentViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -33,7 +34,22 @@ class OrderDetailsCurrentFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.orderDetailsCurrentViewModel.collect { state ->
+                    when (state) {
+                        is OrderDetailsCurrentState.Success -> {
+                            orderCurrentAdapter.submitList(state.order)
+                        }
+                        is OrderDetailsCurrentState.Loading -> {
+                            setLoadingState()
+                        }
+                        is OrderDetailsCurrentState.Error -> {
 
+                        }
+                        is OrderDetailsCurrentState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
 
@@ -46,22 +62,16 @@ class OrderDetailsCurrentFragment : Fragment() {
         }
     }
 
-    private fun setAdapter() {
-        val products = listOf(
-            ProductOrderPast("1", "Pepsi", "", "1,99", false),
-            ProductOrderPast("2", "Copa de vino", "", "2,99", false),
-            ProductOrderPast("3", "Patatas fritas", "", "0,99", true),
-            ProductOrderPast("4", "Pollo frito", "", "3,99", false),
-            ProductOrderPast("5", "Patatas fritas", "", "0,99", true),
-            ProductOrderPast("6", "Patatas gajo", "", "0,99", true),
-            ProductOrderPast("7", "Pepsi", "", "1,99", false),
-            ProductOrderPast("8", "Copa de vino", "", "2,99", false),
-            ProductOrderPast("9", "Patatas fritas", "", "0,99", true),
-            ProductOrderPast("10", "Pollo frito", "", "3,99", false)
-        )
+    private fun setLoadingState() {
 
+    }
+
+    private fun setIdleState() {
+
+    }
+
+    private fun setAdapter() {
         orderCurrentAdapter = OrderPastAdapter().also { adapter ->
-            adapter.submitList(products)
             binding.rvProduct.adapter = adapter
         }
     }

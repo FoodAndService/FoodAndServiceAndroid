@@ -11,4 +11,5 @@ interface RestaurantRepository {
     suspend fun getOrderHistory(): Resource<List<Order>>
     suspend fun getBookings(): Resource<List<Booking>>
     suspend fun getCart(): Resource<List<CartItem>>
+    suspend fun getOrderProducts(): Resource<List<OrderProduct>>
 }

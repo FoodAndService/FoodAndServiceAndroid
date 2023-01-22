@@ -1,6 +1,6 @@
 package com.foodandservice.domain.model
 
-data class ProductOrderPast(
+data class OrderProduct(
     val id: String,
     val name: String,
     val image: String,

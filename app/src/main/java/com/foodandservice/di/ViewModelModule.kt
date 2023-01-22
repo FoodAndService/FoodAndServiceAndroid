@@ -7,6 +7,8 @@ import com.foodandservice.presentation.ui.home.HomeViewModel
 import com.foodandservice.presentation.ui.home_category_filter.HomeCategoryFilterViewModel
 import com.foodandservice.presentation.ui.login.LoginViewModel
 import com.foodandservice.presentation.ui.onboarding.OnboardingViewModel
+import com.foodandservice.presentation.ui.order_details_current.OrderDetailsCurrentViewModel
+import com.foodandservice.presentation.ui.order_details_past.OrderDetailsPastViewModel
 import com.foodandservice.presentation.ui.order_history.OrderHistoryViewModel
 import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingViewModel
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
@@ -32,6 +34,14 @@ val viewModelModule = module {
 
     viewModel {
         CartViewModel(getCartUseCase = get())
+    }
+
+    viewModel {
+        OrderDetailsCurrentViewModel(getOrderProductsUseCase = get())
+    }
+
+    viewModel {
+        OrderDetailsPastViewModel(getOrderProductsUseCase = get())
     }
 
     viewModel {

@@ -4,6 +4,7 @@ import com.foodandservice.domain.usecases.auth.*
 import com.foodandservice.domain.usecases.cart.GetCartUseCase
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
+import com.foodandservice.domain.usecases.order.GetOrderProductsUseCase
 import com.foodandservice.domain.usecases.restaurant.*
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
@@ -17,6 +18,10 @@ val useCaseModule = module {
 
     single {
         GetFavouriteRestaurantsUseCase(restaurantRepository = get())
+    }
+
+    single {
+        GetOrderProductsUseCase(restaurantRepository = get())
     }
 
     single {
