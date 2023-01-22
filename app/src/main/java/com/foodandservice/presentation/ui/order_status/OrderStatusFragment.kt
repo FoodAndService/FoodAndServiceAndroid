@@ -10,9 +10,11 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentOrderStatusBinding
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
 class OrderStatusFragment : Fragment() {
     private lateinit var binding: FragmentOrderStatusBinding
+    private val viewModel: OrderStatusViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,8 +30,31 @@ class OrderStatusFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.orderStatusState.collect { state ->
+                    when (state) {
+                        is OrderStatusState.Success -> {
+                            binding.tvOrderStatus.text = state.orderStatus
+                        }
+                        is OrderStatusState.Loading -> {
+                            setLoadingState()
+                        }
+                        is OrderStatusState.Error -> {
 
+                        }
+                        is OrderStatusState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private fun setLoadingState() {
+
+    }
+
+    private fun setIdleState() {
+
     }
 }

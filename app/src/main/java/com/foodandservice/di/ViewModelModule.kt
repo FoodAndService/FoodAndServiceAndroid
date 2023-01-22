@@ -10,6 +10,7 @@ import com.foodandservice.presentation.ui.onboarding.OnboardingViewModel
 import com.foodandservice.presentation.ui.order_details_current.OrderDetailsCurrentViewModel
 import com.foodandservice.presentation.ui.order_details_past.OrderDetailsPastViewModel
 import com.foodandservice.presentation.ui.order_history.OrderHistoryViewModel
+import com.foodandservice.presentation.ui.order_status.OrderStatusViewModel
 import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingViewModel
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
 import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
@@ -38,6 +39,10 @@ val viewModelModule = module {
 
     viewModel {
         OrderDetailsCurrentViewModel(getOrderProductsUseCase = get())
+    }
+
+    viewModel {
+        OrderStatusViewModel(getOrderStatusUseCase = get())
     }
 
     viewModel {

@@ -298,4 +298,20 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getOrderStatus(): Resource<String> {
+        return try {
+            val orderStatus = listOf(
+                "CHECKING_PAYMENT",
+                "FINISHED",
+                "ORDER_DECLINED",
+                "PAYMENT DECLINED",
+                "PREPARING",
+                "WAITING_CONFIRMATION"
+            )
+            Resource.Success(data = orderStatus.random())
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }
