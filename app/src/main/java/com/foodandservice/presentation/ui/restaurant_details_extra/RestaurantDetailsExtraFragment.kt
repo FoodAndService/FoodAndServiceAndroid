@@ -10,18 +10,19 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsExtraBinding
+import com.foodandservice.domain.model.RestaurantDetailsExtra
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
-class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
+class RestaurantDetailsExtraFragment : Fragment() {
     private lateinit var binding: FragmentRestaurantDetailsExtraBinding
-    private lateinit var mapFragment: SupportMapFragment
+    private val viewModel: RestaurantDetailsExtraViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -35,7 +36,26 @@ class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initGoogleMap()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.restaurantDetailsExtraState.collect { state ->
+                    when (state) {
+                        is RestaurantDetailsExtraState.Success -> {
+                            initializeMap(restaurantDetailsExtra = state.restaurantDetailsExtra)
+                        }
+                        is RestaurantDetailsExtraState.Loading -> {
+                            setLoadingState()
+                        }
+                        is RestaurantDetailsExtraState.Error -> {
+
+                        }
+                        is RestaurantDetailsExtraState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
+            }
+        }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -43,34 +63,42 @@ class RestaurantDetailsExtraFragment : Fragment(), OnMapReadyCallback {
             }
         }
 
-        val schedule =
-            "Lunes: Cerrado\n" + "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" + "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" + "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" + "Domingo: 12:00 a 17:00 y 20:30 a 02:00"
-
         binding.apply {
-            tvSchedule.text = schedule
-
             btnBack.setOnClickListener {
                 navigateBack()
             }
         }
     }
 
-    private fun initGoogleMap() {
-        mapFragment = childFragmentManager.findFragmentById(R.id.googleMap) as SupportMapFragment
-        mapFragment.getMapAsync(this)
+    private fun setIdleState() {
+
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        val place = LatLng(36.71429686692496, -4.433230427633246)
+    private fun setLoadingState() {
 
-        googleMap.apply {
-            mapType = GoogleMap.MAP_TYPE_NORMAL
+    }
 
-            addMarker(
-                MarkerOptions().position(place).title("Domino's Pizza")
-            )
+    private fun initializeMap(restaurantDetailsExtra: RestaurantDetailsExtra) {
+        val mapFragment =
+            childFragmentManager.findFragmentById(R.id.googleMap) as SupportMapFragment
 
-            animateCamera(CameraUpdateFactory.newLatLngZoom(place, 15.0f))
+        mapFragment.getMapAsync { googleMap ->
+            googleMap.apply {
+                val place = LatLng(
+                    restaurantDetailsExtra.latLng.first, restaurantDetailsExtra.latLng.second
+                )
+                binding.tvSchedule.text = restaurantDetailsExtra.schedule
+
+                mapType = GoogleMap.MAP_TYPE_NORMAL
+                addMarker(
+                    MarkerOptions().position(place).title(restaurantDetailsExtra.name)
+                )
+                animateCamera(
+                    CameraUpdateFactory.newLatLngZoom(
+                        place, 15.0f
+                    )
+                )
+            }
         }
     }
 }

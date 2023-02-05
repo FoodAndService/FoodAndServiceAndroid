@@ -632,4 +632,20 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getRestaurantDetailsExtra(): Resource<RestaurantDetailsExtra> {
+        return try {
+            Resource.Success(
+                data = RestaurantDetailsExtra(
+                    id = "1",
+                    name = "Domino's Pizza",
+                    latLng = Pair(first = 36.71429686692496, second = -4.433230427633246),
+                    schedule = "Lunes: Cerrado\n" + "Martes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Miércoles: 12:00 a 17:00 y 20:30 a 02:00\n" + "Jueves: 12:00 a 17:00 y 20:30 a 02:00\n" + "Viernes: 12:00 a 17:00 y 20:30 a 02:00\n" + "Sábado: 12:00 a 17:00 y 20:30 a 02:00\n" + "Domingo: 12:00 a 17:00 y 20:30 a 02:00",
+                    phone = "600200300"
+                )
+            )
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }
