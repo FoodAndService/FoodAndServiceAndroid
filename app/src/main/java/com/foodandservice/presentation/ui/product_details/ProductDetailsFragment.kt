@@ -10,7 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentProductDetailsBinding
-import com.foodandservice.domain.model.AllergenIntolerance
 import com.foodandservice.domain.model.ProductExtra
 import com.foodandservice.presentation.ui.adapter.AllergenIntoleranceAdapter
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
@@ -19,12 +18,14 @@ import com.foodandservice.util.FysBottomSheets.showGenericBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.get
 
 class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClickListener {
     private lateinit var binding: FragmentProductDetailsBinding
     private lateinit var allergenIntoleranceAdapter: AllergenIntoleranceAdapter
     private lateinit var productExtraAdapter: ProductExtraAdapter
     private var productExtras = mutableListOf<ProductExtra>()
+    private val viewModel: ProductDetailsViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -36,50 +37,29 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setAdapters()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.productDetailsState.collect { state ->
+                    when (state) {
+                        is ProductDetailsState.Success -> {
+                            allergenIntoleranceAdapter.submitList(state.productDetails.allergensAndIntolerances)
+                            productExtraAdapter.submitList(state.productDetails.productExtras)
+                        }
+                        is ProductDetailsState.Loading -> {
+                            setLoadingState()
+                        }
+                        is ProductDetailsState.Error -> {
 
+                        }
+                        is ProductDetailsState.Idle -> {
+                            setIdleState()
+                        }
+                    }
+                }
             }
         }
-
-        val allergensAndIntolerances = listOf(
-            AllergenIntolerance(id = "1", name = "Celiac"),
-            AllergenIntolerance(id = "2", name = "Egg"),
-            AllergenIntolerance(id = "3", name = "Milk"),
-            AllergenIntolerance(id = "4", name = "Sesame"),
-            AllergenIntolerance(id = "5", name = "Vegetarian")
-        )
-
-        productExtras = mutableListOf(
-            ProductExtra(
-                id = "1", name = "Polla en vinagre", price = "69,00"
-            ), ProductExtra(
-                id = "2", name = "Patatas gajo", price = "2,25"
-            ), ProductExtra(
-                id = "3", name = "Batatas asadas", price = "3,00"
-            ), ProductExtra(
-                id = "4", name = "Huevo frito", price = "2,50"
-            ), ProductExtra(
-                id = "5", name = "Alcohol etílico", price = "1,00"
-            ), ProductExtra(
-                id = "6", name = "Chicle", price = "55,00"
-            ), ProductExtra(
-                id = "7", name = "Pringles", price = "2,00"
-            ), ProductExtra(
-                id = "8", name = "Agua", price = "2,25"
-            ), ProductExtra(
-                id = "9", name = "Snickers", price = "3,00"
-            ), ProductExtra(
-                id = "10", name = "Trembolona", price = "2,50"
-            )
-        )
-
-        allergenIntoleranceAdapter = AllergenIntoleranceAdapter().also { adapter ->
-            adapter.submitList(allergensAndIntolerances)
-        }
-
-        productExtraAdapter =
-            ProductExtraAdapter(this).also { adapter -> adapter.submitList(productExtras) }
 
         binding.apply {
             btnBack.setOnClickListener {
@@ -104,6 +84,19 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                 )
             }
         }
+    }
+
+    private fun setAdapters() {
+        allergenIntoleranceAdapter = AllergenIntoleranceAdapter()
+        productExtraAdapter = ProductExtraAdapter(this)
+    }
+
+    private fun setLoadingState() {
+
+    }
+
+    private fun setIdleState() {
+
     }
 
     private fun updateExtras(newProductExtra: ProductExtra, position: Int) {

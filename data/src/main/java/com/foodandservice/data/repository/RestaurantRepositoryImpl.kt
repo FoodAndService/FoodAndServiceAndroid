@@ -314,4 +314,49 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getProductDetails(): Resource<ProductDetails> {
+        return try {
+            val allergensAndIntolerances = listOf(
+                AllergenIntolerance(id = "1", name = "Celiac"),
+                AllergenIntolerance(id = "2", name = "Egg"),
+                AllergenIntolerance(id = "3", name = "Milk"),
+                AllergenIntolerance(id = "4", name = "Sesame"),
+                AllergenIntolerance(id = "5", name = "Vegetarian")
+            )
+
+            val productExtras = listOf(
+                ProductExtra(
+                    id = "1", name = "Polla en vinagre", price = "69,00"
+                ), ProductExtra(
+                    id = "2", name = "Patatas gajo", price = "2,25"
+                ), ProductExtra(
+                    id = "3", name = "Batatas asadas", price = "3,00"
+                ), ProductExtra(
+                    id = "4", name = "Huevo frito", price = "2,50"
+                ), ProductExtra(
+                    id = "5", name = "Alcohol etílico", price = "1,00"
+                ), ProductExtra(
+                    id = "6", name = "Chicle", price = "55,00"
+                ), ProductExtra(
+                    id = "7", name = "Pringles", price = "2,00"
+                ), ProductExtra(
+                    id = "8", name = "Agua", price = "2,25"
+                ), ProductExtra(
+                    id = "9", name = "Snickers", price = "3,00"
+                ), ProductExtra(
+                    id = "10", name = "Trembolona", price = "2,50"
+                )
+            )
+            Resource.Success(
+                data = ProductDetails(
+                    id = "1",
+                    allergensAndIntolerances = allergensAndIntolerances,
+                    productExtras = productExtras
+                )
+            )
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }
