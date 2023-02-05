@@ -11,6 +11,7 @@ import com.foodandservice.presentation.ui.order_details_current.OrderDetailsCurr
 import com.foodandservice.presentation.ui.order_details_past.OrderDetailsPastViewModel
 import com.foodandservice.presentation.ui.order_history.OrderHistoryViewModel
 import com.foodandservice.presentation.ui.order_status.OrderStatusViewModel
+import com.foodandservice.presentation.ui.product_details.ProductDetailsViewModel
 import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingViewModel
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
 import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
@@ -66,7 +67,11 @@ val viewModelModule = module {
     }
 
     viewModel {
-        RestaurantDetailsViewModel()
+        ProductDetailsViewModel(getProductDetailsUseCase = get())
+    }
+
+    viewModel {
+        RestaurantDetailsViewModel(getRestaurantDetailsUseCase = get())
     }
 
     viewModel {

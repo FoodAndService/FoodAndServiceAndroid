@@ -24,7 +24,6 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     private lateinit var binding: FragmentProductDetailsBinding
     private lateinit var allergenIntoleranceAdapter: AllergenIntoleranceAdapter
     private lateinit var productExtraAdapter: ProductExtraAdapter
-    private var productExtras = mutableListOf<ProductExtra>()
     private val viewModel: ProductDetailsViewModel = get()
 
     override fun onCreateView(
@@ -99,41 +98,11 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
 
     }
 
-    private fun updateExtras(newProductExtra: ProductExtra, position: Int) {
-        productExtras.set(index = position, element = newProductExtra)
-        productExtraAdapter.apply {
-            submitList(productExtras)
-            notifyItemChanged(position)
-        }
-    }
-
     override fun onClickSubtractQuantity(productExtra: ProductExtra, position: Int) {
-        if (productExtra.quantity > 0) {
-            ProductExtra(
-                id = productExtra.id,
-                name = productExtra.name,
-                price = productExtra.price,
-                quantity = productExtra.quantity - 1
-            ).also { newProductExtra ->
-                updateExtras(
-                    newProductExtra = newProductExtra, position = position
-                )
-            }
-        }
+
     }
 
     override fun onClickAddQuantity(productExtra: ProductExtra, position: Int) {
-        if (productExtra.quantity < 100) {
-            ProductExtra(
-                id = productExtra.id,
-                name = productExtra.name,
-                price = productExtra.price,
-                quantity = productExtra.quantity + 1
-            ).also { newProductExtra ->
-                updateExtras(
-                    newProductExtra = newProductExtra, position = position
-                )
-            }
-        }
+
     }
 }
