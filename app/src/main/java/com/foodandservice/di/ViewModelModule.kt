@@ -15,6 +15,7 @@ import com.foodandservice.presentation.ui.product_details.ProductDetailsViewMode
 import com.foodandservice.presentation.ui.restaurant_booking.RestaurantBookingViewModel
 import com.foodandservice.presentation.ui.restaurant_details.RestaurantDetailsViewModel
 import com.foodandservice.presentation.ui.restaurant_details_extra.RestaurantDetailsExtraViewModel
+import com.foodandservice.presentation.ui.restaurant_reviews.RestaurantReviewsViewModel
 import com.foodandservice.presentation.ui.review_create.ReviewCreateViewModel
 import com.foodandservice.presentation.ui.signup_finish.SignUpFinishViewModel
 import com.foodandservice.presentation.ui.sms_confirm_auth.SmsConfirmViewModel
@@ -61,6 +62,10 @@ val viewModelModule = module {
 
     viewModel {
         LoginViewModel(signInFirstPhaseUseCase = get())
+    }
+
+    viewModel {
+        RestaurantReviewsViewModel(getRestaurantReviewsUseCase = get())
     }
 
     viewModel {

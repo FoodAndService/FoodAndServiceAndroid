@@ -648,4 +648,87 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
             Resource.Failure(exception)
         }
     }
+
+    override suspend fun getRestaurantReviews(): Resource<List<RestaurantReview>> {
+        return try {
+            val restaurantReviews = listOf(
+                RestaurantReview(
+                    id = "1",
+                    clientName = "Eugenio Chebotarev",
+                    rating = 3f,
+                    description = "El servicio en este restaurante es excelente. Los meseros son muy atentos y siempre están dispuestos a ayudar. Además, la comida es increíblemente deliciosa. Mi plato favorito es el filete con ensalada y papas fritas. ¡Definitivamente volveré!",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(3)
+                ), RestaurantReview(
+                    id = "2",
+                    clientName = "Diego Hermoso",
+                    rating = 4f,
+                    description = "¡Qué experiencia increíble! La decoración del restaurante es hermosa y el ambiente es muy agradable. La comida es increíblemente fresca y siempre se sirve caliente. Los precios son razonables y el servicio es excelente.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(4)
+                ), RestaurantReview(
+                    id = "3",
+                    clientName = "David Gallardo Torres",
+                    rating = 3.5f,
+                    description = "Este es sin duda el mejor restaurante de la ciudad. La comida es increíblemente sabrosa y siempre se sirve caliente y fresca. Los meseros son muy amables y siempre están dispuestos a ayudar.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(5)
+                ), RestaurantReview(
+                    id = "4",
+                    clientName = "Lorenzo Gómez Ríos",
+                    rating = 2.5f,
+                    description = "Muchas gracias por la reseña, tendremos en cuenta su punto.",
+                    isOwnerAnswer = true,
+                    date = LocalDateTime.now().minusDays(7)
+                ), RestaurantReview(
+                    id = "5",
+                    clientName = "Anatoly Chebotarev",
+                    rating = 4f,
+                    description = "Mi esposo y yo siempre disfrutamos de nuestras visitas a este restaurante. La comida es siempre deliciosa y la atención al cliente es excelente.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(13)
+                ), RestaurantReview(
+                    id = "6",
+                    clientName = "Sandra López Romarís",
+                    rating = 5f,
+                    description = "Este es sin duda mi restaurante favorito en la ciudad. La comida es increíblemente deliciosa y siempre se sirve caliente y fresca.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(15)
+                ), RestaurantReview(
+                    id = "7",
+                    clientName = "Adrián Pintor",
+                    rating = 4.5f,
+                    description = "Mi familia y yo hemos estado yendo a este restaurante durante años y siempre tenemos una experiencia increíble. La comida es deliciosa y el servicio es excelente. Los meseros siempre están dispuestos a ayudar y asegurarse de que tengamos una excelente experiencia.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(18)
+                ), RestaurantReview(
+                    id = "8",
+                    clientName = "Daniel Ortega",
+                    rating = 1f,
+                    description = "Mi esposo y yo visitamos este restaurante por primera vez la semana pasada y quedamos completamente sorprendidos por lo deliciosa que era la comida. Los meseros fueron muy amables y siempre estuvieron dispuestos a ayudar.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(21)
+                ), RestaurantReview(
+                    id = "9",
+                    clientName = "Javier Mohedas",
+                    rating = 2.5f,
+                    description = "Este es sin duda uno de mis restaurantes favoritos en la ciudad. La comida siempre es deliciosa y el servicio es excelente.",
+                    isOwnerAnswer = false,
+                    date = LocalDateTime.now().minusDays(22)
+                ), RestaurantReview(
+                    id = "10",
+                    clientName = "Anzhelika Ch",
+                    rating = 3f,
+                    description = "Muchas gracias por esas bonitas palabras!",
+                    isOwnerAnswer = true,
+                    date = LocalDateTime.now().minusDays(30)
+                )
+            )
+            Resource.Success(
+                data = restaurantReviews
+            )
+        } catch (exception: Exception) {
+            Resource.Failure(exception)
+        }
+    }
 }

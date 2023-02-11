@@ -16,4 +16,5 @@ interface RestaurantRepository {
     suspend fun getProductDetails(): Resource<ProductDetails>
     suspend fun getRestaurantDetails(): Resource<RestaurantDetails>
     suspend fun getRestaurantDetailsExtra(): Resource<RestaurantDetailsExtra>
+    suspend fun getRestaurantReviews(): Resource<List<RestaurantReview>>
 }
