@@ -83,36 +83,6 @@
                     app:layout_constraintTop_toBottomOf="@+id/btnMyBookings" />
 
                 <TextView
-                    android:id="@+id/tvPaymentMethodsCategory"
-                    style="@style/FysDarkMediumText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/user_profile_category_payment_methods"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider7" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnCreditDebitCards"
-                    style="@style/FysSettingsButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:text="@string/user_profile_credit_debit_cards"
-                    app:icon="@drawable/ic_card"
-                    app:layout_constraintTop_toBottomOf="@+id/tvPaymentMethodsCategory" />
-
-                <View
-                    android:id="@+id/divider1"
-                    style="@style/ButtonDivider"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnCreditDebitCards" />
-
-                <TextView
                     android:id="@+id/tvPersonalDetailsCategory"
                     style="@style/FysDarkMediumText"
                     android:layout_width="wrap_content"
@@ -123,7 +93,7 @@
                     android:textAllCaps="true"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/divider1" />
+                    app:layout_constraintTop_toBottomOf="@+id/divider7" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnChangeFullname"

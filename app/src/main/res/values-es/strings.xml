@@ -72,6 +72,8 @@
     <string name="fragment_favourites_title">Mis favoritos</string>
     <string name="fragment_order_details_past_title">Pedido %s</string>
     <string name="fragment_orders_title">Mis pedidos</string>
+    <string name="fragment_orders_current_order">Pedido actual</string>
+    <string name="fragment_orders_finished_orders">Pedidos finalizados</string>
     <string name="fragment_user_profile_greeting">¡Hola, %s!</string>
     <string name="fragment_user_profile_title">Mi cuenta</string>
 
@@ -132,13 +134,11 @@
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
     <string name="tv_total">Total</string>
 
-    <string name="user_profile_category_payment_methods">Métodos de pago</string>
     <string name="user_profile_category_personal_details">Datos personales</string>
     <string name="user_profile_category_security">Seguridad</string>
     <string name="user_profile_change_email">Cambiar mi email</string>
     <string name="user_profile_change_fullname">Cambiar mi nombre</string>
     <string name="user_profile_change_phone_number">Cambiar mi número</string>
-    <string name="user_profile_credit_debit_cards">Mis tarjetas de débito/crédito</string>
     <string name="user_profile_delete_account">Eliminar mi cuenta</string>
     <string name="user_profile_logout">Cerrar sesión</string>
     <string name="user_profile_my_bookings">Mis reservas</string>

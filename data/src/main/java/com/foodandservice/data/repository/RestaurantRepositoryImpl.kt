@@ -193,7 +193,7 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                     id = "1",
                     restaurantName = "Wendy's",
                     amount = "15,00",
-                    date = LocalDateTime.now()
+                    date = LocalDateTime.of(2023, 2, 18, 0, 0)
                 ), Order(
                     id = "2",
                     restaurantName = "Rosario's Burger",

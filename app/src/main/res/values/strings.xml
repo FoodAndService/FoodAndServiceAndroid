@@ -77,6 +77,8 @@
     <string name="fragment_favourites_title">My favourites</string>
     <string name="fragment_order_details_past_title">Order %s</string>
     <string name="fragment_orders_title">My orders</string>
+    <string name="fragment_orders_current_order">Current order</string>
+    <string name="fragment_orders_finished_orders">Finished orders</string>
     <string name="fragment_user_profile_greeting">Hi, %s!</string>
     <string name="fragment_user_profile_title">My account</string>
 
@@ -138,13 +140,11 @@
     <string name="tv_table_booking_restaurant">Book at %s</string>
     <string name="tv_total">Total</string>
 
-    <string name="user_profile_category_payment_methods">Payment methods</string>
     <string name="user_profile_category_personal_details">Personal details</string>
     <string name="user_profile_category_security">Security</string>
     <string name="user_profile_change_email">Change my email</string>
     <string name="user_profile_change_fullname">Change my name</string>
     <string name="user_profile_change_phone_number">Change my number</string>
-    <string name="user_profile_credit_debit_cards">My debit/credit cards</string>
     <string name="user_profile_delete_account">Delete my account</string>
     <string name="user_profile_logout">Log out</string>
     <string name="user_profile_my_bookings">My bookings</string>

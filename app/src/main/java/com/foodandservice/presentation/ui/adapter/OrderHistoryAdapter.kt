@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
-import com.foodandservice.databinding.ItemOrderHistoryBinding
+import com.foodandservice.databinding.ItemOrderFinishedBinding
 import com.foodandservice.domain.model.Order
 import java.time.ZoneId
 import java.util.*
@@ -28,7 +28,7 @@ class OrderHistoryAdapter constructor(private val orderClickListener: OrderClick
         holder.bind(item = getItem(position), orderClickListener = orderClickListener)
     }
 
-    class ViewHolder private constructor(private val binding: ItemOrderHistoryBinding) :
+    class ViewHolder private constructor(private val binding: ItemOrderFinishedBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
@@ -51,7 +51,7 @@ class OrderHistoryAdapter constructor(private val orderClickListener: OrderClick
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = ItemOrderHistoryBinding.inflate(layoutInflater, parent, false)
+                val binding = ItemOrderFinishedBinding.inflate(layoutInflater, parent, false)
                 return ViewHolder(binding)
             }
         }

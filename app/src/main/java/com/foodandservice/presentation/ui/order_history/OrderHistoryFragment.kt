@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.activity.addCallback
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderHistoryBinding
 import com.foodandservice.domain.model.Order
 import com.foodandservice.presentation.ui.adapter.OrderHistoryAdapter
@@ -56,6 +59,13 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
             }
         }
 
+        binding.apply {
+            root.findViewById<ConstraintLayout>(R.id.btnGoToCurrentOrder).setOnClickListener {
+                navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsCurrentFragment())
+            }
+            root.findViewById<TextView>(R.id.tvCurrentOrderRestaurantName).text = "Wendy's"
+        }
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToHomeFragment())
         }
@@ -76,7 +86,6 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
     }
 
     override fun onClick(item: Order) {
-        if (item.id.toInt() > 1) navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment())
-        else navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsCurrentFragment())
+        navigate(OrderHistoryFragmentDirections.actionOrdersFragmentToOrderDetailsPastFragment())
     }
 }
