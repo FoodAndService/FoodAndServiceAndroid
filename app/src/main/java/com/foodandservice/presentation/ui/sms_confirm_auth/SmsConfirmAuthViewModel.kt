@@ -36,14 +36,14 @@ class SmsConfirmViewModel(
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
                 is Resource.Success -> {
                     response.data?.let { authPhaseWithToken ->
-                        saveUserTokenUseCase(authPhaseWithToken.authUser)
+                        saveUserTokenUseCase(authPhaseWithToken.token)
                         saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
 
                         when (authPhaseWithToken.currentPhase) {
                             AuthCurrentPhase.PHONE_VERIFIED -> {
                                 _smsConfirmAuthState.emit(
                                     SmsConfirmAuthState.SuccessNewCustomer(
-                                        authPhaseWithToken.authUser
+                                        authPhaseWithToken.token
                                     )
                                 )
                             }

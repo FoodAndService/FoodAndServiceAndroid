@@ -1,6 +1,6 @@
 package com.foodandservice.domain.model.sign
 
-data class AuthPhaseWithToken(val currentPhase: AuthCurrentPhase, val authUser: String)
+data class AuthPhaseWithToken(val currentPhase: AuthCurrentPhase, val token: String)
 
 enum class AuthCurrentPhase {
     PHONE_VERIFIED,

@@ -1,7 +1,7 @@
 package com.foodandservice.data.repository
 
-import com.foodandservice.data.remote.model.sign.toAuthPhase
-import com.foodandservice.data.remote.model.sign.toSignPhase
+import com.foodandservice.data.remote.model.sign.response.toAuthPhase
+import com.foodandservice.data.remote.model.sign.response.toAuthPhaseWithToken
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
@@ -24,7 +24,7 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) : Cus
     override suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): Resource<AuthPhaseWithToken> {
         return try {
             val response = customerService.signInSecondPhase(phoneWithOtp)
-            Resource.Success(response.toSignPhase())
+            Resource.Success(response.toAuthPhaseWithToken())
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }
@@ -35,7 +35,7 @@ class CustomerRepositoryImpl(private val customerService: CustomerService) : Cus
     ): Resource<AuthPhaseWithToken> {
         return try {
             val response = customerService.signUpFirstPhase("Bearer $authToken", name)
-            Resource.Success(response.toSignPhase())
+            Resource.Success(response.toAuthPhaseWithToken())
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }

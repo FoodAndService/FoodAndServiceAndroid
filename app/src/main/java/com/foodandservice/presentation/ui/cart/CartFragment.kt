@@ -64,18 +64,18 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         }
     }
 
+    private fun setAdapter() {
+        cartAdapter = CartAdapter(this).also { adapter ->
+            binding.rvCart.adapter = adapter
+        }
+    }
+
     private fun setLoadingState() {
 
     }
 
     private fun setIdleState() {
 
-    }
-
-    private fun setAdapter() {
-        cartAdapter = CartAdapter(this).also { adapter ->
-            binding.rvCart.adapter = adapter
-        }
     }
 
     override fun onClickSubtractQuantity(cartItem: CartItem, position: Int) {

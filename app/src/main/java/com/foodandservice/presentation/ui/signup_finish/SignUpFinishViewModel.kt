@@ -32,7 +32,7 @@ class SignUpFinishViewModel(
                 when (val response = signUpFirstPhaseUseCase(authToken, name)) {
                     is Resource.Success -> {
                         response.data?.let { authPhaseWithToken ->
-                            saveUserTokenUseCase(authPhaseWithToken.authUser)
+                            saveUserTokenUseCase(authPhaseWithToken.token)
                             saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
                         }
                         _signUpFinishState.emit(SignUpFinishState.Success)

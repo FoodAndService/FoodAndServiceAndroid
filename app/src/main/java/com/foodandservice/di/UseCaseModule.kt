@@ -22,6 +22,10 @@ val useCaseModule = module {
     }
 
     single {
+        GetCategoryRestaurantsUseCase(restaurantRepository = get())
+    }
+
+    single {
         GetOrderProductsUseCase(restaurantRepository = get())
     }
 

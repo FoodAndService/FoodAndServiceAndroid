@@ -78,6 +78,9 @@ dependencies {
     // SMS confirmation view
     implementation("com.github.fraggjkee:sms-confirmation-view:1.5.0")
 
+    // Stripe
+    implementation("com.stripe:stripe-android:20.19.2")
+
     // Dots indicator for viewpager
     implementation("com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2")
 
