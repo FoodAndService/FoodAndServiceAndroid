@@ -22,7 +22,7 @@ class SignUpFinishViewModel(
     private val _signUpFinishState = MutableSharedFlow<SignUpFinishState>(replay = 10)
     val signUpFinishState: SharedFlow<SignUpFinishState> = _signUpFinishState.asSharedFlow()
 
-    fun finishSignup(name: String) {
+    fun finishSignUp(name: String) {
         viewModelScope.launch {
             _signUpFinishState.emit(SignUpFinishState.Loading)
 
@@ -48,6 +48,8 @@ class SignUpFinishViewModel(
             } catch (e: InvalidNameFormatException) {
                 _signUpFinishState.emit(SignUpFinishState.Error("Invalid name format"))
             }
+
+            _signUpFinishState.emit(SignUpFinishState.Idle)
         }
     }
 }

@@ -50,14 +50,14 @@ class SignUpFinishFragment : Fragment() {
                     }
                 }
             }
+        }
 
-            binding.btnFinishSignup.setOnClickListener {
-                viewModel.finishSignup(binding.tieFullname.text.toString())
-            }
+        binding.btnFinishSignup.setOnClickListener {
+            viewModel.finishSignUp(binding.tieFullname.text.toString())
+        }
 
-            binding.apply {
-                tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
-            }
+        binding.apply {
+            tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
     }
 
@@ -71,9 +71,9 @@ class SignUpFinishFragment : Fragment() {
 
     private fun setLoadingState() {
         binding.apply {
-            btnFinishSignup.isEnabled = true
+            btnFinishSignup.isEnabled = false
             btnFinishSignup.text = ""
-            progressBar.visibility = View.GONE
+            progressBar.visibility = View.VISIBLE
         }
     }
 }
