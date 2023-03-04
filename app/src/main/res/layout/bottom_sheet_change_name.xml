@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvChangeFullName"
+            android:id="@+id/tvChangeEmail"
             style="@style/FysDarkLargeText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,12 +30,10 @@
             app:layout_constraintTop_toBottomOf="@+id/ivGrapple" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tilChangeName"
+            android:id="@+id/tilChangeEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_margin="16dp"
             android:textColorHint="@color/text_normal"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -43,16 +41,18 @@
             app:boxCornerRadiusTopStart="12dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:layout_constraintTop_toBottomOf="@+id/tvChangeFullName">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvChangeEmail">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/tieChangeName"
+                android:id="@+id/tieChangeEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/text_field"
                 android:fontFamily="@font/poppins"
                 android:hint="@string/hint_tie_your_name"
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:longClickable="false"
                 android:maxLength="15"
                 android:maxLines="1"
@@ -67,9 +67,11 @@
             style="@style/FysPrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="14dp"
-            android:text="@string/btn_save_name"
-            app:layout_constraintTop_toBottomOf="@+id/tilChangeName" />
+            android:layout_margin="16dp"
+            android:text="@string/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tilChangeEmail" />
 
         <TextView
             android:layout_width="match_parent"

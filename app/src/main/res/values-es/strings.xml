@@ -15,14 +15,12 @@
     <string name="btn_home_filter_valorated">Valorados</string>
     <string name="btn_ingredients">Ingredientes</string>
     <string name="btn_next">Siguiente</string>
-    <string name="btn_pay">Proceder al pago</string>
+    <string name="btn_pay">Pagar</string>
     <string name="btn_product_extras">Extras</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="btn_save_discount">Guardar descuento</string>
-    <string name="btn_save_email">Guardar email</string>
-    <string name="btn_save_name">Guardar nombre</string>
-    <string name="btn_save_phone">Guardar número</string>
+    <string name="btn_save">Guardar</string>
     <string name="btn_send_review">Enviar reseña</string>
 
     <string name="category_filter_title">Categoría: %1$s</string>
@@ -144,4 +142,6 @@
     <string name="user_profile_my_bookings">Mis reservas</string>
 
     <string name="view_my_order">Ver pedido</string>
+    <string name="btn_confirm_order">Confirmar pedido</string>
+    <string name="btn_add_more_items">Añadir más artículos</string>
 </resources>

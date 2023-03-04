@@ -8,16 +8,15 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderDetailsCurrentBinding
-import com.foodandservice.presentation.ui.adapter.OrderPastAdapter
+import com.foodandservice.presentation.ui.adapter.OrderHistoryProductAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class OrderDetailsCurrentFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailsCurrentBinding
-    private lateinit var orderCurrentAdapter: OrderPastAdapter
+    private lateinit var orderCurrentAdapter: OrderHistoryProductAdapter
     private val viewModel: OrderDetailsCurrentViewModel = get()
 
     override fun onCreateView(
@@ -57,8 +56,6 @@ class OrderDetailsCurrentFragment : Fragment() {
             btnBack.setOnClickListener {
                 navigateBack()
             }
-
-            tvOrderNumber.text = getString(R.string.current_order_status_order_number, "420")
         }
     }
 
@@ -71,7 +68,7 @@ class OrderDetailsCurrentFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        orderCurrentAdapter = OrderPastAdapter().also { adapter ->
+        orderCurrentAdapter = OrderHistoryProductAdapter().also { adapter ->
             binding.rvProduct.adapter = adapter
         }
     }

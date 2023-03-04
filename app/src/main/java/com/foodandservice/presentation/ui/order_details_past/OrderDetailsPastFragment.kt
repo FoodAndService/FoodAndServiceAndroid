@@ -10,14 +10,14 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentOrderDetailsPastBinding
-import com.foodandservice.presentation.ui.adapter.OrderPastAdapter
+import com.foodandservice.presentation.ui.adapter.OrderHistoryProductAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
 class OrderDetailsPastFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailsPastBinding
-    private lateinit var orderPastAdapter: OrderPastAdapter
+    private lateinit var orderHistoryProductAdapter: OrderHistoryProductAdapter
     private val viewModel: OrderDetailsPastViewModel = get()
 
     override fun onCreateView(
@@ -39,7 +39,7 @@ class OrderDetailsPastFragment : Fragment() {
                 viewModel.orderDetailsPastViewModel.collect { state ->
                     when (state) {
                         is OrderDetailsPastState.Success -> {
-                            orderPastAdapter.submitList(state.order)
+                            orderHistoryProductAdapter.submitList(state.order)
                         }
                         is OrderDetailsPastState.Loading -> {
                             setLoadingState()
@@ -81,7 +81,7 @@ class OrderDetailsPastFragment : Fragment() {
     }
 
     private fun setAdapter() {
-        orderPastAdapter = OrderPastAdapter().also { adapter ->
+        orderHistoryProductAdapter = OrderHistoryProductAdapter().also { adapter ->
             binding.rvProduct.adapter = adapter
         }
     }

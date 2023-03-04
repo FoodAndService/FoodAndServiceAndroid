@@ -36,7 +36,7 @@ class SplashFragment : Fragment() {
                             navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
                         }
                         is SplashState.OnboardingNotFinished -> {
-                            navigate(SplashFragmentDirections.actionSplashFragmentToViewPagerFragment())
+                            navigate(SplashFragmentDirections.actionSplashFragmentToOnboardingFragment())
                         }
                     }
                 }

@@ -20,14 +20,12 @@
     <string name="btn_home_filter_valorated">Valorated</string>
     <string name="btn_ingredients">Ingredients</string>
     <string name="btn_next">Next</string>
-    <string name="btn_pay">Proceed with payment</string>
+    <string name="btn_pay">Pay</string>
     <string name="btn_product_extras">Extras</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
     <string name="btn_save_discount">Save discount</string>
-    <string name="btn_save_email">Save email</string>
-    <string name="btn_save_name">Save name</string>
-    <string name="btn_save_phone">Save phone</string>
+    <string name="btn_save">Save</string>
     <string name="btn_send_review">Send review</string>
 
     <string name="category_filter_title">Category: %1$s</string>
@@ -150,4 +148,6 @@
     <string name="user_profile_my_bookings">My bookings</string>
 
     <string name="view_my_order">View my order</string>
+    <string name="btn_confirm_order">Confirm cart</string>
+    <string name="btn_add_more_items">Add more items</string>
 </resources>

@@ -53,11 +53,11 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
             }
         }
 
+        binding.btnConfirmOrder.setOnClickListener {
+
+        }
+
         binding.apply {
-            btnPaymentProceed.setOnClickListener {
-
-            }
-
             btnBack.setOnClickListener {
                 navigateBack()
             }

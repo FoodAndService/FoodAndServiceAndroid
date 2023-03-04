@@ -33,9 +33,7 @@
             android:id="@+id/tilChangeEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
+            android:layout_margin="16dp"
             android:textColorHint="@color/text_normal"
             app:boxCornerRadiusBottomEnd="12dp"
             app:boxCornerRadiusBottomStart="12dp"
@@ -43,6 +41,8 @@
             app:boxCornerRadiusTopStart="12dp"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvChangeEmail">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -67,8 +67,10 @@
             style="@style/FysPrimaryButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="14dp"
-            android:text="@string/btn_save_email"
+            android:layout_margin="16dp"
+            android:text="@string/btn_save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tilChangeEmail" />
 
         <TextView

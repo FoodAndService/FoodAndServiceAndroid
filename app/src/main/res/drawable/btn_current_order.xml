@@ -5,7 +5,7 @@
             <gradient
                 android:endColor="@color/fys_secondary"
                 android:startColor="@color/fys_primary" />
-            <corners android:topLeftRadius="35dp" />
+            <corners android:topLeftRadius="55dp" />
         </shape>
     </item>
 </ripple>

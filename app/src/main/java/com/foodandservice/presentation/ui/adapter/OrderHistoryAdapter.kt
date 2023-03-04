@@ -40,7 +40,7 @@ class OrderHistoryAdapter constructor(private val orderClickListener: OrderClick
 
             binding.apply {
                 tvRestaurantName.text = item.restaurantName
-                tvPrice.text = "${item.amount}€"
+                tvPrice.text = "${item.price}€"
                 tvDate.text = itemView.context.getString(R.string.tv_days_ago, diffInDays)
                 cvOrder.setOnClickListener {
                     orderClickListener.onClick(item = item)

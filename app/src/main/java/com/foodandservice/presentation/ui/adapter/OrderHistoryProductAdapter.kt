@@ -12,8 +12,8 @@ import com.foodandservice.databinding.ItemProductOrderPastExtraBinding
 import com.foodandservice.domain.model.OrderProduct
 import java.util.*
 
-class OrderPastAdapter :
-    ListAdapter<OrderProduct, OrderPastAdapter.AbstractViewHolder>(OrderPastDiffCallback()) {
+class OrderHistoryProductAdapter :
+    ListAdapter<OrderProduct, OrderHistoryProductAdapter.AbstractViewHolder>(OrderPastDiffCallback()) {
     companion object {
         private const val ITEM_PRODUCT_NORMAL = 1
         private const val ITEM_PRODUCT_EXTRA = 2

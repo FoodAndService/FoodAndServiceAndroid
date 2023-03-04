@@ -4,13 +4,12 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/fys_bg_order_current"
+        android:background="@color/fys_background"
         tools:context=".presentation.ui.order_details_current.OrderDetailsCurrentFragment">
 
         <Toolbar
             android:id="@+id/toolbar"
             style="@style/FysToolbar"
-            android:background="@android:color/transparent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,7 +42,7 @@
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/cardView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/toolbar">
@@ -53,218 +52,98 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:id="@+id/tvOrderNumber"
-                    style="@style/FysWhiteLargeText"
+                <TextView
+                    android:id="@+id/tvCart"
+                    style="@style/FysDarkLargeText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="24dp"
-                    android:gravity="start"
-                    android:text="@string/current_order_status_order_number"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/fragment_cart_title"
                     android:textAllCaps="true"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/constraintCurrentOrder" />
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/constraintOrderStatus"
+                <TextView
+                    android:id="@+id/tvRestaurantName"
+                    style="@style/FysPrimaryMediumText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="24dp"
+                    android:text="Wendy's"
+                    android:textAllCaps="true"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/constraintCurrentOrder">
-
-                    <ProgressBar
-                        android:id="@+id/pbOrderStatusAccepted"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:indeterminate="true"
-                        android:indeterminateDrawable="@drawable/ic_done"
-                        android:indeterminateTint="@color/white"
-                        android:indeterminateTintMode="src_atop"
-                        android:src="@drawable/ic_done"
-                        app:layout_constraintStart_toStartOf="@id/constraintOrderStatus"
-                        app:layout_constraintTop_toTopOf="@id/constraintOrderStatus" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvOrderStatusAccepted"
-                        style="@style/FysWhiteSmallText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/current_order_status_accepted"
-                        app:layout_constraintBottom_toBottomOf="@id/pbOrderStatusAccepted"
-                        app:layout_constraintStart_toEndOf="@id/pbOrderStatusAccepted"
-                        app:layout_constraintTop_toTopOf="@+id/pbOrderStatusAccepted" />
-
-                    <ProgressBar
-                        android:id="@+id/pbOrderStatusWaiting"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:indeterminate="true"
-                        android:indeterminateTint="@android:color/darker_gray"
-                        android:indeterminateTintMode="src_atop"
-                        android:src="@drawable/ic_done"
-                        app:layout_constraintStart_toStartOf="@id/constraintOrderStatus"
-                        app:layout_constraintTop_toBottomOf="@id/pbOrderStatusAccepted" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvOrderStatusWaiting"
-                        style="@style/FysWhiteSmallText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/current_order_status_waiting"
-                        android:textColor="@android:color/darker_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/pbOrderStatusWaiting"
-                        app:layout_constraintStart_toEndOf="@id/pbOrderStatusWaiting"
-                        app:layout_constraintTop_toTopOf="@+id/pbOrderStatusWaiting" />
-
-                    <ProgressBar
-                        android:id="@+id/pbOrderStatusFinished"
-                        style="?android:attr/progressBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:indeterminate="true"
-                        android:indeterminateTint="@android:color/darker_gray"
-                        android:indeterminateTintMode="src_atop"
-                        android:src="@drawable/ic_done"
-                        app:layout_constraintStart_toStartOf="@id/constraintOrderStatus"
-                        app:layout_constraintTop_toBottomOf="@id/pbOrderStatusWaiting" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvOrderStatusFinished"
-                        style="@style/FysWhiteSmallText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/current_order_status_finished"
-                        android:textColor="@android:color/darker_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/pbOrderStatusFinished"
-                        app:layout_constraintStart_toEndOf="@id/pbOrderStatusFinished"
-                        app:layout_constraintTop_toTopOf="@+id/pbOrderStatusFinished" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvYourOrder"
-                    android:layout_width="wrap_content"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="24dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvOrderNumber">
+                    app:layout_constraintTop_toBottomOf="@+id/tvCart" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/FysPrimaryMediumText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal|center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginEnd="12dp"
-                        android:text="@string/current_order_status_your_order"
-                        android:textAllCaps="true" />
-                </com.google.android.material.card.MaterialCardView>
+                <include
+                    android:id="@+id/add_more_items"
+                    layout="@layout/item_add_more_items"
+                    android:layout_width="match_parent"
+                    android:layout_height="68dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="6dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvProduct"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cvYourOrder"
+                    app:layout_constraintTop_toBottomOf="@id/add_more_items"
                     tools:itemCount="5"
                     tools:listitem="@layout/item_product_order_past" />
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvSubtotal"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/rvProduct">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/FysDarkMediumText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/tv_subtotal"
-                        android:textAllCaps="true" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvSubtotal"
-                        style="@style/FysPrimaryMediumText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:text="40,00€"
-                        android:textAllCaps="true" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cvTotal"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    app:cardCornerRadius="10dp"
-                    app:cardElevation="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cvSubtotal">
-
-                    <com.google.android.material.textview.MaterialTextView
-                        style="@style/FysDarkMediumText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="start|center_vertical"
-                        android:layout_marginStart="12dp"
-                        android:text="@string/tv_total"
-                        android:textAllCaps="true" />
-
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/tvTotal"
-                        style="@style/FysPrimaryMediumText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginEnd="12dp"
-                        android:text="44,00€"
-                        android:textAllCaps="true" />
-                </com.google.android.material.card.MaterialCardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/cvTotal" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvPriceTotal"
+                    style="@style/FysPrimaryLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:text="11,94€"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnConfirmCart"
+                    style="@style/FysPrimaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:text="@string/btn_pay"
+                    android:textAllCaps="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -6,7 +6,7 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/onboardingVpFragment"
+        android:id="@+id/onboardingFragment"
         android:name="com.foodandservice.presentation.ui.onboarding.OnboardingFragment"
         android:label="ViewPagerFragment"
         tools:layout="@layout/fragment_view_pager">
@@ -22,8 +22,8 @@
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash">
         <action
-            android:id="@+id/action_splashFragment_to_viewPagerFragment"
-            app:destination="@id/onboardingVpFragment"
+            android:id="@+id/action_splashFragment_to_onboardingFragment"
+            app:destination="@id/onboardingFragment"
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <action

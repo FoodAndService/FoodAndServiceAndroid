@@ -67,7 +67,7 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:layout_width="85dp"
+                    android:layout_width="80dp"
                     android:layout_height="match_parent"
                     android:background="@drawable/btn_current_order"
                     android:importantForAccessibility="no"

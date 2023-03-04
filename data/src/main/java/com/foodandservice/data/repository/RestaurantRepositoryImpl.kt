@@ -192,27 +192,27 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                 Order(
                     id = "1",
                     restaurantName = "Wendy's",
-                    amount = "15,00",
+                    price = "15,00",
                     date = LocalDateTime.of(2023, 2, 18, 0, 0)
                 ), Order(
                     id = "2",
                     restaurantName = "Rosario's Burger",
-                    amount = "12,00",
+                    price = "12,00",
                     date = LocalDateTime.of(2022, 11, 14, 0, 0)
                 ), Order(
                     id = "3",
                     restaurantName = "Foster Hollywood",
-                    amount = "30,00",
+                    price = "30,00",
                     date = LocalDateTime.of(2022, 11, 11, 0, 0)
                 ), Order(
                     id = "4",
                     restaurantName = "La Calle Burger",
-                    amount = "17,00",
+                    price = "17,00",
                     date = LocalDateTime.of(2022, 11, 7, 0, 0)
                 ), Order(
                     id = "5",
                     restaurantName = "Kalua",
-                    amount = "6,00",
+                    price = "6,00",
                     date = LocalDateTime.of(2022, 10, 3, 0, 0)
                 )
             )
@@ -272,6 +272,12 @@ class RestaurantRepositoryImpl(private val restarauntService: RestarauntService)
                 CartItem("4", "Pollo frito", "", "3,99", 1, false),
                 CartItem("5", "Patatas fritas", "", "0,99", 1, true),
                 CartItem("6", "Patatas gajo", "", "0,99", 1, true),
+                CartItem("7", "Pepsi", "", "1,99", 1, false),
+                CartItem("8", "Copa de vino", "", "2,99", 1, false),
+                CartItem("9", "Patatas fritas", "", "0,99", 1, true),
+                CartItem("10", "Pollo frito", "", "3,99", 1, false),
+                CartItem("11", "Patatas fritas", "", "0,99", 1, true),
+                CartItem("12", "Patatas gajo", "", "0,99", 1, true)
             )
             Resource.Success(data = cartItems)
         } catch (exception: Exception) {

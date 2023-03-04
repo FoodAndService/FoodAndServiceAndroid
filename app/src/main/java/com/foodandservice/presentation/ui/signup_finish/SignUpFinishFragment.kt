@@ -51,11 +51,11 @@ class SignUpFinishFragment : Fragment() {
                 }
             }
 
-            binding.apply {
-                btnFinishSignup.setOnClickListener {
-                    viewModel.finishSignup(binding.tieFullname.text.toString())
-                }
+            binding.btnFinishSignup.setOnClickListener {
+                viewModel.finishSignup(binding.tieFullname.text.toString())
+            }
 
+            binding.apply {
                 tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
             }
         }
