@@ -18,22 +18,22 @@ class HomeViewModel(
     val homeState: SharedFlow<HomeState> = _homeState.asSharedFlow()
 
     init {
-        getRestaurantsWithCategories()
+        getRestaurants()
     }
 
-    private fun getRestaurantsWithCategories() {
+    private fun getRestaurants() {
         viewModelScope.launch {
             _homeState.emit(HomeState.Loading)
 
-            when (val restaurants = getRestaurantsUseCase()) {
+            when (val result = getRestaurantsUseCase()) {
                 is Resource.Success -> {
                     when (val restaurantTags = getRestaurantTagsUseCase()) {
                         is Resource.Success -> {
-                            restaurants.data?.let { restaurantsWithCategories ->
+                            result.data?.let { restaurants ->
                                 restaurantTags.data?.let { restaurantTags ->
                                     _homeState.emit(
                                         HomeState.Success(
-                                            restaurants = restaurantsWithCategories,
+                                            restaurants = restaurants,
                                             restaurantCategoryTags = restaurantTags
                                         )
                                     )
@@ -53,7 +53,7 @@ class HomeViewModel(
                 is Resource.Failure -> {
                     _homeState.emit(
                         HomeState.Error(
-                            message = restaurants.exception?.message
+                            message = result.exception?.message
                                 ?: "Something went wrong"
                         )
                     )

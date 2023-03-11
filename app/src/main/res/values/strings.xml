@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="app_name" translatable="false">Food &amp; Service</string>
-
     <string name="bottom_sheet_home_filter">Filters</string>
-
     <string name="btn_accept">Accept</string>
     <string name="btn_access">Access</string>
+    <string name="btn_add_more_items">Add more items</string>
     <string name="btn_allergens_intolerances">Allergens &amp; intolerances</string>
     <string name="btn_book">Book</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
+    <string name="btn_confirm_order">Confirm cart</string>
     <string name="btn_finish">Finish</string>
     <string name="btn_finish_signup">Finish sign up</string>
+    <string name="btn_get_my_location">Get my current location</string>
     <string name="btn_home_filter_popular">Popular</string>
     <string name="btn_home_filter_price_high" translatable="false">$$$</string>
     <string name="btn_home_filter_price_low" translatable="false">$</string>
@@ -24,15 +25,12 @@
     <string name="btn_product_extras">Extras</string>
     <string name="btn_resend_sms">Resend SMS</string>
     <string name="btn_resend_sms_wait">Resend SMS (%1$d)</string>
-    <string name="btn_save_discount">Save discount</string>
     <string name="btn_save">Save</string>
+    <string name="btn_save_discount">Save discount</string>
     <string name="btn_send_review">Send review</string>
-
     <string name="category_filter_title">Category: %1$s</string>
-
     <string name="confirm_operation_desc">We have sent you an SMS, please enter the one time password below</string>
     <string name="confirm_operation_title">Confirm operation</string>
-
     <string name="current_order_status_accepted">Order accepted</string>
     <string name="current_order_status_cancelled">Order cancelled</string>
     <string name="current_order_status_declined">Order declined</string>
@@ -40,15 +38,12 @@
     <string name="current_order_status_order_number">Order\n#%s</string>
     <string name="current_order_status_waiting">Waiting for order</string>
     <string name="current_order_status_your_order">Your order</string>
-
     <string name="dialog_delete_account_desc">Warning: if you delete your account, you will not be able to recover any information</string>
     <string name="dialog_delete_account_title">Delete account</string>
     <string name="dialog_logout_desc">Are you sure you want to log out?</string>
     <string name="dialog_logout_title">Log out</string>
-
     <string name="error_network">A network error occurred</string>
     <string name="error_phone_format">Incorrect format</string>
-
     <string name="food_allergen_intolerance_celery">Celery</string>
     <string name="food_allergen_intolerance_celiac">Celiac</string>
     <string name="food_allergen_intolerance_crustacean">Crustacean</string>
@@ -69,17 +64,15 @@
     <string name="food_allergen_intolerance_sulphites">Sulphites</string>
     <string name="food_allergen_intolerance_vegan">Vegan</string>
     <string name="food_allergen_intolerance_vegetarian">Vegetarian</string>
-
     <string name="fragment_bookings_title">My bookings</string>
     <string name="fragment_cart_title">My order</string>
     <string name="fragment_favourites_title">My favourites</string>
     <string name="fragment_order_details_past_title">Order %s</string>
-    <string name="fragment_orders_title">My orders</string>
     <string name="fragment_orders_current_order">Current order</string>
     <string name="fragment_orders_finished_orders">Finished orders</string>
+    <string name="fragment_orders_title">My orders</string>
     <string name="fragment_user_profile_greeting">Hi, %s!</string>
     <string name="fragment_user_profile_title">My account</string>
-
     <string name="hint_tie_diners">Number of diners</string>
     <string name="hint_tie_phone_number">Phone number</string>
     <string name="hint_tie_prefix">Country</string>
@@ -89,55 +82,45 @@
     <string name="hint_tie_your_email">Your email</string>
     <string name="hint_tie_your_name">Your name</string>
     <string name="hint_tie_your_phone_number">Your number</string>
-
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
-
     <string name="menu_favorites">Favourites</string>
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
     <string name="menu_profile">Profile</string>
-
     <string name="onboarding_desc1">Take advantage of the many offers and discounts offered by our restaurants.</string>
     <string name="onboarding_desc2">Order in any restaurant, in your own language, check allergens, intolerances and ingredients.</string>
     <string name="onboarding_desc3">You can place your order at any time without waiting to be served, order and pay.</string>
     <string name="onboarding_desc4">Check your orders, add your restaurants to favourites, check the allergens and intolerances.</string>
     <string name="onboarding_desc5">Follow your orders in real time, from the moment you place them.</string>
+    <string name="onboarding_desc6">To recommend and personalise your experience, we require your location to display nearby businesses and services.</string>
     <string name="onboarding_title1">Great offers!</string>
     <string name="onboarding_title2">Extreme convenience!</string>
     <string name="onboarding_title3">Save time!</string>
     <string name="onboarding_title4">Personal treatment!</string>
     <string name="onboarding_title5">Real-time tracking!</string>
-
+    <string name="onboarding_title6">Where you live?</string>
     <string name="order_status_checking_payment">Checking payment method</string>
     <string name="order_status_finished">Your order is ready to pick up</string>
     <string name="order_status_order_declined">Your order has been declined</string>
     <string name="order_status_payment_declined">The payment method has been declined</string>
     <string name="order_status_preparing">Your order is being processed</string>
     <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
-
     <string name="product_extras">Extras</string>
-
     <string name="schedule">Schedule</string>
-
     <string name="skip">Skip</string>
-
     <string name="tie_fullname">Full name</string>
-
     <string name="til_hint_search_restaurant">Search for restaurants near you</string>
-
     <string name="tv_days_ago">%1$d days ago</string>
     <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
     <string name="tv_lost_phone_number">Lost your number?</string>
     <string name="tv_product_refill" translatable="false">Refill</string>
-    <string name="tv_refill">Refill</string>
     <string name="tv_review_owner_answer">Owner\'s answer</string>
     <string name="tv_review_title">How did you like %1$s?</string>
     <string name="tv_sms_sent">We have sent you an SMS to your phone, please enter the code below</string>
     <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Book at %s</string>
     <string name="tv_total">Total</string>
-
     <string name="user_profile_category_personal_details">Personal details</string>
     <string name="user_profile_category_security">Security</string>
     <string name="user_profile_change_email">Change my email</string>
@@ -146,8 +129,5 @@
     <string name="user_profile_delete_account">Delete my account</string>
     <string name="user_profile_logout">Log out</string>
     <string name="user_profile_my_bookings">My bookings</string>
-
     <string name="view_my_order">View my order</string>
-    <string name="btn_confirm_order">Confirm cart</string>
-    <string name="btn_add_more_items">Add more items</string>
 </resources>

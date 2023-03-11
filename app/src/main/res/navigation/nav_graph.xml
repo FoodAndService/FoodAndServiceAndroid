@@ -9,7 +9,7 @@
         android:id="@+id/onboardingFragment"
         android:name="com.foodandservice.presentation.ui.onboarding.OnboardingFragment"
         android:label="ViewPagerFragment"
-        tools:layout="@layout/fragment_view_pager">
+        tools:layout="@layout/fragment_onboarding">
         <action
             android:id="@+id/action_onboardingFragment_to_loginFragment"
             app:destination="@id/loginFragment"

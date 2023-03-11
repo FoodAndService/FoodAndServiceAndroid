@@ -12,13 +12,13 @@ import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.presentation.ui.adapter.RestaurantFilterAdapter
+import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
-class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.RestaurantClickListener {
-    private lateinit var restaurantFilterAdapter: RestaurantFilterAdapter
+class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClickListener {
+    private lateinit var restaurantAdapter: RestaurantAdapter
     private lateinit var binding: FragmentHomeCategoryFilterBinding
     private val args: HomeCategoryFilterFragmentArgs by navArgs()
     private val viewModel: HomeCategoryFilterViewModel = get()
@@ -42,7 +42,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
                 viewModel.homeCategoryFilterState.collect { state ->
                     when (state) {
                         is HomeCategoryFilterState.Success -> {
-                            restaurantFilterAdapter.submitList(state.restaurants)
+                            restaurantAdapter.submitList(state.restaurants)
                         }
                         is HomeCategoryFilterState.Loading -> {
                             setLoadingState()
@@ -76,7 +76,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantFilterAdapter.Restauran
     }
 
     private fun setAdapter() {
-        restaurantFilterAdapter = RestaurantFilterAdapter(this).also { adapter ->
+        restaurantAdapter = RestaurantAdapter(this).also { adapter ->
             binding.rvRestaurant.adapter = adapter
         }
     }

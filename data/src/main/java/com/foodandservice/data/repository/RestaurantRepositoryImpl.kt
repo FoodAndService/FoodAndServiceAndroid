@@ -8,114 +8,49 @@ import java.time.LocalDateTime
 
 class RestaurantRepositoryImpl(private val restarauntService: RestarauntService) :
     RestaurantRepository {
-    override suspend fun getRestaurantsWithCategories(): Resource<List<CategoryRestaurants>> {
+    override suspend fun getRestaurants(): Resource<List<Restaurant>> {
         return try {
             val restaurants = listOf(
-                CategoryRestaurants(
-                    id = "1", name = "Ofertas", restaurants = listOf(
-                        Restaurant(
-                            id = "1",
-                            name = "Rosario's Burger",
-                            rating = 2f,
-                            distance = 300,
-                        ),
-                        Restaurant(
-                            id = "2",
-                            name = "Domino's Pizza",
-                            rating = 4f,
-                            distance = 200,
-                        ),
-                        Restaurant(
-                            id = "3",
-                            name = "Five Guys",
-                            rating = 3f,
-                            distance = 900,
-                        ),
-                    )
-                ), CategoryRestaurants(
-                    id = "2", name = "Mexicana", restaurants = listOf(
-                        Restaurant(
-                            id = "1",
-                            name = "Rosario's Burger",
-                            rating = 2f,
-                            distance = 300,
-                        ),
-                        Restaurant(
-                            id = "2",
-                            name = "Domino's Pizza",
-                            rating = 4f,
-                            distance = 200,
-                        ),
-                        Restaurant(
-                            id = "3",
-                            name = "Five Guys",
-                            rating = 3f,
-                            distance = 900,
-                        ),
-                    )
-                ), CategoryRestaurants(
-                    id = "3", name = "Americana", restaurants = listOf(
-                        Restaurant(
-                            id = "1",
-                            name = "Rosario's Burger",
-                            rating = 2f,
-                            distance = 300,
-                        ),
-                        Restaurant(
-                            id = "2",
-                            name = "Domino's Pizza",
-                            rating = 4f,
-                            distance = 200,
-                        ),
-                        Restaurant(
-                            id = "3",
-                            name = "Five Guys",
-                            rating = 3f,
-                            distance = 900,
-                        ),
-                    )
-                ), CategoryRestaurants(
-                    id = "4", name = "Italiana", restaurants = listOf(
-                        Restaurant(
-                            id = "1",
-                            name = "Rosario's Burger",
-                            rating = 2f,
-                            distance = 300,
-                        ),
-                        Restaurant(
-                            id = "2",
-                            name = "Domino's Pizza",
-                            rating = 4f,
-                            distance = 200,
-                        ),
-                        Restaurant(
-                            id = "3",
-                            name = "Five Guys",
-                            rating = 3f,
-                            distance = 900,
-                        ),
-                    )
-                ), CategoryRestaurants(
-                    id = "5", name = "Española", restaurants = listOf(
-                        Restaurant(
-                            id = "1",
-                            name = "Rosario's Burger",
-                            rating = 2f,
-                            distance = 300,
-                        ),
-                        Restaurant(
-                            id = "2",
-                            name = "Domino's Pizza",
-                            rating = 4f,
-                            distance = 200,
-                        ),
-                        Restaurant(
-                            id = "3",
-                            name = "Five Guys",
-                            rating = 3f,
-                            distance = 900,
-                        ),
-                    )
+                Restaurant(
+                    id = "1",
+                    name = "Rosario's Burger",
+                    rating = 2f,
+                    distance = 300,
+                ), Restaurant(
+                    id = "2",
+                    name = "Domino's Pizza",
+                    rating = 4f,
+                    distance = 200,
+                ), Restaurant(
+                    id = "3",
+                    name = "Five Guys",
+                    rating = 3f,
+                    distance = 100,
+                ), Restaurant(
+                    id = "4",
+                    name = "Gottan Grill",
+                    rating = 3f,
+                    distance = 400,
+                ), Restaurant(
+                    id = "5",
+                    name = "La calle burger",
+                    rating = 3f,
+                    distance = 500,
+                ), Restaurant(
+                    id = "6",
+                    name = "City wok",
+                    rating = 3f,
+                    distance = 600,
+                ), Restaurant(
+                    id = "7",
+                    name = "Sushi yasaka",
+                    rating = 3f,
+                    distance = 100,
+                ), Restaurant(
+                    id = "8",
+                    name = "McDonald's",
+                    rating = 3f,
+                    distance = 300,
                 )
             )
             Resource.Success(data = restaurants)

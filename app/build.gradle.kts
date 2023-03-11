@@ -71,6 +71,9 @@ dependencies {
     // Lottie
     implementation("com.airbnb.android:lottie:5.2.0")
 
+    // Custom snackbar
+    implementation("com.github.kishandonga:custom-snackbar:1.1")
+
     // Navigation component
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.3")

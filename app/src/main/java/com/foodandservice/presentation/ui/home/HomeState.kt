@@ -1,11 +1,11 @@
 package com.foodandservice.presentation.ui.home
 
-import com.foodandservice.domain.model.CategoryRestaurants
+import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.RestaurantCategoryTag
 
 sealed class HomeState {
     data class Success(
-        val restaurants: List<CategoryRestaurants>,
+        val restaurants: List<Restaurant>,
         val restaurantCategoryTags: List<RestaurantCategoryTag>,
     ) : HomeState()
 
