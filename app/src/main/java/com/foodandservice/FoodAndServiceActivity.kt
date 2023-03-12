@@ -1,12 +1,12 @@
 package com.foodandservice
 
+import android.Manifest.permission.CAMERA
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
@@ -14,11 +14,32 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.foodandservice.databinding.ActivityFoodandserviceBinding
+import com.foodandservice.util.extensions.CoreExtensions.openAppSystemSettings
+import com.foodandservice.util.extensions.CoreExtensions.showDialog
 
 class FoodAndServiceActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFoodandserviceBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { isGranted ->
+        if (isGranted) {
+            openQrScanner()
+        } else {
+            if (!shouldShowRequestPermissionRationale(CAMERA)) {
+                showDialog(title = getString(R.string.dialog_permission_missing),
+                    description = getString(R.string.dialog_permission_missing_camera),
+                    btnPositiveLabel = getString(
+                        R.string.btn_open_settings
+                    ),
+                    onBtnPositiveClick = {
+                        openAppSystemSettings()
+                    })
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,18 +61,10 @@ class FoodAndServiceActivity : AppCompatActivity() {
             bottomNavView.setupWithNavController(navController)
 
             btnQrScan.setOnClickListener {
-                if (ContextCompat.checkSelfPermission(
-                        this@FoodAndServiceActivity,
-                        android.Manifest.permission.CAMERA
-                    ) == PackageManager.PERMISSION_GRANTED
-                ) {
+                if (hasCameraPermission()) {
                     openQrScanner()
                 } else {
-                    ActivityCompat.requestPermissions(
-                        this@FoodAndServiceActivity,
-                        arrayOf(android.Manifest.permission.CAMERA),
-                        100
-                    )
+                    requestPermissionLauncher.launch(CAMERA)
                 }
             }
         }
@@ -61,19 +74,10 @@ class FoodAndServiceActivity : AppCompatActivity() {
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 100) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openQrScanner()
-            } else {
-                Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
-            }
-        }
+    private fun hasCameraPermission(): Boolean {
+        return ContextCompat.checkSelfPermission(
+            this, CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun openQrScanner() {

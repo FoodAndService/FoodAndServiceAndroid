@@ -1,9 +1,10 @@
 package com.foodandservice
 
 import android.os.Bundle
-import android.widget.Toast
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.budiyev.android.codescanner.*
+import com.foodandservice.util.extensions.CoreExtensions.showToast
 
 class QRScannerActivity : AppCompatActivity() {
     private lateinit var qrScanner: CodeScanner
@@ -28,17 +29,13 @@ class QRScannerActivity : AppCompatActivity() {
 
         qrScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
-                Toast.makeText(this, "Scan result: ${it.text}", Toast.LENGTH_SHORT).show()
+                Log.i("QRScannerActivity", "Scan result: ${it.text}")
             }
         }
 
         qrScanner.errorCallback = ErrorCallback {
             runOnUiThread {
-                Toast.makeText(
-                    this,
-                    "Camera initialization error: ${it.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                showToast(getString(R.string.btn_qr_camera_error))
             }
         }
 

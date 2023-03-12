@@ -1,14 +1,10 @@
 package com.foodandservice.presentation.ui.home
 
-import android.Manifest
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -33,16 +29,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: HomeViewModel = get()
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            // TODO handle permission grant
-        } else {
-            // TODO handle permission denial
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -54,8 +40,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         super.onViewCreated(view, savedInstanceState)
 
         setAdapters()
-
-        requestLocationPermission()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -110,17 +94,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().moveTaskToBack(true)
         }
-    }
-
-    private fun requestLocationPermission() {
-        if (!hasLocationPermission())
-            requestPermissionLauncher.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-    }
-
-    private fun hasLocationPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(), Manifest.permission.ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
     }
 
     private fun setAdapters() {

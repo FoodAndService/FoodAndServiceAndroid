@@ -130,4 +130,9 @@
     <string name="user_profile_logout">Log out</string>
     <string name="user_profile_my_bookings">My bookings</string>
     <string name="view_my_order">View my order</string>
+    <string name="btn_open_settings">Open settings</string>
+    <string name="dialog_permission_missing">No permission</string>
+    <string name="dialog_permission_missing_location">Please enable the location permission in the application settings</string>
+    <string name="dialog_permission_missing_camera">Please enable the camera permission in the application settings</string>
+    <string name="btn_qr_camera_error">There was an error trying to start the camera</string>
 </resources>

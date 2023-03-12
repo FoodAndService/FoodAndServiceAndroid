@@ -125,4 +125,9 @@
     <string name="user_profile_logout">Cerrar sesión</string>
     <string name="user_profile_my_bookings">Mis reservas</string>
     <string name="view_my_order">Ver pedido</string>
+    <string name="btn_open_settings">Abrir opciones</string>
+    <string name="dialog_permission_missing">No hay permisos</string>
+    <string name="dialog_permission_missing_location">Por favor habilita el permiso de localización en las opciones de la aplicación</string>
+    <string name="dialog_permission_missing_camera">Por favor habilita el permiso de la cámara en las opciones de la aplicación</string>
+    <string name="btn_qr_camera_error">Ha habido un error al intentar iniciar la cámara</string>
 </resources>
