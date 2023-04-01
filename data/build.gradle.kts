@@ -12,11 +12,17 @@ java {
 dependencies {
     implementation(project(":domain"))
 
+    // Coroutines core
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    // Paging 3
+    implementation("androidx.paging:paging-common-ktx:3.1.1")
+
+    // DataStore
     implementation("androidx.datastore:datastore-preferences-core:1.0.0")
+    implementation("androidx.paging:paging-common-ktx:3.1.1")
 }

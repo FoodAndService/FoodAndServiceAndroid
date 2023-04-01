@@ -1,4 +1,4 @@
-package com.foodandservice.data.remote.model.sign.response
+package com.foodandservice.data.remote.model.sign
 
 import com.foodandservice.domain.model.sign.AuthPhase
 

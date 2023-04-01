@@ -19,6 +19,7 @@ import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -45,10 +46,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.homeState.collect { state ->
                     when (state) {
-                        is HomeState.Success -> {
-                            restaurantAdapter.submitList(state.restaurants)
-                            categoryTagAdapter.submitList(state.restaurantCategoryTags)
-                        }
                         is HomeState.Loading -> {
                             setLoadingState()
                         }
@@ -58,16 +55,13 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                         is HomeState.Idle -> {
                             setIdleState()
                         }
+                        else -> Unit
                     }
                 }
             }
         }
 
         binding.apply {
-            btnCart.setOnClickListener {
-                navigate(HomeFragmentDirections.actionHomeFragmentToCartFragment())
-            }
-
             btnFilter.setOnClickListener {
                 showHomeFilterBottomSheet(layout = R.layout.bottom_sheet_home_filter,
                     onBtnRecommendedClick = {
@@ -93,6 +87,16 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             requireActivity().moveTaskToBack(true)
+        }
+
+        collectRestaurants()
+    }
+
+    private fun collectRestaurants() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.getRestaurants().collectLatest { restaurants ->
+                restaurantAdapter.submitData(restaurants)
+            }
         }
     }
 

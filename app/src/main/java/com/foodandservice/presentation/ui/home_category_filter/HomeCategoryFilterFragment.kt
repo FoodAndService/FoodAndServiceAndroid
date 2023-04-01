@@ -42,7 +42,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
                 viewModel.homeCategoryFilterState.collect { state ->
                     when (state) {
                         is HomeCategoryFilterState.Success -> {
-                            restaurantAdapter.submitList(state.restaurants)
+                            //restaurantAdapter.submitList(state.restaurants)
                         }
                         is HomeCategoryFilterState.Loading -> {
                             setLoadingState()

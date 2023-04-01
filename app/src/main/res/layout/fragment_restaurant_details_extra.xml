@@ -75,19 +75,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/constraintExtraDetails" />
 
-                <fragment
-                    android:id="@+id/googleMap"
-                    android:name="com.google.android.gms.maps.SupportMapFragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_marginTop="12dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRestaurantName"
-                    tools:ignore="MissingPrefix"
-                    tools:layout="@layout/activity_qrscanner"
-                    tools:layout_editor_absoluteX="0dp" />
-
                 <TextView
                     android:id="@+id/restaurantCategories"
                     style="@style/FysDarkSmallText"
@@ -97,7 +84,7 @@
                     android:layout_marginTop="12dp"
                     android:text="Pizza"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/googleMap" />
+                    app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRestaurantAddress"
@@ -156,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:gravity="left"
+                    android:gravity="start"
                     android:paddingBottom="64dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvScheduleTitle"

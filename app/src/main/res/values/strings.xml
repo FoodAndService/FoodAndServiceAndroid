@@ -85,6 +85,7 @@
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
     <string name="menu_favorites">Favourites</string>
+    <string name="menu_cart">Favourites</string>
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
     <string name="menu_profile">Profile</string>

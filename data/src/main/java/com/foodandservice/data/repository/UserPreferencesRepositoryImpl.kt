@@ -30,12 +30,19 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         }
     }
 
-    override suspend fun getUserAuthToken() =
-        dataStore.data.map { it[Keys.AUTH_TOKEN] ?: "" }.first()
+    override suspend fun getUserAuthToken() = dataStore.data.map { it[Keys.AUTH_TOKEN] }.first()
 
-    override suspend fun isUserLoggedIn() = dataStore.data.map { it[Keys.AUTH_TOKEN] ?: "" }.first()
-        .isNotEmpty() && dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] ?: "" }
-        .first() == AuthCurrentPhase.AUTH_CURRENT_PHASE_INFO_ADDED
+    override suspend fun deleteUserAuthToken() {
+        dataStore.edit {
+            it.remove(Keys.AUTH_TOKEN)
+        }
+    }
+
+    override suspend fun isUserLoggedIn(): Boolean {
+        val authToken = dataStore.data.map { it[Keys.AUTH_TOKEN] }.first()
+        val authCurrentPhase = dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] }.first()
+        return authToken != null && authCurrentPhase != null && authCurrentPhase == AuthCurrentPhase.AUTH_CURRENT_PHASE_INFO_ADDED
+    }
 
     override suspend fun saveAuthCurrentPhase(currentPhase: String) {
         dataStore.edit {
@@ -44,7 +51,13 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
     }
 
     override suspend fun getAuthCurrentPhase() =
-        dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] ?: "" }.first()
+        dataStore.data.map { it[Keys.AUTH_CURRENT_PHASE] }.first()
+
+    override suspend fun deleteAuthCurrentPhase() {
+        dataStore.edit {
+            it.remove(Keys.AUTH_CURRENT_PHASE)
+        }
+    }
 
     override suspend fun finishOnboarding() {
         dataStore.edit {
@@ -61,7 +74,13 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         }
     }
 
-    override suspend fun getCartId() = dataStore.data.map { it[Keys.CART_ID] ?: "" }.first()
+    override suspend fun getCartId() = dataStore.data.map { it[Keys.CART_ID] }.first()
+
+    override suspend fun deleteCartId() {
+        dataStore.edit {
+            it.remove(Keys.CART_ID)
+        }
+    }
 
     override suspend fun saveRestaurantId(restaurantId: String) {
         dataStore.edit {
@@ -69,6 +88,11 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         }
     }
 
-    override suspend fun getRestaurantId() =
-        dataStore.data.map { it[Keys.RESTAURANT_ID] ?: "" }.first()
+    override suspend fun getRestaurantId() = dataStore.data.map { it[Keys.RESTAURANT_ID] }.first()
+
+    override suspend fun deleteRestaurantId() {
+        dataStore.edit {
+            it.remove(Keys.RESTAURANT_ID)
+        }
+    }
 }

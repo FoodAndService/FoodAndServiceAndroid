@@ -14,63 +14,63 @@ import org.koin.dsl.module
 
 val useCaseModule = module {
     single {
-        GetCurrentPhaseUseCase(userPreferencesRepository = get())
+        GetAuthCurrentPhaseUseCase(userPreferencesRepository = get())
     }
 
     single {
-        GetFavouriteRestaurantsUseCase(restaurantRepository = get())
+        GetFavouriteRestaurantsUseCase(customerRepository = get())
     }
 
     single {
-        GetCategoryRestaurantsUseCase(restaurantRepository = get())
+        //GetCategoryRestaurantsUseCase(customerRepository = get())
     }
 
     single {
-        GetOrderProductsUseCase(restaurantRepository = get())
+        GetOrderProductsUseCase(customerRepository = get())
     }
 
     single {
-        GetProductDetailsUseCase(restaurantRepository = get())
+        GetProductDetailsUseCase(customerRepository = get())
     }
 
     single {
-        GetRestaurantDetailsUseCase(restaurantRepository = get())
+        GetRestaurantDetailsUseCase(customerRepository = get())
     }
 
     single {
-        GetRestaurantDetailsExtraUseCase(restaurantRepository = get())
+        GetRestaurantDetailsExtraUseCase(customerRepository = get())
     }
 
     single {
-        GetRestaurantReviewsUseCase(restaurantRepository = get())
+        GetRestaurantReviewsUseCase(customerRepository = get())
     }
 
     single {
-        GetOrderStatusUseCase(restaurantRepository = get())
+        GetOrderStatusUseCase(customerRepository = get())
     }
 
     single {
-        GetBookingsUseCase(restaurantRepository = get())
+        GetBookingsUseCase(customerRepository = get())
     }
 
     single {
-        GetCartUseCase(restaurantRepository = get())
+        GetCartUseCase(customerRepository = get())
     }
 
     single {
-        GetOrderHistoryUseCase(restaurantRepository = get())
+        GetOrderHistoryUseCase(customerRepository = get())
     }
 
     single {
-        GetCustomerTokenUseCase(userPreferencesRepository = get())
+        GetUserAuthTokenUseCase(userPreferencesRepository = get())
     }
 
     single {
-        GetRestaurantsUseCase(restaurantRepository = get())
+        GetRestaurantsUseCase(customerRepository = get())
     }
 
     single {
-        GetRestaurantTagsUseCase(restaurantRepository = get())
+        GetRestaurantCategoriesUseCase(customerRepository = get())
     }
 
     single {
@@ -94,14 +94,14 @@ val useCaseModule = module {
     }
 
     single {
-        SignInFirstPhaseUseCase(customerRepository = get())
+        SignInFirstPhaseUseCase(authRepository = get())
     }
 
     single {
-        SignInSecondPhaseUseCase(customerRepository = get())
+        SignInSecondPhaseUseCase(authRepository = get())
     }
 
     single {
-        SignUpFirstPhaseUseCase(customerRepository = get())
+        SignUpFirstPhaseUseCase(authRepository = get())
     }
 }

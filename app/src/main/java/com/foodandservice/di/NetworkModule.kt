@@ -1,9 +1,12 @@
 package com.foodandservice.di
 
+import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
+import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.foodandservice.common.Constants
+import com.foodandservice.data.remote.service.AuthService
 import com.foodandservice.data.remote.service.CustomerService
-import com.foodandservice.data.remote.service.RestarauntService
 import com.foodandservice.data.remote.service.StripeService
+import com.foodandservice.util.AuthInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -22,16 +25,28 @@ val networkModule = module {
                 )
             })
 
+            addInterceptor(AuthInterceptor(getAuthTokenUseCase = get()))
+            addInterceptor(FlipperOkhttpInterceptor(get(), true))
             addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })
         }.build()
     }
 
-    single {
+    single { NetworkFlipperPlugin() }
+
+    single(named("AuthService")) {
         Retrofit.Builder()
             .client(get())
             .baseUrl(Constants.FYS_AUTH_BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+
+    single(named("CustomerService")) {
+        Retrofit.Builder()
+            .client(get())
+            .baseUrl(Constants.FYS_CUSTOMER_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -45,11 +60,11 @@ val networkModule = module {
     }
 
     single {
-        get<Retrofit>().create(CustomerService::class.java)
+        get<Retrofit>(named("AuthService")).create(AuthService::class.java)
     }
 
     single {
-        get<Retrofit>().create(RestarauntService::class.java)
+        get<Retrofit>(named("CustomerService")).create(CustomerService::class.java)
     }
 
     single {

@@ -2,14 +2,15 @@ package com.foodandservice.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.foodandservice.databinding.ItemRestaurantBinding
 import com.foodandservice.domain.model.Restaurant
 
 class RestaurantAdapter constructor(private val listener: RestaurantClickListener) :
-    ListAdapter<Restaurant, RestaurantAdapter.ViewHolder>(RestaurantDiffCallBack()) {
+    PagingDataAdapter<Restaurant, RestaurantAdapter.ViewHolder>(RestaurantDiffCallBack()) {
 
     interface RestaurantClickListener {
         fun onClick(item: Restaurant)
@@ -20,7 +21,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(getItem(position), listener)
+        getItem(position)?.let { holder.bind(it, listener) }
     }
 
     class ViewHolder private constructor(private val binding: ItemRestaurantBinding) :
@@ -29,8 +30,8 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
         fun bind(item: Restaurant, restaurantClickListener: RestaurantClickListener) {
             binding.apply {
                 tvRestaurantName.text = item.name
-                ratingRestaurant.rating = item.rating
-                tvDistance.text = "A ${item.distance.toDouble() / 1000} km"
+                Glide.with(itemView).load(item.logo).centerCrop().into(restLogo)
+                Glide.with(itemView).load(item.banner).into(restBackground)
 
                 root.setOnClickListener {
                     restaurantClickListener.onClick(item)
@@ -49,11 +50,8 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
 }
 
 class RestaurantDiffCallBack : DiffUtil.ItemCallback<Restaurant>() {
-    override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
-        return oldItem.id == newItem.id
-    }
+    override fun areItemsTheSame(oldItem: Restaurant, newItem: Restaurant) =
+        oldItem.id == newItem.id
 
-    override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant): Boolean {
-        return oldItem == newItem
-    }
+    override fun areContentsTheSame(oldItem: Restaurant, newItem: Restaurant) = oldItem == newItem
 }

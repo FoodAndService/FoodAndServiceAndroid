@@ -1,11 +1,11 @@
 package com.foodandservice.domain.usecases.restaurant
 
 import com.foodandservice.domain.model.RestaurantCategoryTag
-import com.foodandservice.domain.repository.RestaurantRepository
+import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.Resource
 
-class GetRestaurantTagsUseCase(private val restaurantRepository: RestaurantRepository) {
+class GetRestaurantCategoriesUseCase(private val customerRepository: CustomerRepository) {
     suspend operator fun invoke(): Resource<List<RestaurantCategoryTag>> {
-        return restaurantRepository.getRestaurantTags()
+        return customerRepository.getRestaurantTags()
     }
 }

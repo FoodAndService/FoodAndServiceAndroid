@@ -81,6 +81,7 @@
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
     <string name="item_booking_diners_singular">%s (%s comensal)</string>
     <string name="menu_favorites">Favoritos</string>
+    <string name="menu_cart">Carrito</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_orders">Pedidos</string>
     <string name="menu_profile">Perfil</string>

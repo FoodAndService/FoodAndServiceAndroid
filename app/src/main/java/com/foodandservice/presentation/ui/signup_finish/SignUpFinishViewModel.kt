@@ -3,7 +3,6 @@ package com.foodandservice.presentation.ui.signup_finish
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.model.InvalidNameFormatException
-import com.foodandservice.domain.usecases.auth.GetCustomerTokenUseCase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
@@ -15,7 +14,6 @@ import kotlinx.coroutines.launch
 
 class SignUpFinishViewModel(
     private val signUpFirstPhaseUseCase: SignUpFirstPhaseUseCase,
-    private val getCustomerTokenUseCase: GetCustomerTokenUseCase,
     private val saveUserTokenUseCase: SaveUserTokenUseCase,
     private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
 ) : ViewModel() {
@@ -26,10 +24,8 @@ class SignUpFinishViewModel(
         viewModelScope.launch {
             _signUpFinishState.emit(SignUpFinishState.Loading)
 
-            val authToken = getCustomerTokenUseCase()
-
             try {
-                when (val response = signUpFirstPhaseUseCase(authToken, name)) {
+                when (val response = signUpFirstPhaseUseCase(name)) {
                     is Resource.Success -> {
                         response.data?.let { authPhaseWithToken ->
                             saveUserTokenUseCase(authPhaseWithToken.token)

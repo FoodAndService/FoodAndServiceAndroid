@@ -25,7 +25,7 @@ import org.koin.dsl.module
 
 val viewModelModule = module {
     viewModel {
-        HomeViewModel(getRestaurantsUseCase = get(), getRestaurantTagsUseCase = get())
+        HomeViewModel(getRestaurantsUseCase = get(), getRestaurantCategoriesUseCase = get())
     }
 
     viewModel {
@@ -91,7 +91,6 @@ val viewModelModule = module {
     viewModel {
         SignUpFinishViewModel(
             signUpFirstPhaseUseCase = get(),
-            getCustomerTokenUseCase = get(),
             saveUserTokenUseCase = get(),
             saveAuthCurrentPhaseUseCase = get()
         )

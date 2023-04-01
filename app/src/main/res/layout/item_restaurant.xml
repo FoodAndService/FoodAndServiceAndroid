@@ -101,12 +101,13 @@
                 style="@style/FysDarkSmallText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:layout_marginBottom="8dp"
                 android:text="A 300 metros"
                 android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ratingRestaurant" />
 
             <RatingBar
                 android:id="@+id/ratingRestaurant"
@@ -121,9 +122,11 @@
                 android:rating="3"
                 android:secondaryProgressTint="@android:color/transparent"
                 android:stepSize="1"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName">
+                app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName"
+                tools:visibility="visible">
 
             </RatingBar>
 
