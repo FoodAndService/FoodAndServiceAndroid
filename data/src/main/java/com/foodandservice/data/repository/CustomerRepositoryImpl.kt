@@ -4,8 +4,10 @@ import androidx.paging.PagingData
 import androidx.paging.map
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
+import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.domain.model.*
+import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.Resource
 import kotlinx.coroutines.flow.Flow
@@ -15,103 +17,19 @@ import java.time.LocalDateTime
 class CustomerRepositoryImpl(
     private val customerRemoteDataSource: CustomerRemoteDataSource,
     private val customerService: CustomerService
-) :
-    CustomerRepository {
+) : CustomerRepository {
 
     override fun getRestaurants(
+        coordinate: Coordinate
     ): Flow<PagingData<Restaurant>> {
-        return customerRemoteDataSource.getRestaurants()
+        return customerRemoteDataSource.getRestaurants(coordinate)
             .map { pagingData -> pagingData.map { restaurantDto -> restaurantDto.toRestaurant() } }
     }
 
-    // Fake
-//    override suspend fun getRestaurantsFake(): Resource<List<Restaurant>> {
-//        return try {
-//            val restaurants = listOf(
-//                Restaurant(
-//                    id = "1",
-//                    name = "Rosario's Burger",
-//                    rating = 2f,
-//                    distance = 300,
-//                ), Restaurant(
-//                    id = "2",
-//                    name = "Domino's Pizza",
-//                    rating = 4f,
-//                    distance = 200,
-//                ), Restaurant(
-//                    id = "3",
-//                    name = "Five Guys",
-//                    rating = 3f,
-//                    distance = 100,
-//                ), Restaurant(
-//                    id = "4",
-//                    name = "Gottan Grill",
-//                    rating = 3f,
-//                    distance = 400,
-//                ), Restaurant(
-//                    id = "5",
-//                    name = "La calle burger",
-//                    rating = 3f,
-//                    distance = 500,
-//                ), Restaurant(
-//                    id = "6",
-//                    name = "City wok",
-//                    rating = 3f,
-//                    distance = 600,
-//                ), Restaurant(
-//                    id = "7",
-//                    name = "Sushi yasaka",
-//                    rating = 3f,
-//                    distance = 100,
-//                ), Restaurant(
-//                    id = "8",
-//                    name = "McDonald's",
-//                    rating = 3f,
-//                    distance = 300,
-//                )
-//            )
-//            Resource.Success(data = restaurants)
-//        } catch (exception: Exception) {
-//            Resource.Failure(exception)
-//        }
-//    }
-//
-//    override suspend fun getCategoryRestaurants(category: String): Resource<List<Restaurant>> {
-//        return try {
-//            val restaurants = listOf(
-//                Restaurant(
-//                    id = "1",
-//                    name = "Rosario's Burger",
-//                    rating = 2f,
-//                    distance = 300,
-//                ), Restaurant(
-//                    id = "2",
-//                    name = "Domino's Pizza",
-//                    rating = 4f,
-//                    distance = 200,
-//                ), Restaurant(
-//                    id = "3",
-//                    name = "Five Guys",
-//                    rating = 3f,
-//                    distance = 900,
-//                )
-//            )
-//            Resource.Success(data = restaurants)
-//        } catch (exception: Exception) {
-//            Resource.Failure(exception)
-//        }
-//    }
-
-    override suspend fun getRestaurantTags(): Resource<List<RestaurantCategoryTag>> {
+    override suspend fun getRestaurantCategories(): Resource<List<RestaurantCategory>> {
         return try {
-            val restaurantTags = listOf(
-                RestaurantCategoryTag(id = "1", name = "Ofertas"),
-                RestaurantCategoryTag(id = "2", name = "Mexicana"),
-                RestaurantCategoryTag(id = "3", name = "Americana"),
-                RestaurantCategoryTag(id = "4", name = "Italiana"),
-                RestaurantCategoryTag(id = "5", name = "Española")
-            )
-            Resource.Success(data = restaurantTags)
+            val categories = customerService.getRestaurantCategories()
+            Resource.Success(data = categories.map { it.toRestaurantCategory() })
         } catch (exception: Exception) {
             Resource.Failure(exception)
         }

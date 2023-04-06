@@ -6,7 +6,6 @@ plugins {
     id("kotlin-parcelize")
     id("kotlin-kapt")
     id("androidx.navigation.safeargs.kotlin")
-    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -71,18 +70,20 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-network-plugin:0.187.1")
     releaseImplementation("com.facebook.flipper:flipper-noop:0.187.1")
 
+    // Chucker
+    debugImplementation("com.github.chuckerteam.chucker:library:3.5.2")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:3.5.2")
+
     // Paging 3
     implementation("androidx.paging:paging-runtime-ktx:3.1.1")
     implementation("androidx.paging:paging-common-ktx:3.1.1")
 
-    // Google play services location
-    implementation("com.google.android.gms:play-services-location:21.0.1")
+    // Location
+    implementation("com.github.BirjuVachhani:locus-android:4.1.0")
+    implementation("com.google.android.gms:play-services-location:19.0.1")
 
     // QR scanner
     implementation("com.budiyev.android:code-scanner:2.1.0")
-
-    // Google maps
-    implementation("com.google.android.gms:play-services-maps:18.1.0")
 
     // Country Code Picker
     implementation("com.hbb20:ccp:2.7.0")
@@ -117,7 +118,7 @@ dependencies {
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     // Glide
-    implementation("com.github.bumptech.glide:glide:4.13.0")
+    implementation("com.github.bumptech.glide:glide:4.15.1")
 
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")

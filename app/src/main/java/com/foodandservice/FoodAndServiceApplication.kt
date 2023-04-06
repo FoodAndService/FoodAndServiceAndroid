@@ -37,19 +37,14 @@ class FoodAndServiceApplication : Application() {
         startKoin {
             androidContext(this@FoodAndServiceApplication)
             modules(
-                databaseModule,
-                networkModule,
-                repositoryModule,
-                useCaseModule,
-                viewModelModule
+                databaseModule, networkModule, repositoryModule, useCaseModule, viewModelModule
             )
         }
     }
 
     private fun setupStripe() {
         PaymentConfiguration.init(
-            context = this,
-            publishableKey = Constants.STRIPE_PK
+            context = this, publishableKey = Constants.STRIPE_PK
         )
     }
 
@@ -60,8 +55,7 @@ class FoodAndServiceApplication : Application() {
             AndroidFlipperClient.getInstance(this).apply {
                 addPlugin(
                     InspectorFlipperPlugin(
-                        this@FoodAndServiceApplication,
-                        DescriptorMapping.withDefaults()
+                        this@FoodAndServiceApplication, DescriptorMapping.withDefaults()
                     )
                 )
                 addPlugin(DatabasesFlipperPlugin(this@FoodAndServiceApplication))

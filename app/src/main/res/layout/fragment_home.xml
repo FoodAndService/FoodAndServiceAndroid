@@ -79,6 +79,7 @@
             app:layout_constraintTop_toBottomOf="@id/tilSearch" />
 
         <View
+            android:id="@+id/divider"
             style="@style/Divider"
             app:layout_constraintBottom_toTopOf="@+id/rvRestaurant"
             app:layout_constraintStart_toStartOf="parent" />
@@ -95,5 +96,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/rvCategoryTag" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/fys_primary"
+            android:indeterminateTintMode="src_atop"
+            android:scaleY="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

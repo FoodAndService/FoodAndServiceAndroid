@@ -51,7 +51,7 @@ class FoodAndServiceActivity : AppCompatActivity() {
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.homeFragment,
-                R.id.favouritesFragment,
+                R.id.cartFragment,
                 R.id.ordersFragment,
                 R.id.accountFragment
             )

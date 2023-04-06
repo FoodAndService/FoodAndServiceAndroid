@@ -1,5 +1,6 @@
 package com.foodandservice.data.remote.service
 
+import com.foodandservice.data.remote.model.restaurant.RestaurantCategoryDto
 import com.foodandservice.data.remote.model.restaurant.RestaurantDto
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,4 +13,7 @@ interface CustomerService {
         @Query("page") page: Int,
         @Query("limit") limit: Int
     ): List<RestaurantDto>
+
+    @GET("business-category")
+    suspend fun getRestaurantCategories(): List<RestaurantCategoryDto>
 }

@@ -1,5 +1,7 @@
 package com.foodandservice.di
 
+import com.chuckerteam.chucker.api.ChuckerCollector
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.facebook.flipper.plugins.network.FlipperOkhttpInterceptor
 import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.foodandservice.common.Constants
@@ -27,6 +29,14 @@ val networkModule = module {
 
             addInterceptor(AuthInterceptor(getAuthTokenUseCase = get()))
             addInterceptor(FlipperOkhttpInterceptor(get(), true))
+            addInterceptor(
+                ChuckerInterceptor.Builder(get())
+                    .collector(ChuckerCollector(get()))
+                    .maxContentLength(250000L)
+                    .redactHeaders(emptySet())
+                    .alwaysReadResponseBody(false)
+                    .build()
+            )
             addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
             })

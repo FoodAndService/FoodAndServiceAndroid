@@ -8,6 +8,8 @@ object Constants {
     const val FYS_STRIPE_BASE_URL = "https://api.stripe.com/"
     const val API_KEY_HEADER = "x-api-key"
     const val API_KEY_VALUE = "secret_auth"
+    const val DEFAULT_LATITUDE = 40.416729
+    const val DEFAULT_LONGITUDE = -3.703339
     const val STRIPE_CUSTOMER_ID = "cus_NLRsVvpCow25yB"
     const val STRIPE_PK =
         "pk_test_51LfrDLAmb0uhaPWFyX3Doz63luIoaiUixnMOUjnRoUPMQM4Ku3hLw7sUWdYauN5T6aEMVJWSRNZmxwfzQwpHgOLz00n6NnLl8T"

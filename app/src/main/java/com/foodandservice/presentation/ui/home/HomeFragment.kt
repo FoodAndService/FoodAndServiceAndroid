@@ -1,6 +1,8 @@
 package com.foodandservice.presentation.ui.home
 
+import android.location.Location
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.birjuvachhani.locus.Locus
 import com.foodandservice.R
+import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentHomeBinding
 import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.domain.model.RestaurantCategoryTag
+import com.foodandservice.domain.model.RestaurantCategory
+import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
@@ -46,6 +51,9 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.homeState.collect { state ->
                     when (state) {
+                        is HomeState.SuccessRestaurantCategories -> {
+                            categoryTagAdapter.submitList(state.restaurantCategories)
+                        }
                         is HomeState.Loading -> {
                             setLoadingState()
                         }
@@ -55,7 +63,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                         is HomeState.Idle -> {
                             setIdleState()
                         }
-                        else -> Unit
                     }
                 }
             }
@@ -89,14 +96,30 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
             requireActivity().moveTaskToBack(true)
         }
 
-        collectRestaurants()
+        fetchLocationAndCollectRestaurants()
     }
 
-    private fun collectRestaurants() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.getRestaurants().collectLatest { restaurants ->
-                restaurantAdapter.submitData(restaurants)
+    private fun fetchLocationAndCollectRestaurants() {
+        Locus.getCurrentLocation(requireActivity(), onResult = { locusResult ->
+            collectRestaurants(locusResult.location)
+        })
+    }
+
+    private fun collectRestaurants(location: Location?) {
+        val coordinate = Coordinate(
+            latitude = location?.latitude ?: Constants.DEFAULT_LATITUDE,
+            longitude = location?.longitude ?: Constants.DEFAULT_LONGITUDE
+        )
+
+        try {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.getRestaurantsWithCategories(coordinate = coordinate)
+                    .collectLatest { restaurants ->
+                        restaurantAdapter.submitData(restaurants)
+                    }
             }
+        } catch (e: Exception) {
+            Log.e("HomeFragment", e.message, e)
         }
     }
 
@@ -117,17 +140,17 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     private fun setLoadingState() {
-
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun setIdleState() {
-
+        binding.progressBar.visibility = View.INVISIBLE
     }
 
-    override fun onClick(restaurantCategoryTag: RestaurantCategoryTag) {
+    override fun onClick(restaurantCategory: RestaurantCategory) {
         navigate(
             HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(
-                restaurantCategoryTag.name
+                restaurantCategory.name
             )
         )
     }

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <resources>
     <string name="bottom_sheet_home_filter">Filtros</string>
+
     <string name="btn_accept">Aceptar</string>
     <string name="btn_access">Acceder</string>
     <string name="btn_add_more_items">Añadir más artículos</string>
@@ -17,16 +17,21 @@
     <string name="btn_home_filter_valorated">Valorados</string>
     <string name="btn_ingredients">Ingredientes</string>
     <string name="btn_next">Siguiente</string>
+    <string name="btn_open_settings">Abrir opciones</string>
     <string name="btn_pay">Pagar</string>
     <string name="btn_product_extras">Extras</string>
+    <string name="btn_qr_camera_error">Ha habido un error al intentar iniciar la cámara</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
     <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
     <string name="btn_save">Guardar</string>
     <string name="btn_save_discount">Guardar descuento</string>
     <string name="btn_send_review">Enviar reseña</string>
+
     <string name="category_filter_title">Categoría: %1$s</string>
+
     <string name="confirm_operation_desc">Te hemos enviado un SMS, por favor introduce la clave a continuación</string>
     <string name="confirm_operation_title">Confirmar operación</string>
+
     <string name="current_order_status_accepted">Pedido aceptado</string>
     <string name="current_order_status_cancelled">Pedido cancelado</string>
     <string name="current_order_status_declined">Pedido rechazado</string>
@@ -34,12 +39,20 @@
     <string name="current_order_status_order_number">Pedido\n#%s</string>
     <string name="current_order_status_waiting">Esperando pedido</string>
     <string name="current_order_status_your_order">Tu pedido</string>
+
+    <string name="deny">Cancelar</string>
+
     <string name="dialog_delete_account_desc">Atención: si elimina su cuenta, no podrá recuperar ninguna información</string>
     <string name="dialog_delete_account_title">Eliminar cuenta</string>
     <string name="dialog_logout_desc">¿Estás seguro de que quieres cerrar sesión?</string>
     <string name="dialog_logout_title">Cerrar sesión</string>
+    <string name="dialog_permission_missing">No hay permisos</string>
+    <string name="dialog_permission_missing_camera">Por favor habilita el permiso de la cámara en las opciones de la aplicación</string>
+    <string name="dialog_permission_missing_location">Por favor habilita el permiso de localización en las opciones de la aplicación</string>
+
     <string name="error_network">Ha ocurrido un error de red</string>
     <string name="error_phone_format">Formato incorrecto</string>
+
     <string name="food_allergen_intolerance_celery">Apio</string>
     <string name="food_allergen_intolerance_celiac">Celiaco</string>
     <string name="food_allergen_intolerance_crustacean">Crustáceos</string>
@@ -60,6 +73,7 @@
     <string name="food_allergen_intolerance_sulphites">Sulfitos</string>
     <string name="food_allergen_intolerance_vegan">Vegano</string>
     <string name="food_allergen_intolerance_vegetarian">Vegetariano</string>
+
     <string name="fragment_bookings_title">Mis reservas</string>
     <string name="fragment_cart_title">Mi pedido</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
@@ -69,6 +83,9 @@
     <string name="fragment_orders_title">Mis pedidos</string>
     <string name="fragment_user_profile_greeting">¡Hola, %s!</string>
     <string name="fragment_user_profile_title">Mi cuenta</string>
+
+    <string name="grant">Aceptar</string>
+
     <string name="hint_tie_diners">Cantidad de comensales</string>
     <string name="hint_tie_phone_number">Nº de teléfono</string>
     <string name="hint_tie_prefix">País</string>
@@ -78,36 +95,51 @@
     <string name="hint_tie_your_email">Tu email</string>
     <string name="hint_tie_your_name">Tu nombre</string>
     <string name="hint_tie_your_phone_number">Tu número</string>
+
     <string name="item_booking_diners_plural">%s (%s comensales)</string>
     <string name="item_booking_diners_singular">%s (%s comensal)</string>
-    <string name="menu_favorites">Favoritos</string>
+
+    <string name="locus_location_resolution_message">Por favor, activa la localización del dispositivo (GPS) para poder mostrarte los restaurantes más cercanos. De lo contrario, tu lugar actual se establecerá como Madrid</string>
+    <string name="locus_location_resolution_title">Localización requerida</string>
+    <string name="locus_permission_blocked_message">Por favor, concede el permiso de ubicación para poder mostrarte los restaurantes más cercanos. De lo contrario, tu lugar actual se establecerá como Madrid</string>
+    <string name="locus_permission_blocked_title">Permiso de localización bloqueado</string>
+    <string name="locus_rationale_message">Por favor, concede el permiso de ubicación para poder mostrar los restaurantes más cercanos a ti. De lo contrario, tu lugar actual se establecerá como Madrid</string>
+    <string name="locus_rationale_title">Localización requerida</string>
+
     <string name="menu_cart">Carrito</string>
+    <string name="menu_favorites">Favoritos</string>
     <string name="menu_home">Inicio</string>
     <string name="menu_orders">Pedidos</string>
     <string name="menu_profile">Perfil</string>
-    <string name="onboarding_desc1">Aprovéchate de las múltiples ofertas y descuentos que ofrecen nuestros restaurantes.</string>
-    <string name="onboarding_desc2">Pide en cualquier restaurante, en tu propio idioma, consulta los alérgenos, intolerancias y los ingredientes.</string>
-    <string name="onboarding_desc3">Puedes realizar tu pedido en cualquier momento sin esperar a ser atendido, pedir y pagar.</string>
-    <string name="onboarding_desc4">Revisa tus pedidos, añade tus restaurantes a favoritos, consulta los alérgenos e intolerancias.</string>
-    <string name="onboarding_desc5">Sigue tus pedidos en tiempo real, desde el momento en el que lo realizas.</string>
-    <string name="onboarding_desc6">Para recomendarte y personalizar tu experiencia, requerimos tu ubicación para mostrar negocios y servicios cercanos.</string>
-    <string name="onboarding_title1">¡Grandes ofertas!</string>
-    <string name="onboarding_title2">¡Extrema comodidad!</string>
-    <string name="onboarding_title3">¡Ahorra tiempo!</string>
-    <string name="onboarding_title4">¡Trato personal!</string>
-    <string name="onboarding_title5">¡Seguimiento en tiempo real!</string>
-    <string name="onboarding_title6">¿Dónde vives?</string>
+
+    <string name="onboarding_desc1">Pide cómodamente en el restaurante, en tu propio idioma, consulta los alérgenos, intolerancias y los ingredientes.</string>
+    <string name="onboarding_desc2">Puedes realizar tu pedido en cualquier momento sin esperar a ser atendido, pide y paga por tu cuenta.</string>
+    <string name="onboarding_desc3">Revisa tus pedidos, consulta los alérgenos e intolerancias.</string>
+    <string name="onboarding_desc4">Sigue tus pedidos en tiempo real, desde el momento en el que lo realizas.</string>
+    <string name="onboarding_desc5">Para recomendarte y personalizar tu experiencia, necesitamos tu ubicación para mostrarte los restaurantes más cercanos.</string>
+    <string name="onboarding_title1">¡Extrema comodidad!</string>
+    <string name="onboarding_title2">¡Ahorra tiempo!</string>
+    <string name="onboarding_title3">¡Trato personal!</string>
+    <string name="onboarding_title4">¡Seguimiento en tiempo real!</string>
+    <string name="onboarding_title5">¿Dónde estás?</string>
+
     <string name="order_status_checking_payment">Comprobando método de pago</string>
     <string name="order_status_finished">Tu pedido está listo para recoger</string>
     <string name="order_status_order_declined">Tu pedido ha sido rechazado</string>
     <string name="order_status_payment_declined">El método de pago ha sido rechazado</string>
     <string name="order_status_preparing">Tu pedido se está realizando</string>
     <string name="order_status_waiting_confirmation">Esperando confirmación</string>
+
     <string name="product_extras">Extras</string>
+
     <string name="schedule">Horario</string>
+
     <string name="skip">Saltar</string>
+
     <string name="tie_fullname">Nombre completo</string>
+
     <string name="til_hint_search_restaurant">Buscar restaurantes cerca de mi</string>
+
     <string name="tv_days_ago">Hace %1$d días</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>
@@ -117,6 +149,7 @@
     <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
     <string name="tv_total">Total</string>
+
     <string name="user_profile_category_personal_details">Datos personales</string>
     <string name="user_profile_category_security">Seguridad</string>
     <string name="user_profile_change_email">Cambiar mi email</string>
@@ -125,10 +158,6 @@
     <string name="user_profile_delete_account">Eliminar mi cuenta</string>
     <string name="user_profile_logout">Cerrar sesión</string>
     <string name="user_profile_my_bookings">Mis reservas</string>
+
     <string name="view_my_order">Ver pedido</string>
-    <string name="btn_open_settings">Abrir opciones</string>
-    <string name="dialog_permission_missing">No hay permisos</string>
-    <string name="dialog_permission_missing_location">Por favor habilita el permiso de localización en las opciones de la aplicación</string>
-    <string name="dialog_permission_missing_camera">Por favor habilita el permiso de la cámara en las opciones de la aplicación</string>
-    <string name="btn_qr_camera_error">Ha habido un error al intentar iniciar la cámara</string>
 </resources>

@@ -38,6 +38,7 @@ class SplashFragment : Fragment() {
                         is SplashState.OnboardingNotFinished -> {
                             navigate(SplashFragmentDirections.actionSplashFragmentToOnboardingFragment())
                         }
+                        is SplashState.Idle -> Unit
                     }
                 }
             }

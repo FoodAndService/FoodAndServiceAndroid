@@ -1,13 +1,9 @@
 package com.foodandservice.presentation.ui.onboarding
 
-import android.Manifest.permission.ACCESS_FINE_LOCATION
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.foodandservice.R
@@ -22,16 +18,6 @@ class OnboardingFragment : Fragment() {
     private lateinit var binding: FragmentOnboardingBinding
     private lateinit var onboardingItems: List<OnboardingItem>
     private val viewModel: OnboardingViewModel = get()
-
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) { isGranted ->
-        if (isGranted) {
-            locationPermissionGranted()
-        } else {
-            locationPermissionDenied()
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,87 +37,42 @@ class OnboardingFragment : Fragment() {
             vpOnboarding.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
-
-                    when {
-                        position == onboardingItems.size - 1 -> {
-                            setLastPageButtons()
-                            setMainButtonToFinishOnboarding()
-                        }
-                        position == onboardingItems.size - 2 -> {
-                            unSetLastPageButtons()
-                            if (!hasLocationPermission())
-                                setMainButtonToRequestLocationPermission()
-                            else
-                                setMainButtonToFinishOnboarding()
-                        }
-                        position < onboardingItems.size - 2 -> {
-                            unSetLastPageButtons()
-                            setMainButtonToFinishOnboarding()
-                        }
-                    }
+                    if (position == onboardingItems.size - 1) lastPage() else notLastPage()
                 }
             })
 
             btnSkip.setOnClickListener {
-                requestLocationPermission()
+                viewModel.finishOnboarding()
+                navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLoginFragment())
             }
 
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
     }
 
-    private fun setLastPageButtons() {
+    private fun lastPage() {
         binding.apply {
-            btnOnboarding.text = getString(R.string.btn_finish)
+            btnOnboarding.apply {
+                text = getString(R.string.btn_finish)
+                setOnClickListener {
+                    viewModel.finishOnboarding()
+                    navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLoginFragment())
+                }
+            }
             btnSkip.visibility = View.GONE
         }
     }
 
-    private fun unSetLastPageButtons() {
+    private fun notLastPage() {
         binding.apply {
-            btnOnboarding.text = getString(R.string.btn_next)
+            btnOnboarding.apply {
+                text = getString(R.string.btn_next)
+                setOnClickListener {
+                    vpOnboarding.currentItem += 1
+                }
+            }
             btnSkip.visibility = View.VISIBLE
         }
-    }
-
-    private fun setMainButtonToRequestLocationPermission() {
-        binding.btnOnboarding.setOnClickListener {
-            requestLocationPermission()
-        }
-    }
-
-    private fun setMainButtonToFinishOnboarding() {
-        binding.apply {
-            btnOnboarding.setOnClickListener {
-                if (btnOnboarding.text == getString(R.string.btn_finish)) {
-                    viewModel.finishOnboarding()
-                    navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLoginFragment())
-                } else nextOnboardingPage()
-            }
-        }
-    }
-
-    private fun hasLocationPermission(): Boolean {
-        return ContextCompat.checkSelfPermission(
-            requireContext(), ACCESS_FINE_LOCATION
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
-    private fun requestLocationPermission() {
-        requestPermissionLauncher.launch(ACCESS_FINE_LOCATION)
-    }
-
-    private fun nextOnboardingPage() {
-        binding.vpOnboarding.currentItem += 1
-    }
-
-    private fun locationPermissionGranted() {
-        viewModel.finishOnboarding()
-        navigate(OnboardingFragmentDirections.actionOnboardingFragmentToLoginFragment())
-    }
-
-    private fun locationPermissionDenied() {
-        nextOnboardingPage()
     }
 
     private fun setAdapter() {
@@ -151,9 +92,6 @@ class OnboardingFragment : Fragment() {
             ), OnboardingItem(
                 title = getString(R.string.onboarding_title5),
                 description = getString(R.string.onboarding_desc5)
-            ), OnboardingItem(
-                title = getString(R.string.onboarding_title6),
-                description = getString(R.string.onboarding_desc6)
             )
         )
 

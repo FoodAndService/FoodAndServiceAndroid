@@ -4,17 +4,15 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.foodandservice.data.remote.model.restaurant.RestaurantDto
 import com.foodandservice.data.remote.service.CustomerService
+import com.foodandservice.domain.model.location.Coordinate
 import retrofit2.HttpException
 import java.io.IOException
 
 private const val RESTAURANTS_STARTING_PAGE_INDEX = 1
-private const val NETWORK_PAGE_SIZE = 5
-private const val EXAMPLE_LATITUDE = 40.4167754
-private const val EXAMPLE_LONGITUDE = -3.7037902
 
 class RestaurantPagingSource(
-    //private val getUserLocationUseCase: GetUserLocationUseCase,
-    private val customerService: CustomerService
+    private val customerService: CustomerService,
+    private val coordinate: Coordinate
 ) :
     PagingSource<Int, RestaurantDto>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RestaurantDto> {
@@ -22,10 +20,10 @@ class RestaurantPagingSource(
 
         return try {
             val restaurants = customerService.getRestaurants(
-                latitude = EXAMPLE_LATITUDE,
-                longitude = EXAMPLE_LONGITUDE,
+                latitude = coordinate.latitude,
+                longitude = coordinate.longitude,
                 page = page,
-                limit = NETWORK_PAGE_SIZE
+                limit = params.loadSize
             )
 
             val prevKey = if (page == RESTAURANTS_STARTING_PAGE_INDEX) null else page

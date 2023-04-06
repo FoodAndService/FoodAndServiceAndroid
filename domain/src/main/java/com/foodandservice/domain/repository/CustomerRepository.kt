@@ -2,16 +2,13 @@ package com.foodandservice.domain.repository
 
 import androidx.paging.PagingData
 import com.foodandservice.domain.model.*
+import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.util.Resource
 import kotlinx.coroutines.flow.Flow
 
 interface CustomerRepository {
-    fun getRestaurants(): Flow<PagingData<Restaurant>>
-
-    // Mock
-//    suspend fun getRestaurantsFake(): Resource<List<Restaurant>>
-//    suspend fun getCategoryRestaurants(category: String): Resource<List<Restaurant>>
-    suspend fun getRestaurantTags(): Resource<List<RestaurantCategoryTag>>
+    fun getRestaurants(coordinate: Coordinate): Flow<PagingData<Restaurant>>
+    suspend fun getRestaurantCategories(): Resource<List<RestaurantCategory>>
     suspend fun getFavouriteRestaurants(): Resource<List<FavouriteRestaurant>>
     suspend fun getOrderHistory(): Resource<List<Order>>
     suspend fun getBookings(): Resource<List<Booking>>

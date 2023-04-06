@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemCategoryTagBinding
-import com.foodandservice.domain.model.RestaurantCategoryTag
+import com.foodandservice.domain.model.RestaurantCategory
 
 class CategoryTagAdapter constructor(private val listener: CategoryTagClickListener) :
-    ListAdapter<RestaurantCategoryTag, CategoryTagAdapter.ViewHolder>(CategoryTagDiffCallback()) {
+    ListAdapter<RestaurantCategory, CategoryTagAdapter.ViewHolder>(CategoryTagDiffCallback()) {
 
     interface CategoryTagClickListener {
-        fun onClick(restaurantCategoryTag: RestaurantCategoryTag)
+        fun onClick(restaurantCategory: RestaurantCategory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -25,7 +25,7 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
 
     class ViewHolder private constructor(private val binding: ItemCategoryTagBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: RestaurantCategoryTag, categoryTagClickListener: CategoryTagClickListener) {
+        fun bind(item: RestaurantCategory, categoryTagClickListener: CategoryTagClickListener) {
             binding.apply {
                 chipCategoryTagText.text = item.name
                 root.setOnClickListener { categoryTagClickListener.onClick(item) }
@@ -42,12 +42,12 @@ class CategoryTagAdapter constructor(private val listener: CategoryTagClickListe
     }
 }
 
-class CategoryTagDiffCallback : DiffUtil.ItemCallback<RestaurantCategoryTag>() {
-    override fun areItemsTheSame(oldItem: RestaurantCategoryTag, newItem: RestaurantCategoryTag) =
+class CategoryTagDiffCallback : DiffUtil.ItemCallback<RestaurantCategory>() {
+    override fun areItemsTheSame(oldItem: RestaurantCategory, newItem: RestaurantCategory) =
         oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: RestaurantCategoryTag,
-        newItem: RestaurantCategoryTag
+        oldItem: RestaurantCategory,
+        newItem: RestaurantCategory
     ) = oldItem == newItem
 }
