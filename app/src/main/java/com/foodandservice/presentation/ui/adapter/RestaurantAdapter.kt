@@ -2,12 +2,17 @@ package com.foodandservice.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.foodandservice.R
 import com.foodandservice.databinding.ItemRestaurantBinding
 import com.foodandservice.domain.model.Restaurant
+import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.util.LocationUtils
+import com.foodandservice.util.PermissionsUtils
 
 class RestaurantAdapter constructor(private val listener: RestaurantClickListener) :
     PagingDataAdapter<Restaurant, RestaurantAdapter.ViewHolder>(RestaurantDiffCallBack()) {
@@ -30,6 +35,36 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
         fun bind(item: Restaurant, restaurantClickListener: RestaurantClickListener) {
             binding.apply {
                 tvRestaurantName.text = item.name
+
+                if (LocationUtils.isGPSEnabled(context = binding.root.context) && PermissionsUtils.hasLocationPermission(
+                        context = binding.root.context
+                    )
+                ) {
+                    val distance = LocationUtils.getDistanceInKmBetweenTwoCoordinates(
+                        firstCoordinate = Coordinate(
+                            latitude = item.address.latitude, longitude = item.address.longitude
+                        ), secondCoordinate = Coordinate(
+                            latitude = LocationUtils.getUserCoordinates().latitude,
+                            longitude = LocationUtils.getUserCoordinates().longitude
+                        )
+                    )
+                    tvDistance.apply {
+                        text = binding.root.resources.getString(
+                            R.string.restaurant_details_distance, distance
+                        )
+                        setTextColor(
+                            ContextCompat.getColor(
+                                binding.root.context, R.color.text_normal
+                            )
+                        )
+                    }
+                } else {
+                    tvDistance.apply {
+                        text = binding.root.resources.getString(R.string.activate_location)
+                        setTextColor(ContextCompat.getColor(binding.root.context, R.color.orange))
+                    }
+                }
+
                 Glide.with(itemView).load(item.logo).centerCrop().into(restLogo)
                 Glide.with(itemView).load(item.banner).into(restBackground)
 

@@ -21,6 +21,7 @@ import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
+import com.foodandservice.util.LocationUtils
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
@@ -106,6 +107,10 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     private fun collectRestaurants(location: Location?) {
+        location?.let {
+            LocationUtils.saveUserCoordinates(location)
+        }
+
         val coordinate = Coordinate(
             latitude = location?.latitude ?: Constants.DEFAULT_LATITUDE,
             longitude = location?.longitude ?: Constants.DEFAULT_LONGITUDE

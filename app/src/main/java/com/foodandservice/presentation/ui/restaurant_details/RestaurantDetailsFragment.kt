@@ -20,9 +20,9 @@ import com.foodandservice.domain.model.CategoryWithProducts
 import com.foodandservice.domain.model.Product
 import com.foodandservice.domain.model.RestaurantDetails
 import com.foodandservice.presentation.ui.adapter.ProductAdapter
+import com.foodandservice.util.LocationUtils
 import com.foodandservice.util.PermissionsUtils
 import com.foodandservice.util.RecyclerViewItemDecoration
-import com.foodandservice.util.extensions.CoreExtensions.isGPSEnabled
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.foodandservice.util.getTabbedListMediatorIndices
@@ -109,7 +109,10 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
             getRestaurantOpeningStatus()
 
-            if (isGPSEnabled() && PermissionsUtils.hasLocationPermission(requireContext())) {
+            if (LocationUtils.isGPSEnabled(requireContext()) && PermissionsUtils.hasLocationPermission(
+                    requireContext()
+                )
+            ) {
                 getUserCurrentLocation()
             } else {
                 tvDistance.apply {
