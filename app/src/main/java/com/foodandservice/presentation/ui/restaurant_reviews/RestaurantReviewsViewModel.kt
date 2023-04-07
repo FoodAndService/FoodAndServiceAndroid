@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.restaurant_reviews
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantReviewsUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -20,7 +20,7 @@ class RestaurantReviewsViewModel(private val getRestaurantReviewsUseCase: GetRes
             _restaurantReviewsState.emit(RestaurantReviewsState.Loading)
 
             when (val result = getRestaurantReviewsUseCase()) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     result.data?.let { restaurantReviews ->
                         _restaurantReviewsState.emit(
                             RestaurantReviewsState.Success(
@@ -29,7 +29,7 @@ class RestaurantReviewsViewModel(private val getRestaurantReviewsUseCase: GetRes
                         )
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _restaurantReviewsState.emit(
                         RestaurantReviewsState.Error(
                             message = result.exception?.message ?: "Something went wrong"

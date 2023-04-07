@@ -22,11 +22,27 @@
                     android:layout_height="wrap_content"
                     app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="8dp"
+                        android:indeterminate="true"
+                        android:indeterminateTint="@color/fys_primary"
+                        android:indeterminateTintMode="src_atop"
+                        android:scaleY="2"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
                     <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/constraintRestaurantDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:visibility="gone"
                         app:layout_constraintBottom_toTopOf="@+id/tabLayout"
-                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                        tools:visibility="visible">
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnReserve"
@@ -85,7 +101,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="48dp"
-                                    android:text="Rosario's Burger"
+                                    tools:text="Rosario's Burger"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toTopOf="parent" />
@@ -96,7 +112,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="6dp"
-                                    android:text="A 300 metros"
+                                    tools:text="A 1 km"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintTop_toBottomOf="@+id/llRating" />
@@ -110,7 +126,7 @@
                                     android:layout_marginTop="6dp"
                                     android:ellipsize="end"
                                     android:maxLines="4"
-                                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat"
+                                    tools:text="Restaurant description"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -126,7 +142,7 @@
                                     android:visibility="gone"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/chipBusinessClosed"
+                                    app:layout_constraintTop_toBottomOf="@+id/cvOpeningStatus"
                                     tools:visibility="visible">
 
                                     <RatingBar
@@ -156,17 +172,19 @@
 
 
                                 <androidx.cardview.widget.CardView
-                                    android:id="@+id/chipBusinessClosed"
+                                    android:id="@+id/cvOpeningStatus"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginStart="24dp"
                                     android:layout_marginTop="8dp"
                                     android:layout_marginEnd="24dp"
+                                    android:visibility="gone"
                                     app:cardCornerRadius="10dp"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintHorizontal_bias="0.5"
                                     app:layout_constraintStart_toStartOf="parent"
-                                    app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName">
+                                    app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName"
+                                    tools:visibility="visible">
 
                                     <LinearLayout
                                         android:layout_width="match_parent"
@@ -175,13 +193,13 @@
                                         android:orientation="vertical" />
 
                                     <TextView
-                                        android:id="@+id/tvClosed"
+                                        android:id="@+id/tvOpeningStatus"
                                         style="@style/FysWhiteMediumText"
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:layout_marginBottom="3dp"
                                         android:paddingVertical="8dp"
-                                        android:text="¡El negocio está cerrado!" />
+                                        android:text="@string/restaurant_details_opening_status_vacation" />
                                 </androidx.cardview.widget.CardView>
 
 
@@ -215,7 +233,7 @@
                                 app:layout_constraintTop_toTopOf="parent">
 
                                 <ImageView
-                                    android:id="@+id/restLogo2"
+                                    android:id="@+id/restaurantLogo"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:importantForAccessibility="no"
@@ -231,10 +249,13 @@
             </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintRestaurantMenu"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@color/fys_background"
-                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+                android:visibility="gone"
+                app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+                tools:visibility="visible">
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabLayout"

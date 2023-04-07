@@ -5,10 +5,10 @@ import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.PhoneWithOtp
 import com.foodandservice.domain.model.sign.AuthPhase
 import com.foodandservice.domain.model.sign.AuthPhaseWithToken
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 
 interface AuthRepository {
-    suspend fun signInFirstPhase(customerPhone: CustomerPhone): Resource<AuthPhase>
-    suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): Resource<AuthPhaseWithToken>
-    suspend fun signUpFirstPhase(name: Name): Resource<AuthPhaseWithToken>
+    suspend fun signInFirstPhase(customerPhone: CustomerPhone): ApiResponse<AuthPhase>
+    suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): ApiResponse<AuthPhaseWithToken>
+    suspend fun signUpFirstPhase(name: Name): ApiResponse<AuthPhaseWithToken>
 }

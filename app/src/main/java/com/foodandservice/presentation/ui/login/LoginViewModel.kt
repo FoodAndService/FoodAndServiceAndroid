@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.login
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -20,10 +20,10 @@ class LoginViewModel(
             _loginState.emit(LoginState.Loading)
 
             when (val response = signInFirstPhaseUseCase(phone)) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     _loginState.emit(LoginState.Success(phone))
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _loginState.emit(
                         LoginState.Error(
                             response.exception?.message ?: "Something went wrong"

@@ -2,6 +2,7 @@ package com.foodandservice.data.remote.model.restaurant
 
 import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.RestaurantAddress
+import com.foodandservice.domain.model.RestaurantOpeningStatus
 import com.foodandservice.domain.model.RestaurantSchedule
 
 data class RestaurantDto(
@@ -36,8 +37,7 @@ data class RestaurantScheduleDto(
     val weekDay: Int
 )
 
-fun RestaurantDto.toRestaurant() = Restaurant(
-    address = address.toRestaurantAddress(),
+fun RestaurantDto.toRestaurant() = Restaurant(address = address.toRestaurantAddress(),
     banner = banner,
     categoryId = categoryId,
     categoryName = categoryName,
@@ -45,10 +45,9 @@ fun RestaurantDto.toRestaurant() = Restaurant(
     id = id,
     logo = logo,
     name = name,
-    openingStatus = openingStatus,
+    openingStatus = RestaurantOpeningStatus.getStatus(openingStatus),
     phone = phone,
-    schedule = schedule?.map { restaurantScheduleDto -> restaurantScheduleDto.toRestaurantSchedule() }
-)
+    schedule = schedule?.map { restaurantScheduleDto -> restaurantScheduleDto.toRestaurantSchedule() })
 
 fun RestaurantAddressDto.toRestaurantAddress() = RestaurantAddress(
     city = city,

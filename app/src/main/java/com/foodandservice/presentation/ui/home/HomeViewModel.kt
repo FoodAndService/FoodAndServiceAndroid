@@ -9,7 +9,7 @@ import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import com.google.android.gms.location.LocationRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -42,7 +42,7 @@ class HomeViewModel(
     private fun getRestaurantCategories() {
         viewModelScope.launch {
             when (val result = getRestaurantCategoriesUseCase()) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     result.data?.let { restaurantCategories ->
                         _homeState.emit(
                             HomeState.SuccessRestaurantCategories(
@@ -51,7 +51,7 @@ class HomeViewModel(
                         )
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _homeState.emit(
                         HomeState.Error(
                             message = result.exception?.message ?: "Something went wrong"

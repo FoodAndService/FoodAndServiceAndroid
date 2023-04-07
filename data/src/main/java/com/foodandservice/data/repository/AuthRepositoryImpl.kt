@@ -9,35 +9,35 @@ import com.foodandservice.domain.model.PhoneWithOtp
 import com.foodandservice.domain.model.sign.AuthPhase
 import com.foodandservice.domain.model.sign.AuthPhaseWithToken
 import com.foodandservice.domain.repository.AuthRepository
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 
 class AuthRepositoryImpl(private val authService: AuthService) : AuthRepository {
-    override suspend fun signInFirstPhase(customerPhone: CustomerPhone): Resource<AuthPhase> {
+    override suspend fun signInFirstPhase(customerPhone: CustomerPhone): ApiResponse<AuthPhase> {
         return try {
             val response = authService.signInFirstPhase(customerPhone)
-            Resource.Success(response.toAuthPhase())
+            ApiResponse.Success(response.toAuthPhase())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): Resource<AuthPhaseWithToken> {
+    override suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): ApiResponse<AuthPhaseWithToken> {
         return try {
             val response = authService.signInSecondPhase(phoneWithOtp)
-            Resource.Success(response.toAuthPhaseWithToken())
+            ApiResponse.Success(response.toAuthPhaseWithToken())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
     override suspend fun signUpFirstPhase(
         name: Name
-    ): Resource<AuthPhaseWithToken> {
+    ): ApiResponse<AuthPhaseWithToken> {
         return try {
             val response = authService.signUpFirstPhase(name)
-            Resource.Success(response.toAuthPhaseWithToken())
+            ApiResponse.Success(response.toAuthPhaseWithToken())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 }

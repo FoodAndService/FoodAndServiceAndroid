@@ -4,10 +4,10 @@ import com.foodandservice.domain.model.InvalidNameFormatException
 import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.sign.AuthPhaseWithToken
 import com.foodandservice.domain.repository.AuthRepository
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 
 class SignUpFirstPhaseUseCase(private val authRepository: AuthRepository) {
-    suspend operator fun invoke(name: String): Resource<AuthPhaseWithToken> {
+    suspend operator fun invoke(name: String): ApiResponse<AuthPhaseWithToken> {
         if (name.length < 3) throw InvalidNameFormatException()
         else return authRepository.signUpFirstPhase(Name(name))
     }

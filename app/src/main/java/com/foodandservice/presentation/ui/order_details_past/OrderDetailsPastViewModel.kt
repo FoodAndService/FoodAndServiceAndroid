@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.order_details_past
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.order.GetOrderProductsUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -26,12 +26,12 @@ class OrderDetailsPastViewModel(
             _orderDetailsPastViewModel.emit(OrderDetailsPastState.Loading)
 
             when (val orderProducts = getOrderProductsUseCase()) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     orderProducts.data?.let { order ->
                         _orderDetailsPastViewModel.emit(OrderDetailsPastState.Success(order = order))
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _orderDetailsPastViewModel.emit(
                         OrderDetailsPastState.Error(
                             message = orderProducts.exception?.message ?: "Something went wrong"

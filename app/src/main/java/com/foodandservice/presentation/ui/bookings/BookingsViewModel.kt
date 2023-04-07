@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.bookings
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.restaurant.GetBookingsUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -23,12 +23,12 @@ class BookingsViewModel(private val getBookingsUseCase: GetBookingsUseCase) :
             _bookingsState.emit(BookingsState.Loading)
 
             when (val bookings = getBookingsUseCase()) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     bookings.data?.let { myBookings ->
                         _bookingsState.emit(BookingsState.Success(bookings = myBookings))
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _bookingsState.emit(
                         BookingsState.Error(
                             message = bookings.exception?.message

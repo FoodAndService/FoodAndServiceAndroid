@@ -9,10 +9,14 @@ data class Restaurant(
     val id: String,
     val logo: String,
     val name: String,
-    val openingStatus: String,
+    val openingStatus: RestaurantOpeningStatus,
     val phone: String,
     val schedule: List<RestaurantSchedule>?
-)
+) {
+    fun isOpen() = openingStatus == RestaurantOpeningStatus.OPEN
+    fun isClosed() = openingStatus == RestaurantOpeningStatus.CLOSED
+    fun isOnVacation() = openingStatus == RestaurantOpeningStatus.VACATION
+}
 
 data class RestaurantAddress(
     val city: String,
@@ -31,3 +35,16 @@ data class RestaurantSchedule(
     val startMinutes: Int,
     val weekDay: Int
 )
+
+enum class RestaurantOpeningStatus {
+    OPEN, CLOSED, VACATION, UNKNOWN;
+
+    companion object {
+        fun getStatus(openingStatus: String) = when (openingStatus) {
+            "open" -> OPEN
+            "closed" -> CLOSED
+            "vacation" -> VACATION
+            else -> UNKNOWN
+        }
+    }
+}

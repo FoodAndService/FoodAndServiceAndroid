@@ -30,6 +30,7 @@ class QRScannerActivity : AppCompatActivity() {
         qrScanner.decodeCallback = DecodeCallback {
             runOnUiThread {
                 Log.i("QRScannerActivity", "Scan result: ${it.text}")
+                finish()
             }
         }
 

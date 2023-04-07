@@ -3,30 +3,32 @@ package com.foodandservice.presentation.ui.restaurant_details
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
-import com.foodandservice.domain.util.Resource
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import com.foodandservice.domain.util.ApiResponse
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class RestaurantDetailsViewModel(
+    restaurantId: String,
     private val getRestaurantDetailsUseCase: GetRestaurantDetailsUseCase
 ) : ViewModel() {
-    private val _restaurantDetailsState = MutableSharedFlow<RestaurantDetailsState>(replay = 10)
-    val restaurantDetailsState: SharedFlow<RestaurantDetailsState> =
-        _restaurantDetailsState.asSharedFlow()
+    private val _restaurantDetailsState =
+        MutableStateFlow<RestaurantDetailsState>(RestaurantDetailsState.Idle)
+    val restaurantDetailsState: StateFlow<RestaurantDetailsState> =
+        _restaurantDetailsState.asStateFlow()
 
     init {
-        getRestaurantDetails()
+        getRestaurantDetails(restaurantId)
     }
 
-    private fun getRestaurantDetails() {
+    private fun getRestaurantDetails(restaurantId: String) {
         viewModelScope.launch {
             _restaurantDetailsState.emit(RestaurantDetailsState.Loading)
 
-            when (val orderStatus = getRestaurantDetailsUseCase()) {
-                is Resource.Success -> {
-                    orderStatus.data?.let { restaurantDetails ->
+            when (val result = getRestaurantDetailsUseCase(restaurantId)) {
+                is ApiResponse.Success -> {
+                    result.data?.let { restaurantDetails ->
                         _restaurantDetailsState.emit(
                             RestaurantDetailsState.Success(
                                 restaurantDetails = restaurantDetails
@@ -34,10 +36,10 @@ class RestaurantDetailsViewModel(
                         )
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _restaurantDetailsState.emit(
                         RestaurantDetailsState.Error(
-                            message = orderStatus.exception?.message ?: "Something went wrong"
+                            message = result.exception?.message ?: "Something went wrong"
                         )
                     )
                 }

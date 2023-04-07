@@ -3,7 +3,7 @@ package com.foodandservice.presentation.ui.cart
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.cart.GetCartUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -22,12 +22,12 @@ class CartViewModel(private val getCartUseCase: GetCartUseCase) : ViewModel() {
             _cartState.emit(CartState.Loading)
 
             when (val bookings = getCartUseCase()) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     bookings.data?.let { cartItems ->
                         _cartState.emit(CartState.Success(cartItems = cartItems))
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _cartState.emit(
                         CartState.Error(
                             message = bookings.exception?.message

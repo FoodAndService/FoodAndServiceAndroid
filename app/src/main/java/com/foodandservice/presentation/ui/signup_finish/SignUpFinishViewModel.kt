@@ -6,7 +6,7 @@ import com.foodandservice.domain.model.InvalidNameFormatException
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -26,14 +26,14 @@ class SignUpFinishViewModel(
 
             try {
                 when (val response = signUpFirstPhaseUseCase(name)) {
-                    is Resource.Success -> {
+                    is ApiResponse.Success -> {
                         response.data?.let { authPhaseWithToken ->
                             saveUserTokenUseCase(authPhaseWithToken.token)
                             saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
                         }
                         _signUpFinishState.emit(SignUpFinishState.Success)
                     }
-                    is Resource.Failure -> {
+                    is ApiResponse.Failure -> {
                         _signUpFinishState.emit(
                             SignUpFinishState.Error(
                                 response.exception?.message ?: "Something went wrong"

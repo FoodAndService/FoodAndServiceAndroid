@@ -8,40 +8,40 @@ import com.foodandservice.domain.model.stripe.PaymentInfo
 import com.foodandservice.domain.model.stripe.PaymentIntentKey
 import com.foodandservice.domain.model.stripe.StripeCustomer
 import com.foodandservice.domain.repository.StripeRepository
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 
 class StripeRepositoryImpl(private val stripeService: StripeService) : StripeRepository {
     override suspend fun getEphemeralKey(
         secret: String, stripeVersion: String, stripeCustomer: StripeCustomer
-    ): Resource<EphemeralKey> {
+    ): ApiResponse<EphemeralKey> {
         return try {
             val response = stripeService.getEphemeralKey(
                 secret = secret, stripeVersion = stripeVersion, stripeCustomer = stripeCustomer
             )
-            Resource.Success(response.toEphemeralKey())
+            ApiResponse.Success(response.toEphemeralKey())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
     override suspend fun getPaymentIntentKey(
         secret: String, paymentInfo: PaymentInfo
-    ): Resource<PaymentIntentKey> {
+    ): ApiResponse<PaymentIntentKey> {
         return try {
             val response = stripeService.getPaymentIntent(
                 secret = secret, paymentInfo = paymentInfo
             )
-            Resource.Success(response.toPaymentIntentKey())
+            ApiResponse.Success(response.toPaymentIntentKey())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getStripeCustomer(): Resource<String> {
+    override suspend fun getStripeCustomer(): ApiResponse<String> {
         return try {
-            Resource.Success("cus_NLRsVvpCow25yB")
+            ApiResponse.Success("cus_NLRsVvpCow25yB")
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 }

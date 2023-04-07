@@ -76,8 +76,8 @@ val viewModelModule = module {
         ProductDetailsViewModel(getProductDetailsUseCase = get())
     }
 
-    viewModel {
-        RestaurantDetailsViewModel(getRestaurantDetailsUseCase = get())
+    viewModel { params ->
+        RestaurantDetailsViewModel(restaurantId = params.get(), getRestaurantDetailsUseCase = get())
     }
 
     viewModel {

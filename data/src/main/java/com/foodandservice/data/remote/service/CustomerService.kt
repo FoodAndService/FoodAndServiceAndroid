@@ -1,8 +1,10 @@
 package com.foodandservice.data.remote.service
 
 import com.foodandservice.data.remote.model.restaurant.RestaurantCategoryDto
+import com.foodandservice.data.remote.model.restaurant.RestaurantDetailsDto
 import com.foodandservice.data.remote.model.restaurant.RestaurantDto
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CustomerService {
@@ -16,4 +18,9 @@ interface CustomerService {
 
     @GET("business-category")
     suspend fun getRestaurantCategories(): List<RestaurantCategoryDto>
+
+    @GET("business-detail/{id}")
+    suspend fun getRestaurantDetails(
+        @Path("id") restaurantId: String
+    ): RestaurantDetailsDto
 }

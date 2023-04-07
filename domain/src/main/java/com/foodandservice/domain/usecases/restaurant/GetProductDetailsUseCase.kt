@@ -2,10 +2,10 @@ package com.foodandservice.domain.usecases.restaurant
 
 import com.foodandservice.domain.model.ProductDetails
 import com.foodandservice.domain.repository.CustomerRepository
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 
 class GetProductDetailsUseCase(private val customerRepository: CustomerRepository) {
-    suspend operator fun invoke(): Resource<ProductDetails> {
+    suspend operator fun invoke(): ApiResponse<ProductDetails> {
         return customerRepository.getProductDetails()
     }
 }

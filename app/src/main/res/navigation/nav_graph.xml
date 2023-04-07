@@ -146,6 +146,9 @@
         <action
             android:id="@+id/action_restaurantDetailsFragment_to_cartFragment"
             app:destination="@id/cartFragment" />
+        <argument
+            android:name="restaurantId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"

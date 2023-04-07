@@ -7,7 +7,7 @@ import com.foodandservice.domain.model.sign.AuthCurrentPhase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -34,7 +34,7 @@ class SmsConfirmViewModel(
             _smsConfirmAuthState.emit(SmsConfirmAuthState.Loading)
 
             when (val response = signInSecondPhaseUseCase(phone, smsCode)) {
-                is Resource.Success -> {
+                is ApiResponse.Success -> {
                     response.data?.let { authPhaseWithToken ->
                         saveUserTokenUseCase(authPhaseWithToken.token)
                         saveAuthCurrentPhaseUseCase(authPhaseWithToken.currentPhase.name.lowercase())
@@ -56,7 +56,7 @@ class SmsConfirmViewModel(
                         }
                     }
                 }
-                is Resource.Failure -> {
+                is ApiResponse.Failure -> {
                     _smsConfirmAuthState.emit(
                         SmsConfirmAuthState.Error(
                             response.exception?.message ?: "Something went wrong"

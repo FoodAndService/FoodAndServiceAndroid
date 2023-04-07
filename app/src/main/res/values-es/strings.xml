@@ -1,4 +1,6 @@
 <resources>
+    <string name="activate_location">Activa tu localización</string>
+
     <string name="bottom_sheet_home_filter">Filtros</string>
 
     <string name="btn_accept">Aceptar</string>
@@ -131,6 +133,11 @@
     <string name="order_status_waiting_confirmation">Esperando confirmación</string>
 
     <string name="product_extras">Extras</string>
+
+    <string name="restaurant_details_distance">A %.1f km</string>
+    <string name="restaurant_details_opening_status_closed">Cerrado por el horario laboral</string>
+    <string name="restaurant_details_opening_status_vacation">Cerrado por vacaciones</string>
+
 
     <string name="schedule">Horario</string>
 

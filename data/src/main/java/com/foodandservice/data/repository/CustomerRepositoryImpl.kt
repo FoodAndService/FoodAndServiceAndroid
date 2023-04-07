@@ -5,11 +5,12 @@ import androidx.paging.map
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
 import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
+import com.foodandservice.data.remote.model.restaurant.toRestaurantDetails
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.domain.model.*
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.repository.CustomerRepository
-import com.foodandservice.domain.util.Resource
+import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDateTime
@@ -26,16 +27,16 @@ class CustomerRepositoryImpl(
             .map { pagingData -> pagingData.map { restaurantDto -> restaurantDto.toRestaurant() } }
     }
 
-    override suspend fun getRestaurantCategories(): Resource<List<RestaurantCategory>> {
+    override suspend fun getRestaurantCategories(): ApiResponse<List<RestaurantCategory>> {
         return try {
             val categories = customerService.getRestaurantCategories()
-            Resource.Success(data = categories.map { it.toRestaurantCategory() })
+            ApiResponse.Success(data = categories.map { it.toRestaurantCategory() })
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getFavouriteRestaurants(): Resource<List<FavouriteRestaurant>> {
+    override suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>> {
         return try {
             val favouriteRestaurants = listOf(
                 FavouriteRestaurant(
@@ -50,13 +51,13 @@ class CustomerRepositoryImpl(
                     id = "5", name = "La Calle Burger"
                 )
             )
-            Resource.Success(data = favouriteRestaurants)
+            ApiResponse.Success(data = favouriteRestaurants)
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getOrderHistory(): Resource<List<Order>> {
+    override suspend fun getOrderHistory(): ApiResponse<List<Order>> {
         return try {
             val orderHistory = listOf(
                 Order(
@@ -86,13 +87,13 @@ class CustomerRepositoryImpl(
                     date = LocalDateTime.of(2022, 10, 3, 0, 0)
                 )
             )
-            Resource.Success(data = orderHistory)
+            ApiResponse.Success(data = orderHistory)
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getBookings(): Resource<List<Booking>> {
+    override suspend fun getBookings(): ApiResponse<List<Booking>> {
         return try {
             val bookings = listOf(
                 Booking(
@@ -127,13 +128,13 @@ class CustomerRepositoryImpl(
                     dateTime = LocalDateTime.now().minusDays(7)
                 )
             )
-            Resource.Success(data = bookings)
+            ApiResponse.Success(data = bookings)
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getCart(): Resource<List<CartItem>> {
+    override suspend fun getCart(): ApiResponse<List<CartItem>> {
         return try {
             val cartItems = listOf(
                 CartItem("1", "Pepsi", "", "1,99", 1, false),
@@ -149,13 +150,13 @@ class CustomerRepositoryImpl(
                 CartItem("11", "Patatas fritas", "", "0,99", 1, true),
                 CartItem("12", "Patatas gajo", "", "0,99", 1, true)
             )
-            Resource.Success(data = cartItems)
+            ApiResponse.Success(data = cartItems)
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getOrderProducts(): Resource<List<OrderProduct>> {
+    override suspend fun getOrderProducts(): ApiResponse<List<OrderProduct>> {
         return try {
             val orderProducts = listOf(
                 OrderProduct("1", "Pepsi", "", "1,99", false),
@@ -169,13 +170,13 @@ class CustomerRepositoryImpl(
                 OrderProduct("9", "Patatas fritas", "", "0,99", true),
                 OrderProduct("10", "Pollo frito", "", "3,99", false)
             )
-            Resource.Success(data = orderProducts)
+            ApiResponse.Success(data = orderProducts)
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getOrderStatus(): Resource<String> {
+    override suspend fun getOrderStatus(): ApiResponse<String> {
         return try {
             val orderStatus = listOf(
                 "CHECKING_PAYMENT",
@@ -185,13 +186,13 @@ class CustomerRepositoryImpl(
                 "PREPARING",
                 "WAITING_CONFIRMATION"
             )
-            Resource.Success(data = orderStatus.random())
+            ApiResponse.Success(data = orderStatus.random())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getProductDetails(): Resource<ProductDetails> {
+    override suspend fun getProductDetails(): ApiResponse<ProductDetails> {
         return try {
             val allergensAndIntolerances = listOf(
                 AllergenIntolerance(id = "1", name = "Celiac"),
@@ -224,7 +225,7 @@ class CustomerRepositoryImpl(
                     id = "10", name = "Trembolona", price = "2,50"
                 )
             )
-            Resource.Success(
+            ApiResponse.Success(
                 data = ProductDetails(
                     id = "1",
                     allergensAndIntolerances = allergensAndIntolerances,
@@ -232,286 +233,22 @@ class CustomerRepositoryImpl(
                 )
             )
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getRestaurantDetails(): Resource<RestaurantDetails> {
+    override suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails> {
         return try {
-            val categoriesWithProducts = listOf(
-                CategoryWithProducts(
-                    categoryName = "Bebidas", products = listOf(
-                        Product(
-                            id = "1",
-                            name = "Pepsi",
-                            image = "1",
-                            inStock = false,
-                            isRefill = true,
-                            price = "2,00"
-                        ),
-                        Product(
-                            id = "2",
-                            name = "Fanta",
-                            image = "1",
-                            inStock = true,
-                            isRefill = true,
-                            price = "2,00"
-                        ),
-                        Product(
-                            id = "3",
-                            name = "Nestea",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,50"
-                        ),
-                        Product(
-                            id = "4",
-                            name = "Pepsi Max",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,90"
-                        ),
-                        Product(
-                            id = "5",
-                            name = "Lágrimas",
-                            image = "1",
-                            inStock = false,
-                            isRefill = true,
-                            price = "4,20"
-                        ),
-                    )
-                ), CategoryWithProducts(
-                    categoryName = "Entrantes", products = listOf(
-                        Product(
-                            id = "6",
-                            name = "Aceitunas verdes",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "1,50"
-                        ),
-                        Product(
-                            id = "7",
-                            name = "Aceitunas negras",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "1,80"
-                        ),
-                        Product(
-                            id = "8",
-                            name = "Croquetas de atún",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "3,80"
-                        ),
-                        Product(
-                            id = "9",
-                            name = "Guacamole",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,80"
-                        ),
-                        Product(
-                            id = "10",
-                            name = "Quesadillas",
-                            image = "1",
-                            inStock = false,
-                            isRefill = false,
-                            price = "2,20"
-                        ),
-                    )
-                ), CategoryWithProducts(
-                    categoryName = "Pizzas", products = listOf(
-                        Product(
-                            id = "11",
-                            name = "Pizza carbonara",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "8,50"
-                        ),
-                        Product(
-                            id = "12",
-                            name = "Pizza barbacoa",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "9,80"
-                        ),
-                        Product(
-                            id = "13",
-                            name = "Pizza cuatro quesos",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "7,80"
-                        ),
-                        Product(
-                            id = "14",
-                            name = "Pizza extravaganza",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "9,50"
-                        ),
-                        Product(
-                            id = "15",
-                            name = "Pizza pulled pork",
-                            image = "1",
-                            inStock = false,
-                            isRefill = false,
-                            price = "12,80"
-                        ),
-                    )
-                ), CategoryWithProducts(
-                    categoryName = "Sopas", products = listOf(
-                        Product(
-                            id = "16",
-                            name = "Gazpacho",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "5,80"
-                        ),
-                        Product(
-                            id = "17",
-                            name = "Salmorejo",
-                            image = "1",
-                            inStock = false,
-                            isRefill = false,
-                            price = "5,90"
-                        ),
-                        Product(
-                            id = "18",
-                            name = "Sopa de fideos",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "4,90"
-                        ),
-                        Product(
-                            id = "19",
-                            name = "Caldo de pollo",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "3,90"
-                        ),
-                        Product(
-                            id = "20",
-                            name = "Sopa de verduras",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "5,10"
-                        ),
-                    )
-                ), CategoryWithProducts(
-                    categoryName = "Aperitivos", products = listOf(
-                        Product(
-                            id = "21",
-                            name = "Patatas fritas",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "3,10"
-                        ),
-                        Product(
-                            id = "22",
-                            name = "Patatas gajo",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "3,10"
-                        ),
-                        Product(
-                            id = "23",
-                            name = "Nuggets de pollo",
-                            image = "1",
-                            inStock = false,
-                            isRefill = false,
-                            price = "4,10"
-                        ),
-                        Product(
-                            id = "24",
-                            name = "Tiras de pollo",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "4,50"
-                        ),
-                        Product(
-                            id = "25",
-                            name = "Patatas bravas",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "6,10"
-                        ),
-                    )
-                ), CategoryWithProducts(
-                    categoryName = "Postres", products = listOf(
-                        Product(
-                            id = "26",
-                            name = "Helado de fresa",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,90"
-                        ), Product(
-                            id = "27",
-                            name = "Helado de chocolate",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "3,10"
-                        ), Product(
-                            id = "28",
-                            name = "Tarta de queso",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,90"
-                        ), Product(
-                            id = "29",
-                            name = "Flan",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,90"
-                        ), Product(
-                            id = "30",
-                            name = "Tiramisú",
-                            image = "1",
-                            inStock = true,
-                            isRefill = false,
-                            price = "2,90"
-                        )
-                    )
-                )
-            )
-            Resource.Success(
-                data = RestaurantDetails(
-                    id = "1",
-                    name = "Wendy's",
-                    rating = 3f,
-                    distance = 1,
-                    categoriesWithProducts = categoriesWithProducts
-                )
-            )
+            val restaurantDetails = customerService.getRestaurantDetails(restaurantId)
+            ApiResponse.Success(data = restaurantDetails.toRestaurantDetails())
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getRestaurantDetailsExtra(): Resource<RestaurantDetailsExtra> {
+    override suspend fun getRestaurantDetailsExtra(): ApiResponse<RestaurantDetailsExtra> {
         return try {
-            Resource.Success(
+            ApiResponse.Success(
                 data = RestaurantDetailsExtra(
                     id = "1",
                     name = "Domino's Pizza",
@@ -521,11 +258,11 @@ class CustomerRepositoryImpl(
                 )
             )
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 
-    override suspend fun getRestaurantReviews(): Resource<List<RestaurantReview>> {
+    override suspend fun getRestaurantReviews(): ApiResponse<List<RestaurantReview>> {
         return try {
             val restaurantReviews = listOf(
                 RestaurantReview(
@@ -600,11 +337,11 @@ class CustomerRepositoryImpl(
                     date = LocalDateTime.now().minusDays(30)
                 )
             )
-            Resource.Success(
+            ApiResponse.Success(
                 data = restaurantReviews
             )
         } catch (exception: Exception) {
-            Resource.Failure(exception)
+            ApiResponse.Failure(exception)
         }
     }
 }

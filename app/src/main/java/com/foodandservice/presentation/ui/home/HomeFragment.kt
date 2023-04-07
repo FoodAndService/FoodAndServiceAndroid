@@ -156,6 +156,6 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     override fun onClick(item: Restaurant) {
-        navigate(HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment())
+        navigate(HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment(item.id))
     }
 }
