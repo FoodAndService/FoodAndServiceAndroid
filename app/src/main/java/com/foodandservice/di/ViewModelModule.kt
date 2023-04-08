@@ -1,5 +1,6 @@
 package com.foodandservice.di
 
+import com.foodandservice.presentation.ui.account.AccountViewModel
 import com.foodandservice.presentation.ui.bookings.BookingsViewModel
 import com.foodandservice.presentation.ui.cart.CartViewModel
 import com.foodandservice.presentation.ui.favourites.FavouritesViewModel
@@ -61,7 +62,11 @@ val viewModelModule = module {
     }
 
     viewModel {
-        LoginViewModel(signInFirstPhaseUseCase = get())
+        LoginViewModel(signOutUseCase = get(), signInFirstPhaseUseCase = get())
+    }
+
+    viewModel {
+        AccountViewModel(signOutUseCase = get())
     }
 
     viewModel {

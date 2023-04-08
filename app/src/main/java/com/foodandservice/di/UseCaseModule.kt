@@ -86,6 +86,10 @@ val useCaseModule = module {
     }
 
     single {
+        SignOutUseCase(preferencesRepository = get())
+    }
+
+    single {
         SaveUserTokenUseCase(userPreferencesRepository = get())
     }
 
