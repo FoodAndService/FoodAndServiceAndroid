@@ -40,4 +40,8 @@ class AuthRepositoryImpl(private val authService: AuthService) : AuthRepository 
             ApiResponse.Failure(exception)
         }
     }
+
+    override suspend fun resendSms(customerPhone: CustomerPhone): Boolean {
+        return authService.resendSms(phone = customerPhone).isSuccessful
+    }
 }

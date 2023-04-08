@@ -82,6 +82,10 @@ val useCaseModule = module {
     }
 
     single {
+        ResendSmsUseCase(authRepository = get())
+    }
+
+    single {
         SaveUserTokenUseCase(userPreferencesRepository = get())
     }
 

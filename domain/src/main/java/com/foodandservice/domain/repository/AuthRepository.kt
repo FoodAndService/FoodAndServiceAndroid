@@ -11,4 +11,5 @@ interface AuthRepository {
     suspend fun signInFirstPhase(customerPhone: CustomerPhone): ApiResponse<AuthPhase>
     suspend fun signInSecondPhase(phoneWithOtp: PhoneWithOtp): ApiResponse<AuthPhaseWithToken>
     suspend fun signUpFirstPhase(name: Name): ApiResponse<AuthPhaseWithToken>
+    suspend fun resendSms(customerPhone: CustomerPhone): Boolean
 }

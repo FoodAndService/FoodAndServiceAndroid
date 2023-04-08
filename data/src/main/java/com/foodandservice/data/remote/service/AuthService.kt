@@ -5,6 +5,7 @@ import com.foodandservice.data.remote.model.sign.AuthPhaseWithTokenDto
 import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.PhoneWithOtp
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.PUT
 
@@ -19,4 +20,7 @@ interface AuthService {
     suspend fun signUpFirstPhase(
         @Body name: Name
     ): AuthPhaseWithTokenDto
+
+    @PUT("customer/resend-sms")
+    suspend fun resendSms(@Body phone: CustomerPhone): Response<Unit>
 }

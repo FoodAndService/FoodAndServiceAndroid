@@ -3,7 +3,9 @@ package com.foodandservice.presentation.ui.sms_confirm_auth
 import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.sign.AuthCurrentPhase
+import com.foodandservice.domain.usecases.auth.ResendSmsUseCase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
@@ -14,7 +16,8 @@ import kotlinx.coroutines.launch
 class SmsConfirmViewModel(
     private val signInSecondPhaseUseCase: SignInSecondPhaseUseCase,
     private val saveUserTokenUseCase: SaveUserTokenUseCase,
-    private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase
+    private val saveAuthCurrentPhaseUseCase: SaveAuthCurrentPhaseUseCase,
+    private val resendSmsUseCase: ResendSmsUseCase
 ) : ViewModel() {
 
     private val _smsConfirmAuthState = MutableSharedFlow<SmsConfirmAuthState>(replay = 10)
@@ -69,10 +72,17 @@ class SmsConfirmViewModel(
         }
     }
 
+    fun resendSms(phone: String) {
+        viewModelScope.launch {
+            resendSmsUseCase(customerPhone = CustomerPhone(phone = phone))
+            initCountDownTimer()
+        }
+    }
+
     fun initCountDownTimer() {
         _countDownTimerState.update { it.copy(isBtnEnabled = false) }
 
-        timer = object : CountDownTimer(60000, 1000) {
+        timer = object : CountDownTimer(10000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 try {
                     _countDownTimerState.update { it.copy(time = (millisUntilFinished / 1000)) }

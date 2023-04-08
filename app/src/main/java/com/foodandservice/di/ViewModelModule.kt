@@ -100,7 +100,8 @@ val viewModelModule = module {
         SmsConfirmViewModel(
             signInSecondPhaseUseCase = get(),
             saveUserTokenUseCase = get(),
-            saveAuthCurrentPhaseUseCase = get()
+            saveAuthCurrentPhaseUseCase = get(),
+            resendSmsUseCase = get()
         )
     }
 

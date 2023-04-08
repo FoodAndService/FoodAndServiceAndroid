@@ -81,10 +81,10 @@ class SmsConfirmAuthFragment : Fragment() {
             }
 
             btnResendSms.setOnClickListener {
-                viewModel.initCountDownTimer()
+                viewModel.resendSms(phone = args.phone)
             }
 
-            etSms.onChangeListener = SmsConfirmationView.OnChangeListener { code, isComplete -> }
+            etSms.onChangeListener = SmsConfirmationView.OnChangeListener { _, _ -> }
 
             tvCopyright.text = Constants.FYS_COPYRIGHT_LABEL
         }
