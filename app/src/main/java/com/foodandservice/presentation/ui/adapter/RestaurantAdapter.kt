@@ -1,6 +1,7 @@
 package com.foodandservice.presentation.ui.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.paging.PagingDataAdapter
@@ -35,6 +36,12 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
         fun bind(item: Restaurant, restaurantClickListener: RestaurantClickListener) {
             binding.apply {
                 tvRestaurantName.text = item.name
+                tvCategoryName.text = item.categoryName
+                cvOpeningStatus.visibility =
+                    if (item.isClosed() || item.isOnVacation()) View.VISIBLE else View.GONE
+                tvOpeningStatus.text =
+                    if (item.isClosed() || item.isOnVacation()) binding.root.resources.getString(R.string.restaurant_opening_status_closed)
+                    else binding.root.resources.getString(R.string.restaurant_opening_status_closed)
 
                 if (LocationUtils.isGPSEnabled(context = binding.root.context) && PermissionsUtils.hasLocationPermission(
                         context = binding.root.context

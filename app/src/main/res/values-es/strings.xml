@@ -137,7 +137,8 @@
     <string name="restaurant_details_distance">A %.1f km</string>
     <string name="restaurant_details_opening_status_closed">Cerrado por el horario laboral</string>
     <string name="restaurant_details_opening_status_vacation">Cerrado por vacaciones</string>
-
+    <string name="restaurant_opening_status_closed">Cerrado</string>
+    <string name="restaurant_opening_status_closing_soon">Cierra pronto</string>
 
     <string name="schedule">Horario</string>
 

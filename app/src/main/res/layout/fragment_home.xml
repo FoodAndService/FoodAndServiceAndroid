@@ -36,11 +36,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:visibility="gone"
             app:boxBackgroundColor="@android:color/transparent"
             app:layout_constraintEnd_toStartOf="@+id/btnFilter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/toolbar"
-            tools:layout_editor_absoluteY="150dp">
+            tools:layout_editor_absoluteY="150dp"
+            tools:visibility="visible">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/tieSearch"
@@ -60,10 +62,12 @@
             android:layout_marginEnd="16dp"
             android:importantForAccessibility="no"
             android:src="@drawable/ic_filter"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/tilSearch"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tilSearch"
-            app:layout_constraintVertical_bias="2" />
+            app:layout_constraintVertical_bias="2"
+            tools:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvCategoryTag"

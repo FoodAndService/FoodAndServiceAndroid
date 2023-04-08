@@ -205,6 +205,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="FysSecondarySmallText" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/fys_secondary</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:gravity">center</item>
+    </style>
+
     <style name="FysPrimaryMediumText" parent="Widget.MaterialComponents.TextView">
         <item name="android:textColor">@color/fys_primary</item>
         <item name="android:textSize">16sp</item>
