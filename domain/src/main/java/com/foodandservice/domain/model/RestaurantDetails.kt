@@ -1,5 +1,7 @@
 package com.foodandservice.domain.model
 
+import java.io.Serializable
+
 data class RestaurantDetails(
     val address: RestaurantDetailsAddress,
     val banner: String,
@@ -12,7 +14,7 @@ data class RestaurantDetails(
     val openingStatus: RestaurantOpeningStatus,
     val phone: String,
     val schedule: List<RestaurantDetailsSchedule>
-) {
+) : Serializable {
     fun isOpen() = openingStatus == RestaurantOpeningStatus.OPEN
     fun isClosed() = openingStatus == RestaurantOpeningStatus.CLOSED
     fun isOnVacation() = openingStatus == RestaurantOpeningStatus.VACATION
@@ -26,7 +28,7 @@ data class RestaurantDetailsAddress(
     val name: String,
     val number: Int,
     val postalCode: String
-)
+) : Serializable
 
 data class RestaurantDetailsSchedule(
     val endHour: Int,
@@ -34,4 +36,4 @@ data class RestaurantDetailsSchedule(
     val startHour: Int,
     val startMinutes: Int,
     val weekDay: Int
-)
+) : Serializable

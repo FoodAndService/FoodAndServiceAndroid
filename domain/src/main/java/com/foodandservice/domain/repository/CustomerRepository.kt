@@ -17,6 +17,5 @@ interface CustomerRepository {
     suspend fun getOrderStatus(): ApiResponse<String>
     suspend fun getProductDetails(): ApiResponse<ProductDetails>
     suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails>
-    suspend fun getRestaurantDetailsExtra(): ApiResponse<RestaurantDetailsExtra>
     suspend fun getRestaurantReviews(): ApiResponse<List<RestaurantReview>>
 }

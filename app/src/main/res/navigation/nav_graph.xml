@@ -208,7 +208,11 @@
         android:id="@+id/restaurantDetailsExtraFragment"
         android:name="com.foodandservice.presentation.ui.restaurant_details_extra.RestaurantDetailsExtraFragment"
         android:label="RestaurantExtraDetailsFragment"
-        tools:layout="@layout/fragment_restaurant_details_extra" />
+        tools:layout="@layout/fragment_restaurant_details_extra">
+        <argument
+            android:name="restaurantDetails"
+            app:argType="com.foodandservice.domain.model.RestaurantDetails" />
+    </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
         android:name="com.foodandservice.presentation.ui.product_details.ProductDetailsFragment"

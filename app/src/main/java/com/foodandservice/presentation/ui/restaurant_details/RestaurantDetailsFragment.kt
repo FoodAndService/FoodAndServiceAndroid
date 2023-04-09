@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.birjuvachhani.locus.Locus
 import com.bumptech.glide.Glide
@@ -28,15 +29,13 @@ import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import com.foodandservice.util.getTabbedListMediatorIndices
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
-import org.koin.core.parameter.parametersOf
 
 class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListener {
     private lateinit var binding: FragmentRestaurantDetailsBinding
     private lateinit var productAdapter: ProductAdapter
     private lateinit var restaurantDetails: RestaurantDetails
-    private val viewModel: RestaurantDetailsViewModel by lazy {
-        get { parametersOf(RestaurantDetailsFragmentArgs.fromBundle(requireArguments()).restaurantId) }
-    }
+    private val args: RestaurantDetailsFragmentArgs by navArgs()
+    private val viewModel: RestaurantDetailsViewModel = get()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -51,6 +50,8 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+
+        viewModel.getRestaurantDetails(args.restaurantId)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -80,7 +81,11 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
             }
 
             btnMoreInfo.setOnClickListener {
-                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantDetailsExtraFragment())
+                navigate(
+                    RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantDetailsExtraFragment(
+                        restaurantDetails = restaurantDetails
+                    )
+                )
             }
 
             btnBack.setOnClickListener {

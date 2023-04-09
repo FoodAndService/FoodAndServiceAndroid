@@ -175,4 +175,6 @@
     <string name="user_profile_my_bookings">My bookings</string>
 
     <string name="view_my_order">View my order</string>
+    <string name="error_no_google_maps_found">No Google Maps found</string>
+    <string name="error_dialer">Error opening dialer</string>
 </resources>

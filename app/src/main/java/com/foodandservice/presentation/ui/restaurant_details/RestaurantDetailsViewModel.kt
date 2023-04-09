@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 class RestaurantDetailsViewModel(
-    restaurantId: String,
     private val getRestaurantDetailsUseCase: GetRestaurantDetailsUseCase
 ) : ViewModel() {
     private val _restaurantDetailsState =
@@ -18,11 +17,7 @@ class RestaurantDetailsViewModel(
     val restaurantDetailsState: StateFlow<RestaurantDetailsState> =
         _restaurantDetailsState.asStateFlow()
 
-    init {
-        getRestaurantDetails(restaurantId)
-    }
-
-    private fun getRestaurantDetails(restaurantId: String) {
+    fun getRestaurantDetails(restaurantId: String) {
         viewModelScope.launch {
             _restaurantDetailsState.emit(RestaurantDetailsState.Loading)
 

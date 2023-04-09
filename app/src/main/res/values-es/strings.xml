@@ -168,4 +168,6 @@
     <string name="user_profile_my_bookings">Mis reservas</string>
 
     <string name="view_my_order">Ver pedido</string>
+    <string name="error_no_google_maps_found">No se ha encontrado Google Maps</string>
+    <string name="error_dialer">Error al abrir el teléfono</string>
 </resources>

@@ -1,5 +1,7 @@
 package com.foodandservice.domain.model
 
+import java.io.Serializable
+
 data class Restaurant(
     val address: RestaurantAddress,
     val banner: String,
@@ -36,7 +38,7 @@ data class RestaurantSchedule(
     val weekDay: Int
 )
 
-enum class RestaurantOpeningStatus {
+enum class RestaurantOpeningStatus : Serializable {
     OPEN, CLOSED, VACATION, UNKNOWN;
 
     companion object {
