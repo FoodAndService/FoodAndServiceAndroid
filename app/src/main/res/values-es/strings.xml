@@ -170,4 +170,5 @@
     <string name="view_my_order">Ver pedido</string>
     <string name="error_no_google_maps_found">No se ha encontrado Google Maps</string>
     <string name="error_dialer">Error al abrir el teléfono</string>
+    <string name="restaurant_open_24h">Abierto 24 horas</string>
 </resources>
