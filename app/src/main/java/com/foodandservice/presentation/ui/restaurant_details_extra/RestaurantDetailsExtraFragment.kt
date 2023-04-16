@@ -19,7 +19,7 @@ import com.foodandservice.util.extensions.CoreExtensions.showToast
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.format.TextStyle
-import java.util.*
+import java.util.Locale
 
 class RestaurantDetailsExtraFragment : Fragment() {
     private lateinit var binding: FragmentRestaurantDetailsExtraBinding
@@ -93,6 +93,9 @@ class RestaurantDetailsExtraFragment : Fragment() {
                 val scheduleString = matchingSchedules.joinToString(", ") {
                     if (it.startHour == 0 && it.startMinutes == 0 && it.endHour == 23 && it.endMinutes == 59) {
                         getString(R.string.restaurant_open_24h)
+                    } else if (it.endHour == 23 && it.endMinutes == 59) {
+                        val start = String.format("%02d:%02d", it.startHour, it.startMinutes)
+                        "$start - 24"
                     } else {
                         val start = String.format("%02d:%02d", it.startHour, it.startMinutes)
                         val end = String.format("%02d:%02d", it.endHour, it.endMinutes)

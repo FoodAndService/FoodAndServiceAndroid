@@ -1,7 +1,6 @@
 package com.foodandservice.presentation.ui.restaurant_details
 
 import android.graphics.Paint
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.ahmadhamwi.tabsync.TabbedListMediator
-import com.birjuvachhani.locus.Locus
 import com.bumptech.glide.Glide
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
-import com.foodandservice.domain.model.CategoryWithProducts
-import com.foodandservice.domain.model.Product
 import com.foodandservice.domain.model.RestaurantDetails
-import com.foodandservice.presentation.ui.adapter.ProductAdapter
-import com.foodandservice.util.LocationUtils
-import com.foodandservice.util.PermissionsUtils
+import com.foodandservice.domain.model.restaurant.RestaurantProduct
+import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
+import com.foodandservice.presentation.ui.adapter.RestaurantProductAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
@@ -30,9 +26,10 @@ import com.foodandservice.util.getTabbedListMediatorIndices
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
-class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListener {
+class RestaurantDetailsFragment : Fragment(),
+    RestaurantProductAdapter.RestaurantProductClickListener {
     private lateinit var binding: FragmentRestaurantDetailsBinding
-    private lateinit var productAdapter: ProductAdapter
+    private lateinit var restaurantProductAdapter: RestaurantProductAdapter
     private lateinit var restaurantDetails: RestaurantDetails
     private val args: RestaurantDetailsFragmentArgs by navArgs()
     private val viewModel: RestaurantDetailsViewModel = get()
@@ -51,22 +48,29 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
         setAdapter()
 
-        viewModel.getRestaurantDetails(args.restaurantId)
+        viewModel.getRestaurantData(args.restaurantId)
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.restaurantDetailsState.collect { state ->
                     when (state) {
-                        is RestaurantDetailsState.Success -> {
+                        is RestaurantDetailsState.DetailsSuccess -> {
                             restaurantDetails = state.restaurantDetails
-                            setRestaurantInfo()
+                            setRestaurantDetails()
                         }
+
+                        is RestaurantDetailsState.ProductsWithCategoriesSuccess -> {
+                            setRestaurantProductsWithCategories(state.restaurantProductCategoriesWithProducts)
+                        }
+
                         is RestaurantDetailsState.Loading -> {
                             setLoadingState()
                         }
+
                         is RestaurantDetailsState.Error -> {
 
                         }
+
                         is RestaurantDetailsState.Idle -> {
                             setIdleState()
                         }
@@ -104,7 +108,33 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         }
     }
 
-    private fun setRestaurantInfo() {
+    private fun setRestaurantProductsWithCategories(restaurantProductCategoriesWithProducts: List<RestaurantProductCategoryWithProducts>) {
+        val products = mutableListOf<RestaurantProduct>()
+        restaurantProductCategoriesWithProducts.forEach { it ->
+            it.products.forEach {
+                products.add(
+                    it
+                )
+            }
+        }
+
+        restaurantProductAdapter.submitList(products)
+
+        binding.apply {
+            restaurantProductCategoriesWithProducts.forEach {
+                tabLayout.addTab(tabLayout.newTab().setText(it.category))
+            }
+
+            TabbedListMediator(
+                rvProduct,
+                tabLayout,
+                getTabbedListMediatorIndices(restaurantProductCategoriesWithProducts),
+                true
+            ).attach()
+        }
+    }
+
+    private fun setRestaurantDetails() {
         binding.apply {
             Glide.with(this@RestaurantDetailsFragment).load(restaurantDetails.logo)
                 .into(restaurantLogo)
@@ -114,15 +144,14 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
 
             getRestaurantOpeningStatus()
 
-            if (LocationUtils.isGPSEnabled(requireContext()) && PermissionsUtils.hasLocationPermission(
-                    requireContext()
+            if (args.restaurantDistance != 0f) {
+                tvDistance.text = getString(
+                    R.string.restaurant_details_distance, args.restaurantDistance
                 )
-            ) {
-                getUserCurrentLocation()
             } else {
                 tvDistance.apply {
                     text = getString(R.string.activate_location)
-                    setTextColor(ContextCompat.getColor(requireContext(), R.color.orange))
+                    setTextColor(ContextCompat.getColor(binding.root.context, R.color.orange))
                 }
             }
         }
@@ -139,46 +168,8 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         }
     }
 
-    private fun getUserCurrentLocation() {
-        Locus.getCurrentLocation(requireContext(), onResult = {
-            getDistanceInKm(it.location)
-        })
-    }
-
-    private fun getDistanceInKm(location: Location?) {
-        val restaurantCoord = Location("Restaurant coordinates")
-        val userCoord = Location("User coordinates")
-
-        restaurantCoord.apply {
-            latitude = restaurantDetails.address.latitude
-            longitude = restaurantDetails.address.longitude
-        }
-
-        location?.let {
-            userCoord.apply {
-                latitude = it.latitude
-                longitude = it.longitude
-            }
-        }
-
-        val distance = userCoord.distanceTo(restaurantCoord) / 1000
-
-        binding.tvDistance.text = getString(
-            R.string.restaurant_details_distance, distance
-        )
-    }
-
-
-    private fun initProducts(categoriesWithProducts: List<CategoryWithProducts>) {
-        val products = mutableListOf<Product>()
-        categoriesWithProducts.forEach { it -> it.products.forEach { products.add(it) } }
-
-        productAdapter.submitList(products)
-        initTabLayout(categoriesWithProducts)
-    }
-
     private fun setAdapter() {
-        productAdapter = ProductAdapter(this).also { adapter ->
+        restaurantProductAdapter = RestaurantProductAdapter(this).also { adapter ->
             binding.apply {
                 rvProduct.adapter = adapter
                 rvProduct.addItemDecoration(RecyclerViewItemDecoration(topMargin = 32))
@@ -186,22 +177,10 @@ class RestaurantDetailsFragment : Fragment(), ProductAdapter.ProductClickListene
         }
     }
 
-    private fun initTabLayout(categoriesWithProducts: List<CategoryWithProducts>) {
-        binding.apply {
-            categoriesWithProducts.forEach {
-                tabLayout.addTab(tabLayout.newTab().setText(it.categoryName))
-            }
-
-            TabbedListMediator(
-                rvProduct, tabLayout, getTabbedListMediatorIndices(categoriesWithProducts), true
-            ).attach()
-        }
-    }
-
-    override fun onClick(product: Product) {
+    override fun onClick(restaurantProduct: RestaurantProduct) {
         navigate(
             RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToProductDetailsFragment(
-                product
+                restaurantProduct
             )
         )
     }

@@ -14,24 +14,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
 import com.foodandservice.databinding.ItemProductBinding
 import com.foodandservice.databinding.ItemProductRefillBinding
-import com.foodandservice.domain.model.Product
+import com.foodandservice.domain.model.restaurant.RestaurantProduct
+import com.foodandservice.domain.model.restaurant.toUI
 
-class ProductAdapter constructor(private val listener: ProductClickListener) :
-    ListAdapter<Product, ProductAdapter.AbstractViewHolder>(ProductDiffCallback()) {
+class RestaurantProductAdapter constructor(private val listener: RestaurantProductClickListener) :
+    ListAdapter<RestaurantProduct, RestaurantProductAdapter.AbstractViewHolder>(
+        RestaurantProductDiffCallback()
+    ) {
 
     companion object {
         private const val ITEM_PRODUCT_NORMAL = 1
         private const val ITEM_PRODUCT_REFILL = 2
     }
 
-    interface ProductClickListener {
-        fun onClick(product: Product)
+    interface RestaurantProductClickListener {
+        fun onClick(restaurantProduct: RestaurantProduct)
     }
 
     abstract class AbstractViewHolder(
         val binding: ViewDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        abstract fun bind(item: Product, clickListener: ProductClickListener)
+        abstract fun bind(item: RestaurantProduct, clickListener: RestaurantProductClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
@@ -43,23 +46,21 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: Product, clickListener: ProductClickListener) {
+        override fun bind(item: RestaurantProduct, clickListener: RestaurantProductClickListener) {
             val binding = binding as ItemProductBinding
             binding.apply {
                 tvProductName.text = item.name
-                tvPrice.text = item.price + "€"
-
-                root.setOnClickListener {
+                tvPrice.text = item.price.toUI()
+                mainCardView.setOnClickListener {
                     clickListener.onClick(item)
                 }
-
-                setStockStyle(product = this, inStock = item.inStock)
+                setStockStyle(product = this, hasStock = item.hasStock)
             }
             binding.executePendingBindings()
         }
 
-        private fun setStockStyle(product: ItemProductBinding, inStock: Boolean) {
-            when (inStock) {
+        private fun setStockStyle(product: ItemProductBinding, hasStock: Boolean) {
+            when (hasStock) {
                 false -> {
                     product.apply {
                         mainCardView.apply {
@@ -133,22 +134,22 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: Product, clickListener: ProductClickListener) {
+        override fun bind(item: RestaurantProduct, clickListener: RestaurantProductClickListener) {
             val binding = binding as ItemProductRefillBinding
             binding.apply {
                 tvProductName.text = item.name
-                tvPrice.text = item.price + "€"
-                root.setOnClickListener {
+                tvPrice.text = item.price.toUI()
+                mainCardView.setOnClickListener {
                     clickListener.onClick(item)
                 }
 
-                setStockStyle(product = this, inStock = item.inStock)
+                setStockStyle(product = this, hasStock = item.hasStock)
             }
             binding.executePendingBindings()
         }
 
-        private fun setStockStyle(product: ItemProductRefillBinding, inStock: Boolean) {
-            when (inStock) {
+        private fun setStockStyle(product: ItemProductRefillBinding, hasStock: Boolean) {
+            when (hasStock) {
                 false -> {
                     product.apply {
                         mainCardView.apply {
@@ -235,11 +236,16 @@ class ProductAdapter constructor(private val listener: ProductClickListener) :
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (this.currentList[position].isRefill) ITEM_PRODUCT_REFILL else ITEM_PRODUCT_NORMAL
+        // Change this when backend sends product refill possibility
+        // return if (this.currentList[position].isRefill) ITEM_PRODUCT_REFILL else ITEM_PRODUCT_NORMAL
+        return ITEM_PRODUCT_NORMAL
     }
 }
 
-class ProductDiffCallback : DiffUtil.ItemCallback<Product>() {
-    override fun areItemsTheSame(oldItem: Product, newItem: Product) = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: Product, newItem: Product) = oldItem == newItem
+class RestaurantProductDiffCallback : DiffUtil.ItemCallback<RestaurantProduct>() {
+    override fun areItemsTheSame(oldItem: RestaurantProduct, newItem: RestaurantProduct) =
+        oldItem.id == newItem.id
+
+    override fun areContentsTheSame(oldItem: RestaurantProduct, newItem: RestaurantProduct) =
+        oldItem == newItem
 }

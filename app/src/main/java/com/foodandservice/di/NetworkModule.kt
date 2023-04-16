@@ -8,6 +8,7 @@ import com.foodandservice.common.Constants
 import com.foodandservice.data.remote.service.AuthService
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.data.remote.service.StripeService
+import com.foodandservice.network.AcceptLanguageInterceptor
 import com.foodandservice.util.AuthInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -28,6 +29,7 @@ val networkModule = module {
             })
 
             addInterceptor(AuthInterceptor(getAuthTokenUseCase = get()))
+            addInterceptor(AcceptLanguageInterceptor(context = get()))
             addInterceptor(FlipperOkhttpInterceptor(get(), true))
             addInterceptor(
                 ChuckerInterceptor.Builder(get())

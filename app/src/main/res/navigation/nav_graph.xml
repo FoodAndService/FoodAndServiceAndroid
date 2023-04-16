@@ -149,6 +149,9 @@
         <argument
             android:name="restaurantId"
             app:argType="string" />
+        <argument
+            android:name="restaurantDistance"
+            app:argType="float" />
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -219,8 +222,8 @@
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details">
         <argument
-            android:name="product"
-            app:argType="com.foodandservice.domain.model.Product" />
+            android:name="restaurantProduct"
+            app:argType="com.foodandservice.domain.model.restaurant.RestaurantProduct" />
     </fragment>
     <fragment
         android:id="@+id/restaurantReviewsFragment"

@@ -3,14 +3,29 @@ package com.foodandservice.data.repository
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
+import com.foodandservice.data.remote.model.restaurant.toDomain
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
 import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
 import com.foodandservice.data.remote.model.restaurant.toRestaurantDetails
 import com.foodandservice.data.remote.service.CustomerService
-import com.foodandservice.domain.model.*
+import com.foodandservice.domain.model.AllergenIntolerance
+import com.foodandservice.domain.model.Booking
+import com.foodandservice.domain.model.CartItem
+import com.foodandservice.domain.model.FavouriteRestaurant
+import com.foodandservice.domain.model.Order
+import com.foodandservice.domain.model.OrderProduct
+import com.foodandservice.domain.model.ProductDetails
+import com.foodandservice.domain.model.ProductExtra
+import com.foodandservice.domain.model.Restaurant
+import com.foodandservice.domain.model.RestaurantCategory
+import com.foodandservice.domain.model.RestaurantDetails
+import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
 import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.ApiResponse
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import java.time.LocalDateTime
@@ -35,6 +50,45 @@ class CustomerRepositoryImpl(
             ApiResponse.Failure(exception)
         }
     }
+
+    override suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails> {
+        return try {
+            val restaurantDetails = customerService.getRestaurantDetails(restaurantId)
+            ApiResponse.Success(data = restaurantDetails.toRestaurantDetails())
+        } catch (exception: Exception) {
+            ApiResponse.Failure(exception)
+        }
+    }
+
+    override suspend fun getRestaurantProductCategoriesWithProducts(restaurantId: String): ApiResponse<List<RestaurantProductCategoryWithProducts>> =
+        coroutineScope {
+            return@coroutineScope try {
+                val restaurantProductCategories =
+                    async { customerService.getRestaurantProductCategories(restaurantId) }
+                val restaurantProducts =
+                    async { customerService.getRestaurantProducts(restaurantId) }
+                val restaurantProductCategoriesResult =
+                    restaurantProductCategories.await().map { it.toDomain() }.sortedBy { it.order }
+                val restaurantProductsResult = restaurantProducts.await().map { it.toDomain() }
+                val restaurantProductCategoryWithProducts =
+                    mutableListOf<RestaurantProductCategoryWithProducts>()
+
+                restaurantProductCategoriesResult.map { productCategory ->
+                    val filteredProducts =
+                        restaurantProductsResult.filter { product -> product.categoryId == productCategory.id }
+                    restaurantProductCategoryWithProducts.add(
+                        RestaurantProductCategoryWithProducts(
+                            category = productCategory.name,
+                            products = filteredProducts
+                        )
+                    )
+                }
+
+                ApiResponse.Success(data = restaurantProductCategoryWithProducts)
+            } catch (exception: Exception) {
+                ApiResponse.Failure(exception)
+            }
+        }
 
     override suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>> {
         return try {
@@ -232,15 +286,6 @@ class CustomerRepositoryImpl(
                     productExtras = productExtras
                 )
             )
-        } catch (exception: Exception) {
-            ApiResponse.Failure(exception)
-        }
-    }
-
-    override suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails> {
-        return try {
-            val restaurantDetails = customerService.getRestaurantDetails(restaurantId)
-            ApiResponse.Success(data = restaurantDetails.toRestaurantDetails())
         } catch (exception: Exception) {
             ApiResponse.Failure(exception)
         }

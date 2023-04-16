@@ -65,6 +65,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
                             )
                         )
                     }
+                    item.distanceInKm = distance
                 } else {
                     tvDistance.apply {
                         text = binding.root.resources.getString(R.string.activate_location)

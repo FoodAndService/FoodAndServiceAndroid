@@ -1,8 +1,8 @@
 package com.foodandservice.util
 
-import com.foodandservice.domain.model.CategoryWithProducts
+import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
 
-fun getTabbedListMediatorIndices(list: List<CategoryWithProducts>): List<Int> {
+fun getTabbedListMediatorIndices(list: List<RestaurantProductCategoryWithProducts>): List<Int> {
     val indices = mutableListOf<Int>()
     indices.add(0)
 

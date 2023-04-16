@@ -1,12 +1,26 @@
 package com.foodandservice.di
 
-import com.foodandservice.domain.usecases.auth.*
+import com.foodandservice.domain.usecases.auth.GetAuthCurrentPhaseUseCase
+import com.foodandservice.domain.usecases.auth.GetUserAuthTokenUseCase
+import com.foodandservice.domain.usecases.auth.IsUserLoggedInUseCase
+import com.foodandservice.domain.usecases.auth.ResendSmsUseCase
+import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
+import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
+import com.foodandservice.domain.usecases.auth.SignOutUseCase
 import com.foodandservice.domain.usecases.cart.GetCartUseCase
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
 import com.foodandservice.domain.usecases.order.GetOrderProductsUseCase
 import com.foodandservice.domain.usecases.order.GetOrderStatusUseCase
-import com.foodandservice.domain.usecases.restaurant.*
+import com.foodandservice.domain.usecases.restaurant.GetBookingsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetFavouriteRestaurantsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetOrderHistoryUseCase
+import com.foodandservice.domain.usecases.restaurant.GetProductDetailsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductCategoriesWithProductsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantReviewsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
@@ -23,6 +37,10 @@ val useCaseModule = module {
 
     single {
         //GetCategoryRestaurantsUseCase(customerRepository = get())
+    }
+
+    single {
+        GetRestaurantProductCategoriesWithProductsUseCase(customerRepository = get())
     }
 
     single {

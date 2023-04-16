@@ -13,7 +13,8 @@ data class Restaurant(
     val name: String,
     val openingStatus: RestaurantOpeningStatus,
     val phone: String,
-    val schedule: List<RestaurantSchedule>?
+    val schedule: List<RestaurantSchedule>?,
+    var distanceInKm: Float = 0f
 ) {
     fun isOpen() = openingStatus == RestaurantOpeningStatus.OPEN
     fun isClosed() = openingStatus == RestaurantOpeningStatus.CLOSED
