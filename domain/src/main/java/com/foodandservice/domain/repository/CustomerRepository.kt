@@ -6,7 +6,6 @@ import com.foodandservice.domain.model.CartItem
 import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
-import com.foodandservice.domain.model.ProductDetails
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
@@ -33,6 +32,5 @@ interface CustomerRepository {
     suspend fun getCart(): ApiResponse<List<CartItem>>
     suspend fun getOrderProducts(): ApiResponse<List<OrderProduct>>
     suspend fun getOrderStatus(): ApiResponse<String>
-    suspend fun getProductDetails(): ApiResponse<ProductDetails>
     suspend fun getRestaurantReviews(): ApiResponse<List<RestaurantReview>>
 }

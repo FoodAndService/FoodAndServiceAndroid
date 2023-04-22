@@ -7,14 +7,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemProductExtraBinding
-import com.foodandservice.domain.model.ProductExtra
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
+import com.foodandservice.domain.model.restaurant_details.toUI
 
 class ProductExtraAdapter constructor(private val clickListener: ProductExtraClickListener) :
-    ListAdapter<ProductExtra, ProductExtraAdapter.ViewHolder>(ProductExtraDiffCallBack()) {
+    ListAdapter<RestaurantProductExtra, ProductExtraAdapter.ViewHolder>(
+        RestaurantProductExtraDiffCallBack()
+    ) {
 
     interface ProductExtraClickListener {
-        fun onClickSubtractQuantity(productExtra: ProductExtra, position: Int)
-        fun onClickAddQuantity(productExtra: ProductExtra, position: Int)
+        fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int)
+        fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,16 +35,16 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
     class ViewHolder private constructor(private val binding: ItemProductExtraBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item: ProductExtra, clickListener: ProductExtraClickListener, isLast: Boolean) {
+        fun bind(
+            item: RestaurantProductExtra, clickListener: ProductExtraClickListener, isLast: Boolean
+        ) {
             binding.apply {
                 tvProductExtraName.text = item.name
-                tvProductExtraPrice.text = item.price + "€"
-                tvProductQuantity.text = item.quantity.toString()
+                tvProductExtraPrice.text = item.price.toUI()
 
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
-                        productExtra = item,
-                        position = bindingAdapterPosition
+                        productExtra = item, position = bindingAdapterPosition
                     )
                 }
                 btnSubtract.setOnClickListener {
@@ -64,12 +67,12 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
     }
 }
 
-class ProductExtraDiffCallBack : DiffUtil.ItemCallback<ProductExtra>() {
+class RestaurantProductExtraDiffCallBack : DiffUtil.ItemCallback<RestaurantProductExtra>() {
     override fun areItemsTheSame(
-        oldItem: ProductExtra, newItem: ProductExtra
+        oldItem: RestaurantProductExtra, newItem: RestaurantProductExtra
     ) = oldItem.id == newItem.id
 
     override fun areContentsTheSame(
-        oldItem: ProductExtra, newItem: ProductExtra
+        oldItem: RestaurantProductExtra, newItem: RestaurantProductExtra
     ) = oldItem == newItem
 }

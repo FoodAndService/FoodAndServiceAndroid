@@ -1,13 +1,12 @@
 package com.foodandservice.data.remote.model.restaurant_details
 
-import com.foodandservice.domain.model.restaurant_details.RestaurantProductOther
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductAllergenIntolerance
 
 data class RestaurantProductOtherDto(
-    val id: String,
-    val name: String
+    val id: String, val name: String
 )
 
-fun RestaurantProductOtherDto.toRestaurantProductOther() = RestaurantProductOther(
-    id = id,
-    name = name
-)
+fun RestaurantProductOtherDto.toRestaurantProductAllergenIntolerance() =
+    RestaurantProductAllergenIntolerance(
+        id = id, name = name
+    )

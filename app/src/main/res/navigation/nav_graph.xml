@@ -214,7 +214,7 @@
         tools:layout="@layout/fragment_restaurant_details_extra">
         <argument
             android:name="restaurantDetails"
-            app:argType="com.foodandservice.domain.model.RestaurantDetails" />
+            app:argType="com.foodandservice.domain.model.restaurant_details.RestaurantDetails" />
     </fragment>
     <fragment
         android:id="@+id/productDetailsFragment"
@@ -222,8 +222,11 @@
         android:label="ProductDetailsFragment"
         tools:layout="@layout/fragment_product_details">
         <argument
-            android:name="restaurantProduct"
-            app:argType="com.foodandservice.domain.model.restaurant.RestaurantProduct" />
+            android:name="restaurantId"
+            app:argType="string" />
+        <argument
+            android:name="productId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/restaurantReviewsFragment"

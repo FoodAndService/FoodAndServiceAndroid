@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="12dp"
-                    android:text="Pepsi Max"
+                    tools:text="Pepsi Max"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@id/constraintProductDetails" />
 
@@ -75,7 +75,7 @@
                     android:layout_marginTop="12dp"
                     android:importantForAccessibility="no"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/pepsi"
+                    tools:src="@drawable/pepsi"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvProductName" />
@@ -90,23 +90,10 @@
                     android:layout_marginEnd="16dp"
                     android:ellipsize="end"
                     android:maxLines="5"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnShowProductIngredients"
-                    style="@style/FysWhiteButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/btn_ingredients"
-                    android:textAllCaps="true"
-                    app:icon="@drawable/ic_menu"
-                    app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
+                    app:layout_constraintTop_toBottomOf="@+id/ivProductImage"
+                    tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnShowAllergensAndIntolerances"
@@ -117,7 +104,7 @@
                     android:text="@string/btn_allergens_intolerances"
                     android:textAllCaps="true"
                     app:icon="@drawable/ic_allergens"
-                    app:layout_constraintTop_toBottomOf="@+id/btnShowProductIngredients" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvProductDescription" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnShowProductExtras"
@@ -170,10 +157,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="4"
                     app:layout_constraintBottom_toBottomOf="@id/btnSubtract"
                     app:layout_constraintStart_toEndOf="@id/btnSubtract"
-                    app:layout_constraintTop_toTopOf="@id/btnSubtract" />
+                    app:layout_constraintTop_toTopOf="@id/btnSubtract"
+                    tools:text="4" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAdd"
@@ -190,10 +177,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="1,99€"
                     app:layout_constraintBottom_toBottomOf="@id/tvPriceTotal"
                     app:layout_constraintEnd_toStartOf="@id/tvPriceTotal"
-                    app:layout_constraintTop_toTopOf="@id/tvPriceTotal" />
+                    app:layout_constraintTop_toTopOf="@id/tvPriceTotal"
+                    tools:text="1,99€" />
 
                 <com.google.android.material.textview.MaterialTextView
                     android:id="@+id/tvPriceTotal"
@@ -201,10 +188,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:text="(7,96€)"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="(7,96€)" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

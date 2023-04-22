@@ -8,13 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentProductDetailsBinding
-import com.foodandservice.domain.model.ProductExtra
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
+import com.foodandservice.domain.model.restaurant_details.toUI
 import com.foodandservice.presentation.ui.adapter.AllergenIntoleranceAdapter
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBottomSheet
-import com.foodandservice.util.FysBottomSheets.showGenericBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
@@ -24,6 +27,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     private lateinit var binding: FragmentProductDetailsBinding
     private lateinit var allergenIntoleranceAdapter: AllergenIntoleranceAdapter
     private lateinit var productExtraAdapter: ProductExtraAdapter
+    private val args: ProductDetailsFragmentArgs by navArgs()
     private val viewModel: ProductDetailsViewModel = get()
 
     override fun onCreateView(
@@ -37,14 +41,16 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
         super.onViewCreated(view, savedInstanceState)
 
         setAdapters()
+        viewModel.getRestaurantProductDetails(
+            restaurantId = args.restaurantId, productId = args.productId
+        )
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.productDetailsState.collect { state ->
                     when (state) {
                         is ProductDetailsState.Success -> {
-                            allergenIntoleranceAdapter.submitList(state.productDetails.allergensAndIntolerances)
-                            productExtraAdapter.submitList(state.productDetails.productExtras)
+                            setRestaurantProductDetailsInfo(state.restaurantProductDetails)
                         }
 
                         is ProductDetailsState.Loading -> {
@@ -68,10 +74,6 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                 navigateBack()
             }
 
-            btnShowProductIngredients.setOnClickListener {
-                showGenericBottomSheet(layout = R.layout.bottom_sheet_product_ingredients)
-            }
-
             btnShowAllergensAndIntolerances.setOnClickListener {
                 showAllergensAndIntolerancesBottomSheet(
                     layout = R.layout.bottom_sheet_product_allergens_intolerances,
@@ -88,6 +90,18 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
         }
     }
 
+    private fun setRestaurantProductDetailsInfo(restaurantProductDetails: RestaurantProductDetails) {
+        binding.apply {
+            tvProductName.text = restaurantProductDetails.name
+            tvProductDescription.text = restaurantProductDetails.description
+            Glide.with(requireContext()).load(restaurantProductDetails.image).centerCrop()
+                .into(ivProductImage)
+            tvPriceSingle.text = restaurantProductDetails.price.toUI()
+        }
+
+        allergenIntoleranceAdapter.submitList(restaurantProductDetails.allergensAndIntolerances)
+    }
+
     private fun setAdapters() {
         allergenIntoleranceAdapter = AllergenIntoleranceAdapter()
         productExtraAdapter = ProductExtraAdapter(this)
@@ -101,11 +115,11 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
 
     }
 
-    override fun onClickSubtractQuantity(productExtra: ProductExtra, position: Int) {
+    override fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int) {
 
     }
 
-    override fun onClickAddQuantity(productExtra: ProductExtra, position: Int) {
+    override fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int) {
 
     }
 }

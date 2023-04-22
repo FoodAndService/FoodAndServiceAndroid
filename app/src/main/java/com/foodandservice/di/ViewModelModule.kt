@@ -77,7 +77,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        ProductDetailsViewModel(getProductDetailsUseCase = get())
+        ProductDetailsViewModel(getRestaurantProductDetailsUseCase = get())
     }
 
     viewModel {

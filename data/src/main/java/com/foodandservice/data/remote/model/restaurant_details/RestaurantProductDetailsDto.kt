@@ -25,7 +25,10 @@ data class RestaurantProductDetailsDto(
 )
 
 fun RestaurantProductDetailsDto.toRestaurantProductDetails() = RestaurantProductDetails(
-    allergens = allergens.map { allergen -> allergen.toRestaurantProductAllergen() },
+    allergensAndIntolerances =
+    allergens.map { allergen -> allergen.toRestaurantProductAllergenIntolerance() }
+        .plus(intolerances.map { intolerance -> intolerance.toRestaurantProductIntolerance() })
+        .plus(others.map { other -> other.toRestaurantProductAllergenIntolerance() }),
     category = category.toRestaurantProductDetailsCategory(),
     description = description,
     discountPercentage = discountPercentage,
@@ -35,9 +38,7 @@ fun RestaurantProductDetailsDto.toRestaurantProductDetails() = RestaurantProduct
     hasStock = hasStock,
     id = id,
     image = image,
-    intolerances = intolerances.map { intolerance -> intolerance.toRestaurantProductIntolerance() },
     name = name,
-    others = others.map { other -> other.toRestaurantProductOther() },
     price = price.toRestaurantProductPrice(),
     productTax = productTax,
     status = status

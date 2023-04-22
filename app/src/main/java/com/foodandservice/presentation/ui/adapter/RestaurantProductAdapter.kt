@@ -29,7 +29,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
     }
 
     interface RestaurantProductClickListener {
-        fun onClick(restaurantProduct: RestaurantProduct)
+        fun onClick(productId: String)
     }
 
     abstract class AbstractViewHolder(
@@ -53,7 +53,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
                 tvProductName.text = item.name
                 tvPrice.text = item.price.toUI()
                 mainCardView.setOnClickListener {
-                    clickListener.onClick(item)
+                    clickListener.onClick(item.id)
                 }
                 setStockStyle(product = this, hasStock = item.hasStock)
                 Glide.with(itemView).load(item.image).centerCrop().into(ivProduct)
@@ -143,7 +143,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
                 tvProductName.text = item.name
                 tvPrice.text = item.price.toUI()
                 mainCardView.setOnClickListener {
-                    clickListener.onClick(item)
+                    clickListener.onClick(item.id)
                 }
 
                 setStockStyle(product = this, hasStock = item.hasStock)

@@ -15,10 +15,10 @@ import com.foodandservice.domain.usecases.order.GetOrderStatusUseCase
 import com.foodandservice.domain.usecases.restaurant.GetBookingsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetFavouriteRestaurantsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetOrderHistoryUseCase
-import com.foodandservice.domain.usecases.restaurant.GetProductDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductCategoriesWithProductsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantReviewsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
@@ -48,7 +48,7 @@ val useCaseModule = module {
     }
 
     single {
-        GetProductDetailsUseCase(customerRepository = get())
+        GetRestaurantProductDetailsUseCase(customerRepository = get())
     }
 
     single {

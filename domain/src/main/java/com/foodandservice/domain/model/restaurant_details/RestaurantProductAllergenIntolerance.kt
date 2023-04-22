@@ -1,5 +1,5 @@
 package com.foodandservice.domain.model.restaurant_details
 
-data class RestaurantProductAllergen(
+data class RestaurantProductAllergenIntolerance(
     val id: String, val name: String
 )
