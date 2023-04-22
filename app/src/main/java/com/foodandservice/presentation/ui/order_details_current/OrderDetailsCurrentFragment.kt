@@ -38,12 +38,15 @@ class OrderDetailsCurrentFragment : Fragment() {
                         is OrderDetailsCurrentState.Success -> {
                             orderCurrentAdapter.submitList(state.order)
                         }
+
                         is OrderDetailsCurrentState.Loading -> {
                             setLoadingState()
                         }
+
                         is OrderDetailsCurrentState.Error -> {
 
                         }
+
                         is OrderDetailsCurrentState.Idle -> {
                             setIdleState()
                         }

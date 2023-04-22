@@ -15,9 +15,9 @@ import com.birjuvachhani.locus.Locus
 import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentHomeBinding
-import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.domain.model.RestaurantCategory
 import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.domain.model.restaurant.Restaurant
+import com.foodandservice.domain.model.restaurant.RestaurantCategory
 import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
@@ -55,12 +55,15 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
                         is HomeState.SuccessRestaurantCategories -> {
                             categoryTagAdapter.submitList(state.restaurantCategories)
                         }
+
                         is HomeState.Loading -> {
                             setLoadingState()
                         }
+
                         is HomeState.Error -> {
                             showToast(state.message)
                         }
+
                         is HomeState.Idle -> {
                             setIdleState()
                         }

@@ -1,7 +1,7 @@
 package com.foodandservice.data.remote.service
 
-import com.foodandservice.data.remote.model.sign.AuthPhaseDto
-import com.foodandservice.data.remote.model.sign.AuthPhaseWithTokenDto
+import com.foodandservice.data.remote.model.auth.AuthPhaseDto
+import com.foodandservice.data.remote.model.auth.AuthPhaseWithTokenDto
 import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.PhoneWithOtp

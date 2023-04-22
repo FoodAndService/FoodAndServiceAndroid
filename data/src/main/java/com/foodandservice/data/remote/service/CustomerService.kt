@@ -1,6 +1,10 @@
 package com.foodandservice.data.remote.service
 
 import com.foodandservice.data.remote.model.restaurant.*
+import com.foodandservice.data.remote.model.restaurant_details.RestaurantDetailsDto
+import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductCategoryDto
+import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductDetailsDto
+import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -31,4 +35,10 @@ interface CustomerService {
     suspend fun getRestaurantProductCategories(
         @Path("restaurantId") restaurantId: String
     ): List<RestaurantProductCategoryDto>
+
+    @GET("business/{restaurantId}/product/{productId}")
+    suspend fun getRestaurantProductDetails(
+        @Path("restaurantId") restaurantId: String,
+        @Path("productId") productId: String
+    ): RestaurantProductDetailsDto
 }

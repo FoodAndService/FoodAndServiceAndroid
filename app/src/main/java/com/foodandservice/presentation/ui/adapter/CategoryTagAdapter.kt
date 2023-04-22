@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemCategoryTagBinding
-import com.foodandservice.domain.model.RestaurantCategory
+import com.foodandservice.domain.model.restaurant.RestaurantCategory
 
 class CategoryTagAdapter constructor(private val listener: CategoryTagClickListener) :
     ListAdapter<RestaurantCategory, CategoryTagAdapter.ViewHolder>(CategoryTagDiffCallback()) {

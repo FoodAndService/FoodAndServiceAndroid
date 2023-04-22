@@ -1,15 +1,15 @@
 package com.foodandservice.util
 
-import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductCategoryWithProducts
 
 fun getTabbedListMediatorIndices(list: List<RestaurantProductCategoryWithProducts>): List<Int> {
     val indices = mutableListOf<Int>()
-    indices.add(0)
+    var totalProducts = 0
 
-    list.forEachIndexed { index, categoryWithProducts ->
-        if (index > 0)
-            indices.add(index * categoryWithProducts.products.size)
+    list.forEach { categoryWithProducts ->
+        indices.add(totalProducts)
+        totalProducts += categoryWithProducts.products.size
     }
 
-    return indices
+    return indices.map { it - 1 }
 }

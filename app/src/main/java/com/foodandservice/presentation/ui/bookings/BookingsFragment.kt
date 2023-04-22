@@ -39,12 +39,15 @@ class BookingsFragment : Fragment(), BookingAdapter.BookingClickListener {
                         is BookingsState.Success -> {
                             bookingAdapter.submitList(state.bookings)
                         }
+
                         is BookingsState.Loading -> {
                             setLoadingState()
                         }
+
                         is BookingsState.Error -> {
 
                         }
+
                         is BookingsState.Idle -> {
                             setIdleState()
                         }

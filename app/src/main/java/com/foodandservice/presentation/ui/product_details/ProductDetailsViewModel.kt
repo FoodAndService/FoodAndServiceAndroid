@@ -28,6 +28,7 @@ class ProductDetailsViewModel(private val getProductDetailsUseCase: GetProductDe
                         _productDetailsState.emit(ProductDetailsState.Success(productDetails = productDetails))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _productDetailsState.emit(
                         ProductDetailsState.Error(

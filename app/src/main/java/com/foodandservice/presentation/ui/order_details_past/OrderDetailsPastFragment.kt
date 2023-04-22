@@ -41,12 +41,15 @@ class OrderDetailsPastFragment : Fragment() {
                         is OrderDetailsPastState.Success -> {
                             orderHistoryProductAdapter.submitList(state.order)
                         }
+
                         is OrderDetailsPastState.Loading -> {
                             setLoadingState()
                         }
+
                         is OrderDetailsPastState.Error -> {
 
                         }
+
                         is OrderDetailsPastState.Idle -> {
                             setIdleState()
                         }

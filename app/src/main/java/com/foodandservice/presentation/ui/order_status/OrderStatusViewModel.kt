@@ -27,6 +27,7 @@ class OrderStatusViewModel(private val getOrderStatusUseCase: GetOrderStatusUseC
                         _orderStatusState.emit(OrderStatusState.Success(orderStatus = status))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _orderStatusState.emit(
                         OrderStatusState.Error(

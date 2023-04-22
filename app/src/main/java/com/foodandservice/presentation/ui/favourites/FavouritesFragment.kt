@@ -40,12 +40,15 @@ class FavouritesFragment : Fragment(), FavouriteAdapter.FavouriteRestaurantClick
                         is FavouritesState.Success -> {
                             favouriteAdapter.submitList(state.favouriteRestaurants)
                         }
+
                         is FavouritesState.Loading -> {
                             setLoadingState()
                         }
+
                         is FavouritesState.Error -> {
 
                         }
+
                         is FavouritesState.Idle -> {
                             setIdleState()
                         }

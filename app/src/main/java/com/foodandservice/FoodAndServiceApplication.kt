@@ -10,7 +10,11 @@ import com.facebook.flipper.plugins.network.NetworkFlipperPlugin
 import com.facebook.flipper.plugins.sharedpreferences.SharedPreferencesFlipperPlugin
 import com.facebook.soloader.SoLoader
 import com.foodandservice.common.Constants
-import com.foodandservice.di.*
+import com.foodandservice.di.databaseModule
+import com.foodandservice.di.networkModule
+import com.foodandservice.di.repositoryModule
+import com.foodandservice.di.useCaseModule
+import com.foodandservice.di.viewModelModule
 import com.foodandservice.util.AndroidLoggingHandler
 import com.stripe.android.PaymentConfiguration
 import org.koin.android.ext.android.inject

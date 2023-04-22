@@ -3,8 +3,8 @@ package com.foodandservice.domain.repository
 import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.PhoneWithOtp
-import com.foodandservice.domain.model.sign.AuthPhase
-import com.foodandservice.domain.model.sign.AuthPhaseWithToken
+import com.foodandservice.domain.model.auth.AuthPhase
+import com.foodandservice.domain.model.auth.AuthPhaseWithToken
 import com.foodandservice.domain.util.ApiResponse
 
 interface AuthRepository {

@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.birjuvachhani.locus.Locus
-import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
 import com.foodandservice.domain.util.ApiResponse
@@ -51,6 +51,7 @@ class HomeViewModel(
                         )
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _homeState.emit(
                         HomeState.Error(

@@ -15,14 +15,13 @@ import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.bumptech.glide.Glide
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentRestaurantDetailsBinding
-import com.foodandservice.domain.model.RestaurantDetails
-import com.foodandservice.domain.model.restaurant.RestaurantProduct
-import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant_details.RestaurantDetails
+import com.foodandservice.domain.model.restaurant_details.RestaurantProduct
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductCategoryWithProducts
 import com.foodandservice.presentation.ui.adapter.RestaurantProductAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
-import com.foodandservice.util.getTabbedListMediatorIndices
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -100,10 +99,6 @@ class RestaurantDetailsFragment : Fragment(),
                 navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToRestaurantReviewsFragment())
             }
 
-            btnCart.setOnClickListener {
-                navigate(RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToCartFragment())
-            }
-
             tvRatingText.paintFlags = tvRatingText.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         }
     }
@@ -122,14 +117,14 @@ class RestaurantDetailsFragment : Fragment(),
 
         binding.apply {
             restaurantProductCategoriesWithProducts.forEach {
-                tabLayout.addTab(tabLayout.newTab().setText(it.category))
+                tlProducts.addTab(tlProducts.newTab().setText(it.category))
             }
 
             TabbedListMediator(
-                rvProduct,
-                tabLayout,
-                getTabbedListMediatorIndices(restaurantProductCategoriesWithProducts),
-                true
+                mRecyclerView = rvProduct,
+                mTabLayout = tlProducts,
+                mIndices = restaurantProductCategoriesWithProducts.indices.toList(),
+                mIsSmoothScroll = true
             ).attach()
         }
     }
@@ -139,7 +134,6 @@ class RestaurantDetailsFragment : Fragment(),
             Glide.with(this@RestaurantDetailsFragment).load(restaurantDetails.logo)
                 .into(restaurantLogo)
             tvRestaurantName.text = restaurantDetails.name
-
             tvDescription.text = restaurantDetails.description
 
             getRestaurantOpeningStatus()

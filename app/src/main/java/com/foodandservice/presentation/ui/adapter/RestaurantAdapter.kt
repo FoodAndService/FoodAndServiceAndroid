@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.foodandservice.R
 import com.foodandservice.databinding.ItemRestaurantBinding
-import com.foodandservice.domain.model.Restaurant
 import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.util.LocationUtils
 import com.foodandservice.util.PermissionsUtils
 

@@ -44,12 +44,15 @@ class RestaurantReviewsFragment : Fragment() {
                         is RestaurantReviewsState.Success -> {
                             restaurantReviewAdapter.submitList(state.restaurantReviews)
                         }
+
                         is RestaurantReviewsState.Loading -> {
                             setLoadingState()
                         }
+
                         is RestaurantReviewsState.Error -> {
 
                         }
+
                         is RestaurantReviewsState.Idle -> {
                             setIdleState()
                         }

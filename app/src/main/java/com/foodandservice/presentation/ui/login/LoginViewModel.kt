@@ -30,6 +30,7 @@ class LoginViewModel(
                 is ApiResponse.Success -> {
                     _loginState.emit(LoginState.Success(phone))
                 }
+
                 is ApiResponse.Failure -> {
                     _loginState.emit(
                         LoginState.Error(

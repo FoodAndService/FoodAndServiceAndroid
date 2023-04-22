@@ -4,13 +4,18 @@ import android.os.CountDownTimer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.model.CustomerPhone
-import com.foodandservice.domain.model.sign.AuthCurrentPhase
+import com.foodandservice.domain.model.auth.AuthCurrentPhase
 import com.foodandservice.domain.usecases.auth.ResendSmsUseCase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.util.ApiResponse
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class SmsConfirmViewModel(
@@ -50,15 +55,18 @@ class SmsConfirmViewModel(
                                     )
                                 )
                             }
+
                             AuthCurrentPhase.INFO_ADDED -> {
                                 _smsConfirmAuthState.emit(SmsConfirmAuthState.SuccessExistentCustomer)
                             }
+
                             AuthCurrentPhase.UNKNOWN -> {
                                 _smsConfirmAuthState.emit(SmsConfirmAuthState.Error("Something went wrong"))
                             }
                         }
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _smsConfirmAuthState.emit(
                         SmsConfirmAuthState.Error(

@@ -28,6 +28,7 @@ class OrderHistoryViewModel(private val getOrderHistoryUseCase: GetOrderHistoryU
                         _orderHistoryState.emit(OrderHistoryState.Success(orders = orderHistory))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _orderHistoryState.emit(
                         OrderHistoryState.Error(

@@ -35,12 +35,15 @@ class RestaurantBookingFragment : Fragment() {
                         is RestaurantBookingState.Success -> {
 
                         }
+
                         is RestaurantBookingState.Loading -> {
                             setLoadingState()
                         }
+
                         is RestaurantBookingState.Error -> {
 
                         }
+
                         is RestaurantBookingState.Idle -> {
                             setIdleState()
                         }

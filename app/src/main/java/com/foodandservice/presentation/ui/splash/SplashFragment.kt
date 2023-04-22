@@ -32,12 +32,15 @@ class SplashFragment : Fragment() {
                         is SplashState.UserLoggedIn -> {
                             navigate(SplashFragmentDirections.actionSplashFragmentToHomeFragment())
                         }
+
                         is SplashState.UserNotLoggedIn -> {
                             navigate(SplashFragmentDirections.actionSplashFragmentToLoginFragment())
                         }
+
                         is SplashState.OnboardingNotFinished -> {
                             navigate(SplashFragmentDirections.actionSplashFragmentToOnboardingFragment())
                         }
+
                         is SplashState.Idle -> Unit
                     }
                 }

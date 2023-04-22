@@ -28,6 +28,7 @@ class FavouritesViewModel(private val getFavouriteRestaurantsUseCase: GetFavouri
                         _favouritesState.emit(FavouritesState.Success(favouriteRestaurants = restaurants))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _favouritesState.emit(
                         FavouritesState.Error(

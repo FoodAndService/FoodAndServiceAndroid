@@ -31,6 +31,7 @@ class OrderDetailsCurrentViewModel(
                         _orderDetailsCurrentViewModel.emit(OrderDetailsCurrentState.Success(order = order))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _orderDetailsCurrentViewModel.emit(
                         OrderDetailsCurrentState.Error(

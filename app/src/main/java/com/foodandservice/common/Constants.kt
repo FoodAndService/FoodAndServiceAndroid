@@ -1,6 +1,6 @@
 package com.foodandservice.common
 
-import java.util.*
+import java.util.Calendar
 
 object Constants {
     const val FYS_AUTH_BASE_URL = "https://api-auth-dev.foodyservice.com/"

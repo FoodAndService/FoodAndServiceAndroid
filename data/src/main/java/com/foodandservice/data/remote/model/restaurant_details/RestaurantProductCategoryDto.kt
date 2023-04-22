@@ -1,6 +1,6 @@
-package com.foodandservice.data.remote.model.restaurant
+package com.foodandservice.data.remote.model.restaurant_details
 
-import com.foodandservice.domain.model.restaurant.RestaurantProductCategory
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductCategory
 
 data class RestaurantProductCategoryDto(
     val createdAt: String,
@@ -12,6 +12,6 @@ data class RestaurantProductCategoryDto(
     val updatedAt: String
 )
 
-fun RestaurantProductCategoryDto.toDomain() = RestaurantProductCategory(
+fun RestaurantProductCategoryDto.toRestaurantProductCategory() = RestaurantProductCategory(
     id = id, name = name, order = order
 )

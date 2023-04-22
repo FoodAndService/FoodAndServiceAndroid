@@ -45,12 +45,15 @@ class OrderHistoryFragment : Fragment(), OrderHistoryAdapter.OrderClickListener 
                         is OrderHistoryState.Success -> {
                             orderHistoryAdapter.submitList(state.orders)
                         }
+
                         is OrderHistoryState.Loading -> {
                             setLoadingState()
                         }
+
                         is OrderHistoryState.Error -> {
 
                         }
+
                         is OrderHistoryState.Idle -> {
                             setIdleState()
                         }

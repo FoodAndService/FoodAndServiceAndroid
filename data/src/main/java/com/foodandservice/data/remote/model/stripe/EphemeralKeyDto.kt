@@ -17,6 +17,4 @@ data class AssociatedObjectDto(
     val type: String
 )
 
-fun EphemeralKeyDto.toEphemeralKey(): EphemeralKey {
-    return EphemeralKey(ephemeralKey = secret)
-}
+fun EphemeralKeyDto.toEphemeralKey() = EphemeralKey(ephemeralKey = secret)

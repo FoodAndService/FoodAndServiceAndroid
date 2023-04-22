@@ -46,12 +46,15 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                             allergenIntoleranceAdapter.submitList(state.productDetails.allergensAndIntolerances)
                             productExtraAdapter.submitList(state.productDetails.productExtras)
                         }
+
                         is ProductDetailsState.Loading -> {
                             setLoadingState()
                         }
+
                         is ProductDetailsState.Error -> {
 
                         }
+
                         is ProductDetailsState.Idle -> {
                             setIdleState()
                         }

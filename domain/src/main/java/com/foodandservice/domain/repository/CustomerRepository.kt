@@ -7,12 +7,13 @@ import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.ProductDetails
-import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.domain.model.RestaurantCategory
-import com.foodandservice.domain.model.RestaurantDetails
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.location.Coordinate
-import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant.Restaurant
+import com.foodandservice.domain.model.restaurant.RestaurantCategory
+import com.foodandservice.domain.model.restaurant_details.RestaurantDetails
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 
@@ -21,6 +22,9 @@ interface CustomerRepository {
     suspend fun getRestaurantCategories(): ApiResponse<List<RestaurantCategory>>
     suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails>
     suspend fun getRestaurantProductCategoriesWithProducts(restaurantId: String): ApiResponse<List<RestaurantProductCategoryWithProducts>>
+    suspend fun getRestaurantProductDetails(
+        restaurantId: String, productId: String
+    ): ApiResponse<RestaurantProductDetails>
 
     // Mock
     suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>>

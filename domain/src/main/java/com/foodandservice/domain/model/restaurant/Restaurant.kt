@@ -1,4 +1,4 @@
-package com.foodandservice.domain.model
+package com.foodandservice.domain.model.restaurant
 
 import java.io.Serializable
 
@@ -20,24 +20,6 @@ data class Restaurant(
     fun isClosed() = openingStatus == RestaurantOpeningStatus.CLOSED
     fun isOnVacation() = openingStatus == RestaurantOpeningStatus.VACATION
 }
-
-data class RestaurantAddress(
-    val city: String,
-    val country: String,
-    val latitude: Double,
-    val longitude: Double,
-    val name: String,
-    val number: Int,
-    val postalCode: String
-)
-
-data class RestaurantSchedule(
-    val endHour: Int,
-    val endMinutes: Int,
-    val startHour: Int,
-    val startMinutes: Int,
-    val weekDay: Int
-)
 
 enum class RestaurantOpeningStatus : Serializable {
     OPEN, CLOSED, VACATION, UNKNOWN;

@@ -28,6 +28,7 @@ class BookingsViewModel(private val getBookingsUseCase: GetBookingsUseCase) :
                         _bookingsState.emit(BookingsState.Success(bookings = myBookings))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _bookingsState.emit(
                         BookingsState.Error(

@@ -1,4 +1,4 @@
-package com.foodandservice.domain.model
+package com.foodandservice.domain.model.restaurant
 
 import java.io.Serializable
 

@@ -11,11 +11,12 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.foodandservice.R
 import com.foodandservice.databinding.ItemProductBinding
 import com.foodandservice.databinding.ItemProductRefillBinding
-import com.foodandservice.domain.model.restaurant.RestaurantProduct
-import com.foodandservice.domain.model.restaurant.toUI
+import com.foodandservice.domain.model.restaurant_details.RestaurantProduct
+import com.foodandservice.domain.model.restaurant_details.toUI
 
 class RestaurantProductAdapter constructor(private val listener: RestaurantProductClickListener) :
     ListAdapter<RestaurantProduct, RestaurantProductAdapter.AbstractViewHolder>(
@@ -55,6 +56,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
                     clickListener.onClick(item)
                 }
                 setStockStyle(product = this, hasStock = item.hasStock)
+                Glide.with(itemView).load(item.image).centerCrop().into(ivProduct)
             }
             binding.executePendingBindings()
         }
@@ -92,6 +94,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
                         }
                     }
                 }
+
                 true -> {
                     product.apply {
                         mainCardView.apply {
@@ -187,6 +190,7 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
                         }
                     }
                 }
+
                 true -> {
                     product.apply {
                         mainCardView.apply {

@@ -29,6 +29,7 @@ class RestaurantReviewsViewModel(private val getRestaurantReviewsUseCase: GetRes
                         )
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _restaurantReviewsState.emit(
                         RestaurantReviewsState.Error(

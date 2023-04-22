@@ -11,7 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
-import com.foodandservice.domain.model.Restaurant
+import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
@@ -44,12 +44,15 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
                         is HomeCategoryFilterState.Success -> {
                             //restaurantAdapter.submitList(state.restaurants)
                         }
+
                         is HomeCategoryFilterState.Loading -> {
                             setLoadingState()
                         }
+
                         is HomeCategoryFilterState.Error -> {
 
                         }
+
                         is HomeCategoryFilterState.Idle -> {
                             setIdleState()
                         }

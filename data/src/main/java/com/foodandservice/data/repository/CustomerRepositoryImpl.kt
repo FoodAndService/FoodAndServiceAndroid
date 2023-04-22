@@ -3,10 +3,12 @@ package com.foodandservice.data.repository
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
-import com.foodandservice.data.remote.model.restaurant.toDomain
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
 import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
-import com.foodandservice.data.remote.model.restaurant.toRestaurantDetails
+import com.foodandservice.data.remote.model.restaurant_details.toRestaurantDetails
+import com.foodandservice.data.remote.model.restaurant_details.toRestaurantProductCategory
+import com.foodandservice.data.remote.model.restaurant_details.toRestaurantProductDetails
+import com.foodandservice.data.remote.model.restaurant_details.toRestaurantProductPrice
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.domain.model.AllergenIntolerance
 import com.foodandservice.domain.model.Booking
@@ -16,12 +18,13 @@ import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.ProductDetails
 import com.foodandservice.domain.model.ProductExtra
-import com.foodandservice.domain.model.Restaurant
-import com.foodandservice.domain.model.RestaurantCategory
-import com.foodandservice.domain.model.RestaurantDetails
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.location.Coordinate
-import com.foodandservice.domain.model.restaurant.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant.Restaurant
+import com.foodandservice.domain.model.restaurant.RestaurantCategory
+import com.foodandservice.domain.model.restaurant_details.RestaurantDetails
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductCategoryWithProducts
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.repository.CustomerRepository
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.async
@@ -68,18 +71,20 @@ class CustomerRepositoryImpl(
                 val restaurantProducts =
                     async { customerService.getRestaurantProducts(restaurantId) }
                 val restaurantProductCategoriesResult =
-                    restaurantProductCategories.await().map { it.toDomain() }.sortedBy { it.order }
-                val restaurantProductsResult = restaurantProducts.await().map { it.toDomain() }
+                    restaurantProductCategories.await().map { it.toRestaurantProductCategory() }
+                        .sortedBy { it.order }
+                val restaurantProductsResult =
+                    restaurantProducts.await().map { it.toRestaurantProductPrice() }
                 val restaurantProductCategoryWithProducts =
                     mutableListOf<RestaurantProductCategoryWithProducts>()
 
                 restaurantProductCategoriesResult.map { productCategory ->
                     val filteredProducts =
                         restaurantProductsResult.filter { product -> product.categoryId == productCategory.id }
+
                     restaurantProductCategoryWithProducts.add(
                         RestaurantProductCategoryWithProducts(
-                            category = productCategory.name,
-                            products = filteredProducts
+                            category = productCategory.name, products = filteredProducts
                         )
                     )
                 }
@@ -89,6 +94,19 @@ class CustomerRepositoryImpl(
                 ApiResponse.Failure(exception)
             }
         }
+
+    override suspend fun getRestaurantProductDetails(
+        restaurantId: String, productId: String
+    ): ApiResponse<RestaurantProductDetails> {
+        return try {
+            val restaurantProductDetails = customerService.getRestaurantProductDetails(
+                restaurantId = restaurantId, productId = productId
+            ).toRestaurantProductDetails()
+            ApiResponse.Success(data = restaurantProductDetails)
+        } catch (exception: Exception) {
+            ApiResponse.Failure(exception)
+        }
+    }
 
     override suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>> {
         return try {

@@ -1,13 +1,13 @@
 package com.foodandservice.data.repository
 
-import com.foodandservice.data.remote.model.sign.toAuthPhase
-import com.foodandservice.data.remote.model.sign.toAuthPhaseWithToken
+import com.foodandservice.data.remote.model.auth.toAuthPhase
+import com.foodandservice.data.remote.model.auth.toAuthPhaseWithToken
 import com.foodandservice.data.remote.service.AuthService
 import com.foodandservice.domain.model.CustomerPhone
 import com.foodandservice.domain.model.Name
 import com.foodandservice.domain.model.PhoneWithOtp
-import com.foodandservice.domain.model.sign.AuthPhase
-import com.foodandservice.domain.model.sign.AuthPhaseWithToken
+import com.foodandservice.domain.model.auth.AuthPhase
+import com.foodandservice.domain.model.auth.AuthPhaseWithToken
 import com.foodandservice.domain.repository.AuthRepository
 import com.foodandservice.domain.util.ApiResponse
 

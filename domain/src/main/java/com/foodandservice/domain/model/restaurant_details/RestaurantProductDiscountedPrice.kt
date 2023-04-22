@@ -1,10 +1,10 @@
-package com.foodandservice.domain.model.restaurant
+package com.foodandservice.domain.model.restaurant_details
 
-data class RestaurantProductPrice(
+data class RestaurantProductDiscountedPrice(
     val currency: String, val printable: String, val value: Int
 )
 
-fun RestaurantProductPrice.toUI(): String {
+fun RestaurantProductDiscountedPrice.toUI(): String {
     val formattedPrice = "%.2f".format(printable.toDouble()).replace(".", ",")
 
     val currencySymbol = when (currency) {

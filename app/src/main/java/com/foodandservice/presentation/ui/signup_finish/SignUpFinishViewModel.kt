@@ -33,6 +33,7 @@ class SignUpFinishViewModel(
                         }
                         _signUpFinishState.emit(SignUpFinishState.Success)
                     }
+
                     is ApiResponse.Failure -> {
                         _signUpFinishState.emit(
                             SignUpFinishState.Error(

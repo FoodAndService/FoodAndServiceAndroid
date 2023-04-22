@@ -27,6 +27,7 @@ class CartViewModel(private val getCartUseCase: GetCartUseCase) : ViewModel() {
                         _cartState.emit(CartState.Success(cartItems = cartItems))
                     }
                 }
+
                 is ApiResponse.Failure -> {
                     _cartState.emit(
                         CartState.Error(

@@ -41,16 +41,20 @@ class SmsConfirmAuthFragment : Fragment() {
                         is SmsConfirmAuthState.SuccessNewCustomer -> {
                             navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToSignupFinishFragment())
                         }
+
                         is SmsConfirmAuthState.SuccessExistentCustomer -> {
                             hideKeyboard()
                             navigate(SmsConfirmAuthFragmentDirections.actionSmsConfirmAuthFragmentToHomeFragment())
                         }
+
                         is SmsConfirmAuthState.Error -> {
                             showToast(state.message)
                         }
+
                         is SmsConfirmAuthState.Loading -> {
                             setLoadingState()
                         }
+
                         is SmsConfirmAuthState.Idle -> {
                             setIdleState()
                         }

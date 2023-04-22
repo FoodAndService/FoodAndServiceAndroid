@@ -1,6 +1,6 @@
 package com.foodandservice.presentation.ui.home
 
-import com.foodandservice.domain.model.RestaurantCategory
+import com.foodandservice.domain.model.restaurant.RestaurantCategory
 
 sealed class HomeState {
     data class SuccessRestaurantCategories(

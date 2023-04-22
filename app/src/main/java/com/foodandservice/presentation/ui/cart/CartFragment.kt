@@ -39,12 +39,15 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
                         is CartState.Success -> {
                             cartAdapter.submitList(state.cartItems)
                         }
+
                         is CartState.Loading -> {
                             setLoadingState()
                         }
+
                         is CartState.Error -> {
 
                         }
+
                         is CartState.Idle -> {
                             setIdleState()
                         }

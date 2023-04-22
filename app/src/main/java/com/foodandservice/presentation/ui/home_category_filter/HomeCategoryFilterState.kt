@@ -1,6 +1,6 @@
 package com.foodandservice.presentation.ui.home_category_filter
 
-import com.foodandservice.domain.model.Restaurant
+import com.foodandservice.domain.model.restaurant.Restaurant
 
 sealed class HomeCategoryFilterState {
     data class Success(

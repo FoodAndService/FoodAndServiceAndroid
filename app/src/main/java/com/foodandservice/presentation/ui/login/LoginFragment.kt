@@ -42,12 +42,15 @@ class LoginFragment : Fragment() {
                                 )
                             )
                         }
+
                         is LoginState.Loading -> {
                             setLoadingState()
                         }
+
                         is LoginState.Error -> {
                             showToast(state.message)
                         }
+
                         is LoginState.Idle -> {
                             setIdleState()
                         }

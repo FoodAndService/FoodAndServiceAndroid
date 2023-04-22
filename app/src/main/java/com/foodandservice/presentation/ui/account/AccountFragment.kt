@@ -40,6 +40,7 @@ class AccountFragment : Fragment() {
                         is AccountState.SignOut -> {
                             navigate(AccountFragmentDirections.actionAccountFragmentToLoginFragment())
                         }
+
                         is AccountState.Loading -> Unit
                         is AccountState.Error -> Unit
                         is AccountState.Idle -> Unit

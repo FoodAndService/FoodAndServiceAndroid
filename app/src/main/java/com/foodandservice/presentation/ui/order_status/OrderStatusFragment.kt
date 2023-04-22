@@ -35,12 +35,15 @@ class OrderStatusFragment : Fragment() {
                         is OrderStatusState.Success -> {
                             binding.tvOrderStatus.text = state.orderStatus
                         }
+
                         is OrderStatusState.Loading -> {
                             setLoadingState()
                         }
+
                         is OrderStatusState.Error -> {
 
                         }
+
                         is OrderStatusState.Idle -> {
                             setIdleState()
                         }

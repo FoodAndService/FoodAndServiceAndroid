@@ -45,9 +45,7 @@ data class PaymentIntentDto(
     val transfer_group: Any
 )
 
-fun PaymentIntentDto.toPaymentIntentKey(): PaymentIntentKey {
-    return PaymentIntentKey(paymentIntentKey = client_secret)
-}
+fun PaymentIntentDto.toPaymentIntentKey() = PaymentIntentKey(paymentIntentKey = client_secret)
 
 data class AmountDetailsDto(
     val tip: TipDto

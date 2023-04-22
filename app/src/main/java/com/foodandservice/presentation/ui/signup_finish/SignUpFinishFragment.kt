@@ -38,12 +38,15 @@ class SignUpFinishFragment : Fragment() {
                             hideKeyboard()
                             navigate(SignUpFinishFragmentDirections.actionSignupFinishFragmentToHomeFragment())
                         }
+
                         is SignUpFinishState.Error -> {
 
                         }
+
                         is SignUpFinishState.Loading -> {
                             setLoadingState()
                         }
+
                         is SignUpFinishState.Idle -> {
                             setIdleState()
                         }
