@@ -9,10 +9,11 @@ class LocationUtils {
     companion object {
         private var userLatitude = 0.0
         private var userLongitude = 0.0
+        var defaultCoordinates = false
 
-        fun saveUserCoordinates(location: Location) {
-            userLatitude = location.latitude
-            userLongitude = location.longitude
+        fun saveUserCoordinates(coordinate: Coordinate) {
+            userLatitude = coordinate.latitude
+            userLongitude = coordinate.longitude
         }
 
         fun getUserCoordinates() = Coordinate(latitude = userLatitude, longitude = userLongitude)

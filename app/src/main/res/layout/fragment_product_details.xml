@@ -160,7 +160,7 @@
                     app:layout_constraintBottom_toBottomOf="@id/btnSubtract"
                     app:layout_constraintStart_toEndOf="@id/btnSubtract"
                     app:layout_constraintTop_toTopOf="@id/btnSubtract"
-                    tools:text="4" />
+                    tools:text="1" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnAdd"
@@ -191,7 +191,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="(7,96€)" />
+                    tools:text="(1,99€)" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

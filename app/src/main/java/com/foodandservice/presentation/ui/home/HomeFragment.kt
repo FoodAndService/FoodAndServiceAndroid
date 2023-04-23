@@ -22,6 +22,9 @@ import com.foodandservice.presentation.ui.adapter.CategoryTagAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
 import com.foodandservice.util.FysBottomSheets.showHomeFilterBottomSheet
 import com.foodandservice.util.LocationUtils
+import com.foodandservice.util.LocationUtils.Companion.getUserCoordinates
+import com.foodandservice.util.LocationUtils.Companion.hasUserCoordinates
+import com.foodandservice.util.LocationUtils.Companion.saveUserCoordinates
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.showToast
@@ -104,24 +107,38 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     }
 
     private fun fetchLocationAndCollectRestaurants() {
-        Locus.getCurrentLocation(requireActivity(), onResult = { locusResult ->
-            collectRestaurants(locusResult.location)
-        })
+        if (hasUserCoordinates()) {
+            val userLocation = Location("User location").apply {
+                latitude = getUserCoordinates().latitude
+                longitude = getUserCoordinates().longitude
+            }
+            collectRestaurants(location = userLocation)
+        } else {
+            Locus.getCurrentLocation(requireActivity(), onResult = { locusResult ->
+                collectRestaurants(locusResult.location)
+            })
+        }
     }
 
     private fun collectRestaurants(location: Location?) {
         location?.let {
-            LocationUtils.saveUserCoordinates(location)
+            saveUserCoordinates(
+                coordinate = Coordinate(
+                    latitude = it.latitude, longitude = it.longitude
+                )
+            )
+        } ?: run {
+            saveUserCoordinates(
+                coordinate = Coordinate(
+                    latitude = Constants.DEFAULT_LATITUDE, longitude = Constants.DEFAULT_LONGITUDE
+                )
+            )
+            LocationUtils.defaultCoordinates = true
         }
-
-        val coordinate = Coordinate(
-            latitude = location?.latitude ?: Constants.DEFAULT_LATITUDE,
-            longitude = location?.longitude ?: Constants.DEFAULT_LONGITUDE
-        )
 
         try {
             viewLifecycleOwner.lifecycleScope.launch {
-                viewModel.getRestaurantsWithCategories(coordinate = coordinate)
+                viewModel.getRestaurantsWithCategories(coordinate = getUserCoordinates())
                     .collectLatest { restaurants ->
                         restaurantAdapter.submitData(restaurants)
                     }
@@ -166,8 +183,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     override fun onClick(item: Restaurant) {
         navigate(
             HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment(
-                item.id,
-                item.distanceInKm
+                item.id, item.distanceInKm
             )
         )
     }

@@ -22,6 +22,7 @@ import com.foodandservice.presentation.ui.adapter.RestaurantProductAdapter
 import com.foodandservice.util.RecyclerViewItemDecoration
 import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import com.foodandservice.util.getProductCategoriesIndices
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -103,9 +104,9 @@ class RestaurantDetailsFragment : Fragment(),
         }
     }
 
-    private fun setRestaurantProductsWithCategories(restaurantProductCategoriesWithProducts: List<RestaurantProductCategoryWithProducts>) {
+    private fun setRestaurantProductsWithCategories(productCategoriesWithProducts: List<RestaurantProductCategoryWithProducts>) {
         val products = mutableListOf<RestaurantProduct>()
-        restaurantProductCategoriesWithProducts.forEach { it ->
+        productCategoriesWithProducts.forEach { it ->
             it.products.forEach {
                 products.add(
                     it
@@ -116,17 +117,19 @@ class RestaurantDetailsFragment : Fragment(),
         restaurantProductAdapter.submitList(products)
 
         binding.apply {
-            restaurantProductCategoriesWithProducts.forEach {
-                tlProducts.addTab(tlProducts.newTab().setText(it.category))
+            productCategoriesWithProducts.forEach {
+                tabLayoutProductCategories.addTab(
+                    tabLayoutProductCategories.newTab().setText(it.category)
+                )
             }
-
-            TabbedListMediator(
-                mRecyclerView = rvProduct,
-                mTabLayout = tlProducts,
-                mIndices = restaurantProductCategoriesWithProducts.indices.toList(),
-                mIsSmoothScroll = true
-            ).attach()
         }
+
+        TabbedListMediator(
+            mRecyclerView = binding.rvProduct,
+            mTabLayout = binding.tabLayoutProductCategories,
+            mIndices = getProductCategoriesIndices(productCategoriesWithProducts),
+            mIsSmoothScroll = true
+        ).attach()
     }
 
     private fun setRestaurantDetails() {

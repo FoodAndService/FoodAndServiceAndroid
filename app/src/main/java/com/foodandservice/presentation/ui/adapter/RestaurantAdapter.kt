@@ -13,7 +13,6 @@ import com.foodandservice.databinding.ItemRestaurantBinding
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.util.LocationUtils
-import com.foodandservice.util.PermissionsUtils
 
 class RestaurantAdapter constructor(private val listener: RestaurantClickListener) :
     PagingDataAdapter<Restaurant, RestaurantAdapter.ViewHolder>(RestaurantDiffCallBack()) {
@@ -43,10 +42,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
                     if (item.isClosed() || item.isOnVacation()) binding.root.resources.getString(R.string.restaurant_opening_status_closed)
                     else binding.root.resources.getString(R.string.restaurant_opening_status_closed)
 
-                if (LocationUtils.isGPSEnabled(context = binding.root.context) && PermissionsUtils.hasLocationPermission(
-                        context = binding.root.context
-                    )
-                ) {
+                if (!LocationUtils.defaultCoordinates) {
                     val distance = LocationUtils.getDistanceInKmBetweenTwoCoordinates(
                         firstCoordinate = Coordinate(
                             latitude = item.address.latitude, longitude = item.address.longitude
