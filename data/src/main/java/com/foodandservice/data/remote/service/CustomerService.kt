@@ -1,11 +1,16 @@
 package com.foodandservice.data.remote.service
 
+import com.foodandservice.data.remote.model.cart.CreateUpdateRestaurantCartDto
+import com.foodandservice.data.remote.model.cart.RestaurantCartDto
 import com.foodandservice.data.remote.model.restaurant.*
 import com.foodandservice.data.remote.model.restaurant_details.RestaurantDetailsDto
 import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductCategoryDto
 import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductDetailsDto
 import com.foodandservice.data.remote.model.restaurant_details.RestaurantProductDto
+import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.PUT
 import retrofit2.http.Path
 import retrofit2.http.Query
 
@@ -15,7 +20,8 @@ interface CustomerService {
         @Query("lat") latitude: Double,
         @Query("long") longitude: Double,
         @Query("page") page: Int,
-        @Query("limit") limit: Int
+        @Query("limit") limit: Int,
+        @Query("categoryId") categoryId: String
     ): List<RestaurantDto>
 
     @GET("business-category")
@@ -41,4 +47,15 @@ interface CustomerService {
         @Path("restaurantId") restaurantId: String,
         @Path("productId") productId: String
     ): RestaurantProductDetailsDto
+
+    @PUT("cart/{id}")
+    suspend fun createOrUpdateCart(
+        @Path("id") cartId: String,
+        @Body restaurantCart: CreateUpdateRestaurantCartDto
+    ): Response<Unit>
+
+    @GET("cart/{id}")
+    suspend fun getCart(
+        @Path("id") cartId: String
+    ): RestaurantCartDto
 }

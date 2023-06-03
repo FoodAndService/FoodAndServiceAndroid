@@ -2,6 +2,7 @@ package com.foodandservice.presentation.ui.restaurant_details
 
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,10 +58,12 @@ class RestaurantDetailsFragment : Fragment(),
                         is RestaurantDetailsState.DetailsSuccess -> {
                             restaurantDetails = state.restaurantDetails
                             setRestaurantDetails()
+                            Log.i("pepe", "DetailsSuccess")
                         }
 
                         is RestaurantDetailsState.ProductsWithCategoriesSuccess -> {
                             setRestaurantProductsWithCategories(state.restaurantProductCategoriesWithProducts)
+                            Log.i("pepe", "ProductsWithCategoriesSuccess")
                         }
 
                         is RestaurantDetailsState.Loading -> {
@@ -106,11 +109,9 @@ class RestaurantDetailsFragment : Fragment(),
 
     private fun setRestaurantProductsWithCategories(productCategoriesWithProducts: List<RestaurantProductCategoryWithProducts>) {
         val products = mutableListOf<RestaurantProduct>()
-        productCategoriesWithProducts.forEach { it ->
-            it.products.forEach {
-                products.add(
-                    it
-                )
+        productCategoriesWithProducts.forEach { productCategory ->
+            productCategory.products.forEach { restaurantProduct ->
+                products.add(restaurantProduct)
             }
         }
 
@@ -118,18 +119,22 @@ class RestaurantDetailsFragment : Fragment(),
 
         binding.apply {
             productCategoriesWithProducts.forEach {
-                tabLayoutProductCategories.addTab(
-                    tabLayoutProductCategories.newTab().setText(it.category)
-                )
+                if (it.products.isNotEmpty()) {
+                    tabLayoutProductCategories.addTab(
+                        tabLayoutProductCategories.newTab().setText(it.category)
+                    )
+                }
             }
         }
 
-        TabbedListMediator(
-            mRecyclerView = binding.rvProduct,
-            mTabLayout = binding.tabLayoutProductCategories,
-            mIndices = getProductCategoriesIndices(productCategoriesWithProducts),
-            mIsSmoothScroll = true
-        ).attach()
+        if (binding.tabLayoutProductCategories.tabCount > 0) {
+            TabbedListMediator(
+                mRecyclerView = binding.rvProduct,
+                mTabLayout = binding.tabLayoutProductCategories,
+                mIndices = getProductCategoriesIndices(productCategoriesWithProducts),
+                mIsSmoothScroll = true
+            ).attach()
+        }
     }
 
     private fun setRestaurantDetails() {

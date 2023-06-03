@@ -5,6 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductCategoriesWithProductsUseCase
 import com.foodandservice.domain.util.ApiResponse
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -24,15 +27,20 @@ class RestaurantDetailsViewModel(
         viewModelScope.launch {
             _restaurantDetailsState.emit(RestaurantDetailsState.Loading)
 
-            getRestaurantDetails(restaurantId)
-            getRestaurantProducts(restaurantId)
+            coroutineScope {
+                val detailsJob = getRestaurantDetails(restaurantId)
+                val productsJob = getRestaurantProducts(restaurantId)
+
+                detailsJob.join()
+                productsJob.join()
+            }
 
             _restaurantDetailsState.emit(RestaurantDetailsState.Idle)
         }
     }
 
-    private fun getRestaurantDetails(restaurantId: String) {
-        viewModelScope.launch {
+    private fun getRestaurantDetails(restaurantId: String): Deferred<Unit> {
+        return viewModelScope.async {
             when (val result = getRestaurantDetailsUseCase(restaurantId)) {
                 is ApiResponse.Success -> {
                     result.data?.let { restaurantDetails ->
@@ -55,8 +63,8 @@ class RestaurantDetailsViewModel(
         }
     }
 
-    private fun getRestaurantProducts(restaurantId: String) {
-        viewModelScope.launch {
+    private fun getRestaurantProducts(restaurantId: String): Deferred<Unit> {
+        return viewModelScope.async {
             when (val result = getRestaurantProductCategoriesWithProductsUseCase(restaurantId)) {
                 is ApiResponse.Success -> {
                     result.data?.let { restaurantProductCategoriesWithProducts ->

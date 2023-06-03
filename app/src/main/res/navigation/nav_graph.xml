@@ -123,7 +123,10 @@
         android:label="HomeCategoryFilterFragment"
         tools:layout="@layout/fragment_home_category_filter">
         <argument
-            android:name="category"
+            android:name="categoryName"
+            app:argType="string" />
+        <argument
+            android:name="categoryId"
             app:argType="string" />
     </fragment>
     <fragment

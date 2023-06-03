@@ -7,7 +7,10 @@ import com.foodandservice.domain.repository.CustomerRepository
 import kotlinx.coroutines.flow.Flow
 
 class GetRestaurantsUseCase(private val customerRepository: CustomerRepository) {
-    operator fun invoke(coordinate: Coordinate): Flow<PagingData<Restaurant>> {
-        return customerRepository.getRestaurants(coordinate)
+    operator fun invoke(
+        coordinate: Coordinate,
+        restaurantCategoryId: String = ""
+    ): Flow<PagingData<Restaurant>> {
+        return customerRepository.getRestaurants(coordinate, restaurantCategoryId)
     }
 }

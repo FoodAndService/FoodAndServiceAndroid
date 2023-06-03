@@ -175,15 +175,15 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
     override fun onClick(restaurantCategory: RestaurantCategory) {
         navigate(
             HomeFragmentDirections.actionHomeFragmentToHomeCategoryFilterFragment(
-                restaurantCategory.name
+                restaurantCategory.name, restaurantCategory.id
             )
         )
     }
 
-    override fun onClick(item: Restaurant) {
+    override fun onClick(restaurant: Restaurant) {
         navigate(
             HomeFragmentDirections.actionHomeFragmentToRestaurantDetailsFragment(
-                item.id, item.distanceInKm
+                restaurant.id, restaurant.distanceInKm
             )
         )
     }

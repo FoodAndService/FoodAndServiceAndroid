@@ -1,6 +1,7 @@
 package com.foodandservice.presentation.ui.home_category_filter
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +14,9 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentHomeCategoryFilterBinding
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.presentation.ui.adapter.RestaurantAdapter
+import com.foodandservice.util.LocationUtils
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -35,16 +38,10 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
 
         setAdapter()
 
-        viewModel.getCategoryRestaurants(args.category)
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.homeCategoryFilterState.collect { state ->
                     when (state) {
-                        is HomeCategoryFilterState.Success -> {
-                            //restaurantAdapter.submitList(state.restaurants)
-                        }
-
                         is HomeCategoryFilterState.Loading -> {
                             setLoadingState()
                         }
@@ -62,20 +59,37 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
         }
 
         binding.apply {
-            tvCategory.text = getString(R.string.category_filter_title, args.category)
+            tvCategory.text = getString(R.string.category_filter_title, args.categoryName)
 
             btnBack.setOnClickListener {
                 navigateBack()
             }
         }
+
+        fetchRestaurants()
+    }
+
+    private fun fetchRestaurants() {
+        try {
+            viewLifecycleOwner.lifecycleScope.launch {
+                viewModel.getCategoryRestaurants(
+                    coordinate = LocationUtils.getUserCoordinates(),
+                    restaurantCategoryId = args.categoryId
+                ).collectLatest { restaurants ->
+                    restaurantAdapter.submitData(restaurants)
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("HomeFragment", e.message, e)
+        }
     }
 
     private fun setLoadingState() {
-
+        binding.progressBar.visibility = View.VISIBLE
     }
 
     private fun setIdleState() {
-
+        binding.progressBar.visibility = View.GONE
     }
 
     private fun setAdapter() {
@@ -84,7 +98,7 @@ class HomeCategoryFilterFragment : Fragment(), RestaurantAdapter.RestaurantClick
         }
     }
 
-    override fun onClick(item: Restaurant) {
+    override fun onClick(restaurant: Restaurant) {
 
     }
 }

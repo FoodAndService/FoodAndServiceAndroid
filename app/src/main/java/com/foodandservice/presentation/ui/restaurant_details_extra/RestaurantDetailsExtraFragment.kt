@@ -92,7 +92,7 @@ class RestaurantDetailsExtraFragment : Fragment() {
             val scheduleDay: SpannableString = if (matchingSchedules.isNotEmpty()) {
                 val scheduleString = matchingSchedules.joinToString(", ") {
                     if (it.startHour == 0 && it.startMinutes == 0 && it.endHour == 23 && it.endMinutes == 59) {
-                        getString(R.string.restaurant_open_24h)
+                        getString(R.string.schedule_open_24h)
                     } else if (it.endHour == 23 && it.endMinutes == 59) {
                         val start = String.format("%02d:%02d", it.startHour, it.startMinutes)
                         "$start - 24"

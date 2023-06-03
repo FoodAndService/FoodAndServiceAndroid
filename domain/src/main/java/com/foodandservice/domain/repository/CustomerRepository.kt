@@ -17,7 +17,11 @@ import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.Flow
 
 interface CustomerRepository {
-    fun getRestaurants(coordinate: Coordinate): Flow<PagingData<Restaurant>>
+    fun getRestaurants(
+        coordinate: Coordinate,
+        restaurantCategoryId: String
+    ): Flow<PagingData<Restaurant>>
+
     suspend fun getRestaurantCategories(): ApiResponse<List<RestaurantCategory>>
     suspend fun getRestaurantDetails(restaurantId: String): ApiResponse<RestaurantDetails>
     suspend fun getRestaurantProductCategoriesWithProducts(restaurantId: String): ApiResponse<List<RestaurantProductCategoryWithProducts>>

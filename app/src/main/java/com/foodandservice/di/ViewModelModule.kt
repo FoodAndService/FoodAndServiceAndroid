@@ -57,7 +57,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        HomeCategoryFilterViewModel(getCategoryRestaurantsUseCase = get())
+        HomeCategoryFilterViewModel(getRestaurantsUseCase = get())
     }
 
     viewModel {

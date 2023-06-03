@@ -1,38 +1,35 @@
 package com.foodandservice.presentation.ui.home_category_filter
 
 import androidx.lifecycle.ViewModel
-import com.foodandservice.domain.usecases.restaurant.GetCategoryRestaurantsUseCase
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
+import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.foodandservice.domain.model.location.Coordinate
+import com.foodandservice.domain.model.restaurant.Restaurant
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 class HomeCategoryFilterViewModel(
-    private val getCategoryRestaurantsUseCase: GetCategoryRestaurantsUseCase
+    private val getRestaurantsUseCase: GetRestaurantsUseCase
 ) : ViewModel() {
-    private val _homeCategoryFilterState = MutableSharedFlow<HomeCategoryFilterState>(replay = 10)
-    val homeCategoryFilterState: SharedFlow<HomeCategoryFilterState> =
-        _homeCategoryFilterState.asSharedFlow()
+    private val _homeCategoryFilterState =
+        MutableStateFlow<HomeCategoryFilterState>(HomeCategoryFilterState.Idle)
+    val homeCategoryFilterState: StateFlow<HomeCategoryFilterState> =
+        _homeCategoryFilterState.asStateFlow()
 
-    fun getCategoryRestaurants(category: String) {
-//        viewModelScope.launch {
-//            _homeCategoryFilterState.emit(HomeCategoryFilterState.Loading)
-//
-//            when (val restaurants = getCategoryRestaurantsUseCase(category = category)) {
-//                is Resource.Success -> {
-//                    restaurants.data?.let { restaurantList ->
-//                        _homeCategoryFilterState.emit(HomeCategoryFilterState.Success(restaurants = restaurantList))
-//                    }
-//                }
-//                is Resource.Failure -> {
-//                    _homeCategoryFilterState.emit(
-//                        HomeCategoryFilterState.Error(
-//                            message = restaurants.exception?.message ?: "Something went wrong"
-//                        )
-//                    )
-//                }
-//            }
-//
-//            _homeCategoryFilterState.emit(HomeCategoryFilterState.Idle)
-//        }
+    fun getCategoryRestaurants(
+        coordinate: Coordinate,
+        restaurantCategoryId: String
+    ): Flow<PagingData<Restaurant>> {
+        _homeCategoryFilterState.value = HomeCategoryFilterState.Loading
+        val restaurants = getRestaurantsUseCase(
+            coordinate = coordinate,
+            restaurantCategoryId = restaurantCategoryId
+        ).cachedIn(viewModelScope)
+        _homeCategoryFilterState.value = HomeCategoryFilterState.Idle
+        return restaurants
     }
 }

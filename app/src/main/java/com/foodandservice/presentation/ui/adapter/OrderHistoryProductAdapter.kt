@@ -39,7 +39,7 @@ class OrderHistoryProductAdapter :
 
             binding.apply {
                 tvProductName.text = item.name
-                tvPrice.text = item.price
+                tvPriceSingle.text = item.price
             }
             binding.executePendingBindings()
         }
@@ -62,7 +62,7 @@ class OrderHistoryProductAdapter :
 
             binding.apply {
                 tvProductName.text = item.name
-                tvPrice.text = item.price
+                tvPriceSingle.text = item.price
             }
             binding.executePendingBindings()
         }

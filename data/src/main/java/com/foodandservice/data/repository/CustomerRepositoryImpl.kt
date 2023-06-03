@@ -36,10 +36,13 @@ class CustomerRepositoryImpl(
 ) : CustomerRepository {
 
     override fun getRestaurants(
-        coordinate: Coordinate
+        coordinate: Coordinate,
+        restaurantCategoryId: String
     ): Flow<PagingData<Restaurant>> {
-        return customerRemoteDataSource.getRestaurants(coordinate)
-            .map { pagingData -> pagingData.map { restaurantDto -> restaurantDto.toRestaurant() } }
+        return customerRemoteDataSource.getRestaurants(
+            coordinate = coordinate,
+            restaurantCategoryId = restaurantCategoryId
+        ).map { pagingData -> pagingData.map { restaurantDto -> restaurantDto.toRestaurant() } }
     }
 
     override suspend fun getRestaurantCategories(): ApiResponse<List<RestaurantCategory>> {
@@ -81,7 +84,8 @@ class CustomerRepositoryImpl(
 
                     restaurantProductCategoryWithProducts.add(
                         RestaurantProductCategoryWithProducts(
-                            category = productCategory.name, products = filteredProducts
+                            category = productCategory.name,
+                            products = filteredProducts
                         )
                     )
                 }

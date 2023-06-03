@@ -18,7 +18,7 @@ class RestaurantAdapter constructor(private val listener: RestaurantClickListene
     PagingDataAdapter<Restaurant, RestaurantAdapter.ViewHolder>(RestaurantDiffCallBack()) {
 
     interface RestaurantClickListener {
-        fun onClick(item: Restaurant)
+        fun onClick(restaurant: Restaurant)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

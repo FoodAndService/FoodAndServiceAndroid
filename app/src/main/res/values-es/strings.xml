@@ -10,7 +10,7 @@
     <string name="btn_book">Reservar</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_confirm">Confirmar</string>
-    <string name="btn_confirm_order">Confirmar pedido</string>
+    <string name="btn_confirm_order">Confirmar pedido (%s)</string>
     <string name="btn_finish">Finalizar</string>
     <string name="btn_finish_signup">Finalizar registro</string>
     <string name="btn_get_my_location">Coger mi ubicación actual</string>
@@ -20,16 +20,16 @@
     <string name="btn_ingredients">Ingredientes</string>
     <string name="btn_next">Siguiente</string>
     <string name="btn_open_settings">Abrir opciones</string>
-    <string name="btn_pay">Pagar</string>
+    <string name="btn_pay">Proceder al pago (11,94€)</string>
     <string name="btn_product_extras">Extras</string>
     <string name="btn_qr_camera_error">Ha habido un error al intentar iniciar la cámara</string>
     <string name="btn_resend_sms">Reenviar código SMS</string>
-    <string name="btn_resend_sms_wait">Reenviar código SMS (%1$d)</string>
+    <string name="btn_resend_sms_wait">Reenviar código SMS (%s)</string>
     <string name="btn_save">Guardar</string>
     <string name="btn_save_discount">Guardar descuento</string>
     <string name="btn_send_review">Enviar reseña</string>
 
-    <string name="category_filter_title">Categoría: %1$s</string>
+    <string name="category_filter_title">Categoría: %s</string>
 
     <string name="confirm_operation_desc">Te hemos enviado un SMS, por favor introduce la clave a continuación</string>
     <string name="confirm_operation_title">Confirmar operación</string>
@@ -148,15 +148,16 @@
 
     <string name="til_hint_search_restaurant">Buscar restaurantes cerca de mi</string>
 
-    <string name="tv_days_ago">Hace %1$d días</string>
+    <string name="tv_days_ago">Hace %s días</string>
     <string name="tv_finish_signup">Bienvenido a Food &amp; Service, para finalizar necesitamos tu nombre completo. Este será visible para el resto de usuarios cuando interactúes.</string>
     <string name="tv_lost_phone_number">¿Has perdido tu número?</string>
     <string name="tv_review_owner_answer">Respuesta del propietario</string>
-    <string name="tv_review_title">¿Qué te pareció %1$s?</string>
+    <string name="tv_review_title">¿Qué te pareció %s?</string>
     <string name="tv_sms_sent">Hemos enviado un SMS a tu teléfono, por favor introduce la clave a continuación</string>
     <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
     <string name="tv_total">Total</string>
+    <string name="tv_vat_included">I.V.A incluido</string>
 
     <string name="user_profile_category_personal_details">Datos personales</string>
     <string name="user_profile_category_security">Seguridad</string>
@@ -167,8 +168,12 @@
     <string name="user_profile_logout">Cerrar sesión</string>
     <string name="user_profile_my_bookings">Mis reservas</string>
 
-    <string name="view_my_order">Ver pedido</string>
+    <string name="view_order">Ver pedido</string>
     <string name="error_no_google_maps_found">No se ha encontrado Google Maps</string>
     <string name="error_dialer">Error al abrir el teléfono</string>
-    <string name="restaurant_open_24h">Abierto 24 horas</string>
+    <string name="schedule_open_24h">Abierto 24 horas</string>
+    <string name="product_quantity">%s uds</string>
+    <string name="product_price_total">%s</string>
+    <string name="product_price_single">%s / ud</string>
+    <string name="product_price_single_discount">%s</string>
 </resources>

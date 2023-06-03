@@ -6,5 +6,8 @@ import com.foodandservice.domain.model.location.Coordinate
 import kotlinx.coroutines.flow.Flow
 
 interface CustomerRemoteDataSource {
-    fun getRestaurants(coordinate: Coordinate): Flow<PagingData<RestaurantDto>>
+    fun getRestaurants(
+        coordinate: Coordinate,
+        restaurantCategoryId: String
+    ): Flow<PagingData<RestaurantDto>>
 }

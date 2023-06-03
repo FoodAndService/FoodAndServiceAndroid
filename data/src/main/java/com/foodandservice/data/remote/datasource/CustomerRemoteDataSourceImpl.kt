@@ -15,11 +15,18 @@ class CustomerRemoteDataSourceImpl(
     private val customerService: CustomerService
 ) : CustomerRemoteDataSource {
 
-    override fun getRestaurants(coordinate: Coordinate): Flow<PagingData<RestaurantDto>> {
+    override fun getRestaurants(
+        coordinate: Coordinate,
+        restaurantCategoryId: String
+    ): Flow<PagingData<RestaurantDto>> {
         return Pager(config = PagingConfig(
             pageSize = NETWORK_PAGE_SIZE, enablePlaceholders = false
         ), pagingSourceFactory = {
-            RestaurantPagingSource(customerService = customerService, coordinate = coordinate)
+            RestaurantPagingSource(
+                customerService = customerService,
+                coordinate = coordinate,
+                restaurantCategoryId = restaurantCategoryId
+            )
         }).flow
     }
 }

@@ -12,7 +12,8 @@ private const val RESTAURANTS_STARTING_PAGE_INDEX = 1
 
 class RestaurantPagingSource(
     private val customerService: CustomerService,
-    private val coordinate: Coordinate
+    private val coordinate: Coordinate,
+    private val restaurantCategoryId: String
 ) :
     PagingSource<Int, RestaurantDto>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RestaurantDto> {
@@ -23,7 +24,8 @@ class RestaurantPagingSource(
                 latitude = coordinate.latitude,
                 longitude = coordinate.longitude,
                 page = page,
-                limit = params.loadSize
+                limit = params.loadSize,
+                categoryId = restaurantCategoryId
             )
 
             val prevKey = if (page == RESTAURANTS_STARTING_PAGE_INDEX) null else page

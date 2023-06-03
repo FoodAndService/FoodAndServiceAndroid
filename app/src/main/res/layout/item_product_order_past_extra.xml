@@ -1,5 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mainCardView"
@@ -33,34 +34,51 @@
                 android:gravity="start"
                 android:lines="1"
                 android:maxLines="1"
-                android:text="Pepsi"
-                app:layout_constraintBottom_toTopOf="@+id/tvPrice"
+                app:layout_constraintBottom_toTopOf="@+id/tvQuantity"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Pepsi" />
 
             <TextView
-                android:id="@+id/tvPrice"
+                android:id="@+id/tvQuantity"
                 style="@style/FysWhiteMediumText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="1,99€"
+                android:text="@string/product_quantity"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+                app:layout_constraintTop_toBottomOf="@+id/tvProductName"
+                tools:text="2 uds" />
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/tvProductQuantity"
-                style="@style/FysPrimaryLargeText"
+            <TextView
+                android:id="@+id/tvPriceSingle"
+                style="@style/FysWhiteSmallText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
-                android:text="0"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginEnd="12dp"
+                android:text="@string/product_price_single"
+                android:textSize="11sp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                tools:layout_editor_absoluteY="7dp"
+                tools:text="0,99€ / ud" />
+
+            <TextView
+                android:id="@+id/tvPriceTotal"
+                style="@style/FysWhiteLargeText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:text="@string/product_price_total"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:layout_editor_absoluteY="24dp"
+                tools:text="1,98€" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
