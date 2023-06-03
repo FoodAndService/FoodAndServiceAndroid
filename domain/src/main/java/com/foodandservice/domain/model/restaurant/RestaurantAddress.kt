@@ -1,5 +1,7 @@
 package com.foodandservice.domain.model.restaurant
 
+import java.io.Serializable
+
 data class RestaurantAddress(
     val city: String,
     val country: String,
@@ -8,4 +10,4 @@ data class RestaurantAddress(
     val name: String,
     val number: Int,
     val postalCode: String
-)
+) : Serializable
