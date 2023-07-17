@@ -10,8 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentCartBinding
 import com.foodandservice.domain.model.CartItem
+import com.foodandservice.domain.model.cart.RestaurantCart
 import com.foodandservice.presentation.ui.adapter.CartAdapter
-import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -32,12 +32,14 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
 
         setAdapter()
 
+        viewModel.getCart()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.cartState.collect { state ->
                     when (state) {
                         is CartState.Success -> {
-                            cartAdapter.submitList(state.cartItems)
+                            setCartItems(restaurantCart = state.restaurantCart)
                         }
 
                         is CartState.Loading -> {
@@ -51,6 +53,10 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
                         is CartState.Idle -> {
                             setIdleState()
                         }
+
+                        is CartState.Empty -> {
+                            setCartEmpty()
+                        }
                     }
                 }
             }
@@ -59,12 +65,11 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         binding.btnConfirmOrder.setOnClickListener {
 
         }
+    }
 
-        binding.apply {
-            btnBack.setOnClickListener {
-                navigateBack()
-            }
-        }
+    private fun setCartItems(restaurantCart: RestaurantCart) {
+        // cartAdapter.submitList(restaurantCart.items)
+        binding.constraintCart.visibility = View.VISIBLE
     }
 
     private fun setAdapter() {
@@ -73,12 +78,24 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         }
     }
 
-    private fun setLoadingState() {
+    private fun setCartEmpty() {
+        binding.apply {
+            constraintCartEmpty.visibility = View.VISIBLE
+        }
+    }
 
+    private fun setLoadingState() {
+        binding.apply {
+            progressBar.visibility = View.VISIBLE
+            constraintCart.visibility = View.GONE
+            constraintCartEmpty.visibility = View.GONE
+        }
     }
 
     private fun setIdleState() {
-
+        binding.apply {
+            progressBar.visibility = View.GONE
+        }
     }
 
     override fun onClickSubtractQuantity(cartItem: CartItem, position: Int) {

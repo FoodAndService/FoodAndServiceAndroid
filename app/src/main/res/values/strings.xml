@@ -11,7 +11,7 @@
     <string name="btn_book">Book</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
-    <string name="btn_confirm_order">Confirm cart (%s)</string>
+    <string name="btn_confirm_cart">Confirm cart (%s)</string>
     <string name="btn_finish">Finish</string>
     <string name="btn_finish_signup">Finish sign up</string>
     <string name="btn_get_my_location">Get my current location</string>
@@ -81,7 +81,9 @@
     <string name="food_allergen_intolerance_vegetarian">Vegetarian</string>
 
     <string name="fragment_bookings_title">My bookings</string>
-    <string name="fragment_cart_title">My order</string>
+    <string name="fragment_cart_title">My cart</string>
+    <string name="fragment_cart_empty_title">There are no products in your cart</string>
+    <string name="fragment_cart_empty_desc">Try adding one or come back later</string>
     <string name="fragment_favourites_title">My favourites</string>
     <string name="fragment_order_details_past_title">Order %s</string>
     <string name="fragment_orders_current_order">Current order</string>
@@ -164,7 +166,7 @@
     <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Book at %s</string>
     <string name="tv_total">Total</string>
-    <string name="tv_vat_included">V.A.T included</string>
+    <string name="tv_vat_included">All prices include VAT</string>
 
     <string name="user_profile_category_personal_details">Personal details</string>
     <string name="user_profile_category_security">Security</string>
@@ -183,4 +185,8 @@
     <string name="product_price_total">%s</string>
     <string name="product_price_single">%s / unit</string>
     <string name="product_price_single_discount">%s</string>
+    <string name="btn_add_to_cart">Add to cart</string>
+    <string name="product_dietary_restriction_category_others">Others</string>
+    <string name="product_dietary_restriction_category_intolerances">Intolerances</string>
+    <string name="product_dietary_restriction_category_allergens">Allergens</string>
 </resources>

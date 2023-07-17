@@ -64,7 +64,7 @@ val useCaseModule = module {
     }
 
     single {
-        GetCartUseCase(customerRepository = get())
+        GetCartUseCase(customerRepository = get(), preferencesRepository = get())
     }
 
     single {

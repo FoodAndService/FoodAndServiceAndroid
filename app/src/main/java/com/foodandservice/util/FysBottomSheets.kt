@@ -5,8 +5,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
-import com.foodandservice.presentation.ui.adapter.AllergenIntoleranceAdapter
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
+import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 object FysBottomSheets {
@@ -33,7 +33,8 @@ object FysBottomSheets {
     }
 
     fun Fragment.showAllergensAndIntolerancesBottomSheet(
-        layout: Int, allergenIntoleranceAdapter: AllergenIntoleranceAdapter
+        layout: Int,
+        restaurantProductDietaryRestrictionAdapter: RestaurantProductDietaryRestrictionAdapter
     ) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
         val inflatedLayout = layoutInflater.inflate(layout, null).also {
@@ -42,7 +43,7 @@ object FysBottomSheets {
         }
         inflatedLayout.apply {
             findViewById<RecyclerView>(R.id.rvAllergenIntolerance).adapter =
-                allergenIntoleranceAdapter
+                restaurantProductDietaryRestrictionAdapter
         }
     }
 

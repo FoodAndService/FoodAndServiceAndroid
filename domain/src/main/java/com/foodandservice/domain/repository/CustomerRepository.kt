@@ -2,11 +2,11 @@ package com.foodandservice.domain.repository
 
 import androidx.paging.PagingData
 import com.foodandservice.domain.model.Booking
-import com.foodandservice.domain.model.CartItem
 import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.RestaurantReview
+import com.foodandservice.domain.model.cart.RestaurantCart
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.domain.model.restaurant.RestaurantCategory
@@ -29,11 +29,12 @@ interface CustomerRepository {
         restaurantId: String, productId: String
     ): ApiResponse<RestaurantProductDetails>
 
+    suspend fun getCart(cartId: String): ApiResponse<RestaurantCart>
+
     // Mock
     suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>>
     suspend fun getOrderHistory(): ApiResponse<List<Order>>
     suspend fun getBookings(): ApiResponse<List<Booking>>
-    suspend fun getCart(): ApiResponse<List<CartItem>>
     suspend fun getOrderProducts(): ApiResponse<List<OrderProduct>>
     suspend fun getOrderStatus(): ApiResponse<String>
     suspend fun getRestaurantReviews(): ApiResponse<List<RestaurantReview>>

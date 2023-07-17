@@ -1,8 +1,11 @@
 package com.foodandservice.data.repository
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.paging.PagingData
 import androidx.paging.map
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
+import com.foodandservice.data.remote.model.cart.toRestaurantCart
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
 import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
 import com.foodandservice.data.remote.model.restaurant_details.toRestaurantDetails
@@ -11,11 +14,11 @@ import com.foodandservice.data.remote.model.restaurant_details.toRestaurantProdu
 import com.foodandservice.data.remote.model.restaurant_details.toRestaurantProductPrice
 import com.foodandservice.data.remote.service.CustomerService
 import com.foodandservice.domain.model.Booking
-import com.foodandservice.domain.model.CartItem
 import com.foodandservice.domain.model.FavouriteRestaurant
 import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.RestaurantReview
+import com.foodandservice.domain.model.cart.RestaurantCart
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.domain.model.restaurant.RestaurantCategory
@@ -36,12 +39,10 @@ class CustomerRepositoryImpl(
 ) : CustomerRepository {
 
     override fun getRestaurants(
-        coordinate: Coordinate,
-        restaurantCategoryId: String
+        coordinate: Coordinate, restaurantCategoryId: String
     ): Flow<PagingData<Restaurant>> {
         return customerRemoteDataSource.getRestaurants(
-            coordinate = coordinate,
-            restaurantCategoryId = restaurantCategoryId
+            coordinate = coordinate, restaurantCategoryId = restaurantCategoryId
         ).map { pagingData -> pagingData.map { restaurantDto -> restaurantDto.toRestaurant() } }
     }
 
@@ -84,8 +85,7 @@ class CustomerRepositoryImpl(
 
                     restaurantProductCategoryWithProducts.add(
                         RestaurantProductCategoryWithProducts(
-                            category = productCategory.name,
-                            products = filteredProducts
+                            category = productCategory.name, products = filteredProducts
                         )
                     )
                 }
@@ -101,8 +101,7 @@ class CustomerRepositoryImpl(
     ): ApiResponse<RestaurantProductDetails> {
         return try {
             val restaurantProductDetails = customerService.getRestaurantProductDetails(
-                restaurantId = restaurantId,
-                productId = productId
+                restaurantId = restaurantId, productId = productId
             ).toRestaurantProductDetails()
             ApiResponse.Success(data = restaurantProductDetails)
         } catch (exception: Exception) {
@@ -131,6 +130,7 @@ class CustomerRepositoryImpl(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getOrderHistory(): ApiResponse<List<Order>> {
         return try {
             val orderHistory = listOf(
@@ -167,6 +167,7 @@ class CustomerRepositoryImpl(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getBookings(): ApiResponse<List<Booking>> {
         return try {
             val bookings = listOf(
@@ -208,23 +209,10 @@ class CustomerRepositoryImpl(
         }
     }
 
-    override suspend fun getCart(): ApiResponse<List<CartItem>> {
+    override suspend fun getCart(cartId: String): ApiResponse<RestaurantCart> {
         return try {
-            val cartItems = listOf(
-                CartItem("1", "Pepsi", "", "1,99", 1, false),
-                CartItem("2", "Copa de vino", "", "2,99", 1, false),
-                CartItem("3", "Patatas fritas", "", "0,99", 1, true),
-                CartItem("4", "Pollo frito", "", "3,99", 1, false),
-                CartItem("5", "Patatas fritas", "", "0,99", 1, true),
-                CartItem("6", "Patatas gajo", "", "0,99", 1, true),
-                CartItem("7", "Pepsi", "", "1,99", 1, false),
-                CartItem("8", "Copa de vino", "", "2,99", 1, false),
-                CartItem("9", "Patatas fritas", "", "0,99", 1, true),
-                CartItem("10", "Pollo frito", "", "3,99", 1, false),
-                CartItem("11", "Patatas fritas", "", "0,99", 1, true),
-                CartItem("12", "Patatas gajo", "", "0,99", 1, true)
-            )
-            ApiResponse.Success(data = cartItems)
+            val cart = customerService.getCart(cartId = cartId)
+            ApiResponse.Success(data = cart.toRestaurantCart())
         } catch (exception: Exception) {
             ApiResponse.Failure(exception)
         }
@@ -266,6 +254,7 @@ class CustomerRepositoryImpl(
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getRestaurantReviews(): ApiResponse<List<RestaurantReview>> {
         return try {
             val restaurantReviews = listOf(

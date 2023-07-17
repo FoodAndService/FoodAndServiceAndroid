@@ -5,6 +5,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("kotlin-kapt")
+    kotlin("kapt")
     id("androidx.navigation.safeargs.kotlin")
 }
 
@@ -123,13 +124,16 @@ dependencies {
     // DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:2.5.1")
-
     // Retrofit2 + Gson
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.9")
     implementation("com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2")
     implementation("com.google.code.gson:gson:2.10.1")
+
+    // Room
+    implementation("androidx.room:room-runtime:2.5.1")
+    implementation("androidx.room:room-ktx:2.5.1")
+    implementation("androidx.room:room-common:2.5.1")
+    kapt("androidx.room:room-compiler:2.5.1")
 }

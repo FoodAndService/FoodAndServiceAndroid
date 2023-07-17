@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/tvDietaryRestriction"
+        android:id="@+id/ivDietaryRestriction"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_margin="16dp"
@@ -22,8 +22,8 @@
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:text="@string/food_allergen_intolerance_celery"
-        app:layout_constraintBottom_toBottomOf="@+id/tvDietaryRestriction"
-        app:layout_constraintStart_toEndOf="@+id/tvDietaryRestriction"
-        app:layout_constraintTop_toTopOf="@+id/tvDietaryRestriction" />
+        app:layout_constraintBottom_toBottomOf="@+id/ivDietaryRestriction"
+        app:layout_constraintStart_toEndOf="@+id/ivDietaryRestriction"
+        app:layout_constraintTop_toTopOf="@+id/ivDietaryRestriction" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
     <string name="btn_book">Reservar</string>
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_confirm">Confirmar</string>
-    <string name="btn_confirm_order">Confirmar pedido (%s)</string>
+    <string name="btn_confirm_cart">Confirmar carrito (%s)</string>
     <string name="btn_finish">Finalizar</string>
     <string name="btn_finish_signup">Finalizar registro</string>
     <string name="btn_get_my_location">Coger mi ubicación actual</string>
@@ -77,7 +77,9 @@
     <string name="food_allergen_intolerance_vegetarian">Vegetariano</string>
 
     <string name="fragment_bookings_title">Mis reservas</string>
-    <string name="fragment_cart_title">Mi pedido</string>
+    <string name="fragment_cart_title">Mi carrito</string>
+    <string name="fragment_cart_empty_title">No hay productos en tu carrito</string>
+    <string name="fragment_cart_empty_desc">Prueba a añadir alguno o vuelve más tarde</string>
     <string name="fragment_favourites_title">Mis favoritos</string>
     <string name="fragment_order_details_past_title">Pedido %s</string>
     <string name="fragment_orders_current_order">Pedido actual</string>
@@ -157,7 +159,7 @@
     <string name="tv_subtotal">Subtotal</string>
     <string name="tv_table_booking_restaurant">Reservar en %s</string>
     <string name="tv_total">Total</string>
-    <string name="tv_vat_included">I.V.A incluido</string>
+    <string name="tv_vat_included">Todos los precios incluyen IVA</string>
 
     <string name="user_profile_category_personal_details">Datos personales</string>
     <string name="user_profile_category_security">Seguridad</string>
@@ -176,4 +178,8 @@
     <string name="product_price_total">%s</string>
     <string name="product_price_single">%s / ud</string>
     <string name="product_price_single_discount">%s</string>
+    <string name="btn_add_to_cart">Añadir al carrito</string>
+    <string name="product_dietary_restriction_category_others">Otros</string>
+    <string name="product_dietary_restriction_category_intolerances">Intolerancias</string>
+    <string name="product_dietary_restriction_category_allergens">Alérgenos</string>
 </resources>

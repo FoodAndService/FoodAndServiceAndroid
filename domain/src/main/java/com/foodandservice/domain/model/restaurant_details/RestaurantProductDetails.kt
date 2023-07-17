@@ -1,9 +1,9 @@
 package com.foodandservice.domain.model.restaurant_details
 
 data class RestaurantProductDetails(
-    val allergensAndIntolerances: List<RestaurantProductAllergenIntolerance>,
     val category: RestaurantProductDetailsCategory,
     val description: String,
+    val dietaryRestrictions: List<RestaurantProductDietaryRestrictionItem>,
     val discountPercentage: Int,
     val discountedPrice: RestaurantProductDiscountedPrice,
     val extras: List<RestaurantProductExtra>,

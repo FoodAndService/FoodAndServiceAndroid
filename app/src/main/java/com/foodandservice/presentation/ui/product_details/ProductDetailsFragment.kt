@@ -15,8 +15,8 @@ import com.foodandservice.databinding.FragmentProductDetailsBinding
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
 import com.foodandservice.domain.model.restaurant_details.toUI
-import com.foodandservice.presentation.ui.adapter.AllergenIntoleranceAdapter
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
+import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
 import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
@@ -25,8 +25,9 @@ import org.koin.android.ext.android.get
 
 class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClickListener {
     private lateinit var binding: FragmentProductDetailsBinding
-    private lateinit var allergenIntoleranceAdapter: AllergenIntoleranceAdapter
+    private lateinit var restaurantProductDietaryRestrictionAdapter: RestaurantProductDietaryRestrictionAdapter
     private lateinit var productExtraAdapter: ProductExtraAdapter
+    private lateinit var restaurantProductDetails: RestaurantProductDetails
     private val args: ProductDetailsFragmentArgs by navArgs()
     private val viewModel: ProductDetailsViewModel = get()
 
@@ -41,6 +42,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
         super.onViewCreated(view, savedInstanceState)
 
         setAdapters()
+
         viewModel.getRestaurantProductDetails(
             restaurantId = args.restaurantId, productId = args.productId
         )
@@ -50,7 +52,9 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                 viewModel.productDetailsState.collect { state ->
                     when (state) {
                         is ProductDetailsState.Success -> {
-                            setRestaurantProductDetailsInfo(state.restaurantProductDetails)
+                            restaurantProductDetails = state.restaurantProductDetails
+                            setRestaurantProductDetailsInfo()
+                            handleQuantityPrice()
                         }
 
                         is ProductDetailsState.Loading -> {
@@ -77,7 +81,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             btnShowAllergensAndIntolerances.setOnClickListener {
                 showAllergensAndIntolerancesBottomSheet(
                     layout = R.layout.bottom_sheet_product_allergens_intolerances,
-                    allergenIntoleranceAdapter = allergenIntoleranceAdapter
+                    restaurantProductDietaryRestrictionAdapter = restaurantProductDietaryRestrictionAdapter
                 )
             }
 
@@ -87,32 +91,68 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                     productExtraAdapter = productExtraAdapter
                 )
             }
+
+            btnAdd.setOnClickListener {
+                if (viewModel.productQuantity.value < 100) viewModel.productQuantity.value += 1
+            }
+
+            btnSubtract.setOnClickListener {
+                if (viewModel.productQuantity.value > 1) viewModel.productQuantity.value -= 1
+            }
         }
     }
 
-    private fun setRestaurantProductDetailsInfo(restaurantProductDetails: RestaurantProductDetails) {
+    private fun handleQuantityPrice() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.productQuantity.collect { quantity ->
+                    binding.apply {
+                        btnAdd.isEnabled = quantity < 100
+                        btnSubtract.isEnabled = quantity > 1
+                        tvQuantity.text = quantity.toString()
+                        tvPriceTotal.text = restaurantProductDetails.price.toUI(quantity)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setRestaurantProductDetailsInfo() {
         binding.apply {
             tvProductName.text = restaurantProductDetails.name
             tvProductDescription.text = restaurantProductDetails.description
             Glide.with(requireContext()).load(restaurantProductDetails.image).centerCrop()
                 .into(ivProductImage)
-            tvPriceSingle.text = restaurantProductDetails.price.toUI()
+            tvPriceSingle.text =
+                getString(R.string.product_price_single, restaurantProductDetails.price.toUI())
+            btnShowAllergensAndIntolerances.visibility =
+                if (restaurantProductDetails.dietaryRestrictions.isNotEmpty()) View.VISIBLE else View.GONE
+            btnShowProductExtras.visibility =
+                if (restaurantProductDetails.extras.isNotEmpty()) View.VISIBLE else View.GONE
         }
 
-        allergenIntoleranceAdapter.submitList(restaurantProductDetails.allergensAndIntolerances)
+        restaurantProductDietaryRestrictionAdapter.submitList(restaurantProductDetails.dietaryRestrictions)
     }
 
     private fun setAdapters() {
-        allergenIntoleranceAdapter = AllergenIntoleranceAdapter()
+        restaurantProductDietaryRestrictionAdapter = RestaurantProductDietaryRestrictionAdapter()
         productExtraAdapter = ProductExtraAdapter(this)
     }
 
     private fun setLoadingState() {
-
+        binding.apply {
+            progressBar.visibility = View.VISIBLE
+            constraintProductDetails.visibility = View.GONE
+            btnAddToCart.visibility = View.GONE
+        }
     }
 
     private fun setIdleState() {
-
+        binding.apply {
+            progressBar.visibility = View.GONE
+            constraintProductDetails.visibility = View.VISIBLE
+            btnAddToCart.visibility = View.VISIBLE
+        }
     }
 
     override fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int) {

@@ -4,8 +4,8 @@ data class RestaurantProductPrice(
     val currency: String, val printable: String, val value: Int
 )
 
-fun RestaurantProductPrice.toUI(): String {
-    val formattedPrice = "%.2f".format(printable.toDouble()).replace(".", ",")
+fun RestaurantProductPrice.toUI(quantity: Int = 1): String {
+    val formattedPrice = "%.2f".format(printable.toDouble() * quantity).replace(".", ",")
 
     val currencySymbol = when (currency) {
         "EUR" -> "€"

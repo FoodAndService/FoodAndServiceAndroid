@@ -15,6 +15,8 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
         MutableStateFlow<ProductDetailsState>(ProductDetailsState.Idle)
     val productDetailsState: StateFlow<ProductDetailsState> = _productDetailsState.asStateFlow()
 
+    var productQuantity = MutableStateFlow(1)
+
     fun getRestaurantProductDetails(restaurantId: String, productId: String) {
         viewModelScope.launch {
             _productDetailsState.emit(ProductDetailsState.Loading)

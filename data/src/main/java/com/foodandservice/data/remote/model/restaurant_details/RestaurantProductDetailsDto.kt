@@ -1,6 +1,8 @@
 package com.foodandservice.data.remote.model.restaurant_details
 
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDietaryRestriction
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDietaryRestrictionItem
 
 data class RestaurantProductDetailsDto(
     val allergens: List<RestaurantProductAllergenDto>,
@@ -24,22 +26,54 @@ data class RestaurantProductDetailsDto(
     val updatedAt: String
 )
 
-fun RestaurantProductDetailsDto.toRestaurantProductDetails() = RestaurantProductDetails(
-    allergensAndIntolerances =
-    allergens.map { allergen -> allergen.toRestaurantProductAllergenIntolerance() }
-        .plus(intolerances.map { intolerance -> intolerance.toRestaurantProductIntolerance() })
-        .plus(others.map { other -> other.toRestaurantProductAllergenIntolerance() }),
-    category = category.toRestaurantProductDetailsCategory(),
-    description = description,
-    discountPercentage = discountPercentage,
-    discountedPrice = discountedPrice.toRestaurantProductDiscountedPrice(),
-    extras = extras.map { extra -> extra.toRestaurantProductExtra() },
-    hasDiscount = hasDiscount,
-    hasStock = hasStock,
-    id = id,
-    image = image,
-    name = name,
-    price = price.toRestaurantProductPrice(),
-    productTax = productTax,
-    status = status
-)
+fun RestaurantProductDetailsDto.toRestaurantProductDetails(): RestaurantProductDetails {
+    val dietaryRestrictionItems = mutableListOf<RestaurantProductDietaryRestrictionItem>()
+
+    if (allergens.isNotEmpty()) {
+        dietaryRestrictionItems.add(RestaurantProductDietaryRestrictionItem.Header("Allergens"))
+        dietaryRestrictionItems.addAll(allergens.map { allergen ->
+            RestaurantProductDietaryRestrictionItem.Item(
+                RestaurantProductDietaryRestriction(
+                    id = allergen.id, name = allergen.name
+                )
+            )
+        })
+    }
+    if (intolerances.isNotEmpty()) {
+        dietaryRestrictionItems.add(RestaurantProductDietaryRestrictionItem.Header("Intolerances"))
+        dietaryRestrictionItems.addAll(intolerances.map { intolerance ->
+            RestaurantProductDietaryRestrictionItem.Item(
+                RestaurantProductDietaryRestriction(
+                    id = intolerance.id, name = intolerance.name
+                )
+            )
+        })
+    }
+    if (others.isNotEmpty()) {
+        dietaryRestrictionItems.add(RestaurantProductDietaryRestrictionItem.Header("Others"))
+        dietaryRestrictionItems.addAll(others.map { other ->
+            RestaurantProductDietaryRestrictionItem.Item(
+                RestaurantProductDietaryRestriction(
+                    id = other.id, name = other.name
+                )
+            )
+        })
+    }
+
+    return RestaurantProductDetails(
+        dietaryRestrictions = dietaryRestrictionItems,
+        category = category.toRestaurantProductDetailsCategory(),
+        description = description,
+        discountPercentage = discountPercentage,
+        discountedPrice = discountedPrice.toRestaurantProductDiscountedPrice(),
+        extras = extras.map { extra -> extra.toRestaurantProductExtra() },
+        hasDiscount = hasDiscount,
+        hasStock = hasStock,
+        id = id,
+        image = image,
+        name = name,
+        price = price.toRestaurantProductPrice(),
+        productTax = productTax,
+        status = status
+    )
+}

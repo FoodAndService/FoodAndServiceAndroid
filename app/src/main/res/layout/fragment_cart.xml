@@ -14,30 +14,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <ImageButton
-                    android:id="@+id/btnBack"
-                    style="@style/FysImageButton"
-                    android:layout_marginStart="18dp"
-                    android:layout_marginTop="34dp"
-                    android:importantForAccessibility="no"
-                    android:src="@drawable/ic_arrow_back"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/ivFysLogo"
-                    style="@style/FysLogo"
-                    android:importantForAccessibility="no"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/ivFysLogo"
+                style="@style/FysLogo"
+                android:importantForAccessibility="no"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </Toolbar>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/fys_primary"
+            android:indeterminateTintMode="src_atop"
+            android:scaleY="2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -48,83 +46,120 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintCart"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <TextView
-                    android:id="@+id/tvCart"
-                    style="@style/FysDarkLargeText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:text="@string/fragment_cart_title"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/constraintCart" />
-
-                <TextView
-                    android:id="@+id/tvRestaurantName"
-                    style="@style/FysPrimaryMediumText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wendy's"
-                    android:textAllCaps="true"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCart" />
-
-                <include
-                    android:id="@+id/add_more_items"
-                    layout="@layout/item_add_more_items"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintCartEmpty"
                     android:layout_width="match_parent"
-                    android:layout_height="68dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="6dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
+                    android:layout_height="match_parent">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCart"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/add_more_items"
-                    tools:itemCount="5"
-                    tools:listitem="@layout/item_product_cart" />
+                    <TextView
+                        android:id="@+id/tvCartEmptyTitle"
+                        style="@style/FysDarkMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:text="@string/fragment_cart_empty_title"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/constraintCartEmpty" />
 
-                <TextView
-                    android:id="@+id/tvVatIncluded"
-                    style="@style/FysDarkMediumText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:text="@string/tv_vat_included"
-                    app:layout_constraintTop_toBottomOf="@id/rvCart" />
+                    <TextView
+                        android:id="@+id/tvCartEmptyDesc"
+                        style="@style/FysDarkMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/fragment_cart_empty_desc"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvCartEmptyTitle" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnConfirmOrder"
-                    style="@style/FysPrimaryButton"
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/constraintCart"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="16dp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="100dp"
-                    android:text="@string/btn_confirm_order"
-                    android:textAllCaps="true"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvVatIncluded" />
+                    android:visibility="gone"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/tvCart"
+                        style="@style/FysDarkLargeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/fragment_cart_title"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/constraintCart" />
+
+                    <TextView
+                        android:id="@+id/tvRestaurantName"
+                        style="@style/FysPrimaryMediumText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="Wendy's"
+                        android:textAllCaps="true"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCart" />
+
+                    <include
+                        android:id="@+id/add_more_items"
+                        layout="@layout/item_add_more_items"
+                        android:layout_width="match_parent"
+                        android:layout_height="68dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="6dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCart"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="16dp"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/add_more_items"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_product_cart" />
+
+                    <TextView
+                        android:id="@+id/tvVatIncluded"
+                        style="@style/FysDarkMediumText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/tv_vat_included"
+                        app:layout_constraintTop_toBottomOf="@id/rvCart" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnConfirmOrder"
+                        style="@style/FysPrimaryButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="16dp"
+                        android:textStyle="bold"
+                        android:layout_marginBottom="100dp"
+                        android:text="@string/btn_confirm_cart"
+                        android:textAllCaps="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvVatIncluded" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
