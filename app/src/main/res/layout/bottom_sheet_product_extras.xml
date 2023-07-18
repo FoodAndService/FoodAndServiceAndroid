@@ -3,7 +3,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -24,6 +24,18 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/tvExtrasTitle"
+                    style="@style/FysDarkLargeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="@string/product_extras"
+                    android:textStyle="bold"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ivGrapple" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvProductExtra"
                     android:layout_width="match_parent"
@@ -34,7 +46,7 @@
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/ivGrapple" />
+                    app:layout_constraintTop_toBottomOf="@id/tvExtrasTitle" />
 
                 <TextView
                     android:layout_width="match_parent"

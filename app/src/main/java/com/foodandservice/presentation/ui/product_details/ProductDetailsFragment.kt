@@ -14,6 +14,8 @@ import com.foodandservice.R
 import com.foodandservice.databinding.FragmentProductDetailsBinding
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductPrice
+import com.foodandservice.domain.model.restaurant_details.toPricePrintable
 import com.foodandservice.domain.model.restaurant_details.toUI
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
@@ -54,7 +56,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                         is ProductDetailsState.Success -> {
                             restaurantProductDetails = state.restaurantProductDetails
                             setRestaurantProductDetailsInfo()
-                            handleQuantityPrice()
+                            handleProductAndExtraQuantities()
                         }
 
                         is ProductDetailsState.Loading -> {
@@ -93,24 +95,37 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             }
 
             btnAdd.setOnClickListener {
-                if (viewModel.productQuantity.value < 100) viewModel.productQuantity.value += 1
+                viewModel.increaseProductQuantity(restaurantProductPrice = restaurantProductDetails.price)
             }
 
             btnSubtract.setOnClickListener {
-                if (viewModel.productQuantity.value > 1) viewModel.productQuantity.value -= 1
+                viewModel.decreaseProductQuantity(restaurantProductPrice = restaurantProductDetails.price)
             }
         }
     }
 
-    private fun handleQuantityPrice() {
+    private fun handleProductAndExtraQuantities() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.productQuantity.collect { quantity ->
-                    binding.apply {
-                        btnAdd.isEnabled = quantity < 100
-                        btnSubtract.isEnabled = quantity > 1
-                        tvQuantity.text = quantity.toString()
-                        tvPriceTotal.text = restaurantProductDetails.price.toUI(quantity)
+                launch {
+                    viewModel.productQuantity.collect { quantity ->
+                        binding.apply {
+                            btnAdd.isEnabled = quantity < 100
+                            btnSubtract.isEnabled = quantity > 1
+                            tvQuantity.text = quantity.toString()
+                        }
+                    }
+                }
+
+                launch {
+                    viewModel.totalPrice.collect { price ->
+                        binding.apply {
+                            tvPriceTotal.text = RestaurantProductPrice(
+                                currency = viewModel.productCurrency,
+                                printable = toPricePrintable(price),
+                                value = price
+                            ).toUI()
+                        }
                     }
                 }
             }
@@ -132,6 +147,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
         }
 
         restaurantProductDietaryRestrictionAdapter.submitList(restaurantProductDetails.dietaryRestrictions)
+        productExtraAdapter.submitList(restaurantProductDetails.extras)
     }
 
     private fun setAdapters() {
@@ -155,11 +171,13 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
         }
     }
 
-    override fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int) {
-
+    override fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int) {
+        viewModel.increaseExtraQuantity(productExtra)
+        productExtraAdapter.notifyItemChanged(position)
     }
 
-    override fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int) {
-
+    override fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int) {
+        viewModel.decreaseExtraQuantity(productExtra)
+        productExtraAdapter.notifyItemChanged(position)
     }
 }

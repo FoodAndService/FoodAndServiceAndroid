@@ -1,11 +1,11 @@
 package com.foodandservice.presentation.ui.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.foodandservice.R
 import com.foodandservice.databinding.ItemProductExtraBinding
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
 import com.foodandservice.domain.model.restaurant_details.toUI
@@ -16,8 +16,8 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
     ) {
 
     interface ProductExtraClickListener {
-        fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int)
         fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int)
+        fun onClickSubtractQuantity(productExtra: RestaurantProductExtra, position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,9 +26,7 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            item = getItem(position),
-            clickListener = clickListener,
-            isLast = position == itemCount - 1
+            item = getItem(position), clickListener = clickListener
         )
     }
 
@@ -36,11 +34,18 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            item: RestaurantProductExtra, clickListener: ProductExtraClickListener, isLast: Boolean
+            item: RestaurantProductExtra, clickListener: ProductExtraClickListener
         ) {
             binding.apply {
                 tvProductExtraName.text = item.name
-                tvProductExtraPrice.text = item.price.toUI()
+                tvExtraPriceSingle.text =
+                    binding.root.context.getString(R.string.product_price_single, item.price.toUI())
+                tvExtraPriceTotal.text = item.price.toUI(item.quantity)
+
+                tvProductQuantity.text = item.quantity.toString()
+
+                btnAdd.isEnabled = item.quantity < 100
+                btnSubtract.isEnabled = item.quantity > 0
 
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
@@ -52,8 +57,6 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
                         productExtra = item, position = bindingAdapterPosition
                     )
                 }
-
-                divider.visibility = if (isLast) View.GONE else View.VISIBLE
             }
         }
 
