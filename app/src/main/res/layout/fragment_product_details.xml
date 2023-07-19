@@ -172,7 +172,22 @@
                         app:layout_constraintStart_toEndOf="@id/tvQuantity"
                         app:layout_constraintTop_toTopOf="@id/tvQuantity" />
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/tvPriceSingleOld"
+                        style="@style/FysDarkSmallText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:textColor="#BEBEBE"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toStartOf="@+id/llProductPrices"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:strikeThrough="@{true}"
+                        tools:text="1,99€"
+                        tools:visibility="visible" />
+
                     <LinearLayout
+                        android:id="@+id/llProductPrices"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"

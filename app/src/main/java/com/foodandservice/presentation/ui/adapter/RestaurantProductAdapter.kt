@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
@@ -51,7 +52,13 @@ class RestaurantProductAdapter constructor(private val listener: RestaurantProdu
             val binding = binding as ItemProductBinding
             binding.apply {
                 tvProductName.text = item.name
-                tvPrice.text = item.price.toUI()
+                if (item.discountedPrice.value > 0) {
+                    tvPrice.text = item.discountedPrice.toUI()
+                    tvPriceOld.text = item.price.toUI()
+                    tvPriceOld.visibility = View.VISIBLE
+                } else {
+                    tvPrice.text = item.price.toUI()
+                }
                 mainCardView.setOnClickListener {
                     clickListener.onClick(item.id)
                 }

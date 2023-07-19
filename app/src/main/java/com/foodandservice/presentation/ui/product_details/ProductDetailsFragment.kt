@@ -95,11 +95,11 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             }
 
             btnAdd.setOnClickListener {
-                viewModel.increaseProductQuantity(restaurantProductPrice = restaurantProductDetails.price)
+                viewModel.increaseProductQuantity()
             }
 
             btnSubtract.setOnClickListener {
-                viewModel.decreaseProductQuantity(restaurantProductPrice = restaurantProductDetails.price)
+                viewModel.decreaseProductQuantity()
             }
         }
     }
@@ -121,7 +121,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                     viewModel.totalPrice.collect { price ->
                         binding.apply {
                             tvPriceTotal.text = RestaurantProductPrice(
-                                currency = viewModel.productCurrency,
+                                currency = viewModel.productDetails.price.currency,
                                 printable = toPricePrintable(price),
                                 value = price
                             ).toUI()
@@ -138,8 +138,16 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             tvProductDescription.text = restaurantProductDetails.description
             Glide.with(requireContext()).load(restaurantProductDetails.image).centerCrop()
                 .into(ivProductImage)
-            tvPriceSingle.text =
-                getString(R.string.product_price_single, restaurantProductDetails.price.toUI())
+            if (restaurantProductDetails.discountedPrice.value > 0) {
+                tvPriceSingle.text = getString(
+                    R.string.product_price_single, restaurantProductDetails.discountedPrice.toUI()
+                )
+                tvPriceSingleOld.text = restaurantProductDetails.price.toUI()
+                tvPriceSingleOld.visibility = View.VISIBLE
+            } else {
+                tvPriceSingle.text =
+                    getString(R.string.product_price_single, restaurantProductDetails.price.toUI())
+            }
             btnShowAllergensAndIntolerances.visibility =
                 if (restaurantProductDetails.dietaryRestrictions.isNotEmpty()) View.VISIBLE else View.GONE
             btnShowProductExtras.visibility =

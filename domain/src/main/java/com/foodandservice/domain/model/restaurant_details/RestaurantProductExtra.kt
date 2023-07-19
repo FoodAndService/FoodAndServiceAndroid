@@ -8,10 +8,10 @@ data class RestaurantProductExtra(
     var quantity: Int = 0
 
     fun incrementQuantity() {
-        if (quantity < 100) quantity += 1
+        quantity += 1
     }
 
     fun decrementQuantity() {
-        if (quantity > 0) quantity -= 1
+        quantity -= 1
     }
 }

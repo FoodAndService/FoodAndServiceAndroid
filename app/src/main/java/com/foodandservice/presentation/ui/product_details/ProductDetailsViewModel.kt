@@ -2,8 +2,8 @@ package com.foodandservice.presentation.ui.product_details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
-import com.foodandservice.domain.model.restaurant_details.RestaurantProductPrice
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductDetailsUseCase
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,34 +17,51 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
         MutableStateFlow<ProductDetailsState>(ProductDetailsState.Idle)
     val productDetailsState: StateFlow<ProductDetailsState> = _productDetailsState.asStateFlow()
 
-    lateinit var productCurrency: String
+    lateinit var productDetails: RestaurantProductDetails
+
+    var productExtrasQuantities: HashMap<String, Int> = hashMapOf()
 
     var productQuantity = MutableStateFlow(1)
 
-    var totalPrice = MutableStateFlow(0)
+    val totalPrice = MutableStateFlow(0)
 
-    fun increaseProductQuantity(restaurantProductPrice: RestaurantProductPrice) {
-        if (productQuantity.value < 100) {
-            productQuantity.value += 1
-            totalPrice.value += restaurantProductPrice.value
-        }
+    fun increaseProductQuantity() {
+        productQuantity.value += 1
+        updateTotalPrice()
     }
 
-    fun decreaseProductQuantity(restaurantProductPrice: RestaurantProductPrice) {
-        if (productQuantity.value > 1) {
-            productQuantity.value -= 1
-            totalPrice.value -= restaurantProductPrice.value
-        }
+    fun decreaseProductQuantity() {
+        productQuantity.value -= 1
+        updateTotalPrice()
     }
 
     fun increaseExtraQuantity(productExtra: RestaurantProductExtra) {
         productExtra.incrementQuantity()
         totalPrice.value += productExtra.price.value
+        productExtrasQuantities[productExtra.id] = productExtra.quantity
     }
 
     fun decreaseExtraQuantity(productExtra: RestaurantProductExtra) {
-        productExtra.decrementQuantity()
-        totalPrice.value -= productExtra.price.value
+        if (productExtra.quantity > 0) {
+            totalPrice.value -= productExtra.price.value
+            productExtra.decrementQuantity()
+            if (productExtra.quantity == 0) productExtrasQuantities.remove(productExtra.id)
+            else productExtrasQuantities[productExtra.id] = productExtra.quantity
+        }
+    }
+
+    private fun getFinalPrice() =
+        productDetails.discountedPrice.value.takeIf { it > 0 } ?: productDetails.price.value
+
+    private fun updateTotalPrice() {
+        val mainProductPrice = getFinalPrice() * productQuantity.value
+        val extrasPrice =
+            productExtrasQuantities.map { (id, qty) -> findExtraPriceById(id) * qty }.sum()
+        totalPrice.value = mainProductPrice + extrasPrice
+    }
+
+    private fun findExtraPriceById(id: String): Int {
+        return productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
     }
 
     fun getRestaurantProductDetails(restaurantId: String, productId: String) {
@@ -56,8 +73,8 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
             )) {
                 is ApiResponse.Success -> {
                     restaurantProductDetails.data?.let { productDetails ->
-                        totalPrice.value = productDetails.price.value
-                        productCurrency = productDetails.price.currency
+                        this@ProductDetailsViewModel.productDetails = productDetails
+                        updateTotalPrice()
 
                         _productDetailsState.emit(
                             ProductDetailsState.Success(
