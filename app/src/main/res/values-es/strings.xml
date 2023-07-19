@@ -179,6 +179,7 @@
     <string name="product_price_single">%s / ud</string>
     <string name="product_price_single_discount">%s</string>
     <string name="btn_add_to_cart">Añadir al carrito</string>
+    <string name="btn_out_of_stock">Producto agotado</string>
     <string name="product_dietary_restriction_category_others">Otros</string>
     <string name="product_dietary_restriction_category_intolerances">Intolerancias</string>
     <string name="product_dietary_restriction_category_allergens">Alérgenos</string>

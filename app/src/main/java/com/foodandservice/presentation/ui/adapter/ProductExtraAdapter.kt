@@ -10,10 +10,11 @@ import com.foodandservice.databinding.ItemProductExtraBinding
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
 import com.foodandservice.domain.model.restaurant_details.toUI
 
-class ProductExtraAdapter constructor(private val clickListener: ProductExtraClickListener) :
-    ListAdapter<RestaurantProductExtra, ProductExtraAdapter.ViewHolder>(
-        RestaurantProductExtraDiffCallBack()
-    ) {
+class ProductExtraAdapter constructor(
+    private val clickListener: ProductExtraClickListener, private val hasStock: Boolean
+) : ListAdapter<RestaurantProductExtra, ProductExtraAdapter.ViewHolder>(
+    RestaurantProductExtraDiffCallBack()
+) {
 
     interface ProductExtraClickListener {
         fun onClickAddQuantity(productExtra: RestaurantProductExtra, position: Int)
@@ -26,7 +27,7 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            item = getItem(position), clickListener = clickListener
+            item = getItem(position), clickListener = clickListener, hasStock = hasStock
         )
     }
 
@@ -34,7 +35,9 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
-            item: RestaurantProductExtra, clickListener: ProductExtraClickListener
+            item: RestaurantProductExtra,
+            clickListener: ProductExtraClickListener,
+            hasStock: Boolean
         ) {
             binding.apply {
                 tvProductExtraName.text = item.name
@@ -44,8 +47,13 @@ class ProductExtraAdapter constructor(private val clickListener: ProductExtraCli
 
                 tvProductQuantity.text = item.quantity.toString()
 
-                btnAdd.isEnabled = item.quantity < 100
-                btnSubtract.isEnabled = item.quantity > 0
+                if (hasStock) {
+                    btnAdd.isEnabled = item.quantity < 100
+                    btnSubtract.isEnabled = item.quantity > 0
+                } else {
+                    btnAdd.isEnabled = false
+                    btnSubtract.isEnabled = false
+                }
 
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(

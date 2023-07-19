@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -43,8 +44,6 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setAdapters()
-
         viewModel.getRestaurantProductDetails(
             restaurantId = args.restaurantId, productId = args.productId
         )
@@ -55,6 +54,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                     when (state) {
                         is ProductDetailsState.Success -> {
                             restaurantProductDetails = state.restaurantProductDetails
+                            setAdapters()
                             setRestaurantProductDetailsInfo()
                             handleProductAndExtraQuantities()
                         }
@@ -110,9 +110,15 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                 launch {
                     viewModel.productQuantity.collect { quantity ->
                         binding.apply {
-                            btnAdd.isEnabled = quantity < 100
-                            btnSubtract.isEnabled = quantity > 1
-                            tvQuantity.text = quantity.toString()
+                            if (quantity > 0) {
+                                btnAdd.isEnabled = quantity < 100
+                                btnSubtract.isEnabled = quantity > 1
+                                tvQuantity.text = quantity.toString()
+                            } else {
+                                btnAdd.isEnabled = false
+                                btnSubtract.isEnabled = false
+                                setOutOfStock()
+                            }
                         }
                     }
                 }
@@ -129,6 +135,21 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                     }
                 }
             }
+        }
+    }
+
+    private fun setOutOfStock() {
+        binding.apply {
+            btnAddToCart.text = getString(R.string.btn_out_of_stock)
+            context?.let {
+                btnAddToCart.setBackgroundColor(
+                    ContextCompat.getColor(
+                        it,
+                        R.color.btn_out_of_stock
+                    )
+                )
+            }
+            btnAddToCart.isClickable = false
         }
     }
 
@@ -160,7 +181,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
 
     private fun setAdapters() {
         restaurantProductDietaryRestrictionAdapter = RestaurantProductDietaryRestrictionAdapter()
-        productExtraAdapter = ProductExtraAdapter(this)
+        productExtraAdapter = ProductExtraAdapter(this, restaurantProductDetails.hasStock)
     }
 
     private fun setLoadingState() {

@@ -186,6 +186,7 @@
     <string name="product_price_single">%s / unit</string>
     <string name="product_price_single_discount">%s</string>
     <string name="btn_add_to_cart">Add to cart</string>
+    <string name="btn_out_of_stock">Out of stock</string>
     <string name="product_dietary_restriction_category_others">Others</string>
     <string name="product_dietary_restriction_category_intolerances">Intolerances</string>
     <string name="product_dietary_restriction_category_allergens">Allergens</string>

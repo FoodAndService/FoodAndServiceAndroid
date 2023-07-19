@@ -50,9 +50,6 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
         }
     }
 
-    private fun getFinalPrice() =
-        productDetails.discountedPrice.value.takeIf { it > 0 } ?: productDetails.price.value
-
     private fun updateTotalPrice() {
         val mainProductPrice = getFinalPrice() * productQuantity.value
         val extrasPrice =
@@ -60,9 +57,11 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
         totalPrice.value = mainProductPrice + extrasPrice
     }
 
-    private fun findExtraPriceById(id: String): Int {
-        return productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
-    }
+    private fun getFinalPrice() =
+        productDetails.discountedPrice.value.takeIf { it > 0 } ?: productDetails.price.value
+
+    private fun findExtraPriceById(id: String) =
+        productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
 
     fun getRestaurantProductDetails(restaurantId: String, productId: String) {
         viewModelScope.launch {
@@ -74,6 +73,8 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
                 is ApiResponse.Success -> {
                     restaurantProductDetails.data?.let { productDetails ->
                         this@ProductDetailsViewModel.productDetails = productDetails
+                        if (!productDetails.hasStock)
+                            productQuantity.value = 0
                         updateTotalPrice()
 
                         _productDetailsState.emit(
