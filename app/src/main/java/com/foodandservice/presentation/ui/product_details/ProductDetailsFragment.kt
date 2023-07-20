@@ -20,6 +20,7 @@ import com.foodandservice.domain.model.restaurant_details.toPricePrintable
 import com.foodandservice.domain.model.restaurant_details.toUI
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
+import com.foodandservice.util.FysBottomSheets.showAddProductNoteBottomSheet
 import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
@@ -101,6 +102,17 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             btnSubtract.setOnClickListener {
                 viewModel.decreaseProductQuantity()
             }
+
+            btnAddToCart.setOnClickListener {
+                showAddProductNoteBottomSheet(layout = R.layout.bottom_sheet_add_product_note,
+                    productNote = viewModel.productNote.value,
+                    onTextChanged = { text ->
+                        viewModel.productNote.value = text
+                    },
+                    onContinueClick = {
+                        viewModel.addProductToCart()
+                    })
+            }
         }
     }
 
@@ -144,8 +156,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             context?.let {
                 btnAddToCart.setBackgroundColor(
                     ContextCompat.getColor(
-                        it,
-                        R.color.btn_out_of_stock
+                        it, R.color.btn_out_of_stock
                     )
                 )
             }

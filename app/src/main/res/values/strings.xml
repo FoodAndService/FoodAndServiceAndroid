@@ -1,17 +1,19 @@
 <resources>
-    <string name="app_name" translatable="false">Food &amp; Service</string>
     <string name="activate_location">Activate your location</string>
-
+    <string name="app_name" translatable="false">Food &amp; Service</string>
+    <string name="bottom_sheet_add_product">Leave a note</string>
+    <string name="bottom_sheet_add_product_hint">Note for the restaurant</string>
     <string name="bottom_sheet_home_filter">Filters</string>
-
     <string name="btn_accept">Accept</string>
     <string name="btn_access">Access</string>
     <string name="btn_add_more_items">Add more items</string>
+    <string name="btn_add_to_cart">Add to cart</string>
     <string name="btn_allergens_intolerances">Allergens &amp; intolerances</string>
     <string name="btn_book">Book</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_confirm">Confirm</string>
     <string name="btn_confirm_cart">Confirm cart (%s)</string>
+    <string name="btn_continue">Continue</string>
     <string name="btn_finish">Finish</string>
     <string name="btn_finish_signup">Finish sign up</string>
     <string name="btn_get_my_location">Get my current location</string>
@@ -24,6 +26,7 @@
     <string name="btn_ingredients">Ingredients</string>
     <string name="btn_next">Next</string>
     <string name="btn_open_settings">Open settings</string>
+    <string name="btn_out_of_stock">Out of stock</string>
     <string name="btn_pay">Proceed to payment (11,94€)</string>
     <string name="btn_product_extras">Extras</string>
     <string name="btn_qr_camera_error">There was an error trying to start the camera</string>
@@ -32,12 +35,9 @@
     <string name="btn_save">Save</string>
     <string name="btn_save_discount">Save discount</string>
     <string name="btn_send_review">Send review</string>
-
     <string name="category_filter_title">Category: %s</string>
-
     <string name="confirm_operation_desc">We have sent you an SMS, please enter the one time password below</string>
     <string name="confirm_operation_title">Confirm operation</string>
-
     <string name="current_order_status_accepted">Order accepted</string>
     <string name="current_order_status_cancelled">Order cancelled</string>
     <string name="current_order_status_declined">Order declined</string>
@@ -45,9 +45,7 @@
     <string name="current_order_status_order_number">Order\n#%s</string>
     <string name="current_order_status_waiting">Waiting for order</string>
     <string name="current_order_status_your_order">Your order</string>
-
     <string name="deny">Cancel</string>
-
     <string name="dialog_delete_account_desc">Warning: if you delete your account, you will not be able to recover any information</string>
     <string name="dialog_delete_account_title">Delete account</string>
     <string name="dialog_logout_desc">Are you sure you want to log out?</string>
@@ -55,10 +53,10 @@
     <string name="dialog_permission_missing">No permission</string>
     <string name="dialog_permission_missing_camera">Please enable the camera permission in the application settings</string>
     <string name="dialog_permission_missing_location">Please enable the location permission in the application settings</string>
-
+    <string name="error_dialer">Error opening dialer</string>
     <string name="error_network">A network error occurred</string>
+    <string name="error_no_google_maps_found">No Google Maps found</string>
     <string name="error_phone_format">Incorrect format</string>
-
     <string name="food_allergen_intolerance_celery">Celery</string>
     <string name="food_allergen_intolerance_celiac">Celiac</string>
     <string name="food_allergen_intolerance_crustacean">Crustacean</string>
@@ -79,11 +77,10 @@
     <string name="food_allergen_intolerance_sulphites">Sulphites</string>
     <string name="food_allergen_intolerance_vegan">Vegan</string>
     <string name="food_allergen_intolerance_vegetarian">Vegetarian</string>
-
     <string name="fragment_bookings_title">My bookings</string>
-    <string name="fragment_cart_title">My cart</string>
-    <string name="fragment_cart_empty_title">There are no products in your cart</string>
     <string name="fragment_cart_empty_desc">Try adding one or come back later</string>
+    <string name="fragment_cart_empty_title">There are no products in your cart</string>
+    <string name="fragment_cart_title">My cart</string>
     <string name="fragment_favourites_title">My favourites</string>
     <string name="fragment_order_details_past_title">Order %s</string>
     <string name="fragment_orders_current_order">Current order</string>
@@ -91,9 +88,7 @@
     <string name="fragment_orders_title">My orders</string>
     <string name="fragment_user_profile_greeting">Hi, %s!</string>
     <string name="fragment_user_profile_title">My account</string>
-
     <string name="grant">Accept</string>
-
     <string name="hint_tie_diners">Number of diners</string>
     <string name="hint_tie_phone_number">Phone number</string>
     <string name="hint_tie_prefix">Country</string>
@@ -103,27 +98,21 @@
     <string name="hint_tie_your_email">Your email</string>
     <string name="hint_tie_your_name">Your name</string>
     <string name="hint_tie_your_phone_number">Your number</string>
-
     <string name="item_booking_diners_plural">%s (%s diners)</string>
     <string name="item_booking_diners_singular">%s (%s diner)</string>
-
     <string name="locus_location_resolution_message">Please enable the device location (GPS) in order to display the nearest restaurants to you. Otherwise your current place will be set as Madrid</string>
     <string name="locus_location_resolution_title">Location required</string>
     <string name="locus_permission_blocked_message">Please grant the location permission in order to display the nearest restaurants to you. Otherwise your current place will be set as Madrid</string>
     <string name="locus_permission_blocked_title">Location permission blocked</string>
     <string name="locus_rationale_message">Please grant the location permission in order to display the nearest restaurants to you. Otherwise your current place will be set as Madrid</string>
     <string name="locus_rationale_title">Location required</string>
-
     <string name="menu_cart">Favourites</string>
     <string name="menu_favorites">Favourites</string>
     <string name="menu_home">Home</string>
     <string name="menu_orders">Orders</string>
     <string name="menu_profile">Profile</string>
-
     <string name="onboarding_desc1">Order comfortably in the restaurant, in your own language, check the allergens, intolerances and the ingredients.</string>
-    .
     <string name="onboarding_desc2">You can place your order at any time without waiting to be served, order and pay on your own.</string>
-    .
     <string name="onboarding_desc3">Check your orders, check allergens and intolerances.</string>
     <string name="onboarding_desc4">Follow your orders in real time, from the moment you place them.</string>
     <string name="onboarding_desc5">To recommend and personalise your experience, we need your location to show you the nearest restaurants.</string>
@@ -132,30 +121,30 @@
     <string name="onboarding_title3">Personal treatment!</string>
     <string name="onboarding_title4">Real-time tracking!</string>
     <string name="onboarding_title5">Where are you? </string>
-
     <string name="order_status_checking_payment">Checking payment method</string>
     <string name="order_status_finished">Your order is ready to pick up</string>
     <string name="order_status_order_declined">Your order has been declined</string>
     <string name="order_status_payment_declined">The payment method has been declined</string>
     <string name="order_status_preparing">Your order is being processed</string>
     <string name="order_status_waiting_confirmation">Waiting for confirmation</string>
-
+    <string name="product_dietary_restriction_category_allergens">Allergens</string>
+    <string name="product_dietary_restriction_category_intolerances">Intolerances</string>
+    <string name="product_dietary_restriction_category_others">Others</string>
     <string name="product_extras">Extras</string>
-
+    <string name="product_price_single">%s / unit</string>
+    <string name="product_price_single_discount">%s</string>
+    <string name="product_price_total">%s</string>
+    <string name="product_quantity">%s units</string>
     <string name="restaurant_details_distance">%.1f km away</string>
     <string name="restaurant_details_opening_status_closed">Closed for working hours</string>
     <string name="restaurant_details_opening_status_vacation">Closed for holidays</string>
     <string name="restaurant_opening_status_closed">Closed</string>
     <string name="restaurant_opening_status_closing_soon">Closing soon</string>
-
     <string name="schedule">Schedule</string>
-
+    <string name="schedule_open_24h">Open 24 hours</string>
     <string name="skip">Skip</string>
-
     <string name="tie_fullname">Full name</string>
-
     <string name="til_hint_search_restaurant">Search for restaurants near you</string>
-
     <string name="tv_days_ago">%s days ago</string>
     <string name="tv_finish_signup">Welcome to Food &amp; Service, to finish we need your full name. This will be visible to other users when you interact.</string>
     <string name="tv_lost_phone_number">Lost your number?</string>
@@ -167,7 +156,6 @@
     <string name="tv_table_booking_restaurant">Book at %s</string>
     <string name="tv_total">Total</string>
     <string name="tv_vat_included">All prices include VAT</string>
-
     <string name="user_profile_category_personal_details">Personal details</string>
     <string name="user_profile_category_security">Security</string>
     <string name="user_profile_change_email">Change my email</string>
@@ -176,18 +164,5 @@
     <string name="user_profile_delete_account">Delete my account</string>
     <string name="user_profile_logout">Log out</string>
     <string name="user_profile_my_bookings">My bookings</string>
-
     <string name="view_order">View my order</string>
-    <string name="error_no_google_maps_found">No Google Maps found</string>
-    <string name="error_dialer">Error opening dialer</string>
-    <string name="schedule_open_24h">Open 24 hours</string>
-    <string name="product_quantity">%s units</string>
-    <string name="product_price_total">%s</string>
-    <string name="product_price_single">%s / unit</string>
-    <string name="product_price_single_discount">%s</string>
-    <string name="btn_add_to_cart">Add to cart</string>
-    <string name="btn_out_of_stock">Out of stock</string>
-    <string name="product_dietary_restriction_category_others">Others</string>
-    <string name="product_dietary_restriction_category_intolerances">Intolerances</string>
-    <string name="product_dietary_restriction_category_allergens">Allergens</string>
 </resources>

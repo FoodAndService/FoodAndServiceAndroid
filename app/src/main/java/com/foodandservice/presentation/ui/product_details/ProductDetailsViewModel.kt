@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductDetails
 import com.foodandservice.domain.model.restaurant_details.RestaurantProductExtra
+import com.foodandservice.domain.usecases.product.AddProductToCartUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductDetailsUseCase
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,15 +12,19 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: GetRestaurantProductDetailsUseCase) :
-    ViewModel() {
+class ProductDetailsViewModel(
+    private val getRestaurantProductDetailsUseCase: GetRestaurantProductDetailsUseCase,
+    private val addProductToCartUseCase: AddProductToCartUseCase
+) : ViewModel() {
     private val _productDetailsState =
         MutableStateFlow<ProductDetailsState>(ProductDetailsState.Idle)
     val productDetailsState: StateFlow<ProductDetailsState> = _productDetailsState.asStateFlow()
 
     lateinit var productDetails: RestaurantProductDetails
 
-    var productExtrasQuantities: HashMap<String, Int> = hashMapOf()
+    var productExtras: HashMap<String, Int> = hashMapOf()
+
+    var productNote = MutableStateFlow("")
 
     var productQuantity = MutableStateFlow(1)
 
@@ -38,22 +43,21 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
     fun increaseExtraQuantity(productExtra: RestaurantProductExtra) {
         productExtra.incrementQuantity()
         totalPrice.value += productExtra.price.value
-        productExtrasQuantities[productExtra.id] = productExtra.quantity
+        productExtras[productExtra.id] = productExtra.quantity
     }
 
     fun decreaseExtraQuantity(productExtra: RestaurantProductExtra) {
         if (productExtra.quantity > 0) {
             totalPrice.value -= productExtra.price.value
             productExtra.decrementQuantity()
-            if (productExtra.quantity == 0) productExtrasQuantities.remove(productExtra.id)
-            else productExtrasQuantities[productExtra.id] = productExtra.quantity
+            if (productExtra.quantity == 0) productExtras.remove(productExtra.id)
+            else productExtras[productExtra.id] = productExtra.quantity
         }
     }
 
     private fun updateTotalPrice() {
         val mainProductPrice = getFinalPrice() * productQuantity.value
-        val extrasPrice =
-            productExtrasQuantities.map { (id, qty) -> findExtraPriceById(id) * qty }.sum()
+        val extrasPrice = productExtras.map { (id, qty) -> findExtraPriceById(id) * qty }.sum()
         totalPrice.value = mainProductPrice + extrasPrice
     }
 
@@ -62,6 +66,16 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
 
     private fun findExtraPriceById(id: String) =
         productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
+
+    fun addProductToCart() {
+        viewModelScope.launch {
+//            addProductToCartUseCase(
+//                productId = productDetails.id,
+//                productQuantity = productQuantity.value,
+//                productExtras = productExtras
+//            )
+        }
+    }
 
     fun getRestaurantProductDetails(restaurantId: String, productId: String) {
         viewModelScope.launch {
@@ -73,8 +87,7 @@ class ProductDetailsViewModel(private val getRestaurantProductDetailsUseCase: Ge
                 is ApiResponse.Success -> {
                     restaurantProductDetails.data?.let { productDetails ->
                         this@ProductDetailsViewModel.productDetails = productDetails
-                        if (!productDetails.hasStock)
-                            productQuantity.value = 0
+                        if (!productDetails.hasStock) productQuantity.value = 0
                         updateTotalPrice()
 
                         _productDetailsState.emit(
