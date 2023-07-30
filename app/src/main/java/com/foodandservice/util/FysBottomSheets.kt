@@ -1,28 +1,15 @@
 package com.foodandservice.util
 
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.R
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.android.material.button.MaterialButton
 
 object FysBottomSheets {
-    fun Fragment.showGenericBottomSheet(
-        layout: Int
-    ) {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-        layoutInflater.inflate(layout, null).also {
-            dialog.setContentView(it)
-            dialog.show()
-        }
-    }
-
     fun Fragment.showAccountSettingsBottomSheet(
         layout: Int, onBtnActionClick: (() -> Unit)? = null
     ) {
@@ -47,31 +34,6 @@ object FysBottomSheets {
         inflatedLayout.apply {
             findViewById<RecyclerView>(R.id.rvAllergenIntolerance).adapter =
                 restaurantProductDietaryRestrictionAdapter
-        }
-    }
-
-    fun Fragment.showAddProductNoteBottomSheet(
-        layout: Int,
-        productNote: String,
-        onTextChanged: (String) -> Unit,
-        onContinueClick: () -> Unit
-    ) {
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
-        val inflatedLayout = layoutInflater.inflate(layout, null).also {
-            dialog.setContentView(it)
-            dialog.behavior.peekHeight = 1000
-            dialog.show()
-        }
-        inflatedLayout.apply {
-            findViewById<MaterialButton>(R.id.btnContinue).setOnClickListener {
-                onContinueClick()
-            }
-            findViewById<EditText>(R.id.tieProductNote).apply {
-                doOnTextChanged { newText, _, _, _ ->
-                    onTextChanged(newText.toString())
-                }
-                setText(productNote)
-            }
         }
     }
 

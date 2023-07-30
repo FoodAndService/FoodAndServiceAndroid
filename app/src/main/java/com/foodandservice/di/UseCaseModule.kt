@@ -7,20 +7,24 @@ import com.foodandservice.domain.usecases.auth.ResendSmsUseCase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.auth.SignOutUseCase
-import com.foodandservice.domain.usecases.cart.GetCartUseCase
+import com.foodandservice.domain.usecases.cart.GetCartProductsUseCase
+import com.foodandservice.domain.usecases.cart.GetOrCreateCartIdUseCase
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
 import com.foodandservice.domain.usecases.onboarding.IsOnboardingFinishedUseCase
 import com.foodandservice.domain.usecases.order.GetOrderProductsUseCase
 import com.foodandservice.domain.usecases.order.GetOrderStatusUseCase
+import com.foodandservice.domain.usecases.product.AddProductToCartUseCase
 import com.foodandservice.domain.usecases.restaurant.GetBookingsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetFavouriteRestaurantsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetOrderHistoryUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantIdUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductCategoriesWithProductsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantReviewsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantsUseCase
+import com.foodandservice.domain.usecases.restaurant.SaveRestaurantIdUseCase
 import com.foodandservice.domain.usecases.sign.SignInFirstPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignInSecondPhaseUseCase
 import com.foodandservice.domain.usecases.sign.SignUpFirstPhaseUseCase
@@ -48,6 +52,27 @@ val useCaseModule = module {
     }
 
     single {
+        AddProductToCartUseCase(
+            getOrCreateCartIdUseCase = get(),
+            customerRepository = get(),
+            getRestaurantIdUseCase = get(),
+            saveRestaurantIdUseCase = get()
+        )
+    }
+
+    single {
+        GetRestaurantIdUseCase(userPreferencesRepository = get())
+    }
+
+    single {
+        SaveRestaurantIdUseCase(userPreferencesRepository = get())
+    }
+
+    single {
+        GetOrCreateCartIdUseCase(userPreferencesRepository = get())
+    }
+
+    single {
         GetRestaurantDetailsUseCase(customerRepository = get())
     }
 
@@ -64,7 +89,7 @@ val useCaseModule = module {
     }
 
     single {
-        GetCartUseCase(customerRepository = get(), preferencesRepository = get())
+        GetCartProductsUseCase(customerRepository = get(), preferencesRepository = get())
     }
 
     single {

@@ -18,8 +18,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CustomerRepository {
     fun getRestaurants(
-        coordinate: Coordinate,
-        restaurantCategoryId: String
+        coordinate: Coordinate, restaurantCategoryId: String
     ): Flow<PagingData<Restaurant>>
 
     suspend fun getRestaurantCategories(): ApiResponse<List<RestaurantCategory>>
@@ -30,8 +29,18 @@ interface CustomerRepository {
     ): ApiResponse<RestaurantProductDetails>
 
     suspend fun getCart(cartId: String): ApiResponse<RestaurantCart>
+    suspend fun addProductToCart(
+        restaurantId: String,
+        cartId: String,
+        productId: String,
+        productQuantity: Int,
+        productNote: String,
+        productExtras: HashMap<String, Int>
+    ): Boolean
 
-    // Mock
+    suspend fun deleteCart()
+
+    // Mocked
     suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>>
     suspend fun getOrderHistory(): ApiResponse<List<Order>>
     suspend fun getBookings(): ApiResponse<List<Booking>>

@@ -2,14 +2,14 @@ package com.foodandservice.presentation.ui.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.foodandservice.domain.usecases.cart.GetCartUseCase
+import com.foodandservice.domain.usecases.cart.GetCartProductsUseCase
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-class CartViewModel(private val getCartUseCase: GetCartUseCase) : ViewModel() {
+class CartViewModel(private val getCartProductsUseCase: GetCartProductsUseCase) : ViewModel() {
     private val _cartState = MutableStateFlow<CartState>(CartState.Idle)
     val cartState: StateFlow<CartState> = _cartState.asStateFlow()
 
@@ -17,7 +17,7 @@ class CartViewModel(private val getCartUseCase: GetCartUseCase) : ViewModel() {
         viewModelScope.launch {
             _cartState.emit(CartState.Loading)
 
-            getCartUseCase()?.let { cart ->
+            getCartProductsUseCase()?.let { cart ->
                 when (cart) {
                     is ApiResponse.Success -> {
                         cart.data?.let { restaurantCart ->

@@ -9,8 +9,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.foodandservice.databinding.FragmentCartBinding
-import com.foodandservice.domain.model.CartItem
 import com.foodandservice.domain.model.cart.RestaurantCart
+import com.foodandservice.domain.model.cart.RestaurantCartItem
 import com.foodandservice.presentation.ui.adapter.CartAdapter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
@@ -68,7 +68,7 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
     }
 
     private fun setCartItems(restaurantCart: RestaurantCart) {
-        // cartAdapter.submitList(restaurantCart.items)
+        cartAdapter.submitList(restaurantCart.items)
         binding.constraintCart.visibility = View.VISIBLE
     }
 
@@ -98,11 +98,11 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         }
     }
 
-    override fun onClickSubtractQuantity(cartItem: CartItem, position: Int) {
+    override fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem, position: Int) {
 
     }
 
-    override fun onClickAddQuantity(cartItem: CartItem, position: Int) {
+    override fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem, position: Int) {
 
     }
 }

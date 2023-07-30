@@ -22,7 +22,7 @@ class ProductDetailsViewModel(
 
     lateinit var productDetails: RestaurantProductDetails
 
-    var productExtras: HashMap<String, Int> = hashMapOf()
+    private val productExtras: HashMap<String, Int> = hashMapOf()
 
     var productNote = MutableStateFlow("")
 
@@ -67,13 +67,24 @@ class ProductDetailsViewModel(
     private fun findExtraPriceById(id: String) =
         productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
 
-    fun addProductToCart() {
+    fun addProductToCart(restaurantId: String) {
         viewModelScope.launch {
-//            addProductToCartUseCase(
-//                productId = productDetails.id,
-//                productQuantity = productQuantity.value,
-//                productExtras = productExtras
-//            )
+            _productDetailsState.emit(ProductDetailsState.LoadingAddToCart)
+
+            if (addProductToCartUseCase(
+                    restaurantId = restaurantId,
+                    productId = productDetails.id,
+                    productQuantity = productQuantity.value,
+                    productNote = productNote.value,
+                    productExtras = productExtras
+                )
+            ) {
+                _productDetailsState.emit(ProductDetailsState.SuccessAddToCart)
+            } else {
+                _productDetailsState.emit(ProductDetailsState.ErrorAddToCart)
+            }
+
+            _productDetailsState.emit(ProductDetailsState.AddToCartIdle)
         }
     }
 

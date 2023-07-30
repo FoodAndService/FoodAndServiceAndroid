@@ -7,6 +7,10 @@ sealed class ProductDetailsState {
         ProductDetailsState()
 
     data class Error(val message: String) : ProductDetailsState()
+    object SuccessAddToCart : ProductDetailsState()
+    object ErrorAddToCart : ProductDetailsState()
     object Loading : ProductDetailsState()
+    object LoadingAddToCart : ProductDetailsState()
+    object AddToCartIdle : ProductDetailsState()
     object Idle : ProductDetailsState()
 }

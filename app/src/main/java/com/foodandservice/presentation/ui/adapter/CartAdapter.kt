@@ -9,30 +9,30 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.foodandservice.databinding.ItemProductCartBinding
 import com.foodandservice.databinding.ItemProductExtraCartBinding
-import com.foodandservice.domain.model.CartItem
+import com.foodandservice.domain.model.cart.RestaurantCartItem
 import java.util.*
 
 class CartAdapter constructor(private val clickListener: CartItemClickListener) :
-    ListAdapter<CartItem, CartAdapter.AbstractViewHolder>(CartDiffCallback()) {
+    ListAdapter<RestaurantCartItem, CartAdapter.AbstractViewHolder>(RestaurantCartItemDiffCallback()) {
 
     interface CartItemClickListener {
-        fun onClickSubtractQuantity(cartItem: CartItem, position: Int)
-        fun onClickAddQuantity(cartItem: CartItem, position: Int)
+        fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem, position: Int)
+        fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem, position: Int)
     }
 
     companion object {
-        private const val ITEM_CART_NORMAL = 1
-        private const val ITEM_CART_EXTRA = 2
+        private const val CART_ITEM_PRODUCT = 1
+        private const val CART_ITEM_PRODUCT_EXTRA = 2
     }
 
     abstract class AbstractViewHolder(
         val binding: ViewDataBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        abstract fun bind(item: CartItem, clickListener: CartItemClickListener)
+        abstract fun bind(item: RestaurantCartItem, clickListener: CartItemClickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AbstractViewHolder {
-        return if (viewType == ITEM_CART_NORMAL) CartItemNormalViewHolder.from(parent)
+        return if (viewType == CART_ITEM_PRODUCT) CartItemNormalViewHolder.from(parent)
         else CartItemExtraViewHolder.from(parent)
     }
 
@@ -40,25 +40,26 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: CartItem, clickListener: CartItemClickListener) {
+        override fun bind(item: RestaurantCartItem, clickListener: CartItemClickListener) {
             val binding = binding as ItemProductCartBinding
+            val productItem = (item as? RestaurantCartItem.Product)?.item ?: return
 
             binding.apply {
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
-                        cartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
 
                 btnSubtract.setOnClickListener {
                     clickListener.onClickSubtractQuantity(
-                        cartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
 
-                tvProductName.text = item.name
-                tvPrice.text = item.price + "€"
-                tvProductQuantity.text = item.quantity.toString()
+                tvProductName.text = productItem.name
+                tvPrice.text = "${productItem.price} €"
+                tvProductQuantity.text = productItem.quantity.toString()
             }
             binding.executePendingBindings()
         }
@@ -76,31 +77,32 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
         AbstractViewHolder(binding) {
 
         @SuppressLint("SetTextI18n")
-        override fun bind(item: CartItem, clickListener: CartItemClickListener) {
+        override fun bind(item: RestaurantCartItem, clickListener: CartItemClickListener) {
             val binding = binding as ItemProductExtraCartBinding
+            val extraItem = (item as? RestaurantCartItem.ProductExtra)?.extra ?: return
 
             binding.apply {
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
-                        cartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
 
                 btnSubtract.setOnClickListener {
                     clickListener.onClickSubtractQuantity(
-                        cartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
 
-                tvProductName.text = item.name
-                tvPrice.text = item.price + "€"
-                tvProductQuantity.text = item.quantity.toString()
+                tvProductName.text = extraItem.name
+                tvPrice.text = "${extraItem.price} €"
+                tvProductQuantity.text = extraItem.quantity.toString()
             }
             binding.executePendingBindings()
         }
 
         companion object {
-            fun from(parent: ViewGroup): CartItemExtraViewHolder {
+            fun from(parent: ViewGroup): AbstractViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = ItemProductExtraCartBinding.inflate(layoutInflater, parent, false)
                 return CartItemExtraViewHolder(binding)
@@ -113,11 +115,29 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (this.currentList[position].isExtra) ITEM_CART_EXTRA else ITEM_CART_NORMAL
+        return when (getItem(position)) {
+            is RestaurantCartItem.Product -> CART_ITEM_PRODUCT
+            is RestaurantCartItem.ProductExtra -> CART_ITEM_PRODUCT_EXTRA
+        }
     }
 }
 
-class CartDiffCallback : DiffUtil.ItemCallback<CartItem>() {
-    override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem) = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: CartItem, newItem: CartItem) = oldItem == newItem
+class RestaurantCartItemDiffCallback : DiffUtil.ItemCallback<RestaurantCartItem>() {
+    override fun areItemsTheSame(
+        oldItem: RestaurantCartItem, newItem: RestaurantCartItem
+    ): Boolean {
+        return when {
+            oldItem is RestaurantCartItem.Product && newItem is RestaurantCartItem.Product -> oldItem.item.productId == newItem.item.productId
+
+            oldItem is RestaurantCartItem.ProductExtra && newItem is RestaurantCartItem.ProductExtra -> oldItem.extra.extraId == newItem.extra.extraId
+
+            else -> false
+        }
+    }
+
+    override fun areContentsTheSame(
+        oldItem: RestaurantCartItem, newItem: RestaurantCartItem
+    ): Boolean {
+        return oldItem == newItem
+    }
 }

@@ -6,9 +6,14 @@ data class RestaurantCart(
     val items: List<RestaurantCartItem>
 )
 
-data class RestaurantCartItem(
+sealed class RestaurantCartItem {
+    data class Product(val item: RestaurantCartProduct) : RestaurantCartItem()
+    data class ProductExtra(val extra: RestaurantCartProductExtra) : RestaurantCartItem()
+}
+
+data class RestaurantCartProduct(
     val discountedPrice: Int,
-    val extras: List<RestaurantCartExtra>,
+    val extras: List<RestaurantCartProductExtra>,
     val name: String,
     val price: Int,
     val productId: String,
@@ -16,7 +21,7 @@ data class RestaurantCartItem(
     val quantity: Int
 )
 
-data class RestaurantCartExtra(
+data class RestaurantCartProductExtra(
     val cartItemId: String,
     val extraId: String,
     val name: String,

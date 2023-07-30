@@ -70,7 +70,7 @@ class SmsConfirmAuthFragment : Fragment() {
                         btnResendSms.isEnabled = state.isBtnEnabled
                         btnResendSms.text =
                             if (state.isBtnEnabled) getString(R.string.btn_resend_sms) else getString(
-                                R.string.btn_resend_sms_wait, state.time
+                                R.string.btn_resend_sms_wait, state.time.toString()
                             )
                     }
                 }

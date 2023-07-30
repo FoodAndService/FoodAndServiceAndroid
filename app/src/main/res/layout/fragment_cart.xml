@@ -7,7 +7,7 @@
         android:background="@color/fys_background"
         tools:context=".presentation.ui.cart.CartFragment">
 
-        <Toolbar
+        <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             style="@style/FysToolbar"
             app:layout_constraintEnd_toEndOf="parent"
@@ -22,7 +22,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-        </Toolbar>
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -51,6 +51,8 @@
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraintCartEmpty"
+                    android:visibility="gone"
+                    tools:visibility="visible"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 

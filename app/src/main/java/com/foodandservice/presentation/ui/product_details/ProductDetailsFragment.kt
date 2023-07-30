@@ -20,7 +20,7 @@ import com.foodandservice.domain.model.restaurant_details.toPricePrintable
 import com.foodandservice.domain.model.restaurant_details.toUI
 import com.foodandservice.presentation.ui.adapter.ProductExtraAdapter
 import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestrictionAdapter
-import com.foodandservice.util.FysBottomSheets.showAddProductNoteBottomSheet
+import com.foodandservice.presentation.ui.bottomsheets.AddProductNoteBottomSheet
 import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
@@ -32,6 +32,7 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
     private lateinit var restaurantProductDietaryRestrictionAdapter: RestaurantProductDietaryRestrictionAdapter
     private lateinit var productExtraAdapter: ProductExtraAdapter
     private lateinit var restaurantProductDetails: RestaurantProductDetails
+    private lateinit var addProductNoteBottomSheet: AddProductNoteBottomSheet
     private val args: ProductDetailsFragmentArgs by navArgs()
     private val viewModel: ProductDetailsViewModel = get()
 
@@ -71,6 +72,22 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                         is ProductDetailsState.Idle -> {
                             setIdleState()
                         }
+
+                        is ProductDetailsState.LoadingAddToCart -> {
+                            addProductNoteBottomSheet.setLoadingState()
+                        }
+
+                        is ProductDetailsState.SuccessAddToCart -> {
+
+                        }
+
+                        is ProductDetailsState.AddToCartIdle -> {
+                            addProductNoteBottomSheet.setIdleState()
+                        }
+
+                        is ProductDetailsState.ErrorAddToCart -> {
+                            setErrorAddToCartState()
+                        }
                     }
                 }
             }
@@ -104,16 +121,22 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
             }
 
             btnAddToCart.setOnClickListener {
-                showAddProductNoteBottomSheet(layout = R.layout.bottom_sheet_add_product_note,
-                    productNote = viewModel.productNote.value,
-                    onTextChanged = { text ->
-                        viewModel.productNote.value = text
-                    },
-                    onContinueClick = {
-                        viewModel.addProductToCart()
-                    })
+                addProductNoteBottomSheet =
+                    AddProductNoteBottomSheet(productNote = viewModel.productNote.value,
+                        onTextChanged = { text ->
+                            viewModel.productNote.value = text
+                        },
+                        onContinueClick = {
+                            viewModel.addProductToCart(restaurantId = args.restaurantId)
+                        })
+
+                addProductNoteBottomSheet.show(parentFragmentManager, null)
             }
         }
+    }
+
+    private fun setErrorAddToCartState() {
+
     }
 
     private fun handleProductAndExtraQuantities() {

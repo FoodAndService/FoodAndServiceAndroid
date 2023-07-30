@@ -37,7 +37,7 @@ val viewModelModule = module {
     }
 
     viewModel {
-        CartViewModel(getCartUseCase = get())
+        CartViewModel(getCartProductsUseCase = get())
     }
 
     viewModel {
@@ -77,7 +77,10 @@ val viewModelModule = module {
     }
 
     viewModel {
-        ProductDetailsViewModel(getRestaurantProductDetailsUseCase = get())
+        ProductDetailsViewModel(
+            getRestaurantProductDetailsUseCase = get(),
+            addProductToCartUseCase = get()
+        )
     }
 
     viewModel {

@@ -16,7 +16,11 @@ val repositoryModule = module {
     }
 
     single<CustomerRepository> {
-        CustomerRepositoryImpl(customerRemoteDataSource = get(), customerService = get())
+        CustomerRepositoryImpl(
+            customerRemoteDataSource = get(),
+            customerService = get(),
+            cartDao = get()
+        )
     }
 
     single<CustomerRemoteDataSource> {

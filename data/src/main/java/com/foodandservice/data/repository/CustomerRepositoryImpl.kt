@@ -4,7 +4,13 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.paging.PagingData
 import androidx.paging.map
+import com.foodandservice.data.local.dao.CartDao
+import com.foodandservice.data.local.entity.RestaurantCartProductEntity
+import com.foodandservice.data.local.entity.RestaurantCartProductExtraEntity
 import com.foodandservice.data.remote.datasource.CustomerRemoteDataSource
+import com.foodandservice.data.remote.model.cart.CreateUpdateRestaurantCartDto
+import com.foodandservice.data.remote.model.cart.CreateUpdateRestaurantCartExtraDto
+import com.foodandservice.data.remote.model.cart.CreateUpdateRestaurantCartItemDto
 import com.foodandservice.data.remote.model.cart.toRestaurantCart
 import com.foodandservice.data.remote.model.restaurant.toRestaurant
 import com.foodandservice.data.remote.model.restaurant.toRestaurantCategory
@@ -35,7 +41,8 @@ import java.time.LocalDateTime
 
 class CustomerRepositoryImpl(
     private val customerRemoteDataSource: CustomerRemoteDataSource,
-    private val customerService: CustomerService
+    private val customerService: CustomerService,
+    private val cartDao: CartDao
 ) : CustomerRepository {
 
     override fun getRestaurants(
@@ -107,6 +114,75 @@ class CustomerRepositoryImpl(
         } catch (exception: Exception) {
             ApiResponse.Failure(exception)
         }
+    }
+
+    override suspend fun addProductToCart(
+        restaurantId: String,
+        cartId: String,
+        productId: String,
+        productQuantity: Int,
+        productNote: String,
+        productExtras: HashMap<String, Int>
+    ): Boolean {
+        return try {
+            val productCartItemId = cartDao.getCartItemId(productId)
+            val doesProductExist = cartDao.productExists(productId = productId)
+            val doesNoteMatch =
+                doesProductExist && cartDao.getProductNote(productId = productId) == productNote
+
+            when {
+                doesNoteMatch -> cartDao.updateQuantity(productId, productQuantity)
+                else -> cartDao.insertOrUpdate(
+                    product = RestaurantCartProductEntity(
+                        productId = productId, quantity = productQuantity, note = productNote
+                    )
+                )
+            }
+
+            val existingExtras = cartDao.getProductExtrasForCartItem(productCartItemId)
+
+            productExtras.forEach { (extraId, qty) ->
+                existingExtras.find { it.productExtraId == extraId }?.let { extra ->
+                    cartDao.updateProductExtraQuantity(
+                        productExtraId = extraId,
+                        cartItemId = productCartItemId,
+                        quantity = extra.quantity + qty
+                    )
+                } ?: run {
+                    cartDao.insertProductExtra(
+                        extra = RestaurantCartProductExtraEntity(
+                            productExtraId = extraId, cartItemId = productCartItemId, quantity = qty
+                        )
+                    )
+                }
+            }
+
+            val products = cartDao.getAllProductsWithExtras()
+
+            customerService.createOrUpdateCart(
+                cartId = cartId,
+                restaurantCart = CreateUpdateRestaurantCartDto(
+                    businessId = restaurantId,
+                    items = products.map { entity ->
+                        CreateUpdateRestaurantCartItemDto(id = entity.product.id,
+                            productId = entity.product.productId,
+                            quantity = entity.product.quantity,
+                            note = entity.product.note,
+                            extras = entity.extras.map { extra ->
+                                CreateUpdateRestaurantCartExtraDto(
+                                    productExtraId = extra.productExtraId, quantity = extra.quantity
+                                )
+                            })
+                    })
+            ).isSuccessful
+
+        } catch (exception: Exception) {
+            return false
+        }
+    }
+
+    override suspend fun deleteCart() {
+        cartDao.deleteAllProductsAndTheirExtras()
     }
 
     override suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>> {

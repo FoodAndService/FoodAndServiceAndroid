@@ -6,10 +6,11 @@ data class CreateUpdateRestaurantCartDto(
 )
 
 data class CreateUpdateRestaurantCartItemDto(
-    val extras: List<CreateUpdateRestaurantCartExtraDto>,
     val id: String,
     val productId: String,
-    val quantity: Int
+    val quantity: Int,
+    val note: String,
+    val extras: List<CreateUpdateRestaurantCartExtraDto>
 )
 
 data class CreateUpdateRestaurantCartExtraDto(
