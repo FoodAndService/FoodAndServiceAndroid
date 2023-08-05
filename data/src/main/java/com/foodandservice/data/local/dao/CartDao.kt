@@ -19,26 +19,34 @@ interface CartDao {
     suspend fun insertProductExtras(productExtras: List<RestaurantCartProductExtraEntity>)
 
     @Transaction
-    suspend fun decrementOrDelete(cartItemId: String) {
-        val currentQuantity = getProductQuantity(cartItemId)
-        if (currentQuantity == 1) {
-            deleteProduct(cartItemId)
-        } else {
-            updateQuantity(cartItemId, -1)
-        }
+    suspend fun decrementOrDeleteProduct(productId: String) {
+        if (getProductQuantity(productId) == 1) deleteProduct(productId)
+        else updateProductQuantity(productId, -1)
+    }
+
+    @Transaction
+    suspend fun decrementOrDeleteProductExtra(productExtraId: String) {
+        if (getProductExtraQuantity(productExtraId) == 1) deleteProductExtra(productExtraId)
+        else updateProductExtraQuantity(productExtraId, -1)
     }
 
     @Query("UPDATE restaurant_cart_products SET quantity = quantity + :quantity WHERE productId = :productId")
-    suspend fun updateQuantity(productId: String, quantity: Int)
+    suspend fun updateProductQuantity(productId: String, quantity: Int)
 
     @Query("SELECT quantity FROM restaurant_cart_products WHERE productId = :productId")
     suspend fun getProductQuantity(productId: String): Int
+
+    @Query("SELECT quantity FROM restaurant_cart_product_extras WHERE productExtraId = :productExtraId")
+    suspend fun getProductExtraQuantity(productExtraId: String): Int
 
     @Query("SELECT id FROM restaurant_cart_products WHERE productId = :productId")
     suspend fun getCartItemId(productId: String): String
 
     @Query("DELETE FROM restaurant_cart_products WHERE productId = :productId")
     suspend fun deleteProduct(productId: String)
+
+    @Query("DELETE FROM restaurant_cart_product_extras WHERE productExtraId = :productExtraId")
+    suspend fun deleteProductExtra(productExtraId: String)
 
     @Query("DELETE FROM restaurant_cart_product_extras WHERE cartItemId = :productId")
     suspend fun deleteProductExtras(productId: String)
@@ -55,11 +63,9 @@ interface CartDao {
     @Query("SELECT * FROM restaurant_cart_product_extras WHERE cartItemId = :cartItemId")
     suspend fun getProductExtrasForCartItem(cartItemId: String): List<RestaurantCartProductExtraEntity>
 
-    @Query("UPDATE restaurant_cart_product_extras SET quantity = :quantity WHERE productExtraId = :productExtraId AND cartItemId = :cartItemId")
+    @Query("UPDATE restaurant_cart_product_extras SET quantity = quantity + :quantity WHERE productExtraId = :productExtraId")
     suspend fun updateProductExtraQuantity(
-        productExtraId: String,
-        cartItemId: String,
-        quantity: Int
+        productExtraId: String, quantity: Int
     )
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

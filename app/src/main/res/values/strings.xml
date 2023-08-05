@@ -52,6 +52,8 @@
     <string name="dialog_logout_title">Log out</string>
     <string name="dialog_clear_cart_title">Clear cart</string>
     <string name="dialog_clear_cart_desc">Are you sure you want to clear the cart?</string>
+    <string name="dialog_delete_cart_item_title">Remove item</string>
+    <string name="dialog_delete_cart_item_desc">Are you sure you want to remove this item?</string>
     <string name="dialog_permission_missing">No permission</string>
     <string name="dialog_permission_missing_camera">Please enable the camera permission in the application settings</string>
     <string name="dialog_permission_missing_location">Please enable the location permission in the application settings</string>

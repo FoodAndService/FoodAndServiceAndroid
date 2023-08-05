@@ -120,11 +120,24 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
         }
     }
 
-    override fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem, position: Int) {
-
+    override fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem) {
+        viewModel.addProductQuantity(restaurantCartItem)
     }
 
-    override fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem, position: Int) {
+    override fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem) {
+        val itemQuantity = when (restaurantCartItem) {
+            is RestaurantCartItem.Product -> restaurantCartItem.item.quantity
+            is RestaurantCartItem.ProductExtra -> restaurantCartItem.extra.quantity
+        }
 
+        if (itemQuantity == 1) {
+            showDialog(
+                title = getString(R.string.dialog_delete_cart_item_title),
+                description = getString(R.string.dialog_delete_cart_item_desc),
+                onBtnPositiveClick = { viewModel.subtractProductQuantity(restaurantCartItem) }
+            )
+        } else {
+            viewModel.subtractProductQuantity(restaurantCartItem)
+        }
     }
 }

@@ -46,6 +46,8 @@
     <string name="dialog_delete_account_title">Eliminar cuenta</string>
     <string name="dialog_logout_desc">¿Estás seguro de que quieres cerrar sesión?</string>
     <string name="dialog_logout_title">Cerrar sesión</string>
+    <string name="dialog_delete_cart_item_title">Eliminar artículo</string>
+    <string name="dialog_delete_cart_item_desc">¿Estás seguro de que quieres eliminar este artículo?</string>
     <string name="dialog_clear_cart_title">Limpiar carrito</string>
     <string name="dialog_clear_cart_desc">¿Estás seguro de que quieres limpiar el carrito?</string>
     <string name="dialog_permission_missing">No hay permisos</string>

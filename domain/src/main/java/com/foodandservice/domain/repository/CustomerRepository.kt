@@ -7,6 +7,7 @@ import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.cart.RestaurantCart
+import com.foodandservice.domain.model.cart.RestaurantCartItem
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.domain.model.restaurant.RestaurantCategory
@@ -36,6 +37,18 @@ interface CustomerRepository {
         productQuantity: Int,
         productNote: String,
         productExtras: HashMap<String, Int>
+    ): Boolean
+
+    suspend fun addCartItemQuantity(
+        cartId: String,
+        restaurantId: String,
+        restaurantCartItem: RestaurantCartItem
+    ): Boolean
+
+    suspend fun subtractCartItemQuantity(
+        cartId: String,
+        restaurantId: String,
+        restaurantCartItem: RestaurantCartItem
     ): Boolean
 
     suspend fun emptyCart()

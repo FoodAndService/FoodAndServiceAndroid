@@ -25,6 +25,7 @@ import com.foodandservice.domain.model.Order
 import com.foodandservice.domain.model.OrderProduct
 import com.foodandservice.domain.model.RestaurantReview
 import com.foodandservice.domain.model.cart.RestaurantCart
+import com.foodandservice.domain.model.cart.RestaurantCartItem
 import com.foodandservice.domain.model.location.Coordinate
 import com.foodandservice.domain.model.restaurant.Restaurant
 import com.foodandservice.domain.model.restaurant.RestaurantCategory
@@ -130,7 +131,7 @@ class CustomerRepositoryImpl(
                 doesProductExist && cartDao.getProductNote(productId = productId) == productNote
 
             when {
-                doesNoteMatch -> cartDao.updateQuantity(productId, productQuantity)
+                doesNoteMatch -> cartDao.updateProductQuantity(productId, productQuantity)
                 else -> cartDao.insertOrUpdate(
                     product = RestaurantCartProductEntity(
                         productId = productId, quantity = productQuantity, note = productNote
@@ -144,9 +145,7 @@ class CustomerRepositoryImpl(
             productExtras.forEach { (extraId, qty) ->
                 existingExtras.find { it.productExtraId == extraId }?.let { extra ->
                     cartDao.updateProductExtraQuantity(
-                        productExtraId = extraId,
-                        cartItemId = productCartItemId,
-                        quantity = extra.quantity + qty
+                        productExtraId = extraId, quantity = qty
                     )
                 } ?: run {
                     cartDao.insertProductExtra(
@@ -157,28 +156,73 @@ class CustomerRepositoryImpl(
                 }
             }
 
-            val products = cartDao.getAllProductsWithExtras()
-
-            customerService.createOrUpdateCart(
-                cartId = cartId,
-                restaurantCart = CreateUpdateRestaurantCartDto(
-                    businessId = restaurantId,
-                    items = products.map { entity ->
-                        CreateUpdateRestaurantCartItemDto(id = entity.product.id,
-                            productId = entity.product.productId,
-                            quantity = entity.product.quantity,
-                            note = entity.product.note,
-                            extras = entity.extras.map { extra ->
-                                CreateUpdateRestaurantCartExtraDto(
-                                    productExtraId = extra.productExtraId, quantity = extra.quantity
-                                )
-                            })
-                    })
-            ).isSuccessful
+            fetchAndUpdateCart(cartId = cartId, restaurantId = restaurantId)
 
         } catch (exception: Exception) {
             return false
         }
+    }
+
+    override suspend fun addCartItemQuantity(
+        cartId: String, restaurantId: String, restaurantCartItem: RestaurantCartItem
+    ): Boolean {
+        return try {
+            when (restaurantCartItem) {
+                is RestaurantCartItem.Product -> {
+                    cartDao.updateProductQuantity(
+                        productId = restaurantCartItem.item.productId, quantity = 1
+                    )
+                }
+
+                is RestaurantCartItem.ProductExtra -> {
+                    cartDao.updateProductExtraQuantity(
+                        productExtraId = restaurantCartItem.extra.extraId, quantity = 1
+                    )
+                }
+            }
+
+            fetchAndUpdateCart(cartId = cartId, restaurantId = restaurantId)
+        } catch (exception: Exception) {
+            return false
+        }
+    }
+
+    override suspend fun subtractCartItemQuantity(
+        cartId: String, restaurantId: String, restaurantCartItem: RestaurantCartItem
+    ): Boolean {
+        return try {
+            when (restaurantCartItem) {
+                is RestaurantCartItem.Product -> cartDao.decrementOrDeleteProduct(restaurantCartItem.item.productId)
+                is RestaurantCartItem.ProductExtra -> cartDao.decrementOrDeleteProductExtra(
+                    restaurantCartItem.extra.extraId
+                )
+            }
+
+            fetchAndUpdateCart(cartId = cartId, restaurantId = restaurantId)
+        } catch (exception: Exception) {
+            return false
+        }
+    }
+
+    private suspend fun fetchAndUpdateCart(cartId: String, restaurantId: String): Boolean {
+        val products = cartDao.getAllProductsWithExtras()
+
+        return customerService.createOrUpdateCart(
+            cartId = cartId,
+            restaurantCart = CreateUpdateRestaurantCartDto(
+                businessId = restaurantId,
+                items = products.map { entity ->
+                    CreateUpdateRestaurantCartItemDto(id = entity.product.id,
+                        productId = entity.product.productId,
+                        quantity = entity.product.quantity,
+                        note = entity.product.note,
+                        extras = entity.extras.map { extra ->
+                            CreateUpdateRestaurantCartExtraDto(
+                                productExtraId = extra.productExtraId, quantity = extra.quantity
+                            )
+                        })
+                })
+        ).isSuccessful
     }
 
     override suspend fun emptyCart() {

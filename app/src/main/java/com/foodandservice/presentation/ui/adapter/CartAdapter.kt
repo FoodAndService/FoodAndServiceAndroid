@@ -19,8 +19,8 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
     ListAdapter<RestaurantCartItem, CartAdapter.AbstractViewHolder>(RestaurantCartItemDiffCallback()) {
 
     interface CartItemClickListener {
-        fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem, position: Int)
-        fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem, position: Int)
+        fun onClickSubtractQuantity(restaurantCartItem: RestaurantCartItem)
+        fun onClickAddQuantity(restaurantCartItem: RestaurantCartItem)
     }
 
     companion object {
@@ -67,15 +67,18 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
 
                 Glide.with(itemView).load(productItem.productImage).centerCrop().into(ivProduct)
 
-                btnAdd.setOnClickListener {
-                    clickListener.onClickAddQuantity(
-                        restaurantCartItem = item, position = bindingAdapterPosition
-                    )
+                btnAdd.apply {
+                    setOnClickListener {
+                        clickListener.onClickAddQuantity(
+                            restaurantCartItem = item
+                        )
+                    }
+                    isEnabled = item.item.quantity < 100
                 }
 
                 btnSubtract.setOnClickListener {
                     clickListener.onClickSubtractQuantity(
-                        restaurantCartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item
                     )
                 }
             }
@@ -105,15 +108,18 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
                     binding.root.context.getString(R.string.product_price_single, extraItem.priceUI)
                 tvProductQuantity.text = extraItem.quantity.toString()
 
-                btnAdd.setOnClickListener {
-                    clickListener.onClickAddQuantity(
-                        restaurantCartItem = item, position = bindingAdapterPosition
-                    )
+                btnAdd.apply {
+                    setOnClickListener {
+                        clickListener.onClickAddQuantity(
+                            restaurantCartItem = item
+                        )
+                    }
+                    isEnabled = item.extra.quantity < 100
                 }
 
                 btnSubtract.setOnClickListener {
                     clickListener.onClickSubtractQuantity(
-                        restaurantCartItem = item, position = bindingAdapterPosition
+                        restaurantCartItem = item
                     )
                 }
             }

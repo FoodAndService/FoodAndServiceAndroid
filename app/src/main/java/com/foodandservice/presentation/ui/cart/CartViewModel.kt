@@ -2,8 +2,11 @@ package com.foodandservice.presentation.ui.cart
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.foodandservice.domain.model.cart.RestaurantCartItem
+import com.foodandservice.domain.usecases.cart.AddCartItemQuantityUseCase
 import com.foodandservice.domain.usecases.cart.ClearCartUseCase
 import com.foodandservice.domain.usecases.cart.GetCartProductsUseCase
+import com.foodandservice.domain.usecases.cart.SubtractCartItemQuantityUseCase
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -12,6 +15,8 @@ import kotlinx.coroutines.launch
 
 class CartViewModel(
     private val getCartProductsUseCase: GetCartProductsUseCase,
+    private val addCartItemQuantityUseCase: AddCartItemQuantityUseCase,
+    private val subtractCartItemQuantityUseCase: SubtractCartItemQuantityUseCase,
     private val clearCartUseCase: ClearCartUseCase
 ) : ViewModel() {
     private val _cartState = MutableSharedFlow<CartState>(replay = 5)
@@ -25,7 +30,11 @@ class CartViewModel(
                 when (cart) {
                     is ApiResponse.Success -> {
                         cart.data?.let { restaurantCart ->
-                            _cartState.emit(CartState.Success(restaurantCart = restaurantCart))
+                            _cartState.emit(
+                                if (restaurantCart.isEmpty) CartState.Empty else CartState.Success(
+                                    restaurantCart = restaurantCart
+                                )
+                            )
                         }
                     }
 
@@ -42,6 +51,20 @@ class CartViewModel(
             }
 
             _cartState.emit(CartState.Idle)
+        }
+    }
+
+    fun addProductQuantity(restaurantCartItem: RestaurantCartItem) {
+        viewModelScope.launch {
+            addCartItemQuantityUseCase(restaurantCartItem)
+            getCart()
+        }
+    }
+
+    fun subtractProductQuantity(restaurantCartItem: RestaurantCartItem) {
+        viewModelScope.launch {
+            subtractCartItemQuantityUseCase(restaurantCartItem)
+            getCart()
         }
     }
 

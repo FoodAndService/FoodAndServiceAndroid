@@ -24,6 +24,8 @@ data class RestaurantCart(
 
             return String.format("%.2f€", totalPrice / 100.0)
         }
+
+    val isEmpty = items.isEmpty()
 }
 
 sealed class RestaurantCartItem {
