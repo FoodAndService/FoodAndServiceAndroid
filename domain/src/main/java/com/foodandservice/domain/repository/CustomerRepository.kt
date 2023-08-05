@@ -38,7 +38,7 @@ interface CustomerRepository {
         productExtras: HashMap<String, Int>
     ): Boolean
 
-    suspend fun deleteCart()
+    suspend fun emptyCart()
 
     // Mocked
     suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>>

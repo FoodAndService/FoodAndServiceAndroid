@@ -50,7 +50,7 @@ interface CartDao {
     suspend fun getProductNote(productId: String): String
 
     @Query("DELETE FROM restaurant_cart_products")
-    suspend fun deleteAllProductsAndTheirExtras()
+    suspend fun emptyCart()
 
     @Query("SELECT * FROM restaurant_cart_product_extras WHERE cartItemId = :cartItemId")
     suspend fun getProductExtrasForCartItem(cartItemId: String): List<RestaurantCartProductExtraEntity>

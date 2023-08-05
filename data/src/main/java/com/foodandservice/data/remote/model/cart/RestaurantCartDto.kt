@@ -10,13 +10,16 @@ data class RestaurantCartDto(
 )
 
 data class RestaurantCartItemDto(
-    val discountedPrice: Int,
-    val extras: List<RestaurantCartExtraDto>,
-    val name: String,
-    val price: Int,
+    val id: String,
     val productId: String,
+    val name: String,
+    val quantity: Int,
+    val note: String,
+    val price: Int,
+    val discountedPrice: Int,
     val productImage: String,
-    val quantity: Int
+    val hasDiscount: Boolean,
+    val extras: List<RestaurantCartExtraDto>,
 )
 
 data class RestaurantCartExtraDto(
@@ -31,16 +34,20 @@ fun RestaurantCartDto.toRestaurantCart() = RestaurantCart(
 fun RestaurantCartItemDto.toRestaurantCartItems(): List<RestaurantCartItem> {
     val cartItems = mutableListOf<RestaurantCartItem>()
 
-    val mainProduct = RestaurantCartProduct(
-        discountedPrice = discountedPrice,
-        extras = extras.map { it.toRestaurantCartExtra() },
-        name = name,
-        price = price,
-        productId = productId,
-        productImage = productImage,
-        quantity = quantity
+    cartItems.add(
+        RestaurantCartItem.Product(
+            RestaurantCartProduct(id = id,
+                productId = productId,
+                name = name,
+                quantity = quantity,
+                productNote = note,
+                price = price,
+                discountedPrice = discountedPrice,
+                productImage = productImage,
+                hasDiscount = hasDiscount,
+                extras = extras.map { it.toRestaurantCartExtra() })
+        )
     )
-    cartItems.add(RestaurantCartItem.Product(mainProduct))
 
     extras.forEach { extra ->
         cartItems.add(RestaurantCartItem.ProductExtra(extra.toRestaurantCartExtra()))

@@ -8,10 +8,12 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.foodandservice.R
 import com.foodandservice.databinding.FragmentCartBinding
 import com.foodandservice.domain.model.cart.RestaurantCart
 import com.foodandservice.domain.model.cart.RestaurantCartItem
 import com.foodandservice.presentation.ui.adapter.CartAdapter
+import com.foodandservice.util.extensions.CoreExtensions.showDialog
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
 
@@ -50,26 +52,44 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
 
                         }
 
-                        is CartState.Idle -> {
-                            setIdleState()
-                        }
-
                         is CartState.Empty -> {
                             setCartEmpty()
+                        }
+
+                        is CartState.Idle -> {
+                            setIdleState()
                         }
                     }
                 }
             }
         }
 
-        binding.btnConfirmOrder.setOnClickListener {
+        binding.apply {
+            btnConfirmCart.setOnClickListener {
 
+            }
+
+            btnClearCart.setOnClickListener {
+                showClearCartDialog()
+            }
         }
+    }
+
+    private fun showClearCartDialog() {
+        showDialog(title = getString(R.string.dialog_clear_cart_title),
+            description = getString(R.string.dialog_clear_cart_desc),
+            onBtnPositiveClick = {
+                viewModel.clearCart()
+            })
     }
 
     private fun setCartItems(restaurantCart: RestaurantCart) {
         cartAdapter.submitList(restaurantCart.items)
-        binding.constraintCart.visibility = View.VISIBLE
+        binding.apply {
+            btnConfirmCart.text = getString(R.string.btn_confirm_cart, restaurantCart.totalPriceUI)
+            constraintCart.visibility = View.VISIBLE
+            btnClearCart.visibility = View.VISIBLE
+        }
     }
 
     private fun setAdapter() {
@@ -81,6 +101,8 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
     private fun setCartEmpty() {
         binding.apply {
             constraintCartEmpty.visibility = View.VISIBLE
+            constraintCart.visibility = View.GONE
+            btnClearCart.visibility = View.GONE
         }
     }
 

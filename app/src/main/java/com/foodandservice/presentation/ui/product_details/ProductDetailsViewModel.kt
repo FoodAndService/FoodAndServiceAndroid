@@ -62,7 +62,8 @@ class ProductDetailsViewModel(
     }
 
     private fun getFinalPrice() =
-        productDetails.discountedPrice.value.takeIf { it > 0 } ?: productDetails.price.value
+        productDetails.discountedPrice.value.takeIf { productDetails.hasDiscount }
+            ?: productDetails.price.value
 
     private fun findExtraPriceById(id: String) =
         productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0

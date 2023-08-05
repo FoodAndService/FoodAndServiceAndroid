@@ -1,12 +1,14 @@
 package com.foodandservice.domain.usecases.product
 
 import com.foodandservice.domain.repository.CustomerRepository
+import com.foodandservice.domain.usecases.cart.ClearCartUseCase
 import com.foodandservice.domain.usecases.cart.GetOrCreateCartIdUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantIdUseCase
 import com.foodandservice.domain.usecases.restaurant.SaveRestaurantIdUseCase
 
 class AddProductToCartUseCase(
     private val customerRepository: CustomerRepository,
+    private val clearCartUseCase: ClearCartUseCase,
     private val getOrCreateCartIdUseCase: GetOrCreateCartIdUseCase,
     private val getRestaurantIdUseCase: GetRestaurantIdUseCase,
     private val saveRestaurantIdUseCase: SaveRestaurantIdUseCase
@@ -20,8 +22,7 @@ class AddProductToCartUseCase(
     ): Boolean {
         val differentRestaurant = restaurantId != getRestaurantIdUseCase()
 
-        if (differentRestaurant)
-            customerRepository.deleteCart()
+        if (differentRestaurant) clearCartUseCase()
 
         saveRestaurantIdUseCase(restaurantId = restaurantId)
 

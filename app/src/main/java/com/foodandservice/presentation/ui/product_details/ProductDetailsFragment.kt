@@ -100,14 +100,12 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
 
             btnShowAllergensAndIntolerances.setOnClickListener {
                 showAllergensAndIntolerancesBottomSheet(
-                    layout = R.layout.bottom_sheet_product_allergens_intolerances,
                     restaurantProductDietaryRestrictionAdapter = restaurantProductDietaryRestrictionAdapter
                 )
             }
 
             btnShowProductExtras.setOnClickListener {
                 showProductExtrasBottomSheet(
-                    layout = R.layout.bottom_sheet_product_extras,
                     productExtraAdapter = productExtraAdapter
                 )
             }

@@ -23,7 +23,7 @@ object FysBottomSheets {
     }
 
     fun Fragment.showAllergensAndIntolerancesBottomSheet(
-        layout: Int,
+        layout: Int = R.layout.bottom_sheet_product_allergens_intolerances,
         restaurantProductDietaryRestrictionAdapter: RestaurantProductDietaryRestrictionAdapter
     ) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
@@ -38,7 +38,7 @@ object FysBottomSheets {
     }
 
     fun Fragment.showProductExtrasBottomSheet(
-        layout: Int, productExtraAdapter: ProductExtraAdapter
+        layout: Int = R.layout.bottom_sheet_product_extras, productExtraAdapter: ProductExtraAdapter
     ) {
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetDialog)
         val inflatedLayout = layoutInflater.inflate(layout, null).also {
@@ -52,7 +52,7 @@ object FysBottomSheets {
     }
 
     fun Fragment.showHomeFilterBottomSheet(
-        layout: Int,
+        layout: Int = R.layout.bottom_sheet_home_filter,
         onBtnRecommendedClick: (() -> Unit)? = null,
         onBtnPopularClick: (() -> Unit)? = null,
         onBtnValoratedClick: (() -> Unit)? = null,

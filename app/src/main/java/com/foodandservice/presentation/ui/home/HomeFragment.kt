@@ -12,7 +12,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.birjuvachhani.locus.Locus
-import com.foodandservice.R
 import com.foodandservice.common.Constants
 import com.foodandservice.databinding.FragmentHomeBinding
 import com.foodandservice.domain.model.location.Coordinate
@@ -77,7 +76,7 @@ class HomeFragment : Fragment(), RestaurantAdapter.RestaurantClickListener,
 
         binding.apply {
             btnFilter.setOnClickListener {
-                showHomeFilterBottomSheet(layout = R.layout.bottom_sheet_home_filter,
+                showHomeFilterBottomSheet(
                     onBtnRecommendedClick = {
 
                     },

@@ -2,11 +2,14 @@ package com.foodandservice.presentation.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.foodandservice.R
 import com.foodandservice.databinding.ItemProductCartBinding
 import com.foodandservice.databinding.ItemProductExtraCartBinding
 import com.foodandservice.domain.model.cart.RestaurantCartItem
@@ -45,6 +48,25 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
             val productItem = (item as? RestaurantCartItem.Product)?.item ?: return
 
             binding.apply {
+                tvProductName.text = productItem.name
+                tvPriceOld.apply {
+                    visibility = if (productItem.hasDiscount) View.VISIBLE else View.GONE
+                    text = productItem.priceUI
+                }
+                tvPrice.text = binding.root.context.getString(R.string.product_price_single,
+                    productItem.discountedPriceUI.takeIf { productItem.hasDiscount }
+                        ?: productItem.priceUI)
+                tvPriceTotal.text = productItem.priceTotalUI
+                tvProductQuantity.text = productItem.quantity.toString()
+
+                tvProductNote.apply {
+                    visibility =
+                        if (productItem.productNote.isNotEmpty()) View.VISIBLE else View.GONE
+                    text = "*${productItem.productNote}"
+                }
+
+                Glide.with(itemView).load(productItem.productImage).centerCrop().into(ivProduct)
+
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
                         restaurantCartItem = item, position = bindingAdapterPosition
@@ -56,10 +78,6 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
                         restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
-
-                tvProductName.text = productItem.name
-                tvPrice.text = "${productItem.price} €"
-                tvProductQuantity.text = productItem.quantity.toString()
             }
             binding.executePendingBindings()
         }
@@ -82,6 +100,11 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
             val extraItem = (item as? RestaurantCartItem.ProductExtra)?.extra ?: return
 
             binding.apply {
+                tvProductName.text = extraItem.name
+                tvPrice.text =
+                    binding.root.context.getString(R.string.product_price_single, extraItem.priceUI)
+                tvProductQuantity.text = extraItem.quantity.toString()
+
                 btnAdd.setOnClickListener {
                     clickListener.onClickAddQuantity(
                         restaurantCartItem = item, position = bindingAdapterPosition
@@ -93,10 +116,6 @@ class CartAdapter constructor(private val clickListener: CartItemClickListener) 
                         restaurantCartItem = item, position = bindingAdapterPosition
                     )
                 }
-
-                tvProductName.text = extraItem.name
-                tvPrice.text = "${extraItem.price} €"
-                tvProductQuantity.text = extraItem.quantity.toString()
             }
             binding.executePendingBindings()
         }

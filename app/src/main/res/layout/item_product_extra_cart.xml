@@ -1,10 +1,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mainCardView"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
@@ -22,39 +23,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/tvProductName"
-                style="@style/FysWhiteMediumText"
+            <LinearLayout
+                android:id="@+id/llPrices"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="Pepsi"
-                app:layout_constraintBottom_toTopOf="@+id/tvPrice"
-                app:layout_constraintEnd_toStartOf="@+id/btnSubtract"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
-                android:id="@+id/tvPrice"
-                style="@style/FysWhiteMediumText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:text="1,99€"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+                <TextView
+                    android:id="@+id/tvProductName"
+                    style="@style/FysWhiteMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="-4dp"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:lineSpacingExtra="-8sp"
+                    android:maxLines="2"
+                    tools:text="Pepsi" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    style="@style/FysWhiteSmallText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    tools:text="1,99€" />
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubtract"
                 style="@style/FysWhiteIconButton"
-                android:layout_marginEnd="45dp"
+                android:layout_marginEnd="40dp"
                 app:icon="@drawable/ic_minus"
                 app:layout_constraintBottom_toBottomOf="@id/btnAdd"
                 app:layout_constraintEnd_toStartOf="@id/btnAdd"

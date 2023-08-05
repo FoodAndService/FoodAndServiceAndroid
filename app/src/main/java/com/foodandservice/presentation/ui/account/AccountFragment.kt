@@ -93,8 +93,6 @@ class AccountFragment : Fragment() {
     private fun showLogOutDialog() {
         showDialog(title = getString(R.string.dialog_logout_title),
             description = getString(R.string.dialog_logout_desc),
-            btnPositiveLabel = getString(R.string.btn_confirm),
-            btnNegativeLabel = getString(R.string.btn_cancel),
             onBtnPositiveClick = {
                 viewModel.signOut()
             })
@@ -103,8 +101,6 @@ class AccountFragment : Fragment() {
     private fun showDeleteAccountDialog() {
         showDialog(title = getString(R.string.dialog_delete_account_title),
             description = getString(R.string.dialog_delete_account_desc),
-            btnPositiveLabel = getString(R.string.btn_confirm),
-            btnNegativeLabel = getString(R.string.btn_cancel),
             onBtnPositiveClick = {
 
             },

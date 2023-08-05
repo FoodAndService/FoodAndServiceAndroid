@@ -2,7 +2,6 @@ package com.foodandservice.presentation.ui.restaurant_details
 
 import android.graphics.Paint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,12 +57,10 @@ class RestaurantDetailsFragment : Fragment(),
                         is RestaurantDetailsState.DetailsSuccess -> {
                             restaurantDetails = state.restaurantDetails
                             setRestaurantDetails()
-                            Log.i("pepe", "DetailsSuccess")
                         }
 
                         is RestaurantDetailsState.ProductsWithCategoriesSuccess -> {
                             setRestaurantProductsWithCategories(state.restaurantProductCategoriesWithProducts)
-                            Log.i("pepe", "ProductsWithCategoriesSuccess")
                         }
 
                         is RestaurantDetailsState.Loading -> {

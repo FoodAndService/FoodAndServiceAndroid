@@ -125,7 +125,6 @@ class CustomerRepositoryImpl(
         productExtras: HashMap<String, Int>
     ): Boolean {
         return try {
-            val productCartItemId = cartDao.getCartItemId(productId)
             val doesProductExist = cartDao.productExists(productId = productId)
             val doesNoteMatch =
                 doesProductExist && cartDao.getProductNote(productId = productId) == productNote
@@ -139,6 +138,7 @@ class CustomerRepositoryImpl(
                 )
             }
 
+            val productCartItemId = cartDao.getCartItemId(productId)
             val existingExtras = cartDao.getProductExtrasForCartItem(productCartItemId)
 
             productExtras.forEach { (extraId, qty) ->
@@ -181,8 +181,8 @@ class CustomerRepositoryImpl(
         }
     }
 
-    override suspend fun deleteCart() {
-        cartDao.deleteAllProductsAndTheirExtras()
+    override suspend fun emptyCart() {
+        cartDao.emptyCart()
     }
 
     override suspend fun getFavouriteRestaurants(): ApiResponse<List<FavouriteRestaurant>> {

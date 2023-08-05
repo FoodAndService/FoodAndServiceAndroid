@@ -14,13 +14,31 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ivFysLogo"
-                style="@style/FysLogo"
-                android:importantForAccessibility="no"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/ivFysLogo"
+                    style="@style/FysLogo"
+                    android:importantForAccessibility="no"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/btnClearCart"
+                    style="@style/FysImageButton"
+                    android:layout_marginTop="34dp"
+                    android:visibility="gone"
+                    tools:visibility="visible"
+                    android:layout_marginEnd="16dp"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_delete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -147,7 +165,7 @@
                         app:layout_constraintTop_toBottomOf="@id/rvCart" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnConfirmOrder"
+                        android:id="@+id/btnConfirmCart"
                         style="@style/FysPrimaryButton"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

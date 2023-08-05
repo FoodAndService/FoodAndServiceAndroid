@@ -7,6 +7,7 @@ import com.foodandservice.domain.usecases.auth.ResendSmsUseCase
 import com.foodandservice.domain.usecases.auth.SaveAuthCurrentPhaseUseCase
 import com.foodandservice.domain.usecases.auth.SaveUserTokenUseCase
 import com.foodandservice.domain.usecases.auth.SignOutUseCase
+import com.foodandservice.domain.usecases.cart.ClearCartUseCase
 import com.foodandservice.domain.usecases.cart.GetCartProductsUseCase
 import com.foodandservice.domain.usecases.cart.GetOrCreateCartIdUseCase
 import com.foodandservice.domain.usecases.onboarding.FinishOnboardingUseCase
@@ -53,6 +54,7 @@ val useCaseModule = module {
 
     single {
         AddProductToCartUseCase(
+            clearCartUseCase = get(),
             getOrCreateCartIdUseCase = get(),
             customerRepository = get(),
             getRestaurantIdUseCase = get(),
@@ -90,6 +92,10 @@ val useCaseModule = module {
 
     single {
         GetCartProductsUseCase(customerRepository = get(), preferencesRepository = get())
+    }
+
+    single {
+        ClearCartUseCase(customerRepository = get(), preferencesRepository = get())
     }
 
     single {

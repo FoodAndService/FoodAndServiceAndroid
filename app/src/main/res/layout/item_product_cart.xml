@@ -1,10 +1,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/mainCardView"
         android:layout_width="match_parent"
-        android:layout_height="68dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="16dp"
@@ -28,9 +29,9 @@
                 android:layout_marginStart="12dp"
                 android:background="@android:color/transparent"
                 app:cardCornerRadius="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/llPrices"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@+id/llPrices">
 
                 <ImageView
                     android:id="@+id/ivProduct"
@@ -41,39 +42,89 @@
                     android:src="@drawable/restaurant_logo" />
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/tvProductName"
-                style="@style/FysPrimaryMediumText"
+            <LinearLayout
+                android:id="@+id/llPrices"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="12dp"
-                android:ellipsize="end"
-                android:gravity="start"
-                android:lines="1"
-                android:maxLines="1"
-                android:text="Pepsi"
-                app:layout_constraintBottom_toTopOf="@+id/tvPrice"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toStartOf="@+id/btnSubtract"
-                app:layout_constraintStart_toEndOf="@+id/materialCardView4"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_chainStyle="packed" />
+                app:layout_constraintStart_toEndOf="@id/materialCardView4"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/tvProductName"
+                    style="@style/FysPrimaryMediumText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="-2dp"
+                    android:ellipsize="end"
+                    android:gravity="start"
+                    android:lineSpacingExtra="-8sp"
+                    android:maxLines="2"
+                    tools:text="Pepsi" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvPriceOld"
+                        style="@style/FysDarkSmallText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="-2dp"
+                        android:textColor="#808080"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toTopOf="@+id/tvPrice"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed"
+                        app:strikeThrough="@{true}"
+                        tools:text="2,99€"
+                        tools:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/tvPrice"
+                        style="@style/FysDarkSmallText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="-2dp"
+                        tools:text="1,99€" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvPriceTotal"
+                    style="@style/FysPrimarySmallText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="12dp"
+                    tools:text="1,99€" />
+            </LinearLayout>
 
             <TextView
-                android:id="@+id/tvPrice"
-                style="@style/FysDarkMediumText"
+                android:id="@+id/tvProductNote"
+                style="@style/FysDarkSmallText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:text="1,99€"
+                android:layout_marginBottom="8dp"
+                android:textColor="#808080"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/materialCardView4"
-                app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/llPrices"
+                tools:text="*Sin cebolla"
+                tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnSubtract"
                 style="@style/FysIconButton"
-                android:layout_marginEnd="45dp"
+                android:layout_marginEnd="40dp"
                 app:icon="@drawable/ic_minus"
                 app:layout_constraintBottom_toBottomOf="@id/btnAdd"
                 app:layout_constraintEnd_toStartOf="@id/btnAdd"
@@ -93,11 +144,11 @@
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnAdd"
                 style="@style/FysIconButton"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="12dp"
                 app:icon="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/llPrices"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/llPrices" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
