@@ -19,6 +19,8 @@ interface UserPreferencesRepository {
     suspend fun deleteCartId()
 
     suspend fun saveRestaurantId(restaurantId: String)
+    suspend fun saveRestaurantName(restaurantName: String)
     suspend fun getRestaurantId(): String?
+    suspend fun getRestaurantName(): String?
     suspend fun deleteRestaurantId()
 }

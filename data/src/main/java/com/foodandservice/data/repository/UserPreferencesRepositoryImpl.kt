@@ -18,6 +18,7 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         val ONBOARDING_FINISHED = booleanPreferencesKey("is_onboarding_finished")
         val CART_ID = stringPreferencesKey("cart_id")
         val RESTAURANT_ID = stringPreferencesKey("restaurant_id")
+        val RESTAURANT_NAME = stringPreferencesKey("restaurant_name")
     }
 
     private object AuthCurrentPhase {
@@ -88,7 +89,16 @@ class UserPreferencesRepositoryImpl(private val dataStore: DataStore<Preferences
         }
     }
 
+    override suspend fun saveRestaurantName(restaurantName: String) {
+        dataStore.edit {
+            it[Keys.RESTAURANT_NAME] = restaurantName
+        }
+    }
+
     override suspend fun getRestaurantId() = dataStore.data.map { it[Keys.RESTAURANT_ID] }.first()
+
+    override suspend fun getRestaurantName() =
+        dataStore.data.map { it[Keys.RESTAURANT_NAME] }.first()
 
     override suspend fun deleteRestaurantId() {
         dataStore.edit {

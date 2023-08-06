@@ -179,7 +179,9 @@ class RestaurantDetailsFragment : Fragment(),
     override fun onClick(productId: String) {
         navigate(
             RestaurantDetailsFragmentDirections.actionRestaurantDetailsFragmentToProductDetailsFragment(
-                restaurantId = restaurantDetails.id, productId = productId
+                restaurantId = restaurantDetails.id,
+                productId = productId,
+                restaurantName = restaurantDetails.name
             )
         )
     }

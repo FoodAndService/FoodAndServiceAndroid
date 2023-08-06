@@ -7,6 +7,7 @@ import com.foodandservice.domain.usecases.cart.AddCartItemQuantityUseCase
 import com.foodandservice.domain.usecases.cart.ClearCartUseCase
 import com.foodandservice.domain.usecases.cart.GetCartProductsUseCase
 import com.foodandservice.domain.usecases.cart.SubtractCartItemQuantityUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantNameUseCase
 import com.foodandservice.domain.util.ApiResponse
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.launch
 
 class CartViewModel(
     private val getCartProductsUseCase: GetCartProductsUseCase,
+    private val getRestaurantNameUseCase: GetRestaurantNameUseCase,
     private val addCartItemQuantityUseCase: AddCartItemQuantityUseCase,
     private val subtractCartItemQuantityUseCase: SubtractCartItemQuantityUseCase,
     private val clearCartUseCase: ClearCartUseCase
@@ -30,11 +32,18 @@ class CartViewModel(
                 when (cart) {
                     is ApiResponse.Success -> {
                         cart.data?.let { restaurantCart ->
-                            _cartState.emit(
-                                if (restaurantCart.isEmpty) CartState.Empty else CartState.Success(
-                                    restaurantCart = restaurantCart
-                                )
-                            )
+                            if (restaurantCart.isEmpty) {
+                                _cartState.emit(CartState.Empty)
+                            } else {
+                                getRestaurantNameUseCase()?.let { restaurantName ->
+                                    _cartState.emit(
+                                        CartState.Success(
+                                            restaurantName = restaurantName,
+                                            restaurantCart = restaurantCart
+                                        )
+                                    )
+                                }
+                            }
                         }
                     }
 

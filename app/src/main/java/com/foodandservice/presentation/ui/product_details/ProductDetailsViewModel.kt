@@ -68,18 +68,20 @@ class ProductDetailsViewModel(
     private fun findExtraPriceById(id: String) =
         productDetails.extras.firstOrNull { it.id == id }?.price?.value ?: 0
 
-    fun addProductToCart(restaurantId: String) {
+    fun addProductToCart(restaurantId: String, restaurantName: String) {
         viewModelScope.launch {
             _productDetailsState.emit(ProductDetailsState.LoadingAddToCart)
 
             if (addProductToCartUseCase(
                     restaurantId = restaurantId,
+                    restaurantName = restaurantName,
                     productId = productDetails.id,
                     productQuantity = productQuantity.value,
                     productNote = productNote.value,
                     productExtras = productExtras
                 )
             ) {
+                resetQuantites()
                 _productDetailsState.emit(ProductDetailsState.SuccessAddToCart)
             } else {
                 _productDetailsState.emit(ProductDetailsState.ErrorAddToCart)
@@ -87,6 +89,12 @@ class ProductDetailsViewModel(
 
             _productDetailsState.emit(ProductDetailsState.AddToCartIdle)
         }
+    }
+
+    private fun resetQuantites() {
+        productQuantity.value = 1
+        productNote.value = ""
+        productExtras.clear()
     }
 
     fun getRestaurantProductDetails(restaurantId: String, productId: String) {

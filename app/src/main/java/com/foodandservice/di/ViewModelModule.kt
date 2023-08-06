@@ -39,6 +39,7 @@ val viewModelModule = module {
     viewModel {
         CartViewModel(
             getCartProductsUseCase = get(),
+            getRestaurantNameUseCase = get(),
             clearCartUseCase = get(),
             addCartItemQuantityUseCase = get(),
             subtractCartItemQuantityUseCase = get()

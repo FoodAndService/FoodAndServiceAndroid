@@ -4,7 +4,8 @@ import com.foodandservice.domain.model.cart.RestaurantCart
 
 sealed class CartState {
     data class Success(
-        val restaurantCart: RestaurantCart,
+        val restaurantName: String,
+        val restaurantCart: RestaurantCart
     ) : CartState()
 
     data class Error(val message: String) : CartState()

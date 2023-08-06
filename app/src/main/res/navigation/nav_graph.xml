@@ -230,6 +230,12 @@
         <argument
             android:name="productId"
             app:argType="string" />
+        <argument
+            android:name="restaurantName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_productDetailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/restaurantReviewsFragment"
@@ -249,7 +255,12 @@
         android:id="@+id/cartFragment"
         android:name="com.foodandservice.presentation.ui.cart.CartFragment"
         android:label="CartFragment"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart">
+        <argument
+            android:name="fromProductDetails"
+            app:argType="boolean"
+            android:defaultValue="false" />
+    </fragment>
     <fragment
         android:id="@+id/orderDetailsPastFragment"
         android:name="com.foodandservice.presentation.ui.order_details_past.OrderDetailsPastFragment"

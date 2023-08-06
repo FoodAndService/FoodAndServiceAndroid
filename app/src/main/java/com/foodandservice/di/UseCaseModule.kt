@@ -23,6 +23,7 @@ import com.foodandservice.domain.usecases.restaurant.GetOrderHistoryUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantCategoriesUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantIdUseCase
+import com.foodandservice.domain.usecases.restaurant.GetRestaurantNameUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductCategoriesWithProductsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantProductDetailsUseCase
 import com.foodandservice.domain.usecases.restaurant.GetRestaurantReviewsUseCase
@@ -57,15 +58,19 @@ val useCaseModule = module {
     single {
         AddProductToCartUseCase(
             clearCartUseCase = get(),
-            getOrCreateCartIdUseCase = get(),
             customerRepository = get(),
-            getRestaurantIdUseCase = get(),
+            getOrCreateCartIdUseCase = get(),
+            preferencesRepository = get(),
             saveRestaurantIdUseCase = get()
         )
     }
 
     single {
         GetRestaurantIdUseCase(userPreferencesRepository = get())
+    }
+
+    single {
+        GetRestaurantNameUseCase(userPreferencesRepository = get())
     }
 
     single {

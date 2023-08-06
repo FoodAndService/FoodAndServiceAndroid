@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.foodandservice.R
 import com.foodandservice.databinding.FragmentCartBinding
 import com.foodandservice.domain.model.cart.RestaurantCart
@@ -20,6 +22,7 @@ import org.koin.android.ext.android.get
 class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartAdapter: CartAdapter
+    private val args: CartFragmentArgs by navArgs()
     private val viewModel: CartViewModel = get()
 
     override fun onCreateView(
@@ -41,7 +44,10 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
                 viewModel.cartState.collect { state ->
                     when (state) {
                         is CartState.Success -> {
-                            setCartItems(restaurantCart = state.restaurantCart)
+                            setCartItems(
+                                restaurantCart = state.restaurantCart,
+                                restaurantName = state.restaurantName
+                            )
                         }
 
                         is CartState.Loading -> {
@@ -72,6 +78,10 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
             btnClearCart.setOnClickListener {
                 showClearCartDialog()
             }
+
+            btnBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
@@ -83,12 +93,14 @@ class CartFragment : Fragment(), CartAdapter.CartItemClickListener {
             })
     }
 
-    private fun setCartItems(restaurantCart: RestaurantCart) {
+    private fun setCartItems(restaurantCart: RestaurantCart, restaurantName: String) {
         cartAdapter.submitList(restaurantCart.items)
         binding.apply {
             btnConfirmCart.text = getString(R.string.btn_confirm_cart, restaurantCart.totalPriceUI)
+            tvRestaurantName.text = restaurantName
             constraintCart.visibility = View.VISIBLE
             btnClearCart.visibility = View.VISIBLE
+            btnBack.visibility = if (args.fromProductDetails) View.VISIBLE else View.GONE
         }
     }
 

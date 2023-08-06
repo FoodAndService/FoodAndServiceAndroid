@@ -23,6 +23,7 @@ import com.foodandservice.presentation.ui.adapter.RestaurantProductDietaryRestri
 import com.foodandservice.presentation.ui.bottomsheets.AddProductNoteBottomSheet
 import com.foodandservice.util.FysBottomSheets.showAllergensAndIntolerancesBottomSheet
 import com.foodandservice.util.FysBottomSheets.showProductExtrasBottomSheet
+import com.foodandservice.util.extensions.CoreExtensions.navigate
 import com.foodandservice.util.extensions.CoreExtensions.navigateBack
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.get
@@ -78,7 +79,12 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                         }
 
                         is ProductDetailsState.SuccessAddToCart -> {
-
+                            addProductNoteBottomSheet.dismiss()
+                            navigate(
+                                ProductDetailsFragmentDirections.actionProductDetailsFragmentToCartFragment(
+                                    fromProductDetails = true
+                                )
+                            )
                         }
 
                         is ProductDetailsState.AddToCartIdle -> {
@@ -125,7 +131,10 @@ class ProductDetailsFragment : Fragment(), ProductExtraAdapter.ProductExtraClick
                             viewModel.productNote.value = text
                         },
                         onContinueClick = {
-                            viewModel.addProductToCart(restaurantId = args.restaurantId)
+                            viewModel.addProductToCart(
+                                restaurantId = args.restaurantId,
+                                restaurantName = args.restaurantName
+                            )
                         })
 
                 addProductNoteBottomSheet.show(parentFragmentManager, null)
